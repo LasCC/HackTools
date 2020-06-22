@@ -6,7 +6,7 @@
   </a>
 </p>
 
-The all in one Red team extension for web pentester
+The all in one Red team browser extension for web pentesters
 
 ## Install
 

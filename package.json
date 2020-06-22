@@ -1,7 +1,7 @@
 {
   "name": "HackTools",
   "version": "0.1.0a",
-  "description": "The all in one Red team extension for web pentester",
+  "description": "The all in one Red team browser extension for web pentesters",
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode production",
