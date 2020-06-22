@@ -6,7 +6,6 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 module.exports = {
   mode: "development",
   entry: {
-    jquery: "jquery",
     app: "./src/App.js",
   },
   devtool: "inline-source-map",
