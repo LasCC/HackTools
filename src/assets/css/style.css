@@ -1,0 +1,24 @@
+@import "~antd/dist/antd.compact.css";
+.logo {
+  width: 120px;
+  height: 31px;
+  background: rgba(82, 82, 82, 0.2);
+  margin: 16px 24px 16px 0;
+  float: left;
+}
+.site-layout .site-layout-background {
+  background: #fff;
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-width: 750px;
+  min-height: auto;
+}
