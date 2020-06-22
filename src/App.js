@@ -5,7 +5,6 @@ import "./assets/css/style.css";
 import ReactDOM from "react-dom";
 import { Router } from "react-chrome-extension-router";
 import ReverseShell from "./components/ReverseShell.js";
-import Bop from "./components/Bop.js";
 
 function App() {
   return (
