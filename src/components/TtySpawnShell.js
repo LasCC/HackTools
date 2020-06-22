@@ -1,25 +1,14 @@
-import React, { useState } from "react";
-import { Button, message, Typography, Row, Col, Divider } from "antd";
-import { CopyOutlined, WifiOutlined, LinkOutlined } from "@ant-design/icons";
-import MaskedInput from "antd-mask-input";
+import React from "react";
+import { Button, message, Typography, Divider } from "antd";
+import { CopyOutlined } from "@ant-design/icons";
 import QueueAnim from "rc-queue-anim";
 import Clipboard from "react-clipboard.js";
 
 const { Title, Paragraph } = Typography;
 
 export default (props) => {
-  const [values, setValues] = useState({
-    ip: "",
-    port: "",
-  });
-  const handleChange = (name) => (event) => {
-    setValues({ ...values, [name]: event.target.value });
-  };
-  const successInfoReverseShell = () => {
+  const successInfoTtyShell = () => {
     message.success("Your reverse shell has been copied");
-  };
-  const successInfoEncodeURL = () => {
-    message.success("Reverse shell URI encoded has been copied");
   };
 
   return (
@@ -36,49 +25,243 @@ export default (props) => {
         will allow you to spawn a tty shell. Obviously some of this will depend
         on the system environment and installed packages.
       </Paragraph>
-      <div style={{ padding: 15 }}>
-        <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-          <Col span={12}>
-            <MaskedInput
-              prefix={<WifiOutlined />}
-              mask='111.111.111.111'
-              name='Ip adress'
-              placeholderChar=' '
-              placeholder='IP Address (ex: 212.212.111.222)'
-              onChange={handleChange("ip")}
-            />
-          </Col>
-          <Col span={12}>
-            <MaskedInput
-              placeholderChar=' '
-              prefix={
-                <svg
-                  t='1592848067245'
-                  class='iconfont'
-                  viewBox='0 0 1024 1024'
-                  version='1.1'
-                  xmlns='http://www.w3.org/2000/svg'
-                  p-id='5009'
-                  width='15'
-                  height='15'
-                >
-                  <path
-                    d='M170.666667 640H106.666667a21.333333 21.333333 0 0 1-21.333334-21.333333v-426.666667a21.333333 21.333333 0 0 1 21.333334-21.333333h768a21.333333 21.333333 0 0 1 21.333333 21.333333v426.666667a21.333333 21.333333 0 0 1-21.333333 21.333333H810.666667v64a21.333333 21.333333 0 0 1-21.333334 21.333333H725.333333v64a21.333333 21.333333 0 0 1-21.333333 21.333334h-426.666667a21.333333 21.333333 0 0 1-21.333333-21.333334V725.333333H192a21.333333 21.333333 0 0 1-21.333333-21.333333V640zM128 213.333333v384h64a21.333333 21.333333 0 0 1 21.333333 21.333334V682.666667h64a21.333333 21.333333 0 0 1 21.333334 21.333333V768h384v-64a21.333333 21.333333 0 0 1 21.333333-21.333333H768v-64a21.333333 21.333333 0 0 1 21.333333-21.333334H853.333333V213.333333H128z m469.333333 64a21.333333 21.333333 0 1 1 42.666667 0v85.333334a21.333333 21.333333 0 1 1-42.666667 0v-85.333334z m85.333334 0a21.333333 21.333333 0 1 1 42.666666 0v85.333334a21.333333 21.333333 0 1 1-42.666666 0v-85.333334z m-170.666667 0a21.333333 21.333333 0 1 1 42.666667 0v85.333334a21.333333 21.333333 0 1 1-42.666667 0v-85.333334z m-85.333333 0a21.333333 21.333333 0 1 1 42.666666 0v85.333334a21.333333 21.333333 0 1 1-42.666666 0v-85.333334z m-85.333334 0a21.333333 21.333333 0 0 1 42.666667 0v85.333334a21.333333 21.333333 0 0 1-42.666667 0v-85.333334z m-85.333333 0a21.333333 21.333333 0 0 1 42.666667 0v85.333334a21.333333 21.333333 0 0 1-42.666667 0v-85.333334z'
-                    fill='#000000'
-                    p-id='5010'
-                  />
-                </svg>
-              }
-              mask='1111'
-              name='Port'
-              placeholder='Port (ex: 1337)'
-              onChange={handleChange("port")}
-            />
-          </Col>
-        </Row>
+      <Divider dashed />
+      <div
+        key='a'
+        style={{
+          padding: 15,
+          marginTop: 15,
+        }}
+      >
+        <Title level={3}>Python spawn shell </Title>
+        <Paragraph copyable>
+          python -c 'import pty; pty.spawn("/bin/sh")'
+        </Paragraph>
+        <Clipboard
+          component='a'
+          data-clipboard-text={"python -c 'import pty; pty.spawn('/bin/sh')'"}
+        >
+          <Button
+            type='primary'
+            onClick={successInfoTtyShell}
+            style={{ marginBottom: 10, marginTop: 15 }}
+          >
+            <CopyOutlined />
+            Copy the TTY
+          </Button>
+        </Clipboard>
       </div>
       <Divider dashed />
-      <Paragraph>s</Paragraph>
+
+      <div
+        key='a'
+        style={{
+          padding: 15,
+          marginTop: 15,
+        }}
+      >
+        <Title level={3}>OS system spawn shell</Title>
+        <Paragraph copyable>echo os.system('/bin/bash')</Paragraph>
+        <Clipboard
+          component='a'
+          data-clipboard-text={"echo os.system('/bin/bash')"}
+        >
+          <Button
+            type='primary'
+            onClick={successInfoTtyShell}
+            style={{ marginBottom: 10, marginTop: 15 }}
+          >
+            <CopyOutlined />
+            Copy the TTY
+          </Button>
+        </Clipboard>
+      </div>
+      <Divider dashed />
+
+      <div
+        key='b'
+        style={{
+          padding: 15,
+          marginTop: 15,
+        }}
+      >
+        <Title level={3}>Bash spawn shell </Title>
+        <Paragraph copyable>/bin/sh -i</Paragraph>
+        <Clipboard component='a' data-clipboard-text={"/bin/sh -i"}>
+          <Button
+            type='primary'
+            onClick={successInfoTtyShell}
+            style={{ marginBottom: 10, marginTop: 15 }}
+          >
+            <CopyOutlined />
+            Copy the TTY
+          </Button>
+        </Clipboard>
+      </div>
+      <Divider dashed />
+
+      <div
+        key='c'
+        style={{
+          padding: 15,
+          marginTop: 15,
+        }}
+      >
+        <Title level={3}>Perl spawn shell </Title>
+        <Paragraph copyable>perl —e 'exec "/bin/sh";'</Paragraph>
+        <Clipboard
+          component='a'
+          data-clipboard-text={"perl —e 'exec '/bin/sh';'"}
+        >
+          <Button
+            type='primary'
+            onClick={successInfoTtyShell}
+            style={{ marginBottom: 10, marginTop: 15 }}
+          >
+            <CopyOutlined />
+            Copy the TTY
+          </Button>
+        </Clipboard>
+      </div>
+      <Divider dashed />
+
+      <div
+        key='d'
+        style={{
+          padding: 15,
+          marginTop: 15,
+        }}
+      >
+        <Title level={3}>Python spawn shell </Title>
+        <Paragraph copyable>ruby: exec "/bin/sh"</Paragraph>
+        <Clipboard component='a' data-clipboard-text={"ruby: exec '/bin/sh'"}>
+          <Button
+            type='primary'
+            onClick={successInfoTtyShell}
+            style={{ marginBottom: 10, marginTop: 15 }}
+          >
+            <CopyOutlined />
+            Copy the TTY
+          </Button>
+        </Clipboard>
+      </div>
+      <Divider dashed />
+
+      <div
+        key='e'
+        style={{
+          padding: 15,
+          marginTop: 15,
+        }}
+      >
+        <Title level={3}>Lua spawn shell </Title>
+        <Paragraph copyable>lua: os.execute('/bin/sh')</Paragraph>
+        <Clipboard
+          component='a'
+          data-clipboard-text={"lua: os.execute('/bin/sh')"}
+        >
+          <Button
+            type='primary'
+            onClick={successInfoTtyShell}
+            style={{ marginBottom: 10, marginTop: 15 }}
+          >
+            <CopyOutlined />
+            Copy the TTY
+          </Button>
+        </Clipboard>
+      </div>
+      <Divider dashed />
+
+      <div
+        key='f'
+        style={{
+          padding: 15,
+          marginTop: 15,
+        }}
+      >
+        <Title level={3}>IRB spawn shell </Title>
+        <Paragraph copyable>exec "/bin/sh"</Paragraph>
+        <Clipboard component='a' data-clipboard-text={"exec '/bin/sh'"}>
+          <Button
+            type='primary'
+            onClick={successInfoTtyShell}
+            style={{ marginBottom: 10, marginTop: 15 }}
+          >
+            <CopyOutlined />
+            Copy the TTY
+          </Button>
+        </Clipboard>
+      </div>
+      <Divider dashed />
+
+      <div
+        key='g'
+        style={{
+          padding: 15,
+          marginTop: 15,
+        }}
+      >
+        <Title level={3}>VI spawn shell </Title>
+        <Paragraph copyable>:!bash</Paragraph>
+        <Clipboard component='a' data-clipboard-text={":!bash"}>
+          <Button
+            type='primary'
+            onClick={successInfoTtyShell}
+            style={{ marginBottom: 10, marginTop: 15 }}
+          >
+            <CopyOutlined />
+            Copy the TTY
+          </Button>
+        </Clipboard>
+      </div>
+      <Divider dashed />
+
+      <div
+        key='h'
+        style={{
+          padding: 15,
+          marginTop: 15,
+        }}
+      >
+        <Title level={3}>VI(2) spawn shell </Title>
+        <Paragraph copyable>:set shell=/bin/bash:shell</Paragraph>
+        <Clipboard
+          component='a'
+          data-clipboard-text={":set shell=/bin/bash:shell"}
+        >
+          <Button
+            type='primary'
+            onClick={successInfoTtyShell}
+            style={{ marginBottom: 10, marginTop: 15 }}
+          >
+            <CopyOutlined />
+            Copy the TTY
+          </Button>
+        </Clipboard>
+      </div>
+      <Divider dashed />
+
+      <div
+        key='i'
+        style={{
+          padding: 15,
+          marginTop: 15,
+        }}
+      >
+        <Title level={3}>Nmap spawn shell </Title>
+        <Paragraph copyable>!sh</Paragraph>
+        <Clipboard component='a' data-clipboard-text={"!sh"}>
+          <Button
+            type='primary'
+            onClick={successInfoTtyShell}
+            style={{ marginBottom: 10, marginTop: 15 }}
+          >
+            <CopyOutlined />
+            Copy the TTY
+          </Button>
+        </Clipboard>
+      </div>
+      <Divider dashed />
     </QueueAnim>
   );
 };
