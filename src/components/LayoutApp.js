@@ -6,7 +6,8 @@ import { goTo } from "react-chrome-extension-router";
 import ReverseShell from "./ReverseShell";
 import PhpReverseShell from "./PhpReverseShell";
 import TtySpawnShell from "./TtySpawnShell";
-import Base64Encode from "./Base64Encode";
+import Base64Encode from "./encoding/Base64Encode";
+import LFI from "./web/LFI";
 import AboutUs from "./AboutUs";
 
 const { Paragraph } = Typography;
@@ -19,7 +20,7 @@ const IconFont = createFromIconfontCN({
 export default (props) => {
   return (
     <Layout style={{ minHeight: "100vh" }}>
-      <Sider collapsible collapsed={true} onCollapse={false}>
+      <Sider collapsed={true}>
         <div className='logo'>
           <svg
             xmlns='http://www.w3.org/2000/svg'
@@ -60,22 +61,32 @@ export default (props) => {
           >
             TTY Spawn Shell
           </Menu.Item>
+          <SubMenu key='sub1' icon={<IconFont type='icon-html-' />} title='Web'>
+            <Menu.Item
+              key='4'
+              icon={<IconFont type='icon-l-file' />}
+              onClick={() => goTo(LFI)}
+            >
+              LFI
+            </Menu.Item>
+            <Menu.Item key='5'>Team 2</Menu.Item>
+          </SubMenu>
           <SubMenu
             key='sub2'
             icon={<IconFont type='icon-sort_others' />}
             title='Other'
           >
             <Menu.Item
-              key='4'
+              key='6'
               icon={<IconFont type='icon-jiemaleixing' />}
               onClick={() => goTo(Base64Encode)}
             >
               Base64 Encoder / Decoder
             </Menu.Item>
-            <Menu.Item key='5'>Team 2</Menu.Item>
+            <Menu.Item key='7'>Team 2</Menu.Item>
           </SubMenu>
           <Menu.Item
-            key='6'
+            key='8'
             icon={<IconFont type='icon-about' />}
             onClick={() => goTo(AboutUs)}
           >
