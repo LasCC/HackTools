@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { Button, Input, Typography, Menu, Dropdown, Divider } from "antd";
+import {
+  Button,
+  Input,
+  Typography,
+  Menu,
+  Dropdown,
+  Divider,
+  message,
+} from "antd";
 import {
   CopyOutlined,
   DownOutlined,
@@ -36,6 +44,9 @@ const HashEncode = () => {
     } else if (hashtype === "SHA512") {
       setOutput(SHA512(input));
     }
+  };
+  const successInfoHashing = () => {
+    message.success("Your hash has been copied");
   };
   const resolvehashname = (hashindex) => {
     switch (hashindex) {
@@ -112,7 +123,11 @@ const HashEncode = () => {
         />
         <pre>Cryptographic Hash Algorithm : {hashname}</pre>
         <Clipboard component='a' data-clipboard-text={output}>
-          <Button type='primary' style={{ marginBottom: 10, marginTop: 15 }}>
+          <Button
+            type='primary'
+            style={{ marginBottom: 10, marginTop: 15 }}
+            onClick={successInfoHashing}
+          >
             <CopyOutlined /> Copy
           </Button>
         </Clipboard>
