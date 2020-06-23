@@ -47,7 +47,10 @@ export default (props) => {
       >
         Reverse shell
       </Title>
-      <Paragraph style={{ margin: 15 }}>Reverse shell generator</Paragraph>
+      <Paragraph style={{ margin: 15 }}>
+        A reverse shell is a shell session established on a connection that is
+        initiated from a remote machine, not from the local host.
+      </Paragraph>
       <div style={{ padding: 15 }}>
         <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
           <Col span={12}>
