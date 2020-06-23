@@ -27,6 +27,7 @@ const Base64Encode = () => {
         setOutput(atob(input));
       } catch (ex) {
         setOutput("Unable to decode properly : Incorrect base64 :-( ");
+        message.error("Incorrect Base64 please try something else");
       }
     }
     return;

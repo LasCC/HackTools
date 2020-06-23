@@ -1,6 +1,6 @@
 {
   "name": "Hack Tools",
-  "version": "1.0",
+  "version": "0.1.0",
   "description": "The all in one Red team extension for web pentester",
   "permissions": ["storage"],
   "browser_action": {
