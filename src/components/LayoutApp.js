@@ -19,7 +19,7 @@ const IconFont = createFromIconfontCN({
 export default (props) => {
   return (
     <Layout style={{ minHeight: "100vh" }}>
-      <Sider collapsible collapsed={true} onCollapse={false}>
+      <Sider collapsed={true}>
         <div className='logo'>
           <svg
             xmlns='http://www.w3.org/2000/svg'
