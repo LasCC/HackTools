@@ -1,13 +1,21 @@
 import React, { useState } from "react";
-import { Button, Input, Typography } from "antd";
-import { CopyOutlined } from "@ant-design/icons";
-const { Title, Paragraph } = Typography;
+import { Button, Input, Typography, message, Divider } from "antd";
+import { CopyOutlined, createFromIconfontCN } from "@ant-design/icons";
 import Clipboard from "react-clipboard.js";
+import QueueAnim from "rc-queue-anim";
+
+const { Title, Paragraph } = Typography;
+const IconFont = createFromIconfontCN({
+  scriptUrl: ["./iconfont.js"],
+});
 
 const Base64Encode = () => {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
   const { TextArea } = Input;
+  const successBase64Copy = () => {
+    message.success("Your payload has been copied successfully !");
+  };
   const handleChange = (name) => (event) => {
     setInput(event.target.value);
   };
@@ -24,46 +32,65 @@ const Base64Encode = () => {
     return;
   };
   return (
-    <>
-      <Title
-        variant="Title level={3}"
-        style={{ fontWeight: "bold", margin: 15 }}
+    <QueueAnim delay={300} duration={1500}>
+      <div
+        style={{
+          padding: 15,
+        }}
       >
-        Base 64 Encode / Decode
-      </Title>
-      <Paragraph style={{ margin: 15 }}>Base 64 Encode / Decode</Paragraph>
-      <TextArea
-        rows={4}
-        value={input}
-        onChange={handleChange("input")}
-        placeholder="Some Base64 or ASCII Text to encode / decode ..."
-      />
-      <Button
-        type="primary"
-        style={{ marginBottom: 10, marginTop: 15 }}
-        onClick={() => handleClick("encode")}
-      >
-        Encode
-      </Button>
-      <Button
-        type="primary"
-        style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }}
-        onClick={() => handleClick("decode")}
-      >
-        Decode
-      </Button>
-      <TextArea
-        rows={4}
-        value={output}
-        style={{ cursor: "auto", marginTop: 15, color: "#777" }}
-        placeholder="output"
-      />
-      <Clipboard component="a" data-clipboard-text={output}>
-        <Button type="primary" style={{ marginBottom: 10, marginTop: 15 }}>
-          <CopyOutlined /> Copy
-        </Button>
-      </Clipboard>
-    </>
+        <div key='a'>
+          <Title variant='Title level={3}' style={{ fontWeight: "bold" }}>
+            Base64 Encoder / Decoder
+          </Title>
+          <Paragraph>Base64 Encoder / Decoder</Paragraph>
+        </div>
+        <Divider dashed />
+        <div
+          key='b'
+          style={{
+            marginTop: 15,
+          }}
+        >
+          <TextArea
+            rows={4}
+            value={input}
+            onChange={handleChange("input")}
+            placeholder='Some Base64 or ASCII Text to Encode / Decode...'
+          />
+          <Button
+            type='primary'
+            style={{ marginBottom: 10, marginTop: 15 }}
+            onClick={() => handleClick("encode")}
+          >
+            <IconFont type='icon-lock' />
+            Encode
+          </Button>
+          <Button
+            type='primary'
+            style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }}
+            onClick={() => handleClick("decode")}
+          >
+            <IconFont type='icon-lock-open' />
+            Decode
+          </Button>
+          <TextArea
+            rows={4}
+            value={output}
+            style={{ cursor: "auto", marginTop: 15, color: "#777" }}
+            placeholder='Output'
+          />
+          <Clipboard component='a' data-clipboard-text={output}>
+            <Button
+              type='primary'
+              style={{ marginBottom: 10, marginTop: 15 }}
+              onClick={successBase64Copy}
+            >
+              <CopyOutlined /> Copy
+            </Button>
+          </Clipboard>
+        </div>
+      </div>
+    </QueueAnim>
   );
 };
 
