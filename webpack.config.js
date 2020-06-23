@@ -19,6 +19,7 @@ module.exports = {
       [
         { from: "./src/manifest.json", to: "./", flatten: true },
         { from: "./src/assets/img/icons/*", to: "./", flatten: true },
+        { from: "./src/assets/icons/*", to: "./", flatten: true },
         { from: "./src/devtools/*", to: "./", flatten: true },
       ],
       {
