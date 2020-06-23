@@ -6,6 +6,7 @@ import { goTo } from "react-chrome-extension-router";
 import ReverseShell from "./ReverseShell";
 import PhpReverseShell from "./PhpReverseShell";
 import TtySpawnShell from "./TtySpawnShell";
+import Base64Encode from "./Base64Encode";
 import AboutUs from "./AboutUs";
 
 const { Sider, Content, Footer } = Layout;
@@ -44,9 +45,15 @@ export default (props) => {
           <SubMenu
             key='sub2'
             icon={<IconFont type='icon-sort_others' />}
-            title='Team'
+            title='Other'
           >
-            <Menu.Item key='4'>Team 1</Menu.Item>
+            <Menu.Item
+              key='4'
+              icon={<IconFont type='icon-jiemaleixing' />}
+              onClick={() => goTo(Base64Encode)}
+            >
+              Base64 decode/encode
+            </Menu.Item>
             <Menu.Item key='5'>Team 2</Menu.Item>
           </SubMenu>
           <Menu.Item

