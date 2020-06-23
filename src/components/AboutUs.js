@@ -49,7 +49,6 @@ export default (props) => {
         <Title variant='Title level={3}'>Credits</Title>
         <Paragraph>PentestMonkey</Paragraph>
         <Paragraph>GTFOBins</Paragraph>
-        <Paragraph>John Hammond</Paragraph>
         <Paragraph>Antd</Paragraph>
         <Paragraph>Iconfont CN</Paragraph>
         <Paragraph>John Hammond</Paragraph>
