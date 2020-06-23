@@ -52,7 +52,7 @@ export default (props) => {
               icon={<IconFont type='icon-jiemaleixing' />}
               onClick={() => goTo(Base64Encode)}
             >
-              Base64 decode/encode
+              Base64 Encoder / Decoder
             </Menu.Item>
             <Menu.Item key='5'>Team 2</Menu.Item>
           </SubMenu>

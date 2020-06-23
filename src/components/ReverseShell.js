@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import { Button, message, Typography, Row, Col, Divider } from "antd";
+import { Button, message, Typography, Row, Col, Divider, Input } from "antd";
 import {
   CopyOutlined,
   WifiOutlined,
   LinkOutlined,
   createFromIconfontCN,
 } from "@ant-design/icons";
-import MaskedInput from "antd-mask-input";
 import QueueAnim from "rc-queue-anim";
 import Clipboard from "react-clipboard.js";
 
@@ -52,18 +51,17 @@ export default (props) => {
       <div style={{ padding: 15 }}>
         <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
           <Col span={12}>
-            <MaskedInput
+            <Input
+              maxLength={15}
               prefix={<WifiOutlined />}
-              mask='111.111.111.111'
               name='Ip adress'
-              placeholderChar=' '
               placeholder='IP Address (ex: 212.212.111.222)'
               onChange={handleChange("ip")}
             />
           </Col>
           <Col span={12}>
-            <MaskedInput
-              placeholderChar=' '
+            <Input
+              maxLength={4}
               prefix={
                 <svg
                   t='1592848067245'
@@ -82,7 +80,6 @@ export default (props) => {
                   />
                 </svg>
               }
-              mask='1111'
               name='Port'
               placeholder='Port (ex: 1337)'
               onChange={handleChange("port")}

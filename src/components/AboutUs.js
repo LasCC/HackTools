@@ -30,13 +30,35 @@ export default (props) => {
           most of the tools and payloads in one place, a simple web application
           could do the job but it was quite frustrating to go back and forth,
           that's why we thought to implement an extension directly in the
-          browser. Hacktools is available at hand in the web browser, you have
-          access to the extension as a pop up, and a standard display in the
-          Chrome Devtool part with "F12" in the Hacktool tab. Note that this
-          project is maintained, developed and made available for free, you can
-          offer us a coffee, it will be very encouraging and greatly appreciated
-          :)
+          browser.
         </Paragraph>
+        <Paragraph>
+          Hacktools is available at hand in the web browser, you have access to
+          the extension as a pop up, and a standard display in the Chrome
+          Devtool part with "F12" in the Hacktool tab.
+        </Paragraph>
+        <Paragraph>
+          Note that this project is maintained, developed and made available for
+          free, you can offer us a coffee, it will be very encouraging and
+          greatly appreciated :)
+        </Paragraph>
+        <Paragraph>
+          HackTools created by Ludovic COULON and Riadh BOUCHAHOUA
+        </Paragraph>
+        <a
+          href='https://www.buymeacoffee.com/hacktools'
+          target='_blank'
+          rel='noreferrer noopener'
+        >
+          <img
+            src='https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png'
+            alt='Buy Me A Coffee'
+            style={{
+              height: 41,
+              width: 174,
+            }}
+          />
+        </a>
       </div>
       <Divider dashed />
       <div
