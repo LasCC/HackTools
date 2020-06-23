@@ -7,6 +7,7 @@ import ReverseShell from "./ReverseShell";
 import PhpReverseShell from "./PhpReverseShell";
 import TtySpawnShell from "./TtySpawnShell";
 import Base64Encode from "./encoding/Base64Encode";
+import Hashing from "./encoding/Hashing";
 import LFI from "./web/LFI";
 import AboutUs from "./AboutUs";
 
@@ -83,7 +84,13 @@ export default (props) => {
             >
               Base64 Encoder / Decoder
             </Menu.Item>
-            <Menu.Item key='7'>Team 2</Menu.Item>
+            <Menu.Item
+              key='7'
+              icon={<IconFont type='icon-hash' />}
+              onClick={() => goTo(Hashing)}
+            >
+              Hashing
+            </Menu.Item>
           </SubMenu>
           <Menu.Item
             key='8'

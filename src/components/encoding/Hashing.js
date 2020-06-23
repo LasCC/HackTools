@@ -53,17 +53,17 @@ const HashEncode = () => {
 
   const menu = (
     <Menu onClick={handleClick}>
-      <Menu.Item key="0" onClick={() => handleEncode("MD5")}>
+      <Menu.Item key='0' onClick={() => handleEncode("MD5")}>
         MD5
       </Menu.Item>
       <Menu.Divider />
-      <Menu.Item key="1" onClick={() => handleEncode("SHA1")}>
+      <Menu.Item key='1' onClick={() => handleEncode("SHA1")}>
         SHA1
       </Menu.Item>
-      <Menu.Item key="2" onClick={() => handleEncode("SHA256")}>
+      <Menu.Item key='2' onClick={() => handleEncode("SHA256")}>
         SHA256
       </Menu.Item>
-      <Menu.Item key="3" onClick={() => handleEncode("SHA512")}>
+      <Menu.Item key='3' onClick={() => handleEncode("SHA512")}>
         SHA512
       </Menu.Item>
     </Menu>
@@ -76,7 +76,7 @@ const HashEncode = () => {
   return (
     <>
       <Title
-        variant="Title level={3}"
+        variant='Title level={3}'
         style={{ fontWeight: "bold", margin: 15 }}
       >
         Hash generator
@@ -88,15 +88,15 @@ const HashEncode = () => {
         rows={4}
         value={input}
         onChange={handleChange("input")}
-        placeholder="Text to hash  ..."
+        placeholder='Text to hash  ...'
       />
       <Dropdown overlay={menu}>
-        <a className="ant-dropdown-link">
+        <a className='ant-dropdown-link'>
           {hashname} <DownOutlined style={{ padding: 10 }} />
         </a>
       </Dropdown>
       <Button
-        type="primary"
+        type='primary'
         style={{ marginBottom: 10, marginTop: 15 }}
         onClick={handleEncode}
       >
@@ -107,11 +107,11 @@ const HashEncode = () => {
         rows={4}
         value={output}
         style={{ cursor: "auto", marginTop: 15, color: "#777" }}
-        placeholder="output"
+        placeholder='output'
       />
       <pre>{hashname}</pre>
-      <Clipboard component="a" data-clipboard-text={output}>
-        <Button type="primary" style={{ marginBottom: 10, marginTop: 15 }}>
+      <Clipboard component='a' data-clipboard-text={output}>
+        <Button type='primary' style={{ marginBottom: 10, marginTop: 15 }}>
           <CopyOutlined /> Copy
         </Button>
       </Clipboard>
