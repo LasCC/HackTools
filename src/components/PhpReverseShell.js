@@ -198,7 +198,9 @@ export default (props) => {
         PHP Reverse Shell
       </Title>
       <Paragraph style={{ margin: 15 }}>
-        Some text about the reverse shell in php
+        Attackers who successfully exploit a remote command execution
+        vulnerability can use a reverse shell to obtain an interactive shell
+        session on the target machine and continue their attack.
       </Paragraph>
       <div style={{ padding: 15 }}>
         <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
