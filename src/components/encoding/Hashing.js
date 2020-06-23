@@ -1,11 +1,17 @@
 import React, { useState } from "react";
-import { Button, Input, Typography, Menu, Dropdown } from "antd";
-import { CopyOutlined, DownOutlined } from "@ant-design/icons";
+import { Button, Input, Typography, Menu, Dropdown, Divider } from "antd";
+import {
+  CopyOutlined,
+  DownOutlined,
+  ArrowsAltOutlined,
+} from "@ant-design/icons";
 import MD5 from "crypto-js/md5";
 import SHA1 from "crypto-js/sha1";
 import SHA256 from "crypto-js/sha256";
 import SHA512 from "crypto-js/sha512";
 import Clipboard from "react-clipboard.js";
+import QueueAnim from "rc-queue-anim";
+
 const { Title, Paragraph } = Typography;
 
 const HashEncode = () => {
@@ -30,7 +36,6 @@ const HashEncode = () => {
     } else if (hashtype === "SHA512") {
       setOutput(SHA512(input));
     }
-    console.log({ hashtype });
   };
   const resolvehashname = (hashindex) => {
     switch (hashindex) {
@@ -74,7 +79,7 @@ const HashEncode = () => {
   };
 
   return (
-    <>
+    <QueueAnim delay={300} duration={1500}>
       <Title
         variant='Title level={3}'
         style={{ fontWeight: "bold", margin: 15 }}
@@ -84,38 +89,48 @@ const HashEncode = () => {
       <Paragraph style={{ margin: 15 }}>
         Generate a Hash from the input
       </Paragraph>
-      <TextArea
-        rows={4}
-        value={input}
-        onChange={handleChange("input")}
-        placeholder='Text to hash  ...'
-      />
-      <Dropdown overlay={menu}>
-        <a className='ant-dropdown-link'>
-          {hashname} <DownOutlined style={{ padding: 10 }} />
+      <Divider dashed />
+      <div key='&' style={{ margin: 15 }}>
+        <TextArea
+          rows={4}
+          value={input}
+          onChange={handleChange("input")}
+          placeholder='Type something to hash (ex: mysecretpassword)'
+        />
+        <Dropdown overlay={menu}>
+          <a className='ant-dropdown-link'>
+            {hashname} <DownOutlined style={{ padding: 10 }} />
+          </a>
+        </Dropdown>
+      </div>
+      <div key='b' style={{ margin: 15 }}>
+        <TextArea
+          rows={4}
+          value={output}
+          style={{ cursor: "auto", marginTop: 15, color: "#777" }}
+          placeholder='The results will appear here'
+        />
+        <pre>Cryptographic Hash Algorithm : {hashname}</pre>
+        <Clipboard component='a' data-clipboard-text={output}>
+          <Button type='primary' style={{ marginBottom: 10, marginTop: 15 }}>
+            <CopyOutlined /> Copy
+          </Button>
+        </Clipboard>
+        <a
+          href='https://crackstation.net/'
+          target='_blank'
+          rel='noopener noreferrer'
+        >
+          <Button
+            type='dashed'
+            style={{ marginBottom: 10, marginTop: 15, marginLeft: 10 }}
+          >
+            <ArrowsAltOutlined /> Crack Station
+          </Button>
         </a>
-      </Dropdown>
-      <Button
-        type='primary'
-        style={{ marginBottom: 10, marginTop: 15 }}
-        onClick={handleEncode}
-      >
-        Encode
-      </Button>
-
-      <TextArea
-        rows={4}
-        value={output}
-        style={{ cursor: "auto", marginTop: 15, color: "#777" }}
-        placeholder='output'
-      />
-      <pre>{hashname}</pre>
-      <Clipboard component='a' data-clipboard-text={output}>
-        <Button type='primary' style={{ marginBottom: 10, marginTop: 15 }}>
-          <CopyOutlined /> Copy
-        </Button>
-      </Clipboard>
-    </>
+      </div>
+      <Divider dashed />
+    </QueueAnim>
   );
 };
 

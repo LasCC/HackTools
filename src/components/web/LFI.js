@@ -1,18 +1,10 @@
 import React from "react";
-import { Button, message, Typography, Divider, Collapse } from "antd";
-import {
-  CopyOutlined,
-  LinkOutlined,
-  createFromIconfontCN,
-} from "@ant-design/icons";
+import { Button, message, Typography, Divider } from "antd";
+import { CopyOutlined, LinkOutlined } from "@ant-design/icons";
 import QueueAnim from "rc-queue-anim";
 import Clipboard from "react-clipboard.js";
 
 const { Title, Paragraph } = Typography;
-const { Panel } = Collapse;
-const IconFont = createFromIconfontCN({
-  scriptUrl: ["./iconfont.js"],
-});
 
 export default (props) => {
   const successInfoReverseShell = () => {
