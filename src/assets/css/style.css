@@ -1,11 +1,10 @@
 @import "~antd/dist/antd.compact.css";
 .logo {
-  width: 120px;
-  height: 31px;
-  background: rgba(82, 82, 82, 0.2);
-  margin: 16px 24px 16px 0;
-  float: left;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 16px;
 }
+
 .site-layout .site-layout-background {
   background: #fff;
 }
