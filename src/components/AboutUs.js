@@ -43,7 +43,7 @@ export default (props) => {
           greatly appreciated :)
         </Paragraph>
         <Paragraph>
-          HackTools created by Ludovic COULON and Riadh BOUCHAHOUA
+          HackTools is created by Ludovic COULON and Riadh BOUCHAHOUA
         </Paragraph>
         <a
           href='https://www.buymeacoffee.com/hacktools'

@@ -1,5 +1,5 @@
 import React from "react";
-import { Layout, Menu } from "antd";
+import { Layout, Menu, Typography } from "antd";
 import { CopyrightCircleOutlined } from "@ant-design/icons";
 import { createFromIconfontCN } from "@ant-design/icons";
 import { goTo } from "react-chrome-extension-router";
@@ -9,6 +9,7 @@ import TtySpawnShell from "./TtySpawnShell";
 import Base64Encode from "./Base64Encode";
 import AboutUs from "./AboutUs";
 
+const { Paragraph } = Typography;
 const { Sider, Content, Footer } = Layout;
 const { SubMenu } = Menu;
 const IconFont = createFromIconfontCN({
@@ -77,6 +78,9 @@ export default (props) => {
         <Footer style={{ textAlign: "center" }}>
           <CopyrightCircleOutlined /> Hack Tools - The all in one Red team
           browser extension for web pentesters
+          <Paragraph style={{ textAlign: "center" }}>
+            Ludovic COULON - Riadh BOUCHAHOUA
+          </Paragraph>
         </Footer>
       </Layout>
     </Layout>

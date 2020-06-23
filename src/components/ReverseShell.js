@@ -106,6 +106,7 @@ export default (props) => {
         </Clipboard>
         <Clipboard component='a' data-clipboard-text={encodeURI(bash_rshell)}>
           <Button
+            type='dashed'
             onClick={successInfoEncodeURL}
             style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }}
           >
@@ -139,6 +140,7 @@ export default (props) => {
         </Clipboard>
         <Clipboard component='a' data-clipboard-text={encodeURI(php_rshell)}>
           <Button
+            type='dashed'
             onClick={successInfoEncodeURL}
             style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }}
           >
@@ -172,6 +174,7 @@ export default (props) => {
         </Clipboard>
         <Clipboard component='a' data-clipboard-text={encodeURI(perl_rshell)}>
           <Button
+            type='dashed'
             onClick={successInfoEncodeURL}
             style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }}
           >
@@ -206,6 +209,7 @@ export default (props) => {
         </Clipboard>
         <Clipboard component='a' data-clipboard-text={encodeURI(python_rshell)}>
           <Button
+            type='dashed'
             onClick={successInfoEncodeURL}
             style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }}
           >
@@ -239,6 +243,7 @@ export default (props) => {
         </Clipboard>
         <Clipboard component='a' data-clipboard-text={encodeURI(ruby_rshell)}>
           <Button
+            type='dashed'
             onClick={successInfoEncodeURL}
             style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }}
           >
@@ -266,6 +271,7 @@ export default (props) => {
         </Clipboard>
         <Clipboard component='a' data-clipboard-text={encodeURI(telnet_rshell)}>
           <Button
+            type='dashed'
             onClick={successInfoEncodeURL}
             style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }}
           >
