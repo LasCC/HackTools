@@ -6,6 +6,7 @@ import { goTo } from "react-chrome-extension-router";
 import ReverseShell from "./ReverseShell";
 import PhpReverseShell from "./PhpReverseShell";
 import TtySpawnShell from "./TtySpawnShell";
+import AboutUs from "./AboutUs";
 
 const { Sider, Content, Footer } = Layout;
 const { SubMenu } = Menu;
@@ -34,7 +35,7 @@ export default (props) => {
             PHP Reverse Shell
           </Menu.Item>
           <Menu.Item
-            key='9'
+            key='3'
             icon={<IconFont type='icon-lvzhou_yuanchengTelnet' />}
             onClick={() => goTo(TtySpawnShell)}
           >
@@ -45,13 +46,13 @@ export default (props) => {
             icon={<IconFont type='icon-sort_others' />}
             title='Team'
           >
-            <Menu.Item key='6'>Team 1</Menu.Item>
-            <Menu.Item key='8'>Team 2</Menu.Item>
+            <Menu.Item key='4'>Team 1</Menu.Item>
+            <Menu.Item key='5'>Team 2</Menu.Item>
           </SubMenu>
           <Menu.Item
-            key='9'
+            key='6'
             icon={<IconFont type='icon-about' />}
-            onClick={() => goTo(TtySpawnShell)}
+            onClick={() => goTo(AboutUs)}
           >
             About us
           </Menu.Item>
