@@ -56,9 +56,13 @@ const HashEncode = () => {
         break;
       case "1":
         setHashname("SHA1");
-        console.log("sha1");
+
         break;
       case "2":
+        setHashname("SHA256");
+
+        break;
+      case "3":
         setHashname("SHA512");
         break;
 
@@ -69,17 +73,17 @@ const HashEncode = () => {
 
   const menu = (
     <Menu onClick={handleClick}>
-      <Menu.Item key='0' onClick={() => handleEncode("MD5")}>
+      <Menu.Item key="0" onClick={() => handleEncode("MD5")}>
         MD5
       </Menu.Item>
       <Menu.Divider />
-      <Menu.Item key='1' onClick={() => handleEncode("SHA1")}>
+      <Menu.Item key="1" onClick={() => handleEncode("SHA1")}>
         SHA1
       </Menu.Item>
-      <Menu.Item key='2' onClick={() => handleEncode("SHA256")}>
+      <Menu.Item key="2" onClick={() => handleEncode("SHA256")}>
         SHA256
       </Menu.Item>
-      <Menu.Item key='3' onClick={() => handleEncode("SHA512")}>
+      <Menu.Item key="3" onClick={() => handleEncode("SHA512")}>
         SHA512
       </Menu.Item>
     </Menu>
@@ -92,7 +96,7 @@ const HashEncode = () => {
   return (
     <QueueAnim delay={300} duration={1500}>
       <Title
-        variant='Title level={3}'
+        variant="Title level={3}"
         style={{ fontWeight: "bold", margin: 15 }}
       >
         Hash generator
@@ -101,30 +105,37 @@ const HashEncode = () => {
         Generate a Hash from the input
       </Paragraph>
       <Divider dashed />
-      <div key='&' style={{ margin: 15 }}>
+      <div key="&" style={{ margin: 15 }}>
         <TextArea
           rows={4}
           value={input}
           onChange={handleChange("input")}
-          placeholder='Type something to hash (ex: mysecretpassword)'
+          placeholder="Type something to hash (ex: mysecretpassword)"
         />
         <Dropdown overlay={menu}>
-          <a className='ant-dropdown-link'>
+          <a className="ant-dropdown-link">
             {hashname} <DownOutlined style={{ padding: 10 }} />
           </a>
         </Dropdown>
+        <Button
+          type="primary"
+          style={{ marginBottom: 10, marginTop: 15 }}
+          onClick={() => handleEncode(hashname)}
+        >
+          Get Hash
+        </Button>
       </div>
-      <div key='b' style={{ margin: 15 }}>
+      <div key="b" style={{ margin: 15 }}>
         <TextArea
           rows={4}
           value={output}
           style={{ cursor: "auto", marginTop: 15, color: "#777" }}
-          placeholder='The results will appear here'
+          placeholder="The results will appear here"
         />
         <pre>Cryptographic Hash Algorithm : {hashname}</pre>
-        <Clipboard component='a' data-clipboard-text={output}>
+        <Clipboard component="a" data-clipboard-text={output}>
           <Button
-            type='primary'
+            type="primary"
             style={{ marginBottom: 10, marginTop: 15 }}
             onClick={successInfoHashing}
           >
@@ -132,12 +143,12 @@ const HashEncode = () => {
           </Button>
         </Clipboard>
         <a
-          href='https://crackstation.net/'
-          target='_blank'
-          rel='noopener noreferrer'
+          href="https://crackstation.net/"
+          target="_blank"
+          rel="noopener noreferrer"
         >
           <Button
-            type='dashed'
+            type="dashed"
             style={{ marginBottom: 10, marginTop: 15, marginLeft: 10 }}
           >
             <ArrowsAltOutlined /> Crack Station
