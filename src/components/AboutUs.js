@@ -62,7 +62,7 @@ export default (props) => {
       </div>
       <Divider dashed />
       <div
-        key='a'
+        key='b'
         style={{
           padding: 15,
           marginTop: 15,
