@@ -1,18 +1,9 @@
 import React from "react";
-import { Button, message, Typography, Divider } from "antd";
-import { CopyOutlined, LinkOutlined } from "@ant-design/icons";
+import { Typography, Divider } from "antd";
 import QueueAnim from "rc-queue-anim";
-import Clipboard from "react-clipboard.js";
-
 const { Title, Paragraph } = Typography;
 
 export default (props) => {
-  const successInfoReverseShell = () => {
-    message.success("Your LFI payload has been copied");
-  };
-  const successInfoEncodeURL = () => {
-    message.success("Your LFI payload URL encoded has been copied");
-  };
   const DataGrabber = [
     {
       title:
@@ -107,6 +98,26 @@ export default (props) => {
           padding: 15,
         }}
       >
+        <Title level={3}>Data grabber for XSS</Title>
+        <Paragraph>
+          Obtains the administrator cookie or sensitive access token, the
+          following payload will send it to a controlled page.
+        </Paragraph>
+        {DataGrabber.map((k, i) => {
+          return (
+            <Paragraph key={i} copyable>
+              {k.title}
+            </Paragraph>
+          );
+        })}
+      </div>
+      <Divider dashed />
+      <div
+        key='b'
+        style={{
+          padding: 15,
+        }}
+      >
         <Title level={3}>XSS in HTML/Applications</Title>
         <Title level={4}>Basic Payload</Title>
         {BasicXSS.map((k, i) => {
@@ -126,7 +137,7 @@ export default (props) => {
         })}
       </div>
       <div
-        key='b'
+        key='c'
         style={{
           padding: 15,
         }}
@@ -143,7 +154,7 @@ export default (props) => {
       </div>
       <Divider dashed />
       <div
-        key='c'
+        key='d'
         style={{
           padding: 15,
         }}
@@ -159,7 +170,7 @@ export default (props) => {
       </div>
       <Divider dashed />
       <div
-        key='d'
+        key='e'
         style={{
           padding: 15,
         }}
@@ -173,7 +184,6 @@ export default (props) => {
           );
         })}
       </div>
-      <Divider dashed />
     </QueueAnim>
   );
 };
