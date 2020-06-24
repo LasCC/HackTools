@@ -9,6 +9,8 @@ import TtySpawnShell from "./TtySpawnShell";
 import Base64Encode from "./encoding/Base64Encode";
 import Hashing from "./encoding/Hashing";
 import LFI from "./web/LFI";
+import XSS from "./web/XSS";
+import SQLi from "./web/SqlInjection";
 import AboutUs from "./AboutUs";
 
 const { Paragraph } = Typography;
@@ -94,7 +96,20 @@ export default (props) => {
             >
               LFI
             </Menu.Item>
-            <Menu.Item key='5'>Team 2</Menu.Item>
+            <Menu.Item
+              key='5'
+              icon={<IconFont type='icon-js' />}
+              onClick={() => goTo(XSS)}
+            >
+              XSS
+            </Menu.Item>
+            <Menu.Item
+              key='6'
+              icon={<IconFont type='icon-sql' />}
+              onClick={() => goTo(SQLi)}
+            >
+              SQL Injection
+            </Menu.Item>
           </SubMenu>
           <SubMenu
             key='sub2'
@@ -107,14 +122,14 @@ export default (props) => {
             title='Other'
           >
             <Menu.Item
-              key='6'
+              key='7'
               icon={<IconFont type='icon-jiemaleixing' />}
               onClick={() => goTo(Base64Encode)}
             >
               Base64 Encoder / Decoder
             </Menu.Item>
             <Menu.Item
-              key='7'
+              key='8'
               icon={<IconFont type='icon-hash' />}
               onClick={() => goTo(Hashing)}
             >
@@ -122,7 +137,7 @@ export default (props) => {
             </Menu.Item>
           </SubMenu>
           <Menu.Item
-            key='8'
+            key='9'
             icon={
               <IconFont
                 type='icon-about'

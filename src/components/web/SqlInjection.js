@@ -28,13 +28,6 @@ export default (props) => {
     { title: "/root/.ssh/authorized_keys" },
     { title: "/home/user/.ssh/authorized_keys" },
     { title: "/home/user/.ssh/id_rsa" },
-    { title: "/proc/[0-9]*/fd/[0-9]*" },
-    { title: "/proc/mounts" },
-    { title: "/home/$USER/.bash_history" },
-    { title: "/home/$USER/.ssh/id_rsa" },
-    { title: "/var/run/secrets/kubernetes.io/serviceaccount" },
-    { title: "/var/lib/mlocate/mlocate.db" },
-    { title: "/var/lib/mlocate.db" },
   ];
   const apache = [
     { title: "/etc/apache2/apache2.conf" },
@@ -60,8 +53,6 @@ export default (props) => {
     { title: "/windows/repair/SAM" },
     { title: "/windows/panther/unattended.xml" },
     { title: "/windows/panther/unattend/unattended.xml" },
-    { title: "/windows/system32/license.rtf" },
-    { title: "/windows/system32/eula.txt" },
   ];
   return (
     <QueueAnim delay={300} duration={1500}>
@@ -69,16 +60,15 @@ export default (props) => {
         variant='Title level={3}'
         style={{ fontWeight: "bold", margin: 15 }}
       >
-        LFI
+        SQL Inection
       </Title>
       <Paragraph style={{ margin: 15 }}>
-        LFI stands for Local File Includes - it’s a file local inclusion
-        vulnerability that allows an attacker to include files that exist on the
-        target web server.
-      </Paragraph>
-      <Paragraph style={{ marginLeft: 15 }}>
-        Typically this is exploited by abusing dynamic file inclusion mechanisms
-        that don’t sanitize user input.
+        SQL injection (SQLi) is an application security weakness that allows
+        attackers to control an application’s database – letting them access or
+        delete data, change an application’s data-driven behavior, and do other
+        undesirable things – by tricking the application into sending unexpected
+        SQL commands. SQL injections are among the most frequent threats to data
+        security.
       </Paragraph>
       <Divider dashed />
       <div style={{ padding: 10, marginTop: 15 }} key='a'>
