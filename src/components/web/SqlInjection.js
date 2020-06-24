@@ -64,11 +64,10 @@ export default (props) => {
       </Title>
       <Paragraph style={{ margin: 15 }}>
         SQL injection (SQLi) is an application security weakness that allows
-        attackers to control an application’s database – letting them access or
+        attackers to control an application’s database letting them access or
         delete data, change an application’s data-driven behavior, and do other
-        undesirable things – by tricking the application into sending unexpected
-        SQL commands. SQL injections are among the most frequent threats to data
-        security.
+        undesirable things by tricking the application into sending unexpected
+        SQL commands.
       </Paragraph>
       <Divider dashed />
       <div style={{ padding: 10, marginTop: 15 }} key='a'>

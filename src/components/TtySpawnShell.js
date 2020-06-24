@@ -8,7 +8,7 @@ const { Title, Paragraph } = Typography;
 
 export default (props) => {
   const successInfoTtyShell = () => {
-    message.success("Your reverse shell has been copied");
+    message.success("Your tty has been copied");
   };
 
   return (

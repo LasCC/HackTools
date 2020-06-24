@@ -78,6 +78,7 @@ export default (props) => {
         <Paragraph>John Hammond</Paragraph>
         <Paragraph>The Noun Project</Paragraph>
         <Paragraph>PayloadsAllTheThings</Paragraph>
+        <Paragraph>Fabien LOISON (flozz) for the p0wny@shell</Paragraph>
       </div>
     </QueueAnim>
   );

