@@ -77,6 +77,7 @@ export default (props) => {
         <Paragraph>Iconfont CN</Paragraph>
         <Paragraph>John Hammond</Paragraph>
         <Paragraph>The Noun Project</Paragraph>
+        <Paragraph>PayloadsAllTheThings</Paragraph>
       </div>
     </QueueAnim>
   );
