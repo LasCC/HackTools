@@ -149,18 +149,18 @@ const HashEncode = () => {
             <CopyOutlined /> Copy
           </Button>
         </Clipboard>
-        <a
-          href='https://crackstation.net/'
-          target='_blank'
-          rel='noopener noreferrer'
+        <Button
+          type='dashed'
+          style={{ marginBottom: 10, marginTop: 15, marginLeft: 10 }}
         >
-          <Button
-            type='dashed'
-            style={{ marginBottom: 10, marginTop: 15, marginLeft: 10 }}
+          <a
+            href='https://crackstation.net/'
+            target='_blank'
+            rel='noopener noreferrer'
           >
             <ArrowsAltOutlined /> Crack Station
-          </Button>
-        </a>
+          </a>
+        </Button>
       </div>
       <Divider dashed />
     </QueueAnim>
