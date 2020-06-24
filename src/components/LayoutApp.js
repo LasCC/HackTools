@@ -43,26 +43,50 @@ export default (props) => {
         <Menu theme='dark' defaultSelectedKeys={["1"]} mode='inline'>
           <Menu.Item
             key='1'
-            icon={<IconFont type='icon-gnubash' />}
+            icon={
+              <IconFont
+                type='icon-gnubash'
+                style={{ fontSize: "1.5em", marginTop: 3 }}
+              />
+            }
             onClick={() => goTo(ReverseShell)}
           >
             Reverse Shell
           </Menu.Item>
           <Menu.Item
             key='2'
-            icon={<IconFont type='icon-php' />}
+            icon={
+              <IconFont
+                type='icon-php'
+                style={{ fontSize: "1.5em", marginTop: 3 }}
+              />
+            }
             onClick={() => goTo(PhpReverseShell)}
           >
             PHP Reverse Shell
           </Menu.Item>
           <Menu.Item
             key='3'
-            icon={<IconFont type='icon-lvzhou_yuanchengTelnet' />}
+            icon={
+              <IconFont
+                type='icon-lvzhou_yuanchengTelnet'
+                style={{ fontSize: "1.5em", marginTop: 3 }}
+              />
+            }
             onClick={() => goTo(TtySpawnShell)}
           >
             TTY Spawn Shell
           </Menu.Item>
-          <SubMenu key='sub1' icon={<IconFont type='icon-html-' />} title='Web'>
+          <SubMenu
+            key='sub1'
+            icon={
+              <IconFont
+                type='icon-html-'
+                style={{ fontSize: "1.5em", marginTop: 3 }}
+              />
+            }
+            title='Web'
+          >
             <Menu.Item
               key='4'
               icon={<IconFont type='icon-l-file' />}
@@ -74,7 +98,12 @@ export default (props) => {
           </SubMenu>
           <SubMenu
             key='sub2'
-            icon={<IconFont type='icon-sort_others' />}
+            icon={
+              <IconFont
+                type='icon-sort_others'
+                style={{ fontSize: "1.5em", marginTop: 3 }}
+              />
+            }
             title='Other'
           >
             <Menu.Item
@@ -94,7 +123,12 @@ export default (props) => {
           </SubMenu>
           <Menu.Item
             key='8'
-            icon={<IconFont type='icon-about' />}
+            icon={
+              <IconFont
+                type='icon-about'
+                style={{ fontSize: "1.5em", marginTop: 3 }}
+              />
+            }
             onClick={() => goTo(AboutUs)}
           >
             About us

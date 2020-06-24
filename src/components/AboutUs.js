@@ -13,7 +13,9 @@ export default (props) => {
       >
         About us
       </Title>
-      <Paragraph style={{ margin: 15 }}>Storytelling 😴</Paragraph>
+      <Paragraph style={{ margin: 15 }}>
+        Our story of two students creating this app
+      </Paragraph>
       <Divider dashed />
       <div
         key='a'

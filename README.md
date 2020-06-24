@@ -1,7 +1,7 @@
 <div align="center">
 	<img alt="Version" src="https://i.imgur.com/evnvda2.png" />
 </div>
-<h1 align="center">Welcome to HackTools 👋</h1>
+<h1 align="center">Welcome to HackTools 🛠</h1>
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-0.1.0-blue.svg?cacheSeconds=2592000" />
   <a href="#" target="_blank">
@@ -11,7 +11,8 @@
 
 ### The all-in-one Red Team browser extension for **Web Pentesters**
 
-Hacktools, is a web extension facilitating your **web application penetration tests**, it includes **cheat sheets** as well as all the **tools** used during a test such as XSS payloads, Reverse shells and much more 😱
+Hacktools, is a web extension facilitating your **web application penetration tests**, it includes **cheat sheets** as well as all the **tools** used during a test such as XSS payloads, Reverse shells and much more.
+
 With the extension you **no longer need to search for payloads in different websites** or in your local storage space, most of the tools are accessible in one click. Hacktools is accessible either in **pop up mode** or in a whole tab in the **Devtools** part of the browser with F12.
 
 ### Current functions:
@@ -24,7 +25,17 @@ With the extension you **no longer need to search for payloads in different webs
 
 ## Preview
 
-Some images there
+<div align='center'>
+  <img alt="Version" src="https://i.imgur.com/96PaPqa.png" />
+</div>
+
+<div align='center'>
+  <img alt="Version" src="https://i.imgur.com/1MIRS0X.png" />
+</div>
+
+<div align='center'>
+  <img alt="Version" src="https://i.imgur.com/jItstmk.png" />
+</div>
 
 ## Install
 
@@ -33,8 +44,6 @@ yarn install && yarn build
 ```
 
 ## Run your application locally
-
-Procedure pour décrire comment upload l'app avec des gif/vidéo sur youtube
 
 ```sh
 yarn run test

@@ -34,66 +34,69 @@ const Base64Encode = () => {
   };
   return (
     <QueueAnim delay={300} duration={1500}>
+      <div style={{ margin: 15 }}>
+        <Title variant='Title level={3}' style={{ fontWeight: "bold" }}>
+          Base64 Encoder / Decoder
+        </Title>
+        <Paragraph>
+          In computer science, Base64 is a group of binary-to-text encoding
+          schemes that represent binary data in an ASCII string format by
+          translating it into a radix-64 representation.
+        </Paragraph>
+      </div>
+      <Divider dashed />
       <div
+        key='a'
         style={{
-          padding: 15,
+          marginTop: 15,
+          marginLeft: 15,
         }}
       >
-        <div key='a'>
-          <Title variant='Title level={3}' style={{ fontWeight: "bold" }}>
-            Base64 Encoder / Decoder
-          </Title>
-          <Paragraph>
-            In computer science, Base64 is a group of binary-to-text encoding
-            schemes that represent binary data in an ASCII string format by
-            translating it into a radix-64 representation.
-          </Paragraph>
-        </div>
-        <Divider dashed />
-        <div
-          key='b'
-          style={{
-            marginTop: 15,
-          }}
+        <TextArea
+          rows={4}
+          value={input}
+          onChange={handleChange("input")}
+          placeholder='Some Base64 or ASCII Text to Encode / Decode...'
+        />
+        <Button
+          type='primary'
+          style={{ marginBottom: 10, marginTop: 15 }}
+          onClick={() => handleClick("encode")}
         >
-          <TextArea
-            rows={4}
-            value={input}
-            onChange={handleChange("input")}
-            placeholder='Some Base64 or ASCII Text to Encode / Decode...'
-          />
+          <IconFont type='icon-lock' />
+          Encode
+        </Button>
+        <Button
+          type='primary'
+          style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }}
+          onClick={() => handleClick("decode")}
+        >
+          <IconFont type='icon-lock-open' />
+          Decode
+        </Button>
+      </div>
+      <div
+        key='b'
+        style={{
+          marginTop: 15,
+          marginLeft: 15,
+        }}
+      >
+        <TextArea
+          rows={4}
+          value={output}
+          style={{ cursor: "auto", marginTop: 15, color: "#777" }}
+          placeholder='Output'
+        />
+        <Clipboard component='a' data-clipboard-text={output}>
           <Button
             type='primary'
             style={{ marginBottom: 10, marginTop: 15 }}
-            onClick={() => handleClick("encode")}
+            onClick={successBase64Copy}
           >
-            <IconFont type='icon-lock' />
-            Encode
+            <CopyOutlined /> Copy
           </Button>
-          <Button
-            type='primary'
-            style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }}
-            onClick={() => handleClick("decode")}
-          >
-            <IconFont type='icon-lock-open' />
-            Decode
-          </Button>
-          <TextArea
-            rows={4}
-            value={output}
-            style={{ cursor: "auto", marginTop: 15, color: "#777" }}
-            placeholder='Output'
-          />
-          <Clipboard component='a' data-clipboard-text={output}>
-            <Button
-              type='primary'
-              style={{ marginBottom: 10, marginTop: 15 }}
-              onClick={successBase64Copy}
-            >
-              <CopyOutlined /> Copy
-            </Button>
-          </Clipboard>
-        </div>
+        </Clipboard>
       </div>
     </QueueAnim>
   );
