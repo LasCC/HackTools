@@ -25,7 +25,17 @@ With the extension you **no longer need to search for payloads in different webs
 
 ## Preview
 
-<img alt="Version" src="https://i.imgur.com/evnvda2.png" />
+<div align='center'>
+  <img alt="Version" src="https://i.imgur.com/96PaPqa.png" />
+</div>
+
+<div align='center'>
+  <img alt="Version" src="https://i.imgur.com/1MIRS0X.png" />
+</div>
+
+<div align='center'>
+  <img alt="Version" src="https://i.imgur.com/jItstmk.png" />
+</div>
 
 ## Install
 
