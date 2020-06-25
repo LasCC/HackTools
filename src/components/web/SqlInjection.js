@@ -82,7 +82,7 @@ export default (props) => {
         variant='Title level={3}'
         style={{ fontWeight: "bold", margin: 15 }}
       >
-        SQL Inection
+        SQL Injection
       </Title>
       <Paragraph style={{ margin: 15 }}>
         SQL injection (SQLi) is an application security weakness that allows
