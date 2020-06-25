@@ -41,19 +41,18 @@ With the extension you **no longer need to search for payloads in different webs
   <img alt="preview_3" src="https://i.imgur.com/jItstmk.png" />
 </div>
 
-## Install
+## Install the application on chromium based browser
+
+All the availables releases are [here](https://github.com/LasCC/Hack-Tools/releases).
+Otherwise if you want to build the project yourself from the source code
+
+## Build from source code
 
 ```bash
 yarn install && yarn build
 ```
 
-## Run your application locally
-
-```bash
-yarn build
-```
-
-Once the build is done correctly the app will create a new folder called **dist**
+Once the build is done correctly, webpack will create a new folder called **dist**
 
 After that you need to go to the **extension** tab on your chrome based navigator and turn on the **developer mode**
 
