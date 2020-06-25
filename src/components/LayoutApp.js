@@ -8,6 +8,7 @@ import PhpReverseShell from "./PhpReverseShell";
 import TtySpawnShell from "./TtySpawnShell";
 import Base64Encode from "./encoding/Base64Encode";
 import Hashing from "./encoding/Hashing";
+import URLDecode from "./encoding/URLEncode";
 import LFI from "./web/LFI";
 import XSS from "./web/XSS";
 import SQLi from "./web/SqlInjection";
@@ -135,9 +136,16 @@ export default (props) => {
             >
               Hashing
             </Menu.Item>
+            <Menu.Item
+              key='9'
+              icon={<IconFont type='icon-url' />}
+              onClick={() => goTo(URLDecode)}
+            >
+              URL Encoder / Decoder
+            </Menu.Item>
           </SubMenu>
           <Menu.Item
-            key='9'
+            key='10'
             icon={
               <IconFont
                 type='icon-about'
