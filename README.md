@@ -1,5 +1,6 @@
+
 <div align="center">
-	<img alt="Version" src="https://i.imgur.com/evnvda2.png" />
+	<img alt="logo_hack_tools" src="https://i.imgur.com/evnvda2.png" />
 </div>
 <h1 align="center">Welcome to HackTools 🛠</h1>
 <p>
@@ -19,6 +20,8 @@ With the extension you **no longer need to search for payloads in different webs
 
 - Dynamic Reverse Shell generator (PHP, Bash, Ruby, Python, Perl)
 - Shell Spawning (TTY Shell Spawning)
+- XSS Payloads
+- Basic SQLi payloads
 - Local file inclusion payloads (LFI)
 - Base64 Encoder / Decoder
 - Hash Generator (MD5, SHA1, SHA256, SHA512)
@@ -26,28 +29,42 @@ With the extension you **no longer need to search for payloads in different webs
 ## Preview
 
 <div align='center'>
-  <img alt="Version" src="https://i.imgur.com/96PaPqa.png" />
+  <img alt="preview_1" src="https://i.imgur.com/96PaPqa.png" />
 </div>
 
 <div align='center'>
-  <img alt="Version" src="https://i.imgur.com/1MIRS0X.png" />
+  <img alt="preview_2" src="https://i.imgur.com/1MIRS0X.png" />
 </div>
 
 <div align='center'>
-  <img alt="Version" src="https://i.imgur.com/jItstmk.png" />
+  <img alt="preview_3" src="https://i.imgur.com/jItstmk.png" />
 </div>
 
 ## Install
 
-```sh
+```bash
 yarn install && yarn build
 ```
 
 ## Run your application locally
 
-```sh
-yarn run test
+```bash
+yarn build
 ```
+Once the build is done correctly the app will create a new folder called **dist**
+
+After that you need to go to the **extension** tab on your chrome based navigator and turn on the **developer mode**
+
+<img alt="extension_tutorial" src="https://i.imgur.com/0GRfu2K.png" />
+
+Then click on the **load unpacked** button in the top left corner
+
+<img alt="extension_tutorial" src="https://i.imgur.com/q41GeAb.png" />
+
+Once you clicked on the button you just need to select the **dist folder** and that's it ! 🎉
+
+<img alt="extension_tutorial" src="https://i.imgur.com/mL4TVu0.png" />
+
 
 ## Authors
 
@@ -59,4 +76,4 @@ You can give a ⭐️ if this project helped you !
 
 Note that this project is maintained, developed and made available for **free**, you can offer us a coffee, it will be very **encouraging and greatly appreciated** 😊
 
-<a href="https://www.buymeacoffee.com/hacktools" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
+<a href="https://www.buymeacoffee.com/hacktools" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important" ></a>
