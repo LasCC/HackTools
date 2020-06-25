@@ -44,6 +44,7 @@ With the extension you **no longer need to search for payloads in different webs
 ## Install the application on chromium based browser
 
 All the availables releases are [here](https://github.com/LasCC/Hack-Tools/releases).
+
 Otherwise if you want to build the project yourself from the source code
 
 ## Build from source code
