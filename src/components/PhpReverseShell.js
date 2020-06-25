@@ -45,7 +45,7 @@ export default (props) => {
   set_time_limit (0);
   $VERSION = "1.0";
   $ip = '${values.ip}';  // You have changed this
-  $port = ${values.port};// And this
+  $port = ${values.port};  // And this
   $chunk_size = 1400;
   $write_a = null;
   $error_a = null;
@@ -349,8 +349,7 @@ export default (props) => {
             target='_blank'
             rel='noopener noreferrer'
           >
-            <DownloadOutlined />
-            Download
+            <DownloadOutlined /> Download
           </a>
         </Button>
         <Button
@@ -362,8 +361,7 @@ export default (props) => {
             target='_blank'
             rel='noopener noreferrer'
           >
-            <ArrowsAltOutlined />
-            See the repo of the author
+            <ArrowsAltOutlined /> See the repo of the author
           </a>
         </Button>
       </div>
