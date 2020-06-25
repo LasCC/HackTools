@@ -1,14 +1,15 @@
-
 <div align="center">
 	<img alt="logo_hack_tools" src="https://i.imgur.com/evnvda2.png" />
-</div>
-<h1 align="center">Welcome to HackTools 🛠</h1>
+<h1>Welcome to HackTools 🛠</h1>
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-0.1.0-blue.svg?cacheSeconds=2592000" />
   <a href="#" target="_blank">
-    <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-green.svg" />
+    <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
   </a>
+  <img alt="commit" src="https://img.shields.io/github/last-commit/LasCC/Hack-Tools" />
+  <img alt="stars" src="https://img.shields.io/github/stars/LasCC/Hack-Tools?style=social" />
 </p>
+</div>
 
 ### The all-in-one Red Team browser extension for **Web Pentesters**
 
@@ -51,6 +52,7 @@ yarn install && yarn build
 ```bash
 yarn build
 ```
+
 Once the build is done correctly the app will create a new folder called **dist**
 
 After that you need to go to the **extension** tab on your chrome based navigator and turn on the **developer mode**
@@ -64,7 +66,6 @@ Then click on the **load unpacked** button in the top left corner
 Once you clicked on the button you just need to select the **dist folder** and that's it ! 🎉
 
 <img alt="extension_tutorial" src="https://i.imgur.com/mL4TVu0.png" />
-
 
 ## Authors
 
