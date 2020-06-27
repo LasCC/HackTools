@@ -3,9 +3,7 @@
 <h1>Welcome to HackTools 🛠</h1>
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-0.1.0-blue.svg?cacheSeconds=2592000" />
-  <a href="#" target="_blank">
-    <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
-  </a>
+  <img alt="release" src="https://img.shields.io/github/v/release/LasCC/Hack-Tools" />
   <img alt="commit" src="https://img.shields.io/github/last-commit/LasCC/Hack-Tools" />
   <img alt="stars" src="https://img.shields.io/github/stars/LasCC/Hack-Tools?style=social" />
 </p>
