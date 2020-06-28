@@ -3,10 +3,21 @@
 <h1>Welcome to HackTools 🛠</h1>
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-0.1.0-blue.svg?cacheSeconds=2592000" />
-  <img alt="release" src="https://img.shields.io/github/v/release/LasCC/Hack-Tools" />
+  <img alt="release" src="https://img.shields.io/github/v/release/LasCC/Hack-Tools?color=yellow" />
   <img alt="commit" src="https://img.shields.io/github/last-commit/LasCC/Hack-Tools" />
   <img alt="stars" src="https://img.shields.io/github/stars/LasCC/Hack-Tools?style=social" />
 </p>
+<p align="center">
+    <a href="#the-all-in-one-red-team-browser-extension-for-web-pentesters"><b>Introduction</b></a>
+    &nbsp;&nbsp;&mdash;&nbsp;&nbsp;
+    <a href="#preview"><b>Preview</b></a>
+    &nbsp;&nbsp;&mdash;&nbsp;&nbsp;
+    <a href="#install-the-application-on-chromium-based-browser"><b>Install</b></a>
+    &nbsp;&nbsp;&mdash;&nbsp;&nbsp;
+    <a href="#build-from-source-code"><b>Build</b></a>
+    &nbsp;&nbsp;&mdash;&nbsp;&nbsp;
+    <a href="#show-your-support"><b>Support</b></a>
+  </p>
 </div>
 
 ### The all-in-one Red Team browser extension for **Web Pentesters**
@@ -24,6 +35,7 @@ With the extension you **no longer need to search for payloads in different webs
 - Local file inclusion payloads (LFI)
 - Base64 Encoder / Decoder
 - Hash Generator (MD5, SHA1, SHA256, SHA512)
+- Useful Linux commands (Port Forwarding, Suid..)
 
 ## Preview
 

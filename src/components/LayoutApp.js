@@ -9,6 +9,7 @@ import TtySpawnShell from "./TtySpawnShell";
 import Base64Encode from "./encoding/Base64Encode";
 import Hashing from "./encoding/Hashing";
 import URLDecode from "./encoding/URLEncode";
+import LinuxCommands from "./LinuxCommands";
 import LFI from "./web/LFI";
 import XSS from "./web/XSS";
 import SQLi from "./web/SqlInjection";
@@ -80,6 +81,18 @@ export default (props) => {
           >
             TTY Spawn Shell
           </Menu.Item>
+          <Menu.Item
+            key='4'
+            icon={
+              <IconFont
+                type='icon-linux'
+                style={{ fontSize: "1.5em", marginTop: 3 }}
+              />
+            }
+            onClick={() => goTo(LinuxCommands)}
+          >
+            Useful Linux commands
+          </Menu.Item>
           <SubMenu
             key='sub1'
             icon={
@@ -91,21 +104,21 @@ export default (props) => {
             title='Web'
           >
             <Menu.Item
-              key='4'
+              key='5'
               icon={<IconFont type='icon-l-file' />}
               onClick={() => goTo(LFI)}
             >
               LFI
             </Menu.Item>
             <Menu.Item
-              key='5'
+              key='6'
               icon={<IconFont type='icon-js' />}
               onClick={() => goTo(XSS)}
             >
               XSS
             </Menu.Item>
             <Menu.Item
-              key='6'
+              key='7'
               icon={<IconFont type='icon-sql' />}
               onClick={() => goTo(SQLi)}
             >
@@ -123,21 +136,21 @@ export default (props) => {
             title='Other'
           >
             <Menu.Item
-              key='7'
+              key='8'
               icon={<IconFont type='icon-jiemaleixing' />}
               onClick={() => goTo(Base64Encode)}
             >
               Base64 Encoder / Decoder
             </Menu.Item>
             <Menu.Item
-              key='8'
+              key='9'
               icon={<IconFont type='icon-hash' />}
               onClick={() => goTo(Hashing)}
             >
               Hashing
             </Menu.Item>
             <Menu.Item
-              key='9'
+              key='10'
               icon={<IconFont type='icon-url' />}
               onClick={() => goTo(URLDecode)}
             >
@@ -145,7 +158,7 @@ export default (props) => {
             </Menu.Item>
           </SubMenu>
           <Menu.Item
-            key='10'
+            key='11'
             icon={
               <IconFont
                 type='icon-about'
