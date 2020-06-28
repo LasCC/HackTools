@@ -36,6 +36,7 @@ With the extension you **no longer need to search for payloads in different webs
 - Local file inclusion payloads (LFI)
 - Base64 Encoder / Decoder
 - Hash Generator (MD5, SHA1, SHA256, SHA512)
+- Useful Linux commands (Port Forwarding, Suid..)
 
 ## Preview
 
