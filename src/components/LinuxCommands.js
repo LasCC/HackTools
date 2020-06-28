@@ -109,11 +109,7 @@ export default (props) => {
         Useful Linux command for your Penetration Testing
       </Title>
       <Paragraph style={{ margin: 15 }}>
-        Cross-Site Scripting (XSS) attacks are a type of injection, in which
-        malicious scripts are injected into otherwise benign and trusted
-        websites. XSS attacks occur when an attacker uses a web application to
-        send malicious code, generally in the form of a browser side script, to
-        a different end user.
+        List of useful commands on Linux
       </Paragraph>
       <Divider dashed />
       <div
