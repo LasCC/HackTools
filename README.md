@@ -7,7 +7,7 @@
   <img alt="Version" src="https://img.shields.io/badge/version-0.1.0-blue.svg?cacheSeconds=2592000" />
   <img alt="release" src="https://img.shields.io/github/v/release/LasCC/Hack-Tools?color=yellow" />
   <a href="https://addons.mozilla.org/en-US/firefox/addon/hacktools" target="_blank">
-	  <img alt="mozilla" src="https://img.shields.io/amo/v/hacktools?color=purple&label=mozilla%20addons&logo=mozilla" />
+	<img alt="mozilla" src="https://img.shields.io/amo/v/hacktools?color=purple&label=mozilla%20addons&logo=mozilla" />
   </a>
   <img alt="commit" src="https://img.shields.io/github/last-commit/LasCC/Hack-Tools" />
   <img alt="stars" src="https://img.shields.io/github/stars/LasCC/Hack-Tools?style=social" />
@@ -17,7 +17,7 @@
     &nbsp;&nbsp;&mdash;&nbsp;&nbsp;
     <a href="#preview"><b>Preview</b></a>
     &nbsp;&nbsp;&mdash;&nbsp;&nbsp;
-    <a href="#install-the-application-on-chromium-based-browser"><b>Install</b></a>
+    <a href="#install-the-application"><b>Install</b></a>
     &nbsp;&nbsp;&mdash;&nbsp;&nbsp;
     <a href="#build-from-source-code"><b>Build</b></a>
     &nbsp;&nbsp;&mdash;&nbsp;&nbsp;
@@ -58,15 +58,19 @@ With the extension you **no longer need to search for payloads in different webs
 
 ## Install the application
 
+
 ### Chromium based browser 
 
 All the available releases are [here](https://github.com/LasCC/Hack-Tools/releases).
 
 Otherwise, if you want to build the project yourself from the source code
 
+---
+
 ###  Mozilla Firefox
 
 You can download **HackTools** on the Firefox browser add-ons [here.](https://addons.mozilla.org/en-US/firefox/addon/hacktools/)
+
 
 ## Build from source code
 
