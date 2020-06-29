@@ -158,7 +158,7 @@ export default (props) => {
               URL Encoder / Decoder
             </Menu.Item>
             <Menu.Item
-              key="10"
+              key="11"
               icon={<IconFont type="icon-url" />}
               onClick={() => goTo(HexEncode)}
             >
@@ -166,7 +166,7 @@ export default (props) => {
             </Menu.Item>
           </SubMenu>
           <Menu.Item
-            key="11"
+            key="12"
             icon={
               <IconFont
                 type="icon-about"
