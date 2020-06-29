@@ -49,8 +49,8 @@ const HexEncode = () => {
   return (
     <QueueAnim delay={300} duration={1500}>
       <div style={{ margin: 15 }}>
-        <Title variant="Title level={3}" style={{ fontWeight: "bold" }}>
-          Hex Encoder / Decoder
+        <Title variant='Title level={3}' style={{ fontWeight: "bold" }}>
+          Hexadecimal Encoder / Decoder
         </Title>
         <Paragraph>
           The hexadecimal numeral system, often shortened to "hex", is a numeral
@@ -61,7 +61,7 @@ const HexEncode = () => {
       </div>
       <Divider dashed />
       <div
-        key="a"
+        key='a'
         style={{
           marginTop: 15,
           marginLeft: 15,
@@ -71,27 +71,27 @@ const HexEncode = () => {
           rows={4}
           value={input}
           onChange={handleChange("input")}
-          placeholder="ASCII or Hexadecimal value to Encode / Decode..."
+          placeholder='ASCII or Hexadecimal value to Encode / Decode...'
         />
         <Button
-          type="primary"
+          type='primary'
           style={{ marginBottom: 10, marginTop: 15 }}
           onClick={() => handleClick("encode")}
         >
-          <IconFont type="icon-lock" />
+          <IconFont type='icon-lock' />
           Encode
         </Button>
         <Button
-          type="primary"
+          type='dashed'
           style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }}
           onClick={() => handleClick("decode")}
         >
-          <IconFont type="icon-lock-open" />
+          <IconFont type='icon-lock-open' />
           Decode
         </Button>
       </div>
       <div
-        key="b"
+        key='b'
         style={{
           marginTop: 15,
           marginLeft: 15,
@@ -101,11 +101,11 @@ const HexEncode = () => {
           rows={4}
           value={output}
           style={{ cursor: "auto", marginTop: 15, color: "#777" }}
-          placeholder="Output"
+          placeholder='Output'
         />
-        <Clipboard component="a" data-clipboard-text={output}>
+        <Clipboard component='a' data-clipboard-text={output}>
           <Button
-            type="primary"
+            type='primary'
             style={{ marginBottom: 10, marginTop: 15 }}
             onClick={successBase64Copy}
           >
