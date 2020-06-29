@@ -1,10 +1,14 @@
 
+
 <div align="center">
-	<img alt="logo_hack_tools" src="https://i.imgur.com/evnvda2.png" />
+<img alt="logo_hack_tools" src="https://i.imgur.com/evnvda2.png" />
 <h1>Welcome to HackTools 🛠</h1>
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-0.1.0-blue.svg?cacheSeconds=2592000" />
   <img alt="release" src="https://img.shields.io/github/v/release/LasCC/Hack-Tools?color=yellow" />
+  <a href="https://addons.mozilla.org/en-US/firefox/addon/hacktools" target="_blank">
+	  <img alt="mozilla" src="https://img.shields.io/amo/v/hacktools?color=purple&label=mozilla%20addons&logo=mozilla" />
+  </a>
   <img alt="commit" src="https://img.shields.io/github/last-commit/LasCC/Hack-Tools" />
   <img alt="stars" src="https://img.shields.io/github/stars/LasCC/Hack-Tools?style=social" />
 </p>
@@ -23,9 +27,9 @@
 
 ### The all-in-one Red Team browser extension for **Web Pentesters**
 
-Hacktools, is a web extension facilitating your **web application penetration tests**, it includes **cheat sheets** as well as all the **tools** used during a test such as XSS payloads, Reverse shells and much more.
+HackTools, is a web extension facilitating your **web application penetration tests**, it includes **cheat sheets** as well as all the **tools** used during a test such as XSS payloads, Reverse shells and much more.
 
-With the extension you **no longer need to search for payloads in different websites** or in your local storage space, most of the tools are accessible in one click. Hacktools is accessible either in **pop up mode** or in a whole tab in the **Devtools** part of the browser with F12.
+With the extension you **no longer need to search for payloads in different websites** or in your local storage space, most of the tools are accessible in one click. HackTools is accessible either in **pop up mode** or in a whole tab in the **Devtools** part of the browser with F12.
 
 ### Current functions:
 
@@ -36,7 +40,7 @@ With the extension you **no longer need to search for payloads in different webs
 - Local file inclusion payloads (LFI)
 - Base64 Encoder / Decoder
 - Hash Generator (MD5, SHA1, SHA256, SHA512)
-- Useful Linux commands (Port Forwarding, Suid..)
+- Useful Linux commands (Port Forwarding, SUID)
 
 ## Preview
 
@@ -52,11 +56,17 @@ With the extension you **no longer need to search for payloads in different webs
   <img alt="preview_3" src="https://i.imgur.com/jItstmk.png" />
 </div>
 
-## Install the application on chromium based browser
+## Install the application
 
-All the availables releases are [here](https://github.com/LasCC/Hack-Tools/releases).
+### Chromium based browser 
 
-Otherwise if you want to build the project yourself from the source code
+All the available releases are [here](https://github.com/LasCC/Hack-Tools/releases).
+
+Otherwise, if you want to build the project yourself from the source code
+
+###  Mozilla Firefox
+
+You can download **HackTools** on the Firefox browser add-ons [here.](https://addons.mozilla.org/en-US/firefox/addon/hacktools/)
 
 ## Build from source code
 
