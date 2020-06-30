@@ -39,7 +39,7 @@ export default (props) => {
         </Paragraph>
         <Clipboard
           component='a'
-          data-clipboard-text={"python -c 'import pty; pty.spawn('/bin/sh')'"}
+          data-clipboard-text={`python -c 'import pty; pty.spawn("/bin/sh")'`}
         >
           <Button
             type='primary'
@@ -61,10 +61,10 @@ export default (props) => {
         }}
       >
         <Title level={3}>OS system spawn shell</Title>
-        <Paragraph copyable>echo os.system('/bin/bash')</Paragraph>
+        <Paragraph copyable>echo os.system("/bin/bash")</Paragraph>
         <Clipboard
           component='a'
-          data-clipboard-text={"echo os.system('/bin/bash')"}
+          data-clipboard-text={`echo os.system("/bin/bash")`}
         >
           <Button
             type='primary'
@@ -111,7 +111,7 @@ export default (props) => {
         <Paragraph copyable>perl —e 'exec "/bin/sh";'</Paragraph>
         <Clipboard
           component='a'
-          data-clipboard-text={"perl —e 'exec '/bin/sh';'"}
+          data-clipboard-text={`perl —e 'exec "/bin/sh";'`}
         >
           <Button
             type='primary'
@@ -134,7 +134,7 @@ export default (props) => {
       >
         <Title level={3}>Python spawn shell </Title>
         <Paragraph copyable>ruby: exec "/bin/sh"</Paragraph>
-        <Clipboard component='a' data-clipboard-text={"ruby: exec '/bin/sh'"}>
+        <Clipboard component='a' data-clipboard-text={`ruby: exec "/bin/sh"`}>
           <Button
             type='primary'
             onClick={successInfoTtyShell}
@@ -155,10 +155,10 @@ export default (props) => {
         }}
       >
         <Title level={3}>Lua spawn shell </Title>
-        <Paragraph copyable>lua: os.execute('/bin/sh')</Paragraph>
+        <Paragraph copyable>lua: os.execute("/bin/sh")</Paragraph>
         <Clipboard
           component='a'
-          data-clipboard-text={"lua: os.execute('/bin/sh')"}
+          data-clipboard-text={`lua: os.execute("/bin/sh")`}
         >
           <Button
             type='primary'
@@ -181,7 +181,7 @@ export default (props) => {
       >
         <Title level={3}>IRB spawn shell </Title>
         <Paragraph copyable>exec "/bin/sh"</Paragraph>
-        <Clipboard component='a' data-clipboard-text={"exec '/bin/sh'"}>
+        <Clipboard component='a' data-clipboard-text={`exec "/bin/sh"`}>
           <Button
             type='primary'
             onClick={successInfoTtyShell}

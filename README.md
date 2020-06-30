@@ -1,10 +1,8 @@
-
-
 <div align="center">
 <img alt="logo_hack_tools" src="https://i.imgur.com/evnvda2.png" />
 <h1>Welcome to HackTools 🛠</h1>
 <p>
-  <img alt="Version" src="https://img.shields.io/badge/version-0.1.0-blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-0.1.1-blue.svg?cacheSeconds=2592000" />
   <img alt="release" src="https://img.shields.io/github/v/release/LasCC/Hack-Tools?color=yellow" />
   <a href="https://addons.mozilla.org/en-US/firefox/addon/hacktools" target="_blank">
 	<img alt="mozilla" src="https://img.shields.io/amo/v/hacktools?color=purple&label=mozilla%20addons&logo=mozilla" />
@@ -33,7 +31,7 @@ With the extension you **no longer need to search for payloads in different webs
 
 ### Current functions:
 
-- Dynamic Reverse Shell generator (PHP, Bash, Ruby, Python, Perl)
+- Dynamic Reverse Shell generator (PHP, Bash, Ruby, Python, Perl, Netcat)
 - Shell Spawning (TTY Shell Spawning)
 - XSS Payloads
 - Basic SQLi payloads
@@ -58,19 +56,17 @@ With the extension you **no longer need to search for payloads in different webs
 
 ## Install the application
 
+### Chromium based browser
 
-### Chromium based browser 
-
-All the available releases are [here](https://github.com/LasCC/Hack-Tools/releases).
+All the available releases are [here.](https://github.com/LasCC/Hack-Tools/releases).
 
 Otherwise, if you want to build the project yourself from the source code
 
 ---
 
-###  Mozilla Firefox
+### Mozilla Firefox
 
 You can download **HackTools** on the Firefox browser add-ons [here.](https://addons.mozilla.org/en-US/firefox/addon/hacktools/)
-
 
 ## Build from source code
 
