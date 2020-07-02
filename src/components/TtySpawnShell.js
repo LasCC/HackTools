@@ -39,7 +39,7 @@ export default (props) => {
         </Paragraph>
         <Clipboard
           component='a'
-          data-clipboard-text={"python -c 'import pty; pty.spawn('/bin/sh')'"}
+          data-clipboard-text={`python -c 'import pty; pty.spawn("/bin/sh")'`}
         >
           <Button
             type='primary'
@@ -52,19 +52,44 @@ export default (props) => {
         </Clipboard>
       </div>
       <Divider dashed />
-
       <div
-        key='a'
+        key='b'
+        style={{
+          padding: 15,
+          marginTop: 15,
+        }}
+      >
+        <Title level={3}>Fully Interactive TTY</Title>
+        <Title level={4}>All the steps to stabilize your shell</Title>
+        <Paragraph># In the reverse shell</Paragraph>
+        <Paragraph copyable>
+          python -c 'import pty; pty.spawn("/bin/sh")'
+        </Paragraph>
+        <Paragraph>ctrl+z</Paragraph>
+        <br />
+        <Paragraph># Attacker Machine</Paragraph>
+        <Paragraph copyable>stty raw -echo</Paragraph>
+        <Paragraph>fg</Paragraph>
+        <br />
+        <Paragraph># In the reverse shell</Paragraph>
+        <Paragraph copyable>reset</Paragraph>
+        <Paragraph copyable>export SHELL=bash</Paragraph>
+        <Paragraph copyable>export TERM=xterm-256color</Paragraph>
+        <Paragraph copyable>stty rows [num] columns [cols]</Paragraph>
+      </div>
+      <Divider dashed />
+      <div
+        key='c'
         style={{
           padding: 15,
           marginTop: 15,
         }}
       >
         <Title level={3}>OS system spawn shell</Title>
-        <Paragraph copyable>echo os.system('/bin/bash')</Paragraph>
+        <Paragraph copyable>echo os.system("/bin/bash")</Paragraph>
         <Clipboard
           component='a'
-          data-clipboard-text={"echo os.system('/bin/bash')"}
+          data-clipboard-text={`echo os.system("/bin/bash")`}
         >
           <Button
             type='primary'
@@ -77,9 +102,8 @@ export default (props) => {
         </Clipboard>
       </div>
       <Divider dashed />
-
       <div
-        key='b'
+        key='d'
         style={{
           padding: 15,
           marginTop: 15,
@@ -99,9 +123,8 @@ export default (props) => {
         </Clipboard>
       </div>
       <Divider dashed />
-
       <div
-        key='c'
+        key='e'
         style={{
           padding: 15,
           marginTop: 15,
@@ -111,7 +134,7 @@ export default (props) => {
         <Paragraph copyable>perl —e 'exec "/bin/sh";'</Paragraph>
         <Clipboard
           component='a'
-          data-clipboard-text={"perl —e 'exec '/bin/sh';'"}
+          data-clipboard-text={`perl —e 'exec "/bin/sh";'`}
         >
           <Button
             type='primary'
@@ -124,54 +147,6 @@ export default (props) => {
         </Clipboard>
       </div>
       <Divider dashed />
-
-      <div
-        key='d'
-        style={{
-          padding: 15,
-          marginTop: 15,
-        }}
-      >
-        <Title level={3}>Python spawn shell </Title>
-        <Paragraph copyable>ruby: exec "/bin/sh"</Paragraph>
-        <Clipboard component='a' data-clipboard-text={"ruby: exec '/bin/sh'"}>
-          <Button
-            type='primary'
-            onClick={successInfoTtyShell}
-            style={{ marginBottom: 10, marginTop: 15 }}
-          >
-            <CopyOutlined />
-            Copy the TTY
-          </Button>
-        </Clipboard>
-      </div>
-      <Divider dashed />
-
-      <div
-        key='e'
-        style={{
-          padding: 15,
-          marginTop: 15,
-        }}
-      >
-        <Title level={3}>Lua spawn shell </Title>
-        <Paragraph copyable>lua: os.execute('/bin/sh')</Paragraph>
-        <Clipboard
-          component='a'
-          data-clipboard-text={"lua: os.execute('/bin/sh')"}
-        >
-          <Button
-            type='primary'
-            onClick={successInfoTtyShell}
-            style={{ marginBottom: 10, marginTop: 15 }}
-          >
-            <CopyOutlined />
-            Copy the TTY
-          </Button>
-        </Clipboard>
-      </div>
-      <Divider dashed />
-
       <div
         key='f'
         style={{
@@ -179,9 +154,9 @@ export default (props) => {
           marginTop: 15,
         }}
       >
-        <Title level={3}>IRB spawn shell </Title>
-        <Paragraph copyable>exec "/bin/sh"</Paragraph>
-        <Clipboard component='a' data-clipboard-text={"exec '/bin/sh'"}>
+        <Title level={3}>Python spawn shell </Title>
+        <Paragraph copyable>ruby: exec "/bin/sh"</Paragraph>
+        <Clipboard component='a' data-clipboard-text={`ruby: exec "/bin/sh"`}>
           <Button
             type='primary'
             onClick={successInfoTtyShell}
@@ -193,9 +168,53 @@ export default (props) => {
         </Clipboard>
       </div>
       <Divider dashed />
-
       <div
         key='g'
+        style={{
+          padding: 15,
+          marginTop: 15,
+        }}
+      >
+        <Title level={3}>Lua spawn shell </Title>
+        <Paragraph copyable>lua: os.execute("/bin/sh")</Paragraph>
+        <Clipboard
+          component='a'
+          data-clipboard-text={`lua: os.execute("/bin/sh")`}
+        >
+          <Button
+            type='primary'
+            onClick={successInfoTtyShell}
+            style={{ marginBottom: 10, marginTop: 15 }}
+          >
+            <CopyOutlined />
+            Copy the TTY
+          </Button>
+        </Clipboard>
+      </div>
+      <Divider dashed />
+      <div
+        key='h'
+        style={{
+          padding: 15,
+          marginTop: 15,
+        }}
+      >
+        <Title level={3}>IRB spawn shell </Title>
+        <Paragraph copyable>exec "/bin/sh"</Paragraph>
+        <Clipboard component='a' data-clipboard-text={`exec "/bin/sh"`}>
+          <Button
+            type='primary'
+            onClick={successInfoTtyShell}
+            style={{ marginBottom: 10, marginTop: 15 }}
+          >
+            <CopyOutlined />
+            Copy the TTY
+          </Button>
+        </Clipboard>
+      </div>
+      <Divider dashed />
+      <div
+        key='i'
         style={{
           padding: 15,
           marginTop: 15,
@@ -215,9 +234,8 @@ export default (props) => {
         </Clipboard>
       </div>
       <Divider dashed />
-
       <div
-        key='h'
+        key='j'
         style={{
           padding: 15,
           marginTop: 15,
@@ -240,9 +258,8 @@ export default (props) => {
         </Clipboard>
       </div>
       <Divider dashed />
-
       <div
-        key='i'
+        key='k'
         style={{
           padding: 15,
           marginTop: 15,
