@@ -94,77 +94,91 @@ export default (props) => {
           >
             Useful Linux commands
           </Menu.Item>
-          <SubMenu
-            key='sub1'
+          <Menu.Item
+            key='5'
             icon={
               <IconFont
-                type='icon-html-'
                 style={{ fontSize: "1.5em", marginTop: 3 }}
+                type='icon-l-file'
               />
             }
-            title='Web'
+            onClick={() => goTo(LFI)}
           >
-            <Menu.Item
-              key='5'
-              icon={<IconFont type='icon-l-file' />}
-              onClick={() => goTo(LFI)}
-            >
-              LFI
-            </Menu.Item>
-            <Menu.Item
-              key='6'
-              icon={<IconFont type='icon-js' />}
-              onClick={() => goTo(XSS)}
-            >
-              XSS
-            </Menu.Item>
-            <Menu.Item
-              key='7'
-              icon={<IconFont type='icon-sql' />}
-              onClick={() => goTo(SQLi)}
-            >
-              SQL Injection
-            </Menu.Item>
-          </SubMenu>
-          <SubMenu
-            key='sub2'
+            LFI
+          </Menu.Item>
+          <Menu.Item
+            key='6'
             icon={
               <IconFont
-                type='icon-sort_others'
                 style={{ fontSize: "1.5em", marginTop: 3 }}
+                type='icon-js'
               />
             }
-            title='Other'
+            onClick={() => goTo(XSS)}
           >
-            <Menu.Item
-              key='8'
-              icon={<IconFont type='icon-jiemaleixing' />}
-              onClick={() => goTo(Base64Encode)}
-            >
-              Base64 Encoder / Decoder
-            </Menu.Item>
-            <Menu.Item
-              key='9'
-              icon={<IconFont type='icon-hash' />}
-              onClick={() => goTo(Hashing)}
-            >
-              Hashing
-            </Menu.Item>
-            <Menu.Item
-              key='10'
-              icon={<IconFont type='icon-url' />}
-              onClick={() => goTo(URLDecode)}
-            >
-              URL Encoder / Decoder
-            </Menu.Item>
-            <Menu.Item
-              key='11'
-              icon={<IconFont type='icon-hexo' />}
-              onClick={() => goTo(HexEncode)}
-            >
-              Hexadecimal Encoder / Decoder
-            </Menu.Item>
-          </SubMenu>
+            XSS
+          </Menu.Item>
+          <Menu.Item
+            key='7'
+            icon={
+              <IconFont
+                style={{ fontSize: "1.5em", marginTop: 3 }}
+                type='icon-sql'
+              />
+            }
+            onClick={() => goTo(SQLi)}
+          >
+            SQL Injection
+          </Menu.Item>
+          <Menu.Item
+            key='8'
+            icon={
+              <IconFont
+                style={{ fontSize: "1.5em", marginTop: 3 }}
+                type='icon-jiemaleixing'
+              />
+            }
+            onClick={() => goTo(Base64Encode)}
+          >
+            Base64 Encoder / Decoder
+          </Menu.Item>
+          <Menu.Item
+            key='9'
+            icon={
+              <IconFont
+                style={{ fontSize: "1.5em", marginTop: 3 }}
+                type='icon-hash'
+              />
+            }
+            onClick={() => goTo(Hashing)}
+          >
+            Hashing
+          </Menu.Item>
+          <Menu.Item
+            key='10'
+            icon={
+              <IconFont
+                style={{ fontSize: "1.5em", marginTop: 3 }}
+                type='icon-url'
+              />
+            }
+            onClick={() => goTo(URLDecode)}
+          >
+            URL Encoder / Decoder
+          </Menu.Item>
+          <Menu.Item
+            key='11'
+            icon={
+              <IconFont
+                style={{ fontSize: "1.5em", marginTop: 3 }}
+                type='icon-hexo'
+              />
+            }
+            onClick={() => goTo(HexEncode)}
+          >
+            Hexadecimal Encoder / Decoder
+          </Menu.Item>
+
           <Menu.Item
             key='12'
             icon={
@@ -194,6 +208,7 @@ export default (props) => {
           <Paragraph style={{ textAlign: "center" }}>
             Ludovic COULON - Riadh BOUCHAHOUA
           </Paragraph>
+          <pre style={{ textAlign: "center" }}>HackTools Version - 0.1.2</pre>
         </Footer>
       </Layout>
     </Layout>
