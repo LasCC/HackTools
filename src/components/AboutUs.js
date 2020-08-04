@@ -48,13 +48,13 @@ export default (props) => {
           HackTools is created by Ludovic COULON and Riadh BOUCHAHOUA
         </Paragraph>
         <a
-          href='https://www.buymeacoffee.com/hacktools'
+          href='https://www.paypal.com/paypalme/hacktoolsEXT'
           target='_blank'
           rel='noreferrer noopener'
         >
           <img
             src='https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png'
-            alt='Buy Me A Coffee'
+            alt='Paypal'
             style={{
               height: 41,
               width: 174,

@@ -115,7 +115,7 @@ export default (props) => {
   return (
     <QueueAnim delay={300} duration={1500}>
       <Title
-        variant="Title level={3}"
+        variant='Title level={3}'
         style={{ fontWeight: "bold", margin: 15 }}
       >
         Useful Linux command for your Penetration Testing
@@ -125,7 +125,7 @@ export default (props) => {
       </Paragraph>
       <Divider dashed />
       <div
-        key="a"
+        key='a'
         style={{
           padding: 15,
         }}
@@ -133,7 +133,7 @@ export default (props) => {
         <Title level={3}>SUID Commands</Title>
         {Suid.map((k, i) => {
           return (
-            <Paragraph key={i} copyable>
+            <Paragraph key={i} copyable ellipsis={true}>
               {k.title}
             </Paragraph>
           );
@@ -141,7 +141,7 @@ export default (props) => {
       </div>
       <Divider dashed />
       <div
-        key="b"
+        key='b'
         style={{
           padding: 15,
         }}
@@ -149,7 +149,7 @@ export default (props) => {
         <Title level={3}>What version of the system ?</Title>
         {VersionSystem.map((k, i) => {
           return (
-            <Paragraph key={i} copyable>
+            <Paragraph key={i} copyable ellipsis={true}>
               {k.title}
             </Paragraph>
           );
@@ -157,7 +157,7 @@ export default (props) => {
       </div>
       <Divider dashed />
       <div
-        key="c"
+        key='c'
         style={{
           padding: 15,
         }}
@@ -165,14 +165,14 @@ export default (props) => {
         <Title level={3}>What is its kernel version ?</Title>
         {KernelVersion.map((k, i) => {
           return (
-            <Paragraph key={i} copyable>
+            <Paragraph key={i} copyable ellipsis={true}>
               {k.title}
             </Paragraph>
           );
         })}
       </div>
       <div
-        key="d"
+        key='d'
         style={{
           padding: 15,
         }}
@@ -181,7 +181,7 @@ export default (props) => {
         <Title level={3}>What is the environment variables ?</Title>
         {EnvironmentVariables.map((k, i) => {
           return (
-            <Paragraph key={i} copyable>
+            <Paragraph key={i} copyable ellipsis={true}>
               {k.title}
             </Paragraph>
           );
@@ -189,7 +189,7 @@ export default (props) => {
       </div>
       <Divider dashed />
       <div
-        key="e"
+        key='e'
         style={{
           padding: 15,
         }}
@@ -199,7 +199,7 @@ export default (props) => {
         </Title>
         {ServiceSettings.map((k, i) => {
           return (
-            <Paragraph key={i} copyable>
+            <Paragraph key={i} copyable ellipsis={true}>
               {k.title}
             </Paragraph>
           );
@@ -207,7 +207,7 @@ export default (props) => {
       </div>
       <Divider dashed />
       <div
-        key="f"
+        key='f'
         style={{
           padding: 15,
         }}
@@ -215,7 +215,7 @@ export default (props) => {
         <Title level={3}>Is there any cron jobs ?</Title>
         {CronJobs.map((k, i) => {
           return (
-            <Paragraph key={i} copyable>
+            <Paragraph key={i} copyable ellipsis={true}>
               {k.title}
             </Paragraph>
           );
@@ -223,7 +223,7 @@ export default (props) => {
       </div>
       <Divider dashed />
       <div
-        key="g"
+        key='g'
         style={{
           padding: 15,
         }}
@@ -233,7 +233,7 @@ export default (props) => {
         </Title>
         {UsersHost.map((k, i) => {
           return (
-            <Paragraph key={i} copyable>
+            <Paragraph key={i} copyable ellipsis={true}>
               {k.title}
             </Paragraph>
           );
@@ -241,7 +241,7 @@ export default (props) => {
       </div>
       <Divider dashed />
       <div
-        key="h"
+        key='h'
         style={{
           padding: 15,
         }}
@@ -249,7 +249,7 @@ export default (props) => {
         <Title level={3}>How to port forwarding ?</Title>
         {PortForwarding.map((k, i) => {
           return (
-            <Paragraph key={i} copyable>
+            <Paragraph key={i} copyable ellipsis={true}>
               {k.title}
             </Paragraph>
           );
@@ -257,7 +257,7 @@ export default (props) => {
       </div>
       <Divider dashed />
       <div
-        key="h"
+        key='h'
         style={{
           padding: 15,
         }}
@@ -265,7 +265,7 @@ export default (props) => {
         <Title level={3}>TAR wildcard cronjob privilege escalation </Title>
         {wildcardPrivesc.map((k, i) => {
           return (
-            <Paragraph key={i} copyable>
+            <Paragraph key={i} copyable ellipsis={true}>
               {k.title}
             </Paragraph>
           );

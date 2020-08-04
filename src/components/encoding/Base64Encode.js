@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { Button, Input, Typography, message, Divider } from "antd";
-import { CopyOutlined, createFromIconfontCN } from "@ant-design/icons";
+import {
+  CopyOutlined,
+  createFromIconfontCN,
+  ClearOutlined,
+} from "@ant-design/icons";
 import Clipboard from "react-clipboard.js";
 import QueueAnim from "rc-queue-anim";
 
@@ -67,7 +71,7 @@ const Base64Encode = () => {
           Encode
         </Button>
         <Button
-          type='primary'
+          type='dashed'
           style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }}
           onClick={() => handleClick("decode")}
         >
@@ -86,7 +90,7 @@ const Base64Encode = () => {
           rows={4}
           value={output}
           style={{ cursor: "auto", marginTop: 15, color: "#777" }}
-          placeholder='Output'
+          placeholder='The results will appear here'
         />
         <Clipboard component='a' data-clipboard-text={output}>
           <Button
@@ -97,6 +101,14 @@ const Base64Encode = () => {
             <CopyOutlined /> Copy
           </Button>
         </Clipboard>
+        <Button
+          type='link'
+          danger
+          style={{ marginBottom: 10, marginTop: 15 }}
+          onClick={() => setOutput("")}
+        >
+          <ClearOutlined /> Clear
+        </Button>
       </div>
     </QueueAnim>
   );
