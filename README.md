@@ -51,7 +51,7 @@ With the extension you **no longer need to search for payloads in different webs
 </div>
 
 <div align='center'>
-  <img alt="preview_3" src="https://i.imgur.com/jItstmk.png" />
+  <img alt="preview_3" src="https://i.imgur.com/55thddg.png" />
 </div>
 
 ## Install the application
