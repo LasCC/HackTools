@@ -1,7 +1,7 @@
 import React from "react";
 import { Layout, Menu, Typography } from "antd";
 import { CopyrightCircleOutlined } from "@ant-design/icons";
-import { createFromIconfontCN } from "@ant-design/icons";
+import { createFromIconfontCN, DatabaseOutlined } from "@ant-design/icons";
 import { goTo } from "react-chrome-extension-router";
 import ReverseShell from "./ReverseShell";
 import PhpReverseShell from "./PhpReverseShell";
@@ -15,10 +15,10 @@ import LFI from "./web/LFI";
 import XSS from "./web/XSS";
 import SQLi from "./web/SqlInjection";
 import AboutUs from "./AboutUs";
+import FeedRSS from "./FeedRSS";
 
 const { Paragraph } = Typography;
 const { Sider, Content, Footer } = Layout;
-const { SubMenu } = Menu;
 const IconFont = createFromIconfontCN({
   scriptUrl: ["./iconfont.js"],
 });
@@ -178,9 +178,20 @@ export default (props) => {
           >
             Hexadecimal Encoder / Decoder
           </Menu.Item>
-
           <Menu.Item
             key='12'
+            icon={
+              <IconFont
+                type='icon-rss'
+                style={{ fontSize: "1.5em", marginTop: 3 }}
+              />
+            }
+            onClick={() => goTo(FeedRSS)}
+          >
+            Feed RSS
+          </Menu.Item>
+          <Menu.Item
+            key='13'
             icon={
               <IconFont
                 type='icon-about'
