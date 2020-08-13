@@ -2,7 +2,7 @@
 <img alt="logo_hack_tools" src="https://i.imgur.com/evnvda2.png" />
 <h1>Welcome to HackTools 🛠</h1>
 <p>
-  <img alt="Version" src="https://img.shields.io/badge/version-0.1.2-blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-0.1.3-blue.svg?cacheSeconds=2592000" />
   <img alt="release" src="https://img.shields.io/github/v/release/LasCC/Hack-Tools?color=yellow" />
   <a href="https://addons.mozilla.org/en-US/firefox/addon/hacktools" target="_blank">
 	<img alt="mozilla" src="https://img.shields.io/amo/v/hacktools?color=purple&label=mozilla%20addons&logo=mozilla" />
