@@ -16,7 +16,7 @@ import XSS from "./web/XSS";
 import SQLi from "./web/SqlInjection";
 import AboutUs from "./AboutUs";
 import FeedRSS from "./FeedRSS";
-import SSTI from "./web/SSTI"
+import SSTI from "./web/SSTI";
 const { Paragraph } = Typography;
 const { Sider, Content, Footer } = Layout;
 const IconFont = createFromIconfontCN({
@@ -182,13 +182,13 @@ export default (props) => {
             key='12'
             icon={
               <IconFont
-                type='icon-rss'
+                type='icon-inserttemplate'
                 style={{ fontSize: "1.5em", marginTop: 3 }}
               />
             }
             onClick={() => goTo(SSTI)}
           >
-            Feed RSS
+            SSTI
           </Menu.Item>
           <Menu.Item
             key='13'

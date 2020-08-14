@@ -9,7 +9,7 @@ const { Title, Paragraph } = Typography;
 
 const fetchApi = async () => {
   const res = await fetch(
-    "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Ftools.cisco.com%2Fsecurity%2Fcenter%2Fpsirtrss20%2FCiscoSecurityAdvisory.xml&api_key=spbf63tt7rvx2r0wh2x6yoz00ssjyztpceqqkdj3&count=50"
+    "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Ftools.cisco.com%2Fsecurity%2Fcenter%2Fpsirtrss20%2FCiscoSecurityAdvisory.xml&api_key=spbf63tt7rvx2r0wh2x6yoz00ssjyztpceqqkdj3&count=20"
   );
   return res.json();
 };
@@ -17,32 +17,6 @@ const fetchApi = async () => {
 export default (props) => {
   const { data, status } = useQuery("exploitdb", fetchApi);
 
-  const colorSeverity = (severityLevel) => {
-    switch (severityLevel) {
-      case "Critical":
-        return <Tag color='red'>{severityLevel}</Tag>;
-        break;
-
-      case "High":
-        return <Tag color='magenta'>{severityLevel}</Tag>;
-        break;
-
-      case "Medium":
-        return <Tag color='orange'>{severityLevel}</Tag>;
-        break;
-
-      case "Low":
-        return <Tag color='lime'>{severityLevel}</Tag>;
-        break;
-
-      case "Informational":
-        return <Tag color='blue'>{severityLevel}</Tag>;
-        break;
-
-      default:
-        break;
-    }
-  };
   return (
     <QueueAnim delay={300} duration={1500}>
       <PageHeader
@@ -89,7 +63,10 @@ export default (props) => {
         >
           <Title
             variant='Title level={4}'
-            style={{ fontWeight: "bold", marginTop: 15 }}
+            style={{
+              fontWeight: "bold",
+              marginTop: 15,
+            }}
           >
             Recent exploit
           </Title>
@@ -100,8 +77,30 @@ export default (props) => {
             renderItem={(list) => (
               <List.Item
                 actions={[
-                  <Tag color='blue'>
-                    {list.content.slice(list.content.indexOf("CVE:"))}
+                  <div>
+                    {(() => {
+                      const severityLevel = list.content.match(
+                        /(  )[a-zA-Z]+/
+                      )[0];
+                      console.log(severityLevel);
+                      switch (severityLevel) {
+                        case "  Critical":
+                          return <Tag color='red'>{severityLevel}</Tag>;
+                        case "  High":
+                          return <Tag color='magenta'>{severityLevel}</Tag>;
+                        case "  Medium":
+                          return <Tag color='orange'>{severityLevel}</Tag>;
+                        case "  Low":
+                          return <Tag color='lime'>{severityLevel}</Tag>;
+                        case "  Informational":
+                          return <Tag color='blue'>{severityLevel}</Tag>;
+                        default:
+                          break;
+                      }
+                    })()}
+                  </div>,
+                  <Tag color='geekblue' style={{ marginLeft: 5 }}>
+                    {list.content.match(/CVE-(\d{4})-(\d{4,5})/)[0]}
                   </Tag>,
                 ]}
               >
