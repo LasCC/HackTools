@@ -51,12 +51,12 @@ With the extension you **no longer need to search for payloads in different webs
 </div>
 
 <div align='center'>
-  <img alt="preview_3" src="https://i.imgur.com/55thddg.png" />
+  <img alt="preview_3" src="https://i.imgur.com/jItstmk.png" />
 </div>
 
 ## Install the application
 
-### Chromium based browser
+## Chromium based browser
 
 All the available releases are [here.](https://github.com/LasCC/Hack-Tools/releases).
 
@@ -64,7 +64,7 @@ Otherwise, if you want to build the project yourself from the source code
 
 ---
 
-### Mozilla Firefox
+## Mozilla Firefox
 
 You can download **HackTools** on the Firefox browser add-ons [here.](https://addons.mozilla.org/en-US/firefox/addon/hacktools/)
 
