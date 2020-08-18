@@ -43,26 +43,28 @@ With the extension you **no longer need to search for payloads in different webs
 ## Preview
 
 <div align='center'>
-  <img alt="preview_1" src="https://i.imgur.com/96PaPqa.png" />
+  <img alt="preview_1" src="https://i.imgur.com/Esa9UXQ.png" />
 </div>
 
 <div align='center'>
-  <img alt="preview_2" src="https://i.imgur.com/1MIRS0X.png" />
+  <img alt="preview_2" src="https://i.imgur.com/ufOTKYv.png" />
 </div>
 
 <div align='center'>
-  <img alt="preview_3" src="https://i.imgur.com/jItstmk.png" />
+  <img alt="preview_3" src="https://i.imgur.com/rxr2x4h.png" />
 </div>
 
-## Install the application
+<div align='center'>
+  <img alt="preview_4" src="https://i.imgur.com/PdUd8mx.png" />
+</div>
+
+# Install the application
 
 ## Chromium based browser
 
-All the available releases are [here.](https://github.com/LasCC/Hack-Tools/releases).
+All the available releases are [here.](https://github.com/LasCC/Hack-Tools/releases)
 
 Otherwise, if you want to build the project yourself from the source code
-
----
 
 ## Mozilla Firefox
 
