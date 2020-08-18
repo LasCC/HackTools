@@ -5,6 +5,7 @@ import { goTo } from "react-chrome-extension-router";
 import { LinkOutlined, EyeOutlined, GithubOutlined } from "@ant-design/icons";
 import ExploitDB from "./rss/ExploitDB";
 import Cisco from "./rss/Cisco";
+import cve from "./rss/cve";
 
 const { Title, Paragraph } = Typography;
 const { Meta } = Card;
@@ -93,6 +94,39 @@ export default (props) => {
               }
               title='Cisco'
               description='Cisco Security Advisories'
+            />
+          </Card>
+        </Col>
+        <Col span={12}>
+          <Card
+            style={{
+              boxShadow:
+                "0 0px 3.6px rgba(0, 0, 0, 0.017),  0 0px 10px rgba(0, 0, 0, 0.025),  0 0px 24.1px rgba(0, 0, 0, 0.033),  0 0px 80px rgba(0, 0, 0, 0.05)",
+            }}
+            cover={
+              <img alt='cve_image_logo' src='https://i.imgur.com/AtKXVuk.png' />
+            }
+            actions={[
+              <Tooltip title='Watch the feed'>
+                <EyeOutlined key='goto_page' onClick={() => goTo(cve)} />
+              </Tooltip>,
+              <Tooltip title='Website link'>
+                <a
+                  href='https://www.cve-search.org/'
+                  rel='noreferrer noopener'
+                  target='_blank'
+                >
+                  <LinkOutlined key='website_link' />
+                </a>
+              </Tooltip>,
+            ]}
+          >
+            <Meta
+              avatar={
+                <Avatar src='https://d1yjjnpx0p53s8.cloudfront.net/styles/logo-thumbnail/s3/0012/5120/brand.gif?itok=mqo4KWCS' />
+              }
+              title='CVE'
+              description='CVE Search engine'
             />
           </Card>
         </Col>

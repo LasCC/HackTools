@@ -5,7 +5,7 @@ import { goTo } from "react-chrome-extension-router";
 import { useQuery } from "react-query";
 import FeedRSS from "../FeedRSS";
 
-const { Title, Paragraph } = Typography;
+const { Title } = Typography;
 
 const fetchApi = async () => {
   const res = await fetch(
@@ -15,7 +15,7 @@ const fetchApi = async () => {
 };
 
 export default (props) => {
-  const { data, status } = useQuery("exploitdb", fetchApi);
+  const { data, status, error } = useQuery("cisco", fetchApi);
 
   return (
     <QueueAnim delay={300} duration={1500}>
@@ -50,7 +50,16 @@ export default (props) => {
             }}
             description={<span>Error getting the data please contact us.</span>}
           >
-            <Button danger>Contact</Button>
+            <pre>{error.message}</pre>
+            <Button danger>
+              <a
+                href='https://github.com/LasCC/Hack-Tools/issues'
+                rel='noreferrer noopener'
+                target='_blank'
+              >
+                Report the bug
+              </a>
+            </Button>
           </Empty>
         </>
       )}
