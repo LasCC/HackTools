@@ -2,7 +2,7 @@
 <img alt="logo_hack_tools" src="https://i.imgur.com/evnvda2.png" />
 <h1>Welcome to HackTools 🛠</h1>
 <p>
-  <img alt="Version" src="https://img.shields.io/badge/version-0.1.3-blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-0.1.4-blue.svg?cacheSeconds=2592000" />
   <img alt="release" src="https://img.shields.io/github/v/release/LasCC/Hack-Tools?color=yellow" />
   <a href="https://addons.mozilla.org/en-US/firefox/addon/hacktools" target="_blank">
 	<img alt="mozilla" src="https://img.shields.io/amo/v/hacktools?color=purple&label=mozilla%20addons&logo=mozilla" />
@@ -43,28 +43,30 @@ With the extension you **no longer need to search for payloads in different webs
 ## Preview
 
 <div align='center'>
-  <img alt="preview_1" src="https://i.imgur.com/96PaPqa.png" />
+  <img alt="preview_1" src="https://i.imgur.com/02ym26m.png" />
 </div>
 
 <div align='center'>
-  <img alt="preview_2" src="https://i.imgur.com/1MIRS0X.png" />
+  <img alt="preview_2" src="https://i.imgur.com/A22KDs7.png" />
 </div>
 
 <div align='center'>
-  <img alt="preview_3" src="https://i.imgur.com/jItstmk.png" />
+  <img alt="preview_3" src="https://i.imgur.com/TxWUC7r.png" />
 </div>
 
-## Install the application
+<div align='center'>
+  <img alt="preview_4" src="https://i.imgur.com/KrDX7t6.png" />
+</div>
 
-### Chromium based browser
+# Install the application
 
-All the available releases are [here.](https://github.com/LasCC/Hack-Tools/releases).
+## Chromium based browser
+
+All the available releases are [here.](https://github.com/LasCC/Hack-Tools/releases)
 
 Otherwise, if you want to build the project yourself from the source code
 
----
-
-### Mozilla Firefox
+## Mozilla Firefox
 
 You can download **HackTools** on the Firefox browser add-ons [here.](https://addons.mozilla.org/en-US/firefox/addon/hacktools/)
 
