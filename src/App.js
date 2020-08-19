@@ -7,19 +7,19 @@ import { Router } from "react-chrome-extension-router";
 import ReverseShell from "./components/ReverseShell.js";
 
 function App() {
-  return (
-    <div>
-      <ReverseShell />
-    </div>
-  );
+	return (
+		<div>
+			<ReverseShell />
+		</div>
+	);
 }
 
 ReactDOM.render(
-  <LayoutApp>
-    <Router>
-      <App />
-    </Router>
-    <BackTop />
-  </LayoutApp>,
-  document.getElementById("app")
+	<LayoutApp>
+		<Router>
+			<App />
+		</Router>
+		<BackTop />
+	</LayoutApp>,
+	document.getElementById("app")
 );
