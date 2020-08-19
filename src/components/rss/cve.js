@@ -32,7 +32,15 @@ export default (props) => {
     );
     return res.json();
   };
-  const { data, status, error, refetch } = useQuery("cve", fetchApi);
+  const {
+    isIdle,
+    isLoading,
+    isError,
+    data,
+    error,
+    refetch,
+    isFetching,
+  } = useQuery("cve", fetchApi);
 
   return (
     <QueueAnim delay={300} duration={1500}>
@@ -61,13 +69,14 @@ export default (props) => {
         onSubmit={() => refetch()}
         onSearch={() => refetch()}
       />
-      {status === "loading" && (
+      {isIdle ? (
+        "Not ready..."
+      ) : isLoading ? (
         <div style={{ textAlign: "center", marginTop: 25 }}>
           <Spin />
           <Empty />
         </div>
-      )}
-      {status === "error" && (
+      ) : isError ? (
         <>
           <Empty
             style={{ marginTop: 25 }}
@@ -89,8 +98,7 @@ export default (props) => {
             </Button>
           </Empty>
         </>
-      )}
-      {status === "success" && (
+      ) : (
         <>
           <div
             key='a'
@@ -180,6 +188,7 @@ export default (props) => {
                 </List.Item>
               )}
             />
+            <div>{isFetching ? <Spin /> : null}</div>
           </div>
         </>
       )}
