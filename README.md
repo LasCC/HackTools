@@ -43,19 +43,19 @@ With the extension you **no longer need to search for payloads in different webs
 ## Preview
 
 <div align='center'>
-  <img alt="preview_1" src="https://i.imgur.com/Esa9UXQ.png" />
+  <img alt="preview_1" src="https://i.imgur.com/02ym26m.png" />
 </div>
 
 <div align='center'>
-  <img alt="preview_2" src="https://i.imgur.com/ufOTKYv.png" />
+  <img alt="preview_2" src="https://i.imgur.com/A22KDs7.png" />
 </div>
 
 <div align='center'>
-  <img alt="preview_3" src="https://i.imgur.com/rxr2x4h.png" />
+  <img alt="preview_3" src="https://i.imgur.com/TxWUC7r.png" />
 </div>
 
 <div align='center'>
-  <img alt="preview_4" src="https://i.imgur.com/PdUd8mx.png" />
+  <img alt="preview_4" src="https://i.imgur.com/KrDX7t6.png" />
 </div>
 
 # Install the application
