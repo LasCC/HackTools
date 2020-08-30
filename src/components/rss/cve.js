@@ -10,13 +10,15 @@ import {
   Input,
   List,
   Divider,
+  Result,
 } from "antd";
 import QueueAnim from "rc-queue-anim";
+import { CloseCircleOutlined } from "@ant-design/icons";
 import { goTo } from "react-chrome-extension-router";
 import { useQuery } from "react-query";
 import FeedRSS from "../FeedRSS";
 
-const { Paragraph, Title } = Typography;
+const { Paragraph, Title, Text } = Typography;
 const { Search } = Input;
 
 export default (props) => {
@@ -36,6 +38,39 @@ export default (props) => {
     "cve",
     fetchApi
   );
+
+  if (isLoading) {
+    return (
+      <div style={{ textAlign: "center", marginTop: 25 }}>
+        <Spin tip='Loading...' />
+      </div>
+    );
+  }
+  if (isError) {
+    return (
+      <>
+        <Empty
+          style={{ marginTop: 25 }}
+          image='https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg'
+          imageStyle={{
+            height: 60,
+          }}
+          description={<span>Error getting the data please contact us.</span>}
+        >
+          <pre>{error.message}</pre>
+          <Button danger>
+            <a
+              href='https://github.com/LasCC/Hack-Tools/issues'
+              rel='noreferrer noopener'
+              target='_blank'
+            >
+              Report the bug
+            </a>
+          </Button>
+        </Empty>
+      </>
+    );
+  }
 
   return (
     <QueueAnim delay={300} duration={1500}>
@@ -64,34 +99,7 @@ export default (props) => {
         onSubmit={() => refetch()}
         onSearch={() => refetch()}
       />
-      {isLoading ? (
-        <div style={{ textAlign: "center", marginTop: 25 }}>
-          <Spin />
-          <Empty />
-        </div>
-      ) : isError ? (
-        <>
-          <Empty
-            style={{ marginTop: 25 }}
-            image='https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg'
-            imageStyle={{
-              height: 60,
-            }}
-            description={<span>Error getting the data please contact us.</span>}
-          >
-            <pre>{error.message}</pre>
-            <Button danger>
-              <a
-                href='https://github.com/LasCC/Hack-Tools/issues'
-                rel='noreferrer noopener'
-                target='_blank'
-              >
-                Report the bug
-              </a>
-            </Button>
-          </Empty>
-        </>
-      ) : (
+      {data != null ? (
         <>
           <div
             key='a'
@@ -132,14 +140,26 @@ export default (props) => {
               <Descriptions.Item label='Severity'>
                 {(() => {
                   if (data.cvss >= 0.1 && data.cvss <= 3.9)
-                    return <Paragraph>LOW</Paragraph>;
+                    return (
+                      <Paragraph strong style={{ color: "#389e0d" }}>
+                        LOW
+                      </Paragraph>
+                    );
                   if (data.cvss >= 4.0 && data.cvss <= 6.9)
-                    return <Paragraph type='warning'>MEDIUM</Paragraph>;
+                    return (
+                      <Paragraph strong type='warning'>
+                        MEDIUM
+                      </Paragraph>
+                    );
                   if (data.cvss >= 7.0 && data.cvss <= 8.9)
-                    return <Paragraph type='danger'>HIGH</Paragraph>;
+                    return (
+                      <Paragraph strong style={{ color: "#f5222d" }}>
+                        HIGH
+                      </Paragraph>
+                    );
                   if (data.cvss >= 9.0 && data.cvss <= 10)
                     return (
-                      <Paragraph strong type='danger'>
+                      <Paragraph strong style={{ color: "#820014" }}>
                         CRITICAL
                       </Paragraph>
                     );
@@ -181,16 +201,43 @@ export default (props) => {
                 </List.Item>
               )}
             />
-            <div>
-              {isFetching ? (
-                <div style={{ textAlign: "center", marginTop: 25 }}>
-                  <Spin />
-                </div>
-              ) : null}
-            </div>
           </div>
         </>
+      ) : (
+        <Result
+          status='error'
+          title='Something went wrong'
+          subTitle='Please check and modify the following information before resubmitting.'
+        >
+          <div className='desc'>
+            <Paragraph>
+              <Text
+                strong
+                style={{
+                  fontSize: 16,
+                }}
+              >
+                The content you submitted has the following error:
+              </Text>
+            </Paragraph>
+            <Paragraph>
+              <CloseCircleOutlined className='site-result-demo-error-icon' />{" "}
+              The value that you submitted <b>does not exist</b>.
+            </Paragraph>
+            <Paragraph>
+              <CloseCircleOutlined className='site-result-demo-error-icon' />{" "}
+              The <b>API is in maintenance</b>, please try again.
+            </Paragraph>
+          </div>
+        </Result>
       )}
+      <div>
+        {isFetching ? (
+          <div style={{ textAlign: "center", marginTop: 25 }}>
+            <Spin tip='Loading...' />
+          </div>
+        ) : null}
+      </div>
     </QueueAnim>
   );
 };
