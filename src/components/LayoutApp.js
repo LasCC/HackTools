@@ -17,6 +17,7 @@ import SQLi from "./web/SqlInjection";
 import AboutUs from "./AboutUs";
 import FeedRSS from "./FeedRSS";
 import SSTI from "./web/SSTI";
+import FileTransfer from "./file_transfer/File_transfer"
 const { Paragraph } = Typography;
 const { Sider, Content, Footer } = Layout;
 const IconFont = createFromIconfontCN({
@@ -98,6 +99,18 @@ export default (props) => {
 						key='5'
 						icon={
 							<IconFont
+								type='icon-linux'
+								style={{ fontSize: "1.5em", marginTop: 3 }}
+							/>
+						}
+						onClick={() => goTo(FileTransfer)}
+					>
+						Transfer Methods
+					</Menu.Item>
+					<Menu.Item
+						key='6'
+						icon={
+							<IconFont
 								style={{ fontSize: "1.5em", marginTop: 3 }}
 								type='icon-l-file'
 							/>
@@ -107,7 +120,7 @@ export default (props) => {
 						LFI
 					</Menu.Item>
 					<Menu.Item
-						key='6'
+						key='7'
 						icon={
 							<IconFont
 								style={{ fontSize: "1.5em", marginTop: 3 }}
@@ -119,7 +132,7 @@ export default (props) => {
 						XSS
 					</Menu.Item>
 					<Menu.Item
-						key='7'
+						key='8'
 						icon={
 							<IconFont
 								style={{ fontSize: "1.5em", marginTop: 3 }}
@@ -131,7 +144,7 @@ export default (props) => {
 						SQL Injection
 					</Menu.Item>
 					<Menu.Item
-						key='8'
+						key='9'
 						icon={
 							<IconFont
 								style={{ fontSize: "1.5em", marginTop: 3 }}
@@ -143,7 +156,7 @@ export default (props) => {
 						Base64 Encoder / Decoder
 					</Menu.Item>
 					<Menu.Item
-						key='9'
+						key='10'
 						icon={
 							<IconFont
 								style={{ fontSize: "1.5em", marginTop: 3 }}
@@ -155,7 +168,7 @@ export default (props) => {
 						Hashing
 					</Menu.Item>
 					<Menu.Item
-						key='10'
+						key='11'
 						icon={
 							<IconFont
 								style={{ fontSize: "1.5em", marginTop: 3 }}
@@ -167,7 +180,7 @@ export default (props) => {
 						URL Encoder / Decoder
 					</Menu.Item>
 					<Menu.Item
-						key='11'
+						key='12'
 						icon={
 							<IconFont
 								style={{ fontSize: "1.5em", marginTop: 3 }}
@@ -179,7 +192,7 @@ export default (props) => {
 						Hexadecimal Encoder / Decoder
 					</Menu.Item>
 					<Menu.Item
-						key='12'
+						key='13'
 						icon={
 							<IconFont
 								type='icon-inserttemplate'
@@ -191,7 +204,7 @@ export default (props) => {
 						SSTI
 					</Menu.Item>
 					<Menu.Item
-						key='13'
+						key='14'
 						icon={
 							<IconFont
 								type='icon-rss'
@@ -203,7 +216,7 @@ export default (props) => {
 						Feed RSS
 					</Menu.Item>
 					<Menu.Item
-						key='14'
+						key='15'
 						icon={
 							<IconFont
 								type='icon-about'
@@ -231,7 +244,7 @@ export default (props) => {
 					<Paragraph style={{ textAlign: "center" }}>
 						Ludovic COULON - Riadh BOUCHAHOUA
 					</Paragraph>
-					<pre style={{ textAlign: "center" }}>HackTools Version - 0.1.4</pre>
+					<pre style={{ textAlign: "center" }}>HackTools Version - 0.2.0</pre>
 				</Footer>
 			</Layout>
 		</Layout>
