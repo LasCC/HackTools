@@ -2,7 +2,7 @@
 <img alt="logo_hack_tools" src="https://i.imgur.com/evnvda2.png" />
 <h1>Welcome to HackTools 🛠</h1>
 <p>
-  <img alt="Version" src="https://img.shields.io/badge/version-0.1.4-blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-0.2.0-blue.svg?cacheSeconds=2592000" />
   <img alt="release" src="https://img.shields.io/github/v/release/LasCC/Hack-Tools?color=yellow" />
   <a href="https://addons.mozilla.org/en-US/firefox/addon/hacktools" target="_blank">
 	<img alt="mozilla" src="https://img.shields.io/amo/v/hacktools?color=purple&label=mozilla%20addons&logo=mozilla" />
@@ -39,6 +39,9 @@ With the extension you **no longer need to search for payloads in different webs
 - Base64 Encoder / Decoder
 - Hash Generator (MD5, SHA1, SHA256, SHA512)
 - Useful Linux commands (Port Forwarding, SUID)
+- RSS Feed (Exploit DB and Cisco Security Advisories)
+- CVE Search Engine
+- Various method of data exfiltration and download from a remote machine
 
 ## Preview
 
@@ -58,7 +61,7 @@ With the extension you **no longer need to search for payloads in different webs
   <img alt="preview_4" src="https://i.imgur.com/KrDX7t6.png" />
 </div>
 
-# Install the application
+# Install the extension
 
 ## Chromium based browser
 
