@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "4.2.1",
-    "antd": "4.3.5",
+    "antd": "4.6.6",
     "antd-mask-input": "0.1.13",
     "crypto-js": "^4.0.0",
     "rc-queue-anim": "1.8.5",
