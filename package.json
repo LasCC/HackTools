@@ -34,7 +34,7 @@
     "react": "^16.8.6",
     "react-chrome-extension-router": "^1.1.0",
     "react-clipboard.js": "2.0.16",
-    "react-dom": "^16.8.6",
+    "react-dom": "^16.13.1",
     "react-query": "^2.5.13",
     "react-scripts": "3.0.1"
   }
