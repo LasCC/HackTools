@@ -31,7 +31,7 @@
     "antd-mask-input": "0.1.13",
     "crypto-js": "^4.0.0",
     "rc-queue-anim": "1.8.5",
-    "react": "^16.8.6",
+    "react": "^16.13.1",
     "react-chrome-extension-router": "^1.1.0",
     "react-clipboard.js": "2.0.16",
     "react-dom": "^16.8.6",
