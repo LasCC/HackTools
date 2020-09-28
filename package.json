@@ -23,7 +23,7 @@
     "style-loader": "^0.23.1",
     "webpack": "^4.37.0",
     "webpack-cli": "^3.3.6",
-    "webpack-dev-server": "^3.7.2"
+    "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
     "@ant-design/icons": "4.2.1",
