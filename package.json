@@ -21,7 +21,7 @@
     "file-loader": "^4.1.0",
     "html-webpack-plugin": "^4.5.0",
     "style-loader": "^0.23.1",
-    "webpack": "^4.37.0",
+    "webpack": "^4.44.2",
     "webpack-cli": "^3.3.6",
     "webpack-dev-server": "^3.7.2"
   },
