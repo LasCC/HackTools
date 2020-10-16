@@ -36,6 +36,7 @@
     "react-clipboard.js": "2.0.16",
     "react-dom": "^16.8.6",
     "react-query": "^2.5.13",
-    "react-scripts": "3.0.1"
+    "react-scripts": "3.0.1",
+    "sm3": "^1.0.3"
   }
 }
