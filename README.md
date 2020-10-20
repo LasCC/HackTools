@@ -1,16 +1,16 @@
 <div align="center">
-<img alt="logo_hack_tools" src="https://i.imgur.com/evnvda2.png" />
-<h1>Welcome to HackTools 🛠</h1>
-<p>
-  <img alt="Version" src="https://img.shields.io/badge/version-0.2.0-blue.svg?cacheSeconds=2592000" />
-  <img alt="release" src="https://img.shields.io/github/v/release/LasCC/Hack-Tools?color=yellow" />
-  <a href="https://addons.mozilla.org/en-US/firefox/addon/hacktools" target="_blank">
-	<img alt="mozilla" src="https://img.shields.io/amo/v/hacktools?color=purple&label=mozilla%20addons&logo=mozilla" />
-  </a>
-  <img alt="commit" src="https://img.shields.io/github/last-commit/LasCC/Hack-Tools" />
-  <img alt="stars" src="https://img.shields.io/github/stars/LasCC/Hack-Tools?style=social" />
-</p>
-<p align="center">
+  <img alt="logo_hack_tools" src="https://i.imgur.com/evnvda2.png" />
+  <h1>Welcome to HackTools 🛠</h1>
+  <p>
+    <img alt="Version" src="https://img.shields.io/badge/version-0.2.1-blue.svg?cacheSeconds=2592000" />
+    <img alt="release" src="https://img.shields.io/github/v/release/LasCC/Hack-Tools?color=yellow" />
+    <a href="https://addons.mozilla.org/en-US/firefox/addon/hacktools" target="_blank">
+    <img alt="mozilla" src="https://img.shields.io/amo/v/hacktools?color=purple&label=mozilla%20addons&logo=mozilla" />
+    </a>
+    <img alt="commit" src="https://img.shields.io/github/last-commit/LasCC/Hack-Tools" />
+    <img alt="stars" src="https://img.shields.io/github/stars/LasCC/Hack-Tools?style=social" />
+  </p>
+  <p align="center">
     <a href="#the-all-in-one-red-team-browser-extension-for-web-pentesters"><b>Introduction</b></a>
     &nbsp;&nbsp;&mdash;&nbsp;&nbsp;
     <a href="#preview"><b>Preview</b></a>
@@ -75,7 +75,7 @@ You can download **HackTools** on the Firefox browser add-ons [here.](https://ad
 
 ## Build from source code
 
-```bash
+```node
 yarn install && yarn build
 ```
 
