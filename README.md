@@ -37,9 +37,9 @@ With the extension you **no longer need to search for payloads in different webs
 - Basic SQLi payloads
 - Local file inclusion payloads (LFI)
 - Base64 Encoder / Decoder
-- Hash Generator (MD5, SHA1, SHA256, SHA512)
+- Hash Generator (MD5, SHA1, SHA256, SHA512, SM3)
 - Useful Linux commands (Port Forwarding, SUID)
-- RSS Feed (Exploit DB and Cisco Security Advisories)
+- RSS Feed (Exploit DB, Cisco Security Advisories, CXSECURITY)
 - CVE Search Engine
 - Various method of data exfiltration and download from a remote machine
 
