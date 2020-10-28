@@ -18,6 +18,7 @@ import MD5 from "crypto-js/md5";
 import SHA1 from "crypto-js/sha1";
 import SHA256 from "crypto-js/sha256";
 import SHA512 from "crypto-js/sha512";
+import Sm3 from "sm3"
 import Clipboard from "react-clipboard.js";
 import QueueAnim from "rc-queue-anim";
 
@@ -45,7 +46,10 @@ const HashEncode = () => {
 			setOutput(SHA256(input));
 		} else if (hashtype === "SHA512") {
 			setOutput(SHA512(input));
+		} else if (hashtype === "SM3") {
+			setOutput(Sm3(input));
 		}
+		
 	};
 	const successInfoHashing = () => {
 		message.success("Your hash has been copied");
@@ -68,6 +72,10 @@ const HashEncode = () => {
 				setHashname("SHA512");
 				break;
 
+			case "4":
+				setHashname("SM3");
+				break;
+
 			default:
 				return "Choose the Hash type";
 		}
@@ -87,6 +95,9 @@ const HashEncode = () => {
 			</Menu.Item>
 			<Menu.Item key='3' onClick={() => handleEncode("SHA512")}>
 				SHA512
+			</Menu.Item>
+			<Menu.Item key='4' onClick={() => handleEncode("SM3")}>
+				SM3
 			</Menu.Item>
 		</Menu>
 	);
