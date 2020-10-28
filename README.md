@@ -15,7 +15,7 @@
     &nbsp;&nbsp;&mdash;&nbsp;&nbsp;
     <a href="#preview"><b>Preview</b></a>
     &nbsp;&nbsp;&mdash;&nbsp;&nbsp;
-    <a href="#install-the-application"><b>Install</b></a>
+    <a href="#install-the-extension"><b>Install</b></a>
     &nbsp;&nbsp;&mdash;&nbsp;&nbsp;
     <a href="#build-from-source-code"><b>Build</b></a>
     &nbsp;&nbsp;&mdash;&nbsp;&nbsp;
