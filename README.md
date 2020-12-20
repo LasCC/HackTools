@@ -5,8 +5,9 @@
     <img alt="Version" src="https://img.shields.io/badge/version-0.2.1-blue.svg?cacheSeconds=2592000" />
     <img alt="release" src="https://img.shields.io/github/v/release/LasCC/Hack-Tools?color=yellow" />
     <a href="https://addons.mozilla.org/en-US/firefox/addon/hacktools" target="_blank">
-    <img alt="mozilla" src="https://img.shields.io/amo/v/hacktools?color=purple&label=mozilla%20addons&logo=mozilla" />
+      <img alt="mozilla" src="https://img.shields.io/amo/v/hacktools?color=purple&label=mozilla%20addons&logo=mozilla" />
     </a>
+    <img alt="Downloads" src="https://img.shields.io/github/downloads/LasCC/Hack-Tools/total.svg" />
     <img alt="commit" src="https://img.shields.io/github/last-commit/LasCC/Hack-Tools" />
     <img alt="stars" src="https://img.shields.io/github/stars/LasCC/Hack-Tools?style=social" />
   </p>
