@@ -7,6 +7,9 @@
     <a href="https://addons.mozilla.org/en-US/firefox/addon/hacktools" target="_blank">
       <img alt="mozilla" src="https://img.shields.io/amo/v/hacktools?color=purple&label=mozilla%20addons&logo=mozilla" />
     </a>
+    <a href="https://chrome.google.com/webstore/detail/hack-tools/lgomgbbjmadkhlpakhpiidlcjgbpdnlp?hl=en" target="_blank">
+      <img alt="chrome-extension" src="https://img.shields.io/chrome-web-store/v/lgomgbbjmadkhlpakhpiidlcjgbpdnlp" />
+    </a>
     <img alt="Downloads" src="https://img.shields.io/github/downloads/LasCC/Hack-Tools/total.svg" />
     <img alt="commit" src="https://img.shields.io/github/last-commit/LasCC/Hack-Tools" />
     <img alt="stars" src="https://img.shields.io/github/stars/LasCC/Hack-Tools?style=social" />
