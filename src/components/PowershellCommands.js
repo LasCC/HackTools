@@ -110,9 +110,9 @@ export default (props) => {
 	return (
 		<QueueAnim delay={300} duration={1500}>
 			<Title variant='Title level={3}' style={{ fontWeight: 'bold', margin: 15 }}>
-				Useful Linux command for your Penetration Testing
+				Useful Powershell commands for your Penetration Testing
 			</Title>
-			<Paragraph style={{ margin: 15 }}>List of useful commands on Linux</Paragraph>
+			<Paragraph style={{ margin: 15 }}>List of useful commands on Powershell</Paragraph>
 			<Divider dashed />
 			<div
 				key='a'

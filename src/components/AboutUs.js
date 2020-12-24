@@ -31,21 +31,17 @@ export default (props) => (
 			}}
 		>
 			<Paragraph>
-				e are two students who are very passionate about computer security, e idea came to us during our CTF
-				training, we noticed that we often the same tools(Spawining a shell, reverse shell in php, base64 ding
-				etc...), that 's when we came up with the idea of grouping of the tools and payloads in one place, a
-				simple web application c do the job but it was quite frustrating to go back and forth, th why we thought
-				to implement an extension directly in the browser.
+				HackTools, is a web extension facilitating your web application penetration tests, it includes cheat
+				sheets as well as all the tools used during a test such as XSS payloads, Reverse shells and much more.
+				With the extension you no longer need to search for payloads in different websites or in your local
+				storage space, most of the tools are accessible in one click. HackTools is accessible either in pop up
+				mode or in a whole tab in the Devtools part of the browser with F12.
 			</Paragraph>
 			<Paragraph>
-				acktools is available at hand in the web browser, you have access to e extension as a pop up, and a
-				standard display in the Chrome Devtool part with "F12" in the Hacktool tab.
+				Note that this project is maintained, developed and made available for free, you can offer us a coffee,
+				it will be very encouraging and greatly appreciated
 			</Paragraph>
-			<Paragraph>
-				ote that this project is maintained, developed and made available for ee, you can offer us a coffee, it
-				will be very encouraging and greatly appreciated: )
-			</Paragraph>
-			<Paragraph>HackTools is created by Ludovic COULON and Riadh BOUCHAHOUA </Paragraph>
+			<Paragraph>HackTools is created by Ludovic COULON and Riadh BOUCHAHOUA</Paragraph>
 			<a href='https://www.paypal.com/paypalme/hacktoolsEXT' target='_blank' rel='noreferrer noopener'>
 				<img
 					src='https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png'

@@ -1,5 +1,5 @@
 {
-  "name": "HacTools",
+  "name": "HackTools",
   "version": "0.1.0a",
   "description": "The all in one Red team browser extension for web pentesters",
   "main": "index.js",
@@ -9,7 +9,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "Ludovic Coulon & Riadh Bouchahoua",
+  "author": "Ludovic COULON & Riadh BOUCHAHOUA",
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.5.5",

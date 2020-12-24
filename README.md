@@ -2,11 +2,15 @@
   <img alt="logo_hack_tools" src="https://i.imgur.com/evnvda2.png" />
   <h1>Welcome to HackTools 🛠</h1>
   <p>
-    <img alt="Version" src="https://img.shields.io/badge/version-0.2.1-blue.svg?cacheSeconds=2592000" />
+    <img alt="Version" src="https://img.shields.io/badge/version-0.3.0-blue.svg?cacheSeconds=2592000" />
     <img alt="release" src="https://img.shields.io/github/v/release/LasCC/Hack-Tools?color=yellow" />
     <a href="https://addons.mozilla.org/en-US/firefox/addon/hacktools" target="_blank">
-    <img alt="mozilla" src="https://img.shields.io/amo/v/hacktools?color=purple&label=mozilla%20addons&logo=mozilla" />
+      <img alt="mozilla" src="https://img.shields.io/amo/v/hacktools?color=purple&label=mozilla%20addons&logo=mozilla" />
     </a>
+    <a href="https://chrome.google.com/webstore/detail/hack-tools/lgomgbbjmadkhlpakhpiidlcjgbpdnlp?hl=en" target="_blank">
+      <img alt="chrome-extension" src="https://img.shields.io/chrome-web-store/v/lgomgbbjmadkhlpakhpiidlcjgbpdnlp" />
+    </a>
+    <img alt="Downloads" src="https://img.shields.io/github/downloads/LasCC/Hack-Tools/total.svg" />
     <img alt="commit" src="https://img.shields.io/github/last-commit/LasCC/Hack-Tools" />
     <img alt="stars" src="https://img.shields.io/github/stars/LasCC/Hack-Tools?style=social" />
   </p>
@@ -15,7 +19,7 @@
     &nbsp;&nbsp;&mdash;&nbsp;&nbsp;
     <a href="#preview"><b>Preview</b></a>
     &nbsp;&nbsp;&mdash;&nbsp;&nbsp;
-    <a href="#install-the-application"><b>Install</b></a>
+    <a href="#install-the-extension"><b>Install</b></a>
     &nbsp;&nbsp;&mdash;&nbsp;&nbsp;
     <a href="#build-from-source-code"><b>Build</b></a>
     &nbsp;&nbsp;&mdash;&nbsp;&nbsp;
@@ -29,7 +33,7 @@ HackTools, is a web extension facilitating your **web application penetration te
 
 With the extension you **no longer need to search for payloads in different websites** or in your local storage space, most of the tools are accessible in one click. HackTools is accessible either in **pop up mode** or in a whole tab in the **Devtools** part of the browser with F12.
 
-### Current functions:
+### Current functions
 
 - Dynamic Reverse Shell generator (PHP, Bash, Ruby, Python, Perl, Netcat)
 - Shell Spawning (TTY Shell Spawning)
@@ -37,9 +41,9 @@ With the extension you **no longer need to search for payloads in different webs
 - Basic SQLi payloads
 - Local file inclusion payloads (LFI)
 - Base64 Encoder / Decoder
-- Hash Generator (MD5, SHA1, SHA256, SHA512)
+- Hash Generator (MD5, SHA1, SHA256, SHA512, SM3)
 - Useful Linux commands (Port Forwarding, SUID)
-- RSS Feed (Exploit DB and Cisco Security Advisories)
+- RSS Feed (Exploit DB, Cisco Security Advisories, CXSECURITY)
 - CVE Search Engine
 - Various method of data exfiltration and download from a remote machine
 
@@ -63,19 +67,21 @@ With the extension you **no longer need to search for payloads in different webs
 
 # Install the extension
 
-## Chromium based browser
+### Chromium based browser
 
-All the available releases are [here.](https://github.com/LasCC/Hack-Tools/releases)
+You can download the **latest build** [here.](https://github.com/LasCC/Hack-Tools/releases)
+
+Or, you can download the extension on the **chorme web store** [there.](https://chrome.google.com/webstore/detail/hack-tools/lgomgbbjmadkhlpakhpiidlcjgbpdnlp)
 
 Otherwise, if you want to build the project yourself from the source code
 
-## Mozilla Firefox
+### Mozilla Firefox
 
 You can download **HackTools** on the Firefox browser add-ons [here.](https://addons.mozilla.org/en-US/firefox/addon/hacktools/)
 
-## Build from source code
+### Build from source code
 
-```node
+```console
 yarn install && yarn build
 ```
 
