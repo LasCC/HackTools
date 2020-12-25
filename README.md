@@ -1,5 +1,5 @@
 <div align="center">
-  <img alt="logo_hack_tools" src="https://i.imgur.com/evnvda2.png" />
+  <img alt="logo_hack_tools" src="https://i.postimg.cc/GtLdZ2rZ/noun-Panama-hat-1454601.png" />
   <h1>Welcome to HackTools 🛠</h1>
   <p>
     <img alt="Version" src="https://img.shields.io/badge/version-0.3.0-blue.svg?cacheSeconds=2592000" />
@@ -50,20 +50,9 @@ With the extension you **no longer need to search for payloads in different webs
 ## Preview
 
 <div align='center'>
-  <img alt="preview_1" src="https://i.imgur.com/02ym26m.png" />
+  <img alt="preview_1" src="https://i.postimg.cc/VNmtdskN/Untitled-1.png" />
 </div>
 
-<div align='center'>
-  <img alt="preview_2" src="https://i.imgur.com/A22KDs7.png" />
-</div>
-
-<div align='center'>
-  <img alt="preview_3" src="https://i.imgur.com/TxWUC7r.png" />
-</div>
-
-<div align='center'>
-  <img alt="preview_4" src="https://i.imgur.com/KrDX7t6.png" />
-</div>
 
 # Install the extension
 
