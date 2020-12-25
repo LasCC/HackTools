@@ -77,16 +77,20 @@ export default (props) => {
 								actions={[
 									<div>
 										{(() => {
-											const severityLevel = list.content.match(/Risk: (\w{1,})/)[1];
-											switch (severityLevel) {
-												case 'High':
-													return <Tag color='red'>{severityLevel}</Tag>;
-												case 'Medium':
-													return <Tag color='orange'>{severityLevel}</Tag>;
-												case 'Low':
-													return <Tag color='green'>{severityLevel}</Tag>;
-												default:
-													return 'None';
+											const severityLevel = list.content.match(/Risk: (\w{1,})/);
+											if (!severityLevel) {
+												return 'None';
+											} else {
+												switch (severityLevel[1]) {
+													case 'High':
+														return <Tag color='red'>{severityLevel[1]}</Tag>;
+													case 'Medium':
+														return <Tag color='orange'>{severityLevel[1]}</Tag>;
+													case 'Low':
+														return <Tag color='green'>{severityLevel[1]}</Tag>;
+													default:
+														return 'None';
+												}
 											}
 										})()}
 									</div>,
