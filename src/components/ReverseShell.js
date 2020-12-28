@@ -59,7 +59,7 @@ export default (props) => {
 					</Col>
 					<Col span={12}>
 						<Input
-							maxLength={4}
+							maxLength={5}
 							prefix={<IconFont type='icon-Network-Plug' />}
 							name='Port'
 							placeholder='Port (ex: 1337)'
