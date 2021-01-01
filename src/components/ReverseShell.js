@@ -191,6 +191,7 @@ export default (props) => {
 					marginTop: 15
 				}}
 			>
+				<Divider dashed />
 				<Title level={3}>
 					Perl <IconFont type='icon-perl' />
 				</Title>
