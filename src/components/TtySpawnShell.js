@@ -127,7 +127,7 @@ export default (props) => {
 					marginTop: 15
 				}}
 			>
-				<Title level={3}>Python spawn shell </Title>
+				<Title level={3}>Ruby spawn shell </Title>
 				<Paragraph copyable>ruby: exec "/bin/sh"</Paragraph>
 				<Clipboard component='a' data-clipboard-text={`ruby: exec "/bin/sh"`}>
 					<Button type='primary' onClick={successInfoTtyShell} style={{ marginBottom: 10, marginTop: 15 }}>
