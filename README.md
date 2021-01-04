@@ -2,16 +2,16 @@
   <img alt="logo_hack_tools" src="https://i.postimg.cc/GtLdZ2rZ/noun-Panama-hat-1454601.png" />
   <h1>Welcome to HackTools 🛠</h1>
   <p>
-    <img alt="Version" src="https://img.shields.io/badge/version-0.3.0-blue.svg?cacheSeconds=2592000" />
-    <img alt="release" src="https://img.shields.io/github/v/release/LasCC/Hack-Tools?color=yellow" />
+    <img alt="Version" src="https://img.shields.io/badge/version-0.3.0-blue.svg?cacheSeconds=2592000&style=for-the-badge" />
+    <img alt="release" src="https://img.shields.io/github/v/release/LasCC/Hack-Tools?color=yellow&style=for-the-badge" />
     <a href="https://addons.mozilla.org/en-US/firefox/addon/hacktools" target="_blank">
-      <img alt="mozilla" src="https://img.shields.io/amo/v/hacktools?color=purple&label=mozilla%20addons&logo=mozilla" />
+      <img alt="mozilla" src="https://img.shields.io/amo/v/hacktools?color=purple&label=mozilla%20addons&logo=mozilla&style=for-the-badge" />
     </a>
     <a href="https://chrome.google.com/webstore/detail/hack-tools/cmbndhnoonmghfofefkcccljbkdpamhi?hl=en" target="_blank">
-      <img alt="chrome-extension" src="https://img.shields.io/chrome-web-store/v/lgomgbbjmadkhlpakhpiidlcjgbpdnlp" />
+      <img alt="chrome-extension" src="https://img.shields.io/chrome-web-store/v/cmbndhnoonmghfofefkcccljbkdpamhi?style=for-the-badge" />
     </a>
-    <img alt="Downloads" src="https://img.shields.io/github/downloads/LasCC/Hack-Tools/total.svg" />
-    <img alt="commit" src="https://img.shields.io/github/last-commit/LasCC/Hack-Tools" />
+    <img alt="Downloads" src="https://img.shields.io/github/downloads/LasCC/Hack-Tools/total.svg?style=for-the-badge" />
+    <img alt="commit" src="https://img.shields.io/github/last-commit/LasCC/Hack-Tools?style=for-the-badge" />
     <img alt="stars" src="https://img.shields.io/github/stars/LasCC/Hack-Tools?style=social" />
   </p>
   <p align="center">
@@ -51,6 +51,22 @@ With the extension you **no longer need to search for payloads in different webs
 
 <div align='center'>
   <img alt="preview_1" src="https://i.postimg.cc/VNmtdskN/Untitled-1.png" />
+</div>
+
+<div align='center'>
+  <img alt="preview_2" src="https://i.imgur.com/02ym26m.png" />
+</div>
+
+<div align='center'>
+  <img alt="preview_3" src="https://i.imgur.com/A22KDs7.png" />
+</div>
+
+<div align='center'>
+  <img alt="preview_4" src="https://i.imgur.com/TxWUC7r.png" />
+</div>
+
+<div align='center'>
+  <img alt="preview_5" src="https://i.imgur.com/KrDX7t6.png" />
 </div>
 
 
