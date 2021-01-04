@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Menu, Typography, Button } from 'antd';
+import { Layout, Menu, Typography, Button, Badge } from 'antd';
 import { CopyrightCircleOutlined, FullscreenOutlined } from '@ant-design/icons';
 import { createFromIconfontCN } from '@ant-design/icons';
 import { goTo } from 'react-chrome-extension-router';
@@ -11,6 +11,7 @@ import HexEncode from './encoding/HexEncode';
 import Hashing from './encoding/Hashing';
 import URLDecode from './encoding/URLEncode';
 import LinuxCommands from './LinuxCommands';
+import PowershellCommands from './PowershellCommands';
 import LFI from './web/LFI';
 import XSS from './web/XSS';
 import SQLi from './web/SqlInjection';
@@ -18,6 +19,7 @@ import AboutUs from './AboutUs';
 import FeedRSS from './FeedRSS';
 import SSTI from './web/SSTI';
 import FileTransfer from './file_transfer/File_transfer';
+
 const { Paragraph } = Typography;
 const { Sider, Content, Footer } = Layout;
 const IconFont = createFromIconfontCN({
@@ -28,7 +30,15 @@ export default (props) => {
 	const target = window.location.href;
 	return (
 		<Layout style={{ minHeight: '100vh' }}>
-			<Sider collapsed={true}>
+			<Sider
+				collapsed={true}
+				style={{
+					overflow: 'auto',
+					height: '100vh',
+					position: 'fixed',
+					left: 0
+				}}
+			>
 				<div className='logo'>
 					<svg xmlns='http://www.w3.org/2000/svg' width='45' height='35' viewBox='0 0 134.624 80.584'>
 						<g transform='translate(-6.457 -23.8)'>
@@ -75,76 +85,87 @@ export default (props) => {
 					</Menu.Item>
 					<Menu.Item
 						key='5'
+						icon={
+							<Badge dot size='small' style={{ transform: `translate(5px, 3px)` }}>
+								<IconFont type='icon-powershell' style={{ fontSize: '1.5em', marginTop: 3 }} />
+							</Badge>
+						}
+						onClick={() => goTo(PowershellCommands)}
+					/>
+					<Menu.Item
+						key='6'
 						icon={<IconFont type='icon-transfer' style={{ fontSize: '1.5em', marginTop: 3 }} />}
 						onClick={() => goTo(FileTransfer)}
 					>
 						Transfer Methods
 					</Menu.Item>
 					<Menu.Item
-						key='6'
+						key='7'
 						icon={<IconFont style={{ fontSize: '1.5em', marginTop: 3 }} type='icon-l-file' />}
 						onClick={() => goTo(LFI)}
 					>
 						LFI
 					</Menu.Item>
 					<Menu.Item
-						key='7'
+						key='8'
 						icon={<IconFont style={{ fontSize: '1.5em', marginTop: 3 }} type='icon-js' />}
 						onClick={() => goTo(XSS)}
 					>
 						XSS
 					</Menu.Item>
 					<Menu.Item
-						key='8'
+						key='9'
 						icon={<IconFont style={{ fontSize: '1.5em', marginTop: 3 }} type='icon-sql' />}
 						onClick={() => goTo(SQLi)}
 					>
 						SQL Injection
 					</Menu.Item>
 					<Menu.Item
-						key='9'
+						key='10'
 						icon={<IconFont style={{ fontSize: '1.5em', marginTop: 3 }} type='icon-jiemaleixing' />}
 						onClick={() => goTo(Base64Encode)}
 					>
 						Base64 Encoder / Decoder
 					</Menu.Item>
 					<Menu.Item
-						key='10'
+						key='11'
 						icon={<IconFont style={{ fontSize: '1.5em', marginTop: 3 }} type='icon-hash' />}
 						onClick={() => goTo(Hashing)}
 					>
 						Hashing
 					</Menu.Item>
 					<Menu.Item
-						key='11'
-						icon={<IconFont style={{ fontSize: '1.5em', marginTop: 3 }} type='icon-url' />}
+						key='12'
+						icon={<IconFont style={{ fontSize: '1.5em', marginTop: 3 }} type='icon-web_link' />}
 						onClick={() => goTo(URLDecode)}
 					>
 						URL Encoder / Decoder
 					</Menu.Item>
 					<Menu.Item
-						key='12'
+						key='13'
 						icon={<IconFont style={{ fontSize: '1.5em', marginTop: 3 }} type='icon-hexo' />}
 						onClick={() => goTo(HexEncode)}
 					>
 						Hexadecimal Encoder / Decoder
 					</Menu.Item>
 					<Menu.Item
-						key='13'
+						key='14'
 						icon={<IconFont type='icon-inserttemplate' style={{ fontSize: '1.5em', marginTop: 3 }} />}
 						onClick={() => goTo(SSTI)}
 					>
 						SSTI
 					</Menu.Item>
 					<Menu.Item
-						key='14'
-						icon={<IconFont type='icon-rss' style={{ fontSize: '1.5em', marginTop: 3 }} />}
-						onClick={() => goTo(FeedRSS)}
-					>
-						Feed RSS
-					</Menu.Item>
-					<Menu.Item
 						key='15'
+						icon={
+							<Badge dot size='small' style={{ transform: `translate(3px, 5px)` }}>
+								<IconFont type='icon-Cloud' style={{ fontSize: '1.5em', marginTop: 3 }} />
+							</Badge>
+						}
+						onClick={() => goTo(FeedRSS)}
+					/>
+					<Menu.Item
+						key='16'
 						icon={<IconFont type='icon-about' style={{ fontSize: '1.5em', marginTop: 3 }} />}
 						onClick={() => goTo(AboutUs)}
 					>
@@ -152,8 +173,8 @@ export default (props) => {
 					</Menu.Item>
 				</Menu>
 			</Sider>
-			<Layout className='site-layout'>
-				<Content style={{ margin: '0 16px' }}>
+			<Layout className='site-layout' style={{ marginLeft: 80 }}>
+				<Content style={{ margin: '24px 16px 0', overflow: 'initial' }}>
 					<div className='site-layout-background' style={{ padding: 24, minHeight: 360 }}>
 						{props.children}
 					</div>
@@ -162,7 +183,7 @@ export default (props) => {
 					<CopyrightCircleOutlined /> Hack Tools - The all in one Red team browser extension for web
 					pentesters
 					<Paragraph style={{ textAlign: 'center' }}>Ludovic COULON - Riadh BOUCHAHOUA</Paragraph>
-					<pre style={{ textAlign: 'center' }}>HackTools Version - 0.2.1</pre>
+					<pre style={{ textAlign: 'center' }}>HackTools Version - 0.3.0</pre>
 					<Button icon={<FullscreenOutlined style={{ margin: 5 }} />} type='link'>
 						<a href={target} target='_blank'>
 							Fullscreen mode

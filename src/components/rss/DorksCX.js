@@ -1,15 +1,15 @@
 import React from 'react';
 import { Typography, Empty, Spin, Button, List, PageHeader, Tag } from 'antd';
-import QueueAnim from 'rc-queue-anim';
 import { goTo } from 'react-chrome-extension-router';
 import { useQuery } from 'react-query';
+import QueueAnim from 'rc-queue-anim';
 import CxsecurityChoose from './CxsecurityChoose';
 
 const { Title } = Typography;
 
 const fetchApi = async () => {
 	const res = await fetch(
-		'https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fcxsecurity.com%2Fwlb%2Frss%2Fdorks%2F&api_key=cpe1hekkfknhpeqov1hvcojojd9csg01yqybwsaw&count=20'
+		'https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fcxsecurity.com%2Fwlb%2Frss%2Fdorks%2F&api_key=cpe1hekkfknhpeqov1hvcojojd9csg01yqybwsaw&count=100'
 	);
 	return res.json();
 };
@@ -76,7 +76,7 @@ export default (props) => {
 							<List.Item
 								actions={[
 									<Tag color='geekblue' style={{ marginLeft: 5 }}>
-										{list.author}
+										{!list.author ? 'None' : list.author}
 									</Tag>
 								]}
 							>
