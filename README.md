@@ -106,7 +106,7 @@ Once you clicked on the button you just need to select the **dist folder** and t
 
 ## Authors
 
-👤 **Ludovic COULON & Riadh BOUCHAHOUA**
+👤 <a href="http://github.com/LasCC" alt="Github_account_Ludovic_COULON">**Ludovic COULON**<a/> & <a href="http://github.com/rb-x" alt="Github_account_Riadh_BOUCHAHOUA">**Riadh BOUCHAHOUA**<a/>
 
 ## Show your support
 
