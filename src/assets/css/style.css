@@ -246,18 +246,20 @@
 	.ant-btn-dangerous {
 		color: #a61d24 !important;
 		background: transparent !important;
-		border-color: #a61d24 !important;
 	}
 
 	.ant-btn-dangerous.ant-btn-primary:hover,
 	.ant-btn-dangerous.ant-btn-primary:focus {
 		color: #fff !important;
 		background: #800f19 !important;
-		border-color: #800f19 !important;
 	}
 
 	.dark-mode-text-error {
 		color: rgba(255, 255, 255, 0.3) !important;
+	}
+
+	textarea.ant-input {
+		border-color: #424242 !important;
 	}
 }
 
