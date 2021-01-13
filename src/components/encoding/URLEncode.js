@@ -93,7 +93,12 @@ const Base64Encode = () => {
 						<CopyOutlined /> Copy
 					</Button>
 				</Clipboard>
-				<Button type='link' danger style={{ marginBottom: 10, marginTop: 15 }} onClick={() => setOutput('')}>
+				<Button
+					type='link'
+					danger
+					style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }}
+					onClick={() => setOutput('')}
+				>
 					<ClearOutlined /> Clear
 				</Button>
 			</div>
