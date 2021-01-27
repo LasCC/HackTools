@@ -76,7 +76,7 @@ With the extension you **no longer need to search for payloads in different webs
 
 You can download the **latest build** [here.](https://github.com/LasCC/Hack-Tools/releases)
 
-Or, you can download the extension on the **chorme web store** [there.](https://chrome.google.com/webstore/detail/hack-tools/cmbndhnoonmghfofefkcccljbkdpamhi)
+Or, you can download the extension on the **chrome web store** [there.](https://chrome.google.com/webstore/detail/hack-tools/cmbndhnoonmghfofefkcccljbkdpamhi)
 
 Otherwise, if you want to build the project yourself from the source code
 
