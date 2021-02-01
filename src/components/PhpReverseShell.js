@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import  PersistedState from 'use-persisted-state';
 import { Input, Button, message, Typography, Row, Col, Divider, Collapse } from 'antd';
 import {
 	CopyOutlined,
@@ -17,7 +18,8 @@ const IconFont = createFromIconfontCN({
 });
 
 export default (props) => {
-	const [ values, setValues ] = useState({
+	const useIPv4State = PersistedState('ipv4_tcp_cache');
+	const [ values, setValues ] = useIPv4State({
 		ip: '',
 		port: ''
 	});
@@ -199,8 +201,9 @@ export default (props) => {
 							maxLength={15}
 							prefix={<WifiOutlined />}
 							name='Ip adress'
-							placeholder='IP Address (ex: 212.212.111.222)'
+							placeholder='IP Address or domain (ex: 212.212.111.222)'
 							onChange={handleChange('ip')}
+							value={values.ip}
 						/>
 					</Col>
 					<Col span={12}>
@@ -210,6 +213,7 @@ export default (props) => {
 							name='Port'
 							placeholder='Port (ex: 1337)'
 							onChange={handleChange('port')}
+							value={values.port}
 						/>
 					</Col>
 				</Row>

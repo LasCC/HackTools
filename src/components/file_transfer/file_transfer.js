@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import  PersistedState from 'use-persisted-state';
 import { Typography, Row, Col, Divider, Input } from 'antd';
 import { WifiOutlined, createFromIconfontCN, FolderOutlined } from '@ant-design/icons';
 import QueueAnim from 'rc-queue-anim';
@@ -9,10 +10,12 @@ const IconFont = createFromIconfontCN({
 });
 
 export default (props) => {
-	const [ values, setValues ] = useState({
-		ip: '10.10.164.167',
-		port: '1337',
-		file_name: 'id_rsa'
+	const useIPv4State = PersistedState('ipv4_tcp_cache');
+
+	const [ values, setValues ] = useIPv4State({
+		ip: '',
+		port: '',
+		file_name: ''
 	});
 	const handleChange = (name) => (event) => {
 		setValues({ ...values, [name]: event.target.value });
@@ -46,9 +49,10 @@ export default (props) => {
 							maxLength={15}
 							prefix={<WifiOutlined />}
 							name='Ip adress'
-							placeholder='IP Address or Host (ex: 212.212.111.222)'
+							placeholder='IP Address or domain (ex: 212.212.111.222)'
 							onChange={handleChange('ip')}
-						/>
+							value={values.ip}
+							/>
 					</Col>
 					<Col span={8}>
 						<Input
@@ -57,14 +61,16 @@ export default (props) => {
 							name='Port'
 							placeholder='Port (ex: 1337)'
 							onChange={handleChange('port')}
-						/>
+							value={values.port}
+							/>
 					</Col>
 					<Col span={8}>
 						<Input
 							prefix={<FolderOutlined />}
 							name='File name'
-							placeholder='Filename (ex: script.sh)'
+							placeholder='Filename (ex: id_rsa)'
 							onChange={handleChange('file_name')}
+							value={values.file_name}
 						/>
 					</Col>
 				</Row>
