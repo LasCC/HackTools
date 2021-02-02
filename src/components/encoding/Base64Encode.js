@@ -29,6 +29,13 @@ const Base64Encode = () => {
 				setOutput('Unable to decode properly : Incorrect base64 :-( ');
 				message.error('Incorrect Base64 please try something else');
 			}
+		} else if (type === 'decode_url') {
+			try {
+				setOutput(decodeURI(input));
+			} catch (ex) {
+				setOutput('Unable to decode properly : Incorrect base64 :-( ');
+				message.error('Incorrect Base64 please try something else');
+			}
 		}
 		return;
 	};
@@ -72,6 +79,14 @@ const Base64Encode = () => {
 				>
 					<IconFont type='icon-lock-open' />
 					Decode
+				</Button>
+				<Button
+					type='text'
+					style={{ marginBottom: 10, marginTop: 15, marginLeft: 8 }}
+					onClick={() => handleClick('decode_url')}
+				>
+					<IconFont type='icon-lock-open' />
+					Decode URL
 				</Button>
 			</div>
 			<div

@@ -261,6 +261,9 @@
 	textarea.ant-input {
 		border-color: #424242 !important;
 	}
+	.ant-btn-text {
+		color: rgba(255, 255, 255, 0.65) !important;
+	}
 }
 
 .iconfont {
