@@ -185,7 +185,7 @@ export default (props) => {
   ));
 
   const useMenuIndex = PersistedState("tab_index_cache");
-  const [index, setIndex] = useMenuIndex("2");
+  const [index, setIndex] = useMenuIndex("1");
 
   const navigate = ({ componentRoute, key }) => {
     goTo(componentRoute);
