@@ -247,7 +247,7 @@ export default (props) => {
           <Paragraph style={{ textAlign: "center" }}>
             Ludovic COULON - Riadh BOUCHAHOUA
           </Paragraph>
-          <pre style={{ textAlign: "center" }}>HackTools Version - 0.3.2</pre>
+          <pre style={{ textAlign: "center" }}>HackTools Version - 0.3.3</pre>
           <Button
             icon={<FullscreenOutlined style={{ margin: 5 }} />}
             type="link"
