@@ -89,7 +89,7 @@ You can download **HackTools** on the Firefox browser add-ons [here.](https://ad
 ```bash
 git clone https://github.com/LasCC/Hack-Tools.git
 cd Hack-Tools
-npm install && npm build     # If you have installed yarn you can replace npm with yarn
+npm install && npm run build     # If you have installed yarn you can replace npm with yarn
 ```
 
 Once the build is done correctly, webpack will create a new folder called **dist**
