@@ -11,7 +11,7 @@ export default (props) => {
 		{ title: 'echo "$env:COMPUTERNAME.$env:USERDNSDOMAIN"' }
 	];
 	const lastpatchlist = 'Get-Hotfix -description "Security update"';
-	const lastpatchlist_wmic = 'wmic qfe get HotfixID,ServicePackInEffect,InstallDate,InstalledBy,InstalledOn"';
+	const lastpatchlist_wmic = 'wmic qfe get HotfixID,ServicePackInEffect,InstallDate,InstalledBy,InstalledOn';
 	const envVar = 'Get-ChildItem Env: | ft Key,Value';
 	const envVar_cmd = 'set';
 	const wlan_creddump = [
@@ -73,7 +73,7 @@ export default (props) => {
 						</Paragraph>
 					);
 				})}
-				<Text strong># list Security patches</Text>
+				<Text strong># List Security patches</Text>
 				<Paragraph copyable ellipsis={true}>
 					{lastpatchlist}
 				</Paragraph>
@@ -93,7 +93,7 @@ export default (props) => {
 				<Paragraph copyable ellipsis={true}>
 					{powershell_http_dl}
 				</Paragraph>
-				<Text strong># cmd compatible</Text>
+				<Text strong># Cmd compatible</Text>
 				<Paragraph copyable ellipsis={true}>
 					{cmd_cert_http_dl}
 				</Paragraph>
@@ -117,13 +117,13 @@ export default (props) => {
 			>
 				<Title level={2}>Active Directory enumeration</Title>
 
-				<Title level={4}> Domain enumeration</Title>
+				<Title level={4}>Domain enumeration</Title>
 
 				<Paragraph copyable ellipsis={true}>
 					{domain_name}
 				</Paragraph>
 
-				<Text strong># list Forest Domains </Text>
+				<Text strong># List Forest Domains </Text>
 				<Paragraph copyable ellipsis={true}>
 					{forest_domain_list}
 				</Paragraph>
@@ -143,7 +143,7 @@ export default (props) => {
 					{domain_OUs}
 				</Paragraph>
 
-				<Text strong># list trusted Domains</Text>
+				<Text strong># List trusted Domains</Text>
 				<Paragraph copyable ellipsis={true}>
 					{domain_trust}
 				</Paragraph>
@@ -152,7 +152,7 @@ export default (props) => {
 
 				<Title level={4}> GPO enumeration</Title>
 
-				<Text strong># Gpo applied to the machine</Text>
+				<Text strong># GPO applied to the machine</Text>
 				<Paragraph copyable ellipsis={true}>
 					{gpo_enum}
 				</Paragraph>
@@ -173,15 +173,15 @@ export default (props) => {
 
 				<Title level={4}> Computer enumeration</Title>
 
-				<Text strong># list Computers of the Domain</Text>
+				<Text strong># List Computers of the Domain</Text>
 				<Paragraph copyable ellipsis={true}>
 					{domain_computers}
 				</Paragraph>
-				<Text strong># list Pingable Hosts </Text>
+				<Text strong># List Pingable Hosts </Text>
 				<Paragraph copyable ellipsis={true}>
 					{domain_pingable_computers}
 				</Paragraph>
-				<Text strong># list Windows 7 Ultimate Computers </Text>
+				<Text strong># List Windows 7 Ultimate Computers </Text>
 				<Paragraph copyable ellipsis={true}>
 					{domain_win7U_computers}
 				</Paragraph>
@@ -190,20 +190,20 @@ export default (props) => {
 
 				<Title level={4}> Admin groups and account enumeration</Title>
 
-				<Text strong># list Domain Admin members</Text>
+				<Text strong># List Domain Admin members</Text>
 				<Paragraph copyable ellipsis={true}>
 					{domain_admin_members}
 				</Paragraph>
-				<Text strong># list Admin Groups </Text>
+				<Text strong># List Admin Groups </Text>
 				<Paragraph copyable ellipsis={true}>
 					{domain_admins_groups}
 				</Paragraph>
-				<Text strong># list Local Admins [need Administrative rights] </Text>
+				<Text strong># List Local Admins [need Administrative rights] </Text>
 				<Paragraph copyable ellipsis={true}>
 					{local_admins}
 				</Paragraph>
 
-				<Text strong># get groups of user [need Administrative rights] </Text>
+				<Text strong># Get groups of user [need Administrative rights] </Text>
 				<Paragraph copyable ellipsis={true}>
 					{user_group_membership}
 				</Paragraph>
@@ -212,7 +212,7 @@ export default (props) => {
 
 				<Title level={4}> ACL enumeration</Title>
 
-				<Text strong># user ACL </Text>
+				<Text strong># User ACL </Text>
 				<Paragraph copyable ellipsis={true}>
 					{ACL_user_enum}
 				</Paragraph>
