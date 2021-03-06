@@ -1,5 +1,5 @@
 import React from 'react';
-import  PersistedState from 'use-persisted-state';
+import PersistedState from 'use-persisted-state';
 import { Input, Button, message, Typography, Row, Col, Divider, Collapse } from 'antd';
 import {
 	CopyOutlined,
@@ -10,6 +10,9 @@ import {
 } from '@ant-design/icons';
 import QueueAnim from 'rc-queue-anim';
 import Clipboard from 'react-clipboard.js';
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import { vs2015 } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import pretty from 'pretty';
 
 const { Title, Paragraph } = Typography;
 const { Panel } = Collapse;
@@ -230,7 +233,9 @@ export default (props) => {
 				<Paragraph>This script will make an outbound TCP connection to a hardcoded IP and port.</Paragraph>
 				<Collapse defaultActiveKey={[ '0' ]}>
 					<Panel header='View the souce code' key='1'>
-						<p>{phpReverseShell}</p>
+						<SyntaxHighlighter language='php' style={vs2015} showLineNumbers={true}>
+							{pretty(phpReverseShell)}
+						</SyntaxHighlighter>
 						<Button type='dashed' style={{ marginBottom: 10, marginTop: 15 }}>
 							<a
 								href='https://raw.githubusercontent.com/pentestmonkey/php-reverse-shell/master/php-reverse-shell.php'
@@ -238,7 +243,7 @@ export default (props) => {
 								target='_blank'
 								rel='noreferrer noopener'
 							>
-								<ArrowsAltOutlined />
+								<ArrowsAltOutlined style={{ marginRight: 10 }} />
 								See the github repo of the author
 							</a>
 						</Button>
