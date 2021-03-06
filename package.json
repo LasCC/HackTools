@@ -30,6 +30,7 @@
     "antd": "4.3.5",
     "antd-mask-input": "0.1.13",
     "crypto-js": "^4.0.0",
+    "pretty": "^2.0.0",
     "rc-queue-anim": "1.8.5",
     "react": "^16.8.6",
     "react-chrome-extension-router": "^1.1.0",
@@ -37,6 +38,7 @@
     "react-dom": "^16.8.6",
     "react-query": "^2.5.13",
     "react-scripts": "3.0.1",
+    "react-syntax-highlighter": "^15.4.3",
     "sm3": "^1.0.3",
     "use-persisted-state": "^0.3.3"
   }

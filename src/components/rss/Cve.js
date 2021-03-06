@@ -17,7 +17,7 @@ export default (props) => {
 		setValues({ ...values, [name]: event.target.value });
 	};
 	const fetchApi = async () => {
-		const res = await fetch(`https://cors-anywhere.herokuapp.com/https://cve.circl.lu/api/cve/${values.cve}`);
+		const res = await fetch(`https://cors-hack-tools.herokuapp.com/https://cve.circl.lu/api/cve/${values.cve}`);
 		return res.json();
 	};
 	const { isLoading, isError, data, error, refetch, isFetching } = useQuery('cve', fetchApi);
