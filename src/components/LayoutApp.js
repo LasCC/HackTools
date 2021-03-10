@@ -18,6 +18,7 @@ import AboutUs from './AboutUs';
 import FeedRSS from './RSS/FeedRSS';
 import FileTransfer from './File_Transfer/File_Transfer';
 import PersistedState from 'use-persisted-state';
+import MSFBuilder from './Linux_Shell/MSFBuilder';
 
 const { Paragraph } = Typography;
 const { Sider, Content, Footer } = Layout;
@@ -105,16 +106,22 @@ export default (props) => {
 		},
 		{
 			key: '13',
-			icon: (
-				<Badge dot size='small' style={{ transform: `translate(3px, 5px)` }}>
-					<IconFont type='icon-Cloud' style={{ fontSize: '1.5em', marginTop: 3 }} />
-				</Badge>
-			),
+			icon: <IconFont type='icon-Cloud' style={{ fontSize: '1.5em', marginTop: 3 }} />,
 			name: '',
 			componentRoute: FeedRSS
 		},
 		{
 			key: '14',
+			icon: (
+				<Badge dot size='small' style={{ transform: `translate(3px, 5px)` }}>
+					<IconFont type='icon-shield' style={{ fontSize: '1.5em', marginTop: 3 }} />
+				</Badge>
+			),
+			name: '',
+			componentRoute: MSFBuilder
+		},
+		{
+			key: '15',
 			icon: <IconFont type='icon-about' style={{ fontSize: '1.5em', marginTop: 3 }} />,
 			name: 'About us',
 			componentRoute: AboutUs
@@ -180,7 +187,7 @@ export default (props) => {
 					<CopyrightCircleOutlined /> Hack Tools - The all in one Red team browser extension for web
 					pentesters
 					<Paragraph style={{ textAlign: 'center' }}>Ludovic COULON - Riadh BOUCHAHOUA</Paragraph>
-					<pre style={{ textAlign: 'center' }}>HackTools Version - 0.3.3</pre>
+					<pre style={{ textAlign: 'center' }}>HackTools Version - 0.3.5</pre>
 					<Button icon={<FullscreenOutlined style={{ margin: 5 }} />} type='link'>
 						<a href={target} target='_blank'>
 							Fullscreen mode
