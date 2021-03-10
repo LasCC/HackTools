@@ -26,20 +26,20 @@
 		"webpack-dev-server": "^3.7.2"
 	},
 	"dependencies": {
-		"@ant-design/icons": "4.2.1",
-		"antd": "4.3.5",
-		"antd-mask-input": "0.1.13",
+		"@ant-design/icons": "4.5.0",
+		"antd": "4.13.1",
+		"antd-mask-input": "0.1.14",
 		"crypto-js": "^4.0.0",
 		"pretty": "^2.0.0",
 		"rc-queue-anim": "1.8.5",
-		"react": "^16.8.6",
-		"react-chrome-extension-router": "^1.1.0",
+		"react": "^17.0.1",
+		"react-chrome-extension-router": "^1.2.0",
 		"react-clipboard.js": "2.0.16",
-		"react-dom": "^16.8.6",
+		"react-dom": "^17.0.1",
 		"react-query": "^2.5.13",
-		"react-scripts": "3.0.1",
+		"react-scripts": "4.0.3",
 		"react-syntax-highlighter": "^15.4.3",
 		"sm3": "^1.0.3",
-		"use-persisted-state": "^0.3.5"
+		"use-persisted-state": "^0.3.3"
 	}
 }

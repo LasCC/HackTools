@@ -143,7 +143,6 @@ const HashEncode = () => {
 					</a>
 				</Button>
 			</div>
-			<Divider dashed />
 		</QueueAnim>
 	);
 };

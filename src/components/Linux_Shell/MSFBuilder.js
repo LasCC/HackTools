@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Input, Typography, message, Divider } from 'antd';
+import { Button, Input, Typography, message, Divider, Select } from 'antd';
 import { createFromIconfontCN } from '@ant-design/icons';
 import Clipboard from 'react-clipboard.js';
 import QueueAnim from 'rc-queue-anim';
@@ -12,17 +12,40 @@ const IconFont = createFromIconfontCN({
 const MSFBuilder = () => {
 	// Antd stuff
 	const { TextArea } = Input;
+	const { Option } = Select;
+
+	const options = [
+		{
+			value: 'Burns Bay Road'
+		},
+		{
+			value: 'Downing Street'
+		},
+		{
+			value: 'Wall Street'
+		}
+	];
 
 	const [ values, setValues ] = useState({
-		showPassword: false,
-		submitted: false,
-		email: '',
-		password: ''
+		Payload: '',
+		LHOST: '',
+		LPORT: '',
+		Encoder: '',
+		EncoderIterations: '',
+		Platform: '',
+		Arch: '',
+		NOP: '',
+		BadCharacters: '',
+		Additional: '',
+		Format: '',
+		Outfile: ''
 	});
 
-	const handleChange = (prop) => (event) => {
-		setValues({ ...values, [prop]: event.target.value });
+	const handleChange = (prop) => (data) => {
+		setValues({ ...values, [prop]: data });
 	};
+
+	console.log(values.Payload);
 
 	return (
 		<QueueAnim delay={300} duration={1500}>
@@ -43,16 +66,21 @@ const MSFBuilder = () => {
 					marginLeft: 15
 				}}
 			>
-				<p>lmao</p>
-			</div>
-			<div
-				key='b'
-				style={{
-					marginTop: 15,
-					marginLeft: 15
-				}}
-			>
-				<pre>lamo3</pre>
+				<Select
+					style={{ width: 200 }}
+					showSearch
+					options={options}
+					value={values.Payload}
+					onChange={handleChange('Payload')}
+					placeholder='try to type `b`'
+					filterOption={(inputValue, option) =>
+						option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1}
+				>
+					{options.map((k, i) => {
+						return <Option key={i}>{k.value}</Option>;
+					})}
+				</Select>
+				<pre style={{ color: 'white' }}>{JSON.stringify(values, undefined, 2)}</pre>
 			</div>
 		</QueueAnim>
 	);

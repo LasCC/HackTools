@@ -55,7 +55,7 @@ export default (props) => {
 		{
 			key: '5',
 			icon: (
-				<Badge dot size='small' style={{ transform: `translate(5px, 3px)` }}>
+				<Badge dot size='default' style={{ transform: `translate(5px, 3px)` }}>
 					<IconFont type='icon-powershell' style={{ fontSize: '1.5em', marginTop: 3 }} />
 				</Badge>
 			),
@@ -107,13 +107,13 @@ export default (props) => {
 		{
 			key: '13',
 			icon: <IconFont type='icon-Cloud' style={{ fontSize: '1.5em', marginTop: 3 }} />,
-			name: '',
+			name: 'Feed RSS',
 			componentRoute: FeedRSS
 		},
 		{
 			key: '14',
 			icon: (
-				<Badge dot size='small' style={{ transform: `translate(3px, 5px)` }}>
+				<Badge dot size='default' style={{ transform: `translate(3px, 5px)` }}>
 					<IconFont type='icon-shield' style={{ fontSize: '1.5em', marginTop: 3 }} />
 				</Badge>
 			),
