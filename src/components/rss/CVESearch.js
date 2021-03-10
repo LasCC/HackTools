@@ -4,7 +4,7 @@ import QueueAnim from 'rc-queue-anim';
 import { CloseCircleOutlined } from '@ant-design/icons';
 import { goTo } from 'react-chrome-extension-router';
 import { useQuery } from 'react-query';
-import FeedRSS from '../FeedRSS';
+import FeedRSS from './FeedRSS';
 
 const { Paragraph, Title, Text } = Typography;
 const { Search } = Input;

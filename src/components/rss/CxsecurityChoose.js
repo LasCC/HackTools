@@ -3,7 +3,7 @@ import { Typography, Card, Col, Row, Button, PageHeader } from 'antd';
 import QueueAnim from 'rc-queue-anim';
 import { goTo } from 'react-chrome-extension-router';
 import { GithubOutlined } from '@ant-design/icons';
-import FeedRSS from '../FeedRSS';
+import FeedRSS from './FeedRSS';
 import ExploitCX from './ExploitCX';
 import BugsCX from './BugsCX';
 import DorksCX from './DorksCX';
