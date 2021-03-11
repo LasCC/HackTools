@@ -28,6 +28,7 @@
 
 .site-layout .site-layout-background {
 	background: #141414 !important;
+	border-radius: 10px;
 }
 .ant-menu-inline .ant-menu-item:not(:last-child),
 .ant-menu-vertical-left .ant-menu-item:not(:last-child),

