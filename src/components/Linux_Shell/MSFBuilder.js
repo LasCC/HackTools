@@ -61,7 +61,12 @@ const MSFBuilder = () => {
 				}}
 			>
 				<Form>
-					<Form.Item name='payload' label='Payload' rules={[ { message: 'Missing area' } ]}>
+					<Form.Item
+						name='payload'
+						valuePropName={values.Payload}
+						label='Payload'
+						rules={[ { message: 'Missing area' } ]}
+					>
 						<Select
 							showSearch
 							options={payloads}
@@ -78,7 +83,12 @@ const MSFBuilder = () => {
 					</Form.Item>
 					<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
 						<Col span={12}>
-							<Form.Item name='ip_address' label='LHOST' rules={[ { message: 'Missing area' } ]}>
+							<Form.Item
+								name='ip_address'
+								valuePropName={values.LHOST}
+								label='LHOST'
+								rules={[ { message: 'Missing area' } ]}
+							>
 								<Input
 									value={values.LHOST}
 									onChange={handleChange('LHOST')}
@@ -88,7 +98,12 @@ const MSFBuilder = () => {
 							</Form.Item>
 						</Col>
 						<Col span={12}>
-							<Form.Item name='port' label='LPORT' rules={[ { message: 'Missing area' } ]}>
+							<Form.Item
+								name='port'
+								valuePropName={values.LPORT}
+								label='LPORT'
+								rules={[ { message: 'Missing area' } ]}
+							>
 								<Input
 									value={values.LPORT}
 									onChange={handleChange('LPORT')}
@@ -100,7 +115,12 @@ const MSFBuilder = () => {
 					</Row>
 					<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
 						<Col span={12}>
-							<Form.Item name='encoder' label='Encoder' rules={[ { message: 'Missing area' } ]}>
+							<Form.Item
+								name='encoder'
+								valuePropName={values.Encoder}
+								label='Encoder'
+								rules={[ { message: 'Missing area' } ]}
+							>
 								<Select
 									showSearch
 									options={encoder}
@@ -117,7 +137,12 @@ const MSFBuilder = () => {
 							</Form.Item>
 						</Col>
 						<Col span={12}>
-							<Form.Item name='iteration' label='Iterations' rules={[ { message: 'Missing area' } ]}>
+							<Form.Item
+								name='iteration'
+								valuePropName={values.EncoderIterations}
+								label='Iterations'
+								rules={[ { message: 'Missing area' } ]}
+							>
 								<Input
 									value={values.EncoderIterations}
 									onChange={handleChange('EncoderIterations')}
@@ -126,7 +151,12 @@ const MSFBuilder = () => {
 							</Form.Item>
 						</Col>
 					</Row>
-					<Form.Item name='badchar' label='Bad Characters' rules={[ { message: 'Missing area' } ]}>
+					<Form.Item
+						name='badchar'
+						valuePropName={values.BadCharacters}
+						label='Bad Characters'
+						rules={[ { message: 'Missing area' } ]}
+					>
 						<Input
 							value={values.BadCharacters}
 							onChange={handleChange('BadCharacters')}
@@ -136,7 +166,12 @@ const MSFBuilder = () => {
 				</Form>
 				<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
 					<Col span={12}>
-						<Form.Item name='platform' label='Platform' rules={[ { message: 'Missing area' } ]}>
+						<Form.Item
+							valuePropName={values.Platform}
+							name='platform'
+							label='Platform'
+							rules={[ { message: 'Missing area' } ]}
+						>
 							<Select
 								showSearch
 								options={platform}
@@ -153,7 +188,12 @@ const MSFBuilder = () => {
 						</Form.Item>
 					</Col>
 					<Col span={12}>
-						<Form.Item name='architecture' label='Architecture' rules={[ { message: 'Missing area' } ]}>
+						<Form.Item
+							valuePropName={values.Arch}
+							name='architecture'
+							label='Architecture'
+							rules={[ { message: 'Missing area' } ]}
+						>
 							<Select
 								showSearch
 								value={values.Arch}
@@ -166,12 +206,22 @@ const MSFBuilder = () => {
 						</Form.Item>
 					</Col>
 				</Row>
-				<Form.Item name='nop' label='Nop&#39;s' rules={[ { message: 'Missing area' } ]}>
+				<Form.Item
+					name='nop'
+					valuePropName={values.NOP}
+					label='Nop&#39;s'
+					rules={[ { message: 'Missing area' } ]}
+				>
 					<Input value={values.NOP} onChange={handleChange('NOP')} maxLength={5} placeholder='200' />
 				</Form.Item>
 				<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
 					<Col span={12}>
-						<Form.Item name='format' label='Format' rules={[ { message: 'Missing area' } ]}>
+						<Form.Item
+							valuePropName={values.Format}
+							name='format'
+							label='Format'
+							rules={[ { message: 'Missing area' } ]}
+						>
 							<Select
 								showSearch
 								options={format}
@@ -188,7 +238,12 @@ const MSFBuilder = () => {
 						</Form.Item>
 					</Col>
 					<Col span={12}>
-						<Form.Item name='outfile' label='Output File' rules={[ { message: 'Missing area' } ]}>
+						<Form.Item
+							valuePropName={values.Outfile}
+							name='outfile'
+							label='Output File'
+							rules={[ { message: 'Missing area' } ]}
+						>
 							<Input
 								value={values.Outfile}
 								onChange={handleChange('Outfile')}
@@ -200,8 +255,9 @@ const MSFBuilder = () => {
 				<Collapse defaultActiveKey={[ '1' ]} ghost>
 					<Panel header='MSF Venom Command' key='1'>
 						<Paragraph>
-							<pre
-							>{`msfvenom -p ${values.Payload} LHOST=${values.LHOST} LPORT=${values.LPORT} --platform ${values.Platform} -a ${values.Arch} -n ${values.NOP} -e ${values.Encoder} -b "${values.BadCharacters}" -f ${values.Format} -i ${values.Outfile}`}</pre>
+							<pre>
+								{`msfvenom -p ${values.Payload} LHOST=${values.LHOST} LPORT=${values.LPORT} --platform ${values.Platform} -a ${values.Arch} -n ${values.NOP} -e ${values.Encoder} -i ${values.EncoderIterations} -b "${values.BadCharacters}" -f ${values.Format} -i ${values.Outfile}`}
+							</pre>
 						</Paragraph>
 					</Panel>
 					<Panel header='Launch Console & Load Handler' key='2'>
