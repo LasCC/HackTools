@@ -73,8 +73,8 @@
 .ant-menu-vertical-left > .ant-menu-submenu > .ant-menu-submenu-title,
 .ant-menu-vertical-right > .ant-menu-submenu > .ant-menu-submenu-title,
 .ant-menu-inline > .ant-menu-submenu > .ant-menu-submenu-title {
-	height: 32px !important;
-	line-height: 32px !important;
+	height: 35px !important;
+	line-height: 35px !important;
 }
 
 .ant-menu-inline-collapsed > .ant-menu-item .ant-menu-item-icon,

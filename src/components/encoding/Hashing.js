@@ -98,10 +98,7 @@ const HashEncode = () => {
 				Hash generator
 			</Title>
 			<Paragraph style={{ margin: 15 }}>
-				A hash function is any function that can be used to map data of arbitrary size to fixed-size values.
-			</Paragraph>
-			<Paragraph style={{ marginLeft: 15 }}>
-				The values returned by a hash function are called hash values, hash codes, digests, or simply hashes.
+				A hash function is any function that can be used to map data of arbitrary size to fixed-size values. The values returned by a hash function are called hash values, hash codes, digests, or simply hashes.
 			</Paragraph>
 			<Divider dashed />
 			<div key='a' style={{ margin: 15 }}>

