@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Layout, Menu, Typography, Button, Badge } from 'antd';
-import { CopyrightCircleOutlined, FullscreenOutlined } from '@ant-design/icons';
+import { CopyrightCircleOutlined, FullscreenOutlined, ArrowsAltOutlined } from '@ant-design/icons';
 import { createFromIconfontCN } from '@ant-design/icons';
 import { goTo } from 'react-chrome-extension-router';
 import ReverseShell from './Linux_Shell/ReverseShell';
@@ -141,6 +141,17 @@ export default (props) => {
 		goTo(componentRoute);
 		setIndex(key, componentRoute);
 	};
+	const windowMode = () => {
+		const width = 1100;
+		const height = 800;
+
+		chrome.windows.create({
+			url: chrome.extension.getURL('index.html'),
+			width: width,
+			height: height,
+			type: 'popup'
+		});
+	};
 
 	useEffect(() => {
 		const currentComponent = Tabs.filter((obj) => obj.key === index)[0].componentRoute;
@@ -192,6 +203,9 @@ export default (props) => {
 						<a href={target} target='_blank'>
 							Fullscreen mode
 						</a>
+					</Button>
+					<Button icon={<ArrowsAltOutlined style={{ margin: 5 }} />} onClick={() => windowMode()} type='link'>
+						Pop-up mode
 					</Button>
 				</Footer>
 			</Layout>
