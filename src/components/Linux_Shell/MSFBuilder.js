@@ -66,6 +66,7 @@ const MSFBuilder = () => {
 							showSearch
 							options={payloads}
 							value={values.Payload}
+							allowClear
 							onChange={handleChangeSelect('Payload')}
 							placeholder='python/meterpreter/reverse_http'
 							filterOption={(inputValue, option) =>
@@ -83,6 +84,7 @@ const MSFBuilder = () => {
 									value={values.LHOST}
 									onChange={handleChange('LHOST')}
 									maxLength={15}
+									allowClear
 									placeholder='IP Address or domain (ex: 212.212.111.222)'
 								/>
 							</Form.Item>
@@ -93,6 +95,7 @@ const MSFBuilder = () => {
 									value={values.LPORT}
 									onChange={handleChange('LPORT')}
 									maxLength={5}
+									allowClear
 									placeholder='Port (ex: 1337)'
 								/>
 							</Form.Item>
@@ -107,6 +110,7 @@ const MSFBuilder = () => {
 									value={values.Encoder}
 									onChange={handleChangeSelect('Encoder')}
 									placeholder='x86/shikata_ga_nai'
+									allowClear
 									filterOption={(inputValue, option) =>
 										option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1}
 								>
@@ -122,6 +126,7 @@ const MSFBuilder = () => {
 									value={values.EncoderIterations}
 									onChange={handleChange('EncoderIterations')}
 									placeholder='4'
+									allowClear
 								/>
 							</Form.Item>
 						</Col>
@@ -131,6 +136,7 @@ const MSFBuilder = () => {
 							value={values.BadCharacters}
 							onChange={handleChange('BadCharacters')}
 							placeholder='\x00\x0a\x0d'
+							allowClear
 						/>
 					</Form.Item>
 				</Form>
@@ -143,6 +149,7 @@ const MSFBuilder = () => {
 								value={values.Platform}
 								onChange={handleChangeSelect('Platform')}
 								placeholder='Windows'
+								allowClear
 								filterOption={(inputValue, option) =>
 									option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1}
 							>
@@ -159,6 +166,7 @@ const MSFBuilder = () => {
 								value={values.Arch}
 								onChange={handleChangeSelect('Arch')}
 								placeholder='x86'
+								allowClear
 							>
 								<Option key={'x64'}>x64</Option>
 								<Option key={'x86'}>x86</Option>
@@ -167,7 +175,13 @@ const MSFBuilder = () => {
 					</Col>
 				</Row>
 				<Form.Item name='nop' valuePropName={values.NOP} label='Nop&#39;s'>
-					<Input value={values.NOP} onChange={handleChange('NOP')} maxLength={5} placeholder='200' />
+					<Input
+						value={values.NOP}
+						allowClear
+						onChange={handleChange('NOP')}
+						maxLength={5}
+						placeholder='200'
+					/>
 				</Form.Item>
 				<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
 					<Col span={12}>
@@ -178,6 +192,7 @@ const MSFBuilder = () => {
 								value={values.Format}
 								onChange={handleChangeSelect('Format')}
 								placeholder='powershell'
+								allowClear
 								filterOption={(inputValue, option) =>
 									option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1}
 							>
@@ -193,6 +208,7 @@ const MSFBuilder = () => {
 								value={values.Outfile}
 								onChange={handleChange('Outfile')}
 								placeholder='reverse_shell'
+								allowClear
 							/>
 						</Form.Item>
 					</Col>
@@ -201,7 +217,17 @@ const MSFBuilder = () => {
 					<Panel header='MSF Venom Command' key='1'>
 						<Paragraph>
 							<pre>
-								{`msfvenom -p ${values.Payload} LHOST=${values.LHOST} LPORT=${values.LPORT} --platform ${values.Platform} -a ${values.Arch} -n ${values.NOP} -e ${values.Encoder} -i ${values.EncoderIterations} -b "${values.BadCharacters}" -f ${values.Format} -i ${values.Outfile}`}
+								msfvenom -p {values.Payload}
+								{values.LHOST > '' && ' LHOST=' + values.LHOST}
+								{values.LPORT > '' && ' LPORT=' + values.LPORT}
+								{values.Platform > '' && ' --platform ' + values.Platform}
+								{values.Arch > '' && ' -a ' + values.Arch}
+								{values.NOP > '' && ' -n ' + values.NOP}
+								{values.Encoder > '' && ' -e ' + values.Encoder}
+								{values.EncoderIterations > '' && ' -i ' + values.EncoderIterations}
+								{values.BadCharacters > '' && ' -b ' + `"${values.BadCharacters}"`}
+								{values.Format > '' && ' -f ' + values.Format}
+								{values.Outfile > '' && ' -o ' + values.Outfile}
 							</pre>
 						</Paragraph>
 					</Panel>
