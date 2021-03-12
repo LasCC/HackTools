@@ -1,7 +1,6 @@
 import React from 'react';
 import { Input, Typography, Row, Divider, Select, Form, Col, Collapse } from 'antd';
 import PersistedState from 'use-persisted-state';
-import Clipboard from 'react-clipboard.js';
 import QueueAnim from 'rc-queue-anim';
 
 const { Title, Paragraph } = Typography;
@@ -241,11 +240,10 @@ const MSFBuilder = () => {
 					<Panel header='Load Handler Only' key='3'>
 						<Paragraph>
 							<pre>
-								{`use exploit/multi/handler
-set PAYLOAD ${values.Payload}
-set LHOST ${values.LHOST}
-set LPORT ${values.LPORT}
-run`}
+								use exploit/multi/handler set PAYLOAD {values.Payload}
+								set LHOST {values.LHOST}
+								set LPORT {values.LPORT}
+								run
 							</pre>
 						</Paragraph>
 					</Panel>
