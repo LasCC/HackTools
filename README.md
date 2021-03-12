@@ -37,6 +37,7 @@ With the extension you **no longer need to search for payloads in different webs
 
 - Dynamic Reverse Shell generator (PHP, Bash, Ruby, Python, Perl, Netcat)
 - Shell Spawning (TTY Shell Spawning)
+- MSF Venom Builder
 - XSS Payloads
 - Basic SQLi payloads
 - Local file inclusion payloads (LFI)
@@ -54,19 +55,19 @@ With the extension you **no longer need to search for payloads in different webs
 </div>
 
 <div align='center'>
-  <img alt="preview_2" src="https://i.imgur.com/02ym26m.png" />
+  <img alt="preview_2" src="https://i.imgur.com/N6qJX8U.png" />
 </div>
 
 <div align='center'>
-  <img alt="preview_3" src="https://i.imgur.com/A22KDs7.png" />
+  <img alt="preview_3" src="https://i.imgur.com/wJr1xYX.png" />
 </div>
 
 <div align='center'>
-  <img alt="preview_4" src="https://i.imgur.com/TxWUC7r.png" />
+  <img alt="preview_4" src="https://i.imgur.com/bh896v1.png" />
 </div>
 
 <div align='center'>
-  <img alt="preview_5" src="https://i.imgur.com/KrDX7t6.png" />
+  <img alt="preview_5" src="https://i.imgur.com/dMvkn0g.png" />
 </div>
 
 
@@ -83,6 +84,25 @@ Otherwise, you can build the project yourself from the source code
 ### Mozilla Firefox
 
 You can download **HackTools** on the Firefox browser add-ons [here.](https://addons.mozilla.org/en-US/firefox/addon/hacktools/)
+
+### Instructions to build for Safari
+
+Following the build instruction in the README
+
+Create a safari web extension project using the command below. NB: This is to be run once.
+
+```bash
+xcrun safari-web-extension-coverter [path_to_dist_folder]
+```
+
+Follow the instructions to create the project the default language should be Swift.
+
+3. Build project.
+4. Open Safari and enable unsigned extensions; Develop -> Allow Unsigned Extensions.
+5. Open Safari -> Preferences -> Extensions and enable Hack-Tools
+6. Click on the extension icon and switch to full screen mode.
+
+*Instructions provided by [jayluxferro](https://github.com/LasCC/Hack-Tools/issues/88)*
 
 ### Build from source code
 
