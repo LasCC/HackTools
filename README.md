@@ -87,9 +87,7 @@ You can download **HackTools** on the Firefox browser add-ons [here.](https://ad
 
 ### Instructions to build for Safari
 
-Following the build instruction in the README
-
-Create a safari web extension project using the command below. NB: This is to be run once.
+Create a safari web extension project using the command below. *This is to be run once.*
 
 ```bash
 xcrun safari-web-extension-coverter [path_to_dist_folder]
@@ -97,10 +95,10 @@ xcrun safari-web-extension-coverter [path_to_dist_folder]
 
 Follow the instructions to create the project the default language should be Swift.
 
-3. Build project.
-4. Open Safari and enable unsigned extensions; Develop -> Allow Unsigned Extensions.
-5. Open Safari -> Preferences -> Extensions and enable Hack-Tools
-6. Click on the extension icon and switch to full screen mode.
+- Build project.
+- Open Safari and enable unsigned extensions; Develop -> Allow Unsigned Extensions.
+- Open Safari -> Preferences -> Extensions and enable Hack-Tools
+- Click on the extension icon and switch to full screen mode.
 
 *Instructions provided by [jayluxferro](https://github.com/LasCC/Hack-Tools/issues/88)*
 
