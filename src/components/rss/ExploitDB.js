@@ -3,7 +3,7 @@ import { Typography, Empty, Spin, Button, List, PageHeader, Tag } from 'antd';
 import { goTo } from 'react-chrome-extension-router';
 import { useQuery } from 'react-query';
 import QueueAnim from 'rc-queue-anim';
-import FeedRSS from '../FeedRSS';
+import FeedRSS from './FeedRSS';
 
 const { Title } = Typography;
 

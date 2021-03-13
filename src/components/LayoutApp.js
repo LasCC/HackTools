@@ -1,23 +1,24 @@
 import React, { useEffect } from 'react';
 import { Layout, Menu, Typography, Button, Badge } from 'antd';
-import { CopyrightCircleOutlined, FullscreenOutlined } from '@ant-design/icons';
+import { CopyrightCircleOutlined, FullscreenOutlined, ArrowsAltOutlined } from '@ant-design/icons';
 import { createFromIconfontCN } from '@ant-design/icons';
 import { goTo } from 'react-chrome-extension-router';
-import ReverseShell from './ReverseShell';
-import PhpReverseShell from './PhpReverseShell';
-import TtySpawnShell from './TtySpawnShell';
+import ReverseShell from './Linux_Shell/ReverseShell';
+import PhpReverseShell from './Web/PhpReverseShell';
+import TtySpawnShell from './Linux_Shell/TtySpawnShell';
 import Base64Encode from './encoding/Base64Encode';
 import HexEncode from './encoding/HexEncode';
 import Hashing from './encoding/Hashing';
-import LinuxCommands from './LinuxCommands';
-import PowershellCommands from './PowershellCommands';
+import LinuxCommands from './Linux_Shell/LinuxCommands';
+import PowershellCommands from './Linux_Shell/PowershellCommands';
 import LFI from './web/LFI';
 import XSS from './web/XSS';
 import SQLi from './web/SqlInjection';
 import AboutUs from './AboutUs';
-import FeedRSS from './FeedRSS';
-import FileTransfer from './file_transfer/File_transfer';
+import FeedRSS from './RSS/FeedRSS';
+import FileTransfer from './File_Transfer/File_Transfer';
 import PersistedState from 'use-persisted-state';
+import MSFBuilder from './Linux_Shell/MSFBuilder';
 
 const { Paragraph } = Typography;
 const { Sider, Content, Footer } = Layout;
@@ -54,7 +55,7 @@ export default (props) => {
 		{
 			key: '5',
 			icon: (
-				<Badge dot size='small' style={{ transform: `translate(5px, 3px)` }}>
+				<Badge dot size='default' style={{ transform: `translate(5px, 3px)` }}>
 					<IconFont type='icon-powershell' style={{ fontSize: '1.5em', marginTop: 3 }} />
 				</Badge>
 			),
@@ -105,16 +106,22 @@ export default (props) => {
 		},
 		{
 			key: '13',
-			icon: (
-				<Badge dot size='small' style={{ transform: `translate(3px, 5px)` }}>
-					<IconFont type='icon-Cloud' style={{ fontSize: '1.5em', marginTop: 3 }} />
-				</Badge>
-			),
-			name: '',
+			icon: <IconFont type='icon-Cloud' style={{ fontSize: '1.5em', marginTop: 3 }} />,
+			name: 'Feed RSS',
 			componentRoute: FeedRSS
 		},
 		{
 			key: '14',
+			icon: (
+				<Badge dot size='default' style={{ transform: `translate(3px, 5px)` }}>
+					<IconFont type='icon-shield' style={{ fontSize: '1.5em', marginTop: 3 }} />
+				</Badge>
+			),
+			name: '',
+			componentRoute: MSFBuilder
+		},
+		{
+			key: '15',
 			icon: <IconFont type='icon-about' style={{ fontSize: '1.5em', marginTop: 3 }} />,
 			name: 'About us',
 			componentRoute: AboutUs
@@ -133,6 +140,17 @@ export default (props) => {
 	const navigate = ({ componentRoute, key }) => {
 		goTo(componentRoute);
 		setIndex(key, componentRoute);
+	};
+	const windowMode = () => {
+		const width = 1100;
+		const height = 800;
+
+		chrome.windows.create({
+			url: chrome.extension.getURL('index.html'),
+			width: width,
+			height: height,
+			type: 'popup'
+		});
 	};
 
 	useEffect(() => {
@@ -180,11 +198,14 @@ export default (props) => {
 					<CopyrightCircleOutlined /> Hack Tools - The all in one Red team browser extension for web
 					pentesters
 					<Paragraph style={{ textAlign: 'center' }}>Ludovic COULON - Riadh BOUCHAHOUA</Paragraph>
-					<pre style={{ textAlign: 'center' }}>HackTools Version - 0.3.3</pre>
+					<pre style={{ textAlign: 'center' }}>HackTools Version - 0.3.5</pre>
 					<Button icon={<FullscreenOutlined style={{ margin: 5 }} />} type='link'>
 						<a href={target} target='_blank'>
 							Fullscreen mode
 						</a>
+					</Button>
+					<Button icon={<ArrowsAltOutlined style={{ margin: 5 }} />} onClick={() => windowMode()} type='link'>
+						Pop-up mode
 					</Button>
 				</Footer>
 			</Layout>

@@ -2,7 +2,7 @@
   <img alt="logo_hack_tools" src="https://i.postimg.cc/GtLdZ2rZ/noun-Panama-hat-1454601.png" />
   <h1>Welcome to HackTools 🛠</h1>
   <p>
-    <img alt="Version" src="https://img.shields.io/badge/version-0.3.3-blue.svg?cacheSeconds=2592000&style=for-the-badge" />
+    <img alt="Version" src="https://img.shields.io/badge/version-0.3.5-blue.svg?cacheSeconds=2592000&style=for-the-badge" />
     <img alt="release" src="https://img.shields.io/github/v/release/LasCC/Hack-Tools?color=yellow&style=for-the-badge" />
     <a href="https://addons.mozilla.org/en-US/firefox/addon/hacktools" target="_blank">
       <img alt="mozilla" src="https://img.shields.io/amo/v/hacktools?color=purple&label=mozilla%20addons&logo=mozilla&style=for-the-badge" />
@@ -37,6 +37,7 @@ With the extension you **no longer need to search for payloads in different webs
 
 - Dynamic Reverse Shell generator (PHP, Bash, Ruby, Python, Perl, Netcat)
 - Shell Spawning (TTY Shell Spawning)
+- MSF Venom Builder
 - XSS Payloads
 - Basic SQLi payloads
 - Local file inclusion payloads (LFI)
@@ -54,19 +55,19 @@ With the extension you **no longer need to search for payloads in different webs
 </div>
 
 <div align='center'>
-  <img alt="preview_2" src="https://i.imgur.com/02ym26m.png" />
+  <img alt="preview_2" src="https://i.imgur.com/N6qJX8U.png" />
 </div>
 
 <div align='center'>
-  <img alt="preview_3" src="https://i.imgur.com/A22KDs7.png" />
+  <img alt="preview_3" src="https://i.imgur.com/wJr1xYX.png" />
 </div>
 
 <div align='center'>
-  <img alt="preview_4" src="https://i.imgur.com/TxWUC7r.png" />
+  <img alt="preview_4" src="https://i.imgur.com/bh896v1.png" />
 </div>
 
 <div align='center'>
-  <img alt="preview_5" src="https://i.imgur.com/KrDX7t6.png" />
+  <img alt="preview_5" src="https://i.imgur.com/dMvkn0g.png" />
 </div>
 
 
@@ -83,6 +84,23 @@ Otherwise, you can build the project yourself from the source code
 ### Mozilla Firefox
 
 You can download **HackTools** on the Firefox browser add-ons [here.](https://addons.mozilla.org/en-US/firefox/addon/hacktools/)
+
+### Instructions to build for Safari
+
+Create a safari web extension project using the command below. *This is to be run once.*
+
+```bash
+xcrun safari-web-extension-coverter [path_to_dist_folder]
+```
+
+Follow the instructions to create the project the default language should be Swift.
+
+- Build project.
+- Open Safari and enable unsigned extensions; Develop -> Allow Unsigned Extensions.
+- Open Safari -> Preferences -> Extensions and enable Hack-Tools
+- Click on the extension icon and switch to full screen mode.
+
+*Instructions provided by [jayluxferro](https://github.com/LasCC/Hack-Tools/issues/88)*
 
 ### Build from source code
 

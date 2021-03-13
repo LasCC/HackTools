@@ -3,10 +3,10 @@ import { Typography, Card, Col, Row, Avatar, Tooltip, Button } from 'antd';
 import QueueAnim from 'rc-queue-anim';
 import { goTo } from 'react-chrome-extension-router';
 import { LinkOutlined, EyeOutlined, GithubOutlined } from '@ant-design/icons';
-import ExploitDB from './rss/ExploitDB';
-import Cisco from './rss/Cisco';
-import cve from './rss/Cve';
-import cxsecurity_choose from './rss/CxsecurityChoose';
+import ExploitDB from './ExploitDB';
+import Cisco from './Cisco';
+import cve from './CVESearch';
+import cxsecurity_choose from './CxsecurityChoose';
 
 const { Title, Paragraph } = Typography;
 const { Meta } = Card;

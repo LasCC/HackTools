@@ -3,7 +3,7 @@ import { Typography, Card, Col, Row, Button, PageHeader } from 'antd';
 import QueueAnim from 'rc-queue-anim';
 import { goTo } from 'react-chrome-extension-router';
 import { GithubOutlined } from '@ant-design/icons';
-import FeedRSS from '../FeedRSS';
+import FeedRSS from './FeedRSS';
 import ExploitCX from './ExploitCX';
 import BugsCX from './BugsCX';
 import DorksCX from './DorksCX';
@@ -16,7 +16,7 @@ export default (props) => {
 		<QueueAnim delay={300} duration={1500}>
 			<PageHeader
 				onBack={() => goTo(FeedRSS)}
-				title='CX Security Independent information'
+				title='CX Security Independent RSS'
 				extra={[
 					<Button key='1' type='primary'>
 						<a href='https://cxsecurity.com/' rel='noreferrer noopener' target='_blank'>
