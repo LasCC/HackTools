@@ -19,17 +19,17 @@ const MSFBuilder = () => {
 	let format = require('../../assets/data/Format.json');
 
 	const [ values, setValues ] = msfVenomBuilder({
-		Payload: '',
-		LHOST: '',
-		LPORT: '',
-		Encoder: '',
-		EncoderIterations: '',
-		Platform: '',
-		Arch: '',
-		NOP: '',
-		BadCharacters: '',
-		Format: '',
-		Outfile: ''
+		Payload: undefined,
+		LHOST: undefined,
+		LPORT: undefined,
+		Encoder: undefined,
+		EncoderIterations: undefined,
+		Platform: undefined,
+		Arch: undefined,
+		NOP: undefined,
+		BadCharacters: undefined,
+		Format: undefined,
+		Outfile: undefined
 	});
 
 	const handleChange = (name) => (event) => {
@@ -240,10 +240,11 @@ const MSFBuilder = () => {
 					<Panel header='Load Handler Only' key='3'>
 						<Paragraph>
 							<pre>
-								use exploit/multi/handler set PAYLOAD {values.Payload}
-								set LHOST {values.LHOST}
-								set LPORT {values.LPORT}
-								run
+								{`use exploit/multi/handler
+set PAYLOAD ${values.Payload}
+set LHOST ${values.LHOST}
+set LPORT ${values.LPORT}
+run`}
 							</pre>
 						</Paragraph>
 					</Panel>

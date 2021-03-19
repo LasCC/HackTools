@@ -198,7 +198,7 @@ export default (props) => {
 					<CopyrightCircleOutlined /> Hack Tools - The all in one Red team browser extension for web
 					pentesters
 					<Paragraph style={{ textAlign: 'center' }}>Ludovic COULON - Riadh BOUCHAHOUA</Paragraph>
-					<pre style={{ textAlign: 'center' }}>HackTools Version - 0.3.5</pre>
+					<pre style={{ textAlign: 'center' }}>HackTools Version - 0.3.6</pre>
 					<Button icon={<FullscreenOutlined style={{ margin: 5 }} />} type='link'>
 						<a href={target} target='_blank'>
 							Fullscreen mode
