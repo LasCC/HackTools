@@ -30,8 +30,10 @@ export default (props) => {
 				}}
 			>
 				<Title level={3}>Python spawn shell </Title>
-				<Paragraph copyable>python -c 'import pty; pty.spawn("/bin/sh")'</Paragraph>
-				<Clipboard component='a' data-clipboard-text={`python -c 'import pty; pty.spawn("/bin/sh")'`}>
+				<Paragraph editable copyable>
+					python -c 'import pty; pty.spawn("/bin/bash")'
+				</Paragraph>
+				<Clipboard component='a' data-clipboard-text={`python -c 'import pty; pty.spawn("/bin/bash")'`}>
 					<Button type='primary' onClick={successInfoTtyShell} style={{ marginBottom: 10, marginTop: 15 }}>
 						<CopyOutlined />
 						Copy the TTY
@@ -64,6 +66,9 @@ export default (props) => {
 					<pre>Ctrl + Z</pre> Back in our own terminal we use <pre>stty raw -echo; fg</pre> This does two
 					things: first, it turns off our own terminal echo which gives us access to tab autocompletes, the
 					arrow keys, and Ctrl + C to kill processes
+				</Paragraph>
+				<Paragraph>
+					<pre>stty rows 38 columns 116</pre>
 				</Paragraph>
 			</div>
 			<Divider dashed />

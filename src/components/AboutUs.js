@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, Divider, Button } from 'antd';
+import { Typography, Divider } from 'antd';
 import QueueAnim from 'rc-queue-anim';
 
 const { Title, Paragraph } = Typography;
