@@ -110,7 +110,7 @@ const Base64Encode = () => {
 				<Button
 					type='link'
 					danger
-					style={{ marginBottom: 10, marginTop: 15, marginLeft: 15, marginLeft: 15 }}
+					style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }}
 					onClick={() => setOutput('')}
 				>
 					<ClearOutlined /> Clear

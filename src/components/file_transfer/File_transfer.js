@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import  PersistedState from 'use-persisted-state';
+import React from 'react';
+import PersistedState from 'use-persisted-state';
 import { Typography, Row, Col, Divider, Input } from 'antd';
 import { WifiOutlined, createFromIconfontCN, FolderOutlined } from '@ant-design/icons';
 import QueueAnim from 'rc-queue-anim';
@@ -52,7 +52,7 @@ export default (props) => {
 							placeholder='IP Address or domain (ex: 212.212.111.222)'
 							onChange={handleChange('ip')}
 							value={values.ip}
-							/>
+						/>
 					</Col>
 					<Col span={8}>
 						<Input
@@ -62,7 +62,7 @@ export default (props) => {
 							placeholder='Port (ex: 1337)'
 							onChange={handleChange('port')}
 							value={values.port}
-							/>
+						/>
 					</Col>
 					<Col span={8}>
 						<Input

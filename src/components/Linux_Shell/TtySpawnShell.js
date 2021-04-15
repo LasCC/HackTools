@@ -30,8 +30,10 @@ export default (props) => {
 				}}
 			>
 				<Title level={3}>Python spawn shell </Title>
-				<Paragraph copyable>python -c 'import pty; pty.spawn("/bin/sh")'</Paragraph>
-				<Clipboard component='a' data-clipboard-text={`python -c 'import pty; pty.spawn("/bin/sh")'`}>
+				<Paragraph editable copyable>
+					python -c 'import pty; pty.spawn("/bin/bash")'
+				</Paragraph>
+				<Clipboard component='a' data-clipboard-text={`python -c 'import pty; pty.spawn("/bin/bash")'`}>
 					<Button type='primary' onClick={successInfoTtyShell} style={{ marginBottom: 10, marginTop: 15 }}>
 						<CopyOutlined />
 						Copy the TTY
@@ -49,21 +51,48 @@ export default (props) => {
 				<Title level={3}>Fully Interactive TTY</Title>
 				<Title level={4}>All the steps to stabilize your shell</Title>
 				<Paragraph>
-					<strong>The first step:</strong> <pre>python3 -c 'import pty;pty.spawn("/bin/bash")'</pre> Which
-					uses Python to spawn a better-featured bash shell. At this point, our shell will look a bit
+					<strong>The first step:</strong>
+					<pre>
+						<Paragraph style={{ margin: 0 }} copyable>
+							python3 -c 'import pty;pty.spawn("/bin/bash")'
+						</Paragraph>
+					</pre>
+					Which uses Python to spawn a better-featured bash shell. At this point, our shell will look a bit
 					prettier, but we still won’t be able to use tab autocomplete or the arrow keys.
 				</Paragraph>
 				<br />
 				<Paragraph>
-					<strong>Step two is:</strong> <pre>export TERM=xterm</pre> This will give us access to term commands
-					such as clear.
+					<strong>Step two is:</strong>
+					<pre>
+						<Paragraph style={{ margin: 0 }} copyable>
+							export TERM=xterm
+						</Paragraph>
+					</pre>
+					This will give us access to term commands such as clear.
 				</Paragraph>
 				<br />
 				<Paragraph>
-					<strong>Finally (and most importantly) we will background the shell using</strong>{' '}
-					<pre>Ctrl + Z</pre> Back in our own terminal we use <pre>stty raw -echo; fg</pre> This does two
-					things: first, it turns off our own terminal echo which gives us access to tab autocompletes, the
-					arrow keys, and Ctrl + C to kill processes
+					<strong>Finally (and most importantly) we will background the shell using</strong>
+					<pre>
+						<Paragraph style={{ margin: 0 }} copyable>
+							Ctrl + Z
+						</Paragraph>
+					</pre>
+					Back in our own terminal we use
+					<pre>
+						<Paragraph style={{ margin: 0 }} copyable>
+							stty raw -echo; fg
+						</Paragraph>
+					</pre>
+					This does two things: first, it turns off our own terminal echo which gives us access to tab
+					autocompletes, the arrow keys, and Ctrl + C to kill processes
+				</Paragraph>
+				<Paragraph>
+					<pre>
+						<Paragraph style={{ margin: 0 }} copyable>
+							stty rows 38 columns 116
+						</Paragraph>
+					</pre>
 				</Paragraph>
 			</div>
 			<Divider dashed />
