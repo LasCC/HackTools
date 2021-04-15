@@ -222,7 +222,7 @@ const MSFBuilder = () => {
 					<Panel header='MSF Venom Command' key='1'>
 						<Paragraph>
 							<pre>
-								<Text copyable>
+								<Text>
 									msfvenom -p {values.Payload}
 									{values.LHOST > '' && ' LHOST=' + values.LHOST}
 									{values.LPORT > '' && ' LPORT=' + values.LPORT}

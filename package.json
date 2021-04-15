@@ -26,9 +26,9 @@
 		"webpack-dev-server": "^3.7.2"
 	},
 	"dependencies": {
-		"@ant-design/icons": "4.5.0",
-		"antd": "4.13.1",
-		"antd-mask-input": "0.1.14",
+		"@ant-design/icons": "4.6.2",
+		"antd": "4.15.1",
+		"antd-mask-input": "0.1.15",
 		"crypto-js": "^4.0.0",
 		"pretty": "^2.0.0",
 		"rc-queue-anim": "1.8.5",
