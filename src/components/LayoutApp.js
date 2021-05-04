@@ -4,7 +4,7 @@ import { CopyrightCircleOutlined, FullscreenOutlined, ArrowsAltOutlined } from '
 import { createFromIconfontCN } from '@ant-design/icons';
 import { goTo } from 'react-chrome-extension-router';
 import ReverseShell from './Linux_Shell/ReverseShell';
-import PhpReverseShell from './Web/PhpReverseShell';
+import PhpReverseShell from './web/PhpReverseShell';
 import TtySpawnShell from './Linux_Shell/TtySpawnShell';
 import Base64Encode from './encoding/Base64Encode';
 import HexEncode from './encoding/HexEncode';
@@ -15,8 +15,8 @@ import LFI from './web/LFI';
 import XSS from './web/XSS';
 import SQLi from './web/SqlInjection';
 import AboutUs from './AboutUs';
-import FeedRSS from './RSS/FeedRSS';
-import FileTransfer from './File_Transfer/File_Transfer';
+import FeedRSS from './rss/FeedRSS';
+import FileTransfer from './file_transfer/File_transfer';
 import PersistedState from 'use-persisted-state';
 import MSFBuilder from './Linux_Shell/MSFBuilder';
 
@@ -198,7 +198,7 @@ export default (props) => {
 					<CopyrightCircleOutlined /> Hack Tools - The all in one Red team browser extension for web
 					pentesters
 					<Paragraph style={{ textAlign: 'center' }}>Ludovic COULON - Riadh BOUCHAHOUA</Paragraph>
-					<pre style={{ textAlign: 'center' }}>HackTools Version - 0.3.7</pre>
+					<pre style={{ textAlign: 'center' }}>HackTools Version - 0.3.8</pre>
 					<Button icon={<FullscreenOutlined style={{ margin: 5 }} />} type='link'>
 						<a href={target} rel='noreferrer noopener' target='_blank'>
 							Fullscreen mode
