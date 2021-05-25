@@ -180,7 +180,7 @@ export default (props) => {
 				<Clipboard component='a' data-clipboard-text={phpRfi}>
 					<Button
 						type='primary'
-						onClick={message.success('Your RFI payload has been copied');}
+						onClick={message.success('Your RFI payload has been copied')}
 						style={{ marginBottom: 10, marginTop: 15 }}
 					>
 						<CopyOutlined />
@@ -190,7 +190,7 @@ export default (props) => {
 				<Clipboard component='a' data-clipboard-text={encodeURI(phpRfi)}>
 					<Button
 						type='dashed'
-						onClick={message.success('Your RFI payload URL encoded has been copied');}
+						onClick={message.success('Your RFI payload URL encoded has been copied')}
 						style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }}
 					>
 						<LinkOutlined /> URL encoded
