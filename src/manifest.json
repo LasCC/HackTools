@@ -1,6 +1,6 @@
 {
 	"name": "Hack-Tools",
-	"version": "0.3.7",
+	"version": "0.3.8",
 	"description": "The all in one Red team extension for web pentester",
 	"browser_action": {
 		"default_title": "Hack-Tools",

