@@ -12,6 +12,9 @@
     </a>
     <img alt="Downloads" src="https://img.shields.io/github/downloads/LasCC/Hack-Tools/total.svg?style=for-the-badge" />
     <img alt="commit" src="https://img.shields.io/github/last-commit/LasCC/Hack-Tools?style=for-the-badge" />
+    <a href="https://inventory.rawsec.ml/" target="_blank">
+      <img alt="RawSecInventory" src="https://inventory.raw.pm/img/badges/Rawsec-inventoried-FF5050_for-the-badge.svg" />
+    <a/>
     <img alt="stars" src="https://img.shields.io/github/stars/LasCC/Hack-Tools?style=social" />
     <a href="https://lgtm.com/projects/g/LasCC/Hack-Tools/context:javascript">
       <img alt="Language grade: JavaScript" src="https://img.shields.io/lgtm/grade/javascript/g/LasCC/Hack-Tools.svg?logo=lgtm&logoWidth=18"/>
