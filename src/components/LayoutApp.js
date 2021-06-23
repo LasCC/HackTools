@@ -19,6 +19,7 @@ import FeedRSS from './rss/FeedRSS';
 import FileTransfer from './file_transfer/File_transfer';
 import PersistedState from 'use-persisted-state';
 import MSFBuilder from './Linux_Shell/MSFBuilder';
+import HTTPUtils from './HTTP-Utils/HTTP-Utils';
 
 const { Paragraph } = Typography;
 const { Sider, Content, Footer } = Layout;
@@ -54,12 +55,8 @@ export default (props) => {
 		},
 		{
 			key: '5',
-			icon: (
-				<Badge dot size='default' style={{ transform: `translate(5px, 3px)` }}>
-					<IconFont type='icon-powershell' style={{ fontSize: '1.5em', marginTop: 3 }} />
-				</Badge>
-			),
-			name: '',
+			icon: <IconFont type='icon-powershell' style={{ fontSize: '1.5em', marginTop: 3 }} />,
+			name: 'PowerShell Commands',
 			componentRoute: PowershellCommands
 		},
 		{
@@ -114,14 +111,24 @@ export default (props) => {
 			key: '14',
 			icon: (
 				<Badge dot size='default' style={{ transform: `translate(3px, 5px)` }}>
-					<IconFont type='icon-shield' style={{ fontSize: '1.5em', marginTop: 3 }} />
+					<IconFont type='icon-http' style={{ fontSize: '1.5em', marginTop: 3 }} />
 				</Badge>
 			),
-			name: '',
-			componentRoute: MSFBuilder
+			name: 'HTTP Responder',
+			componentRoute: HTTPUtils
 		},
 		{
 			key: '15',
+			icon: (
+				<Badge dot size='default' style={{ transform: `translate(3px, 5px)` }}>
+					<IconFont type='icon-shield' style={{ fontSize: '1.5em', marginTop: 3 }} />
+				</Badge>
+			),
+			name: 'MSF Builder',
+			componentRoute: MSFBuilder
+		},
+		{
+			key: '16',
 			icon: <IconFont type='icon-about' style={{ fontSize: '1.5em', marginTop: 3 }} />,
 			name: 'About us',
 			componentRoute: AboutUs
@@ -129,7 +136,7 @@ export default (props) => {
 	];
 
 	const MenuItemsLists = Tabs.map((item) => (
-		<Menu.Item key={item.key} icon={item.icon} onClick={() => navigate(item)}>
+		<Menu.Item style={{ overflow: 'hidden' }} key={item.key} icon={item.icon} onClick={() => navigate(item)}>
 			{item.name}
 		</Menu.Item>
 	));
@@ -198,7 +205,7 @@ export default (props) => {
 					<CopyrightCircleOutlined /> Hack Tools - The all in one Red team browser extension for web
 					pentesters
 					<Paragraph style={{ textAlign: 'center' }}>Ludovic COULON - Riadh BOUCHAHOUA</Paragraph>
-					<pre style={{ textAlign: 'center' }}>HackTools Version - 0.3.8</pre>
+					<pre style={{ textAlign: 'center' }}>HackTools Version - 0.4.0</pre>
 					<Button icon={<FullscreenOutlined style={{ margin: 5 }} />} type='link'>
 						<a href={target} rel='noreferrer noopener' target='_blank'>
 							Fullscreen mode
