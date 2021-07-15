@@ -14,7 +14,7 @@ import {
 	Tabs,
 	Alert
 } from 'antd';
-import { SendOutlined, FullscreenOutlined, ArrowsAltOutlined } from '@ant-design/icons';
+import { SendOutlined, FullscreenOutlined, ArrowsAltOutlined, DeleteOutlined } from '@ant-design/icons';
 import { vs2015 } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import PersistedState from 'use-persisted-state';
 import SyntaxHighlighter from 'react-syntax-highlighter';
@@ -150,9 +150,7 @@ export default (props) => {
 					</Button>
 				</Col>
 				<Col>
-					<Button type='link' danger onClick={() => fetchData()}>
-						Trash
-					</Button>
+					<Button type='link' danger icon={<DeleteOutlined />} onClick={() => fetchData()} />
 				</Col>
 			</Row>
 			{content != '' ? (
@@ -243,15 +241,16 @@ export default (props) => {
 					<Alert
 						message='Informational Notes'
 						description='We recommend our users to use this feature in Fullscreen mode or Pop-up mode.'
-						type='warning'
+						type='info'
 						showIcon
 					/>
 					<Button
 						icon={<FullscreenOutlined style={{ marginRight: 5 }} />}
 						style={{ marginTop: 15 }}
 						type='link'
+						danger
 					>
-						<a href={target} rel='noreferrer noopener' target='_blank'>
+						<a href={target} style={{ color: '#a61d24' }} rel='noreferrer noopener' target='_blank'>
 							Fullscreen mode
 						</a>
 					</Button>
