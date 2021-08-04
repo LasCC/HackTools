@@ -9,7 +9,7 @@ export default (props) => {
 		{ title: 'find / -perm -u=s -type f 2>/dev/null' },
 		{ title: "find / -type f -name '*.txt' 2>/dev/null" },
 		{ title: 'find / -user root -perm -4000 -exec ls -ldb {}; > /tmp/suid' },
-		{ title: 'getcap -r / 2>/dev/null'}		
+		{ title: 'getcap -r / 2>/dev/null' }
 	];
 	const VersionSystem = [
 		{ title: 'cat /etc/issue' },
@@ -70,7 +70,7 @@ export default (props) => {
 		{ title: 'chkconfig --list' },
 		{ title: 'chkconfig --list | grep 3:on' },
 		{ title: 'last' },
-		{ title: 'lastlog' },
+		{ title: 'lastlog' }
 	];
 	const PortForwarding = [
 		{

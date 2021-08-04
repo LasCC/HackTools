@@ -17,7 +17,7 @@ const IconFont = createFromIconfontCN({
 
 const HashEncode = () => {
 	const [ input, setInput ] = useState('');
-	const [ hashtype, setHashType ] = useState('0');
+	const [ _, setHashType ] = useState('0');
 	const [ hashname, setHashname ] = useState('MD5');
 	const [ output, setOutput ] = useState('');
 	const handleClick = (type) => {
@@ -98,7 +98,8 @@ const HashEncode = () => {
 				Hash generator
 			</Title>
 			<Paragraph style={{ margin: 15 }}>
-				A hash function is any function that can be used to map data of arbitrary size to fixed-size values. The values returned by a hash function are called hash values, hash codes, digests, or simply hashes.
+				A hash function is any function that can be used to map data of arbitrary size to fixed-size values. The
+				values returned by a hash function are called hash values, hash codes, digests, or simply hashes.
 			</Paragraph>
 			<Divider dashed />
 			<div key='a' style={{ margin: 15 }}>

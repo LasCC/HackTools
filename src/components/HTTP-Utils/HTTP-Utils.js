@@ -67,6 +67,13 @@ export default (props) => {
 	const [ commentResponse, setCommentResponse ] = useState([]);
 	const [ inputResponse, setInputResponse ] = useState([]);
 	const [ _, setLoading ] = useState();
+	const handleDelete = () => {
+		setContent([]);
+		setHeaderContent([]);
+		setCommentResponse([]);
+		setInputResponse([]);
+		values.url = '';
+	};
 	const fetchData = async () => {
 		message.loading({ content: 'Loading...', key });
 		await axios({
@@ -141,7 +148,7 @@ export default (props) => {
 						onSubmit={() => fetchData()}
 						allowClear
 						value={values.url.replace(/https?:\/\//, '')}
-						placeholder='http://127.0.0.1:8080/home/?a=1 OR example.com'
+						placeholder='http://10.10.14.15:1337/home?a=1 OR example.com'
 					/>
 				</Col>
 				<Col>
@@ -150,7 +157,7 @@ export default (props) => {
 					</Button>
 				</Col>
 				<Col>
-					<Button type='link' danger icon={<DeleteOutlined />} onClick={() => fetchData()} />
+					<Button type='link' danger icon={<DeleteOutlined />} onClick={() => handleDelete()} />
 				</Col>
 			</Row>
 			{content != '' ? (
@@ -209,7 +216,7 @@ export default (props) => {
 								<div dangerouslySetInnerHTML={{ __html: content.data || '' }} />
 							</Modal>
 							<SyntaxHighlighter language='htmlbars' style={vs2015} showLineNumbers={true}>
-								{pretty(content.data) || ''}
+								{pretty(content.data) || <pre>No response</pre>}
 							</SyntaxHighlighter>
 						</TabPane>
 						{commentResponse != '' && (

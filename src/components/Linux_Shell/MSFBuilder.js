@@ -13,9 +13,6 @@ const MSFBuilder = () => {
 	const { Option } = Select;
 	const { Panel } = Collapse;
 	const { Text } = Typography;
-	const successInfoTtyShell = () => {
-		message.success('Your payload has been copied');
-	};
 
 	let payloads = require('../../assets/data/Payloads.json');
 	let encoder = require('../../assets/data/Encoder.json');
