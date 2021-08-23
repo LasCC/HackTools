@@ -1,9 +1,10 @@
 {
-	"name": "HackTools",
-	"version": "0.1.0a",
+	"name": "hack-tools",
+	"version": "1.0.0",
 	"description": "The all in one Red team browser extension for web pentesters",
 	"main": "index.js",
 	"scripts": {
+		"start": "webpack --watch",
 		"build": "webpack --mode production",
 		"watch": "webpack --watch",
 		"test": "echo \"Error: no test specified\" && exit 1"
@@ -12,35 +13,64 @@
 	"author": "Ludovic COULON & Riadh BOUCHAHOUA",
 	"license": "MIT",
 	"devDependencies": {
-		"@babel/core": "^7.5.5",
+		"@babel/cli": "^7.14.8",
+		"@babel/core": "^7.15.0",
+		"@babel/plugin-proposal-class-properties": "^7.14.5",
+		"@babel/preset-env": "^7.15.0",
 		"@babel/preset-react": "^7.0.0",
+		"@babel/preset-typescript": "^7.9.0",
+		"@types/antd": "^1.0.0",
+		"@types/crypto-js": "^4.0.2",
+		"@types/pretty": "^2.0.0",
+		"@types/react-query": "^1.2.9",
+		"@types/react-syntax-highlighter": "^13.5.2",
+		"@types/use-persisted-state": "^0.3.0",
 		"babel-loader": "^8.0.6",
-		"clean-webpack-plugin": "^3.0.0",
-		"copy-webpack-plugin": "^5.0.3",
-		"css-loader": "^3.1.0",
-		"file-loader": "^4.1.0",
-		"html-webpack-plugin": "^3.2.0",
-		"style-loader": "^0.23.1",
-		"webpack": "^4.37.0",
-		"webpack-cli": "^3.3.6",
-		"webpack-dev-server": "^3.7.2"
+		"clean-webpack-plugin": "^4.0.0-alpha.0",
+		"copy-webpack-plugin": "^9.0.1",
+		"css-loader": "^6.2.0",
+		"file-loader": "^6.2.0",
+		"html-webpack-plugin": "^5.3.2",
+		"style-loader": "^3.2.1",
+		"typescript": "^4.3.5",
+		"webpack": "^5.50.0",
+		"webpack-cli": "^4.8.0",
+		"webpack-dev-server": "^4.0.0"
+	},
+	"browserslist": {
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
 	},
 	"dependencies": {
 		"@ant-design/icons": "4.6.2",
-		"antd": "4.15.1",
+		"@hot-loader/react-dom": "^17.0.1",
+		"@types/chrome": "^0.0.154",
+		"@types/jest": "^27.0.1",
+		"@types/node": "^16.6.1",
+		"@types/react": "^17.0.18",
+		"@types/react-dom": "^17.0.9",
+		"antd": "4.16.12",
 		"antd-mask-input": "0.1.15",
 		"axios": "^0.21.1",
 		"crypto-js": "^4.0.0",
 		"pretty": "^2.0.0",
-		"rc-queue-anim": "1.8.5",
-		"react": "^17.0.1",
+		"rc-queue-anim": "^2.0.0",
+		"react": "^17.0.2",
 		"react-chrome-extension-router": "^1.2.0",
 		"react-clipboard.js": "2.0.16",
-		"react-dom": "^17.0.1",
-		"react-query": "^2.5.13",
-		"react-scripts": "4.0.3",
+		"react-dom": "^17.0.2",
+		"react-query": "^3.19.6",
 		"react-syntax-highlighter": "^15.4.3",
 		"sm3": "^1.0.3",
+		"ts-loader": "^9.2.5",
 		"use-persisted-state": "^0.3.3"
 	}
 }

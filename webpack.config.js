@@ -1,58 +1,76 @@
+const webpack = require('webpack');
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-module.exports = {
+const config = {
 	mode: 'development',
 	entry: {
-		app: './src/App.js'
+		app: path.join(__dirname, 'src/App.tsx')
 	},
 	devtool: 'source-map',
-	plugins: [
-		new CleanWebpackPlugin(),
-		new HtmlWebpackPlugin({
-			title: 'Output Management',
-			template: './src/index.html'
-		}),
-		new CopyWebpackPlugin(
-			[
-				{ from: './src/manifest.json', to: './', flatten: true },
-				{ from: './src/assets/img/icons/*', to: './', flatten: true },
-				{ from: './src/assets/icons/*', to: './', flatten: true },
-				{ from: './src/devtools/*', to: './', flatten: true }
-			],
-			{
-				copyUnmodified: true
-			}
-		)
-	],
-	output: {
-		filename: '[name].bundle.js',
-		path: path.resolve(__dirname, 'dist')
-	},
+	output: { path: path.join(__dirname, 'dist'), filename: '[name].js' },
 	module: {
 		rules: [
 			{
-				test: /\.js$/,
-				include: path.resolve(__dirname, 'src'),
-				loader: 'babel-loader'
+				test: /\.(js|jsx)$/,
+				exclude: /(node_modules|bower_components)/,
+				use: 'babel-loader'
 			},
 			{
 				test: /\.css$/,
-				include: path.resolve(__dirname, 'src'),
-				use: [ 'style-loader', 'css-loader' ]
+				use: [ 'style-loader', 'css-loader' ],
+				exclude: /\.module\.css$/
 			},
 			{
-				test: /\.(png|svg|jpg|gif)$/,
-				include: path.resolve(__dirname, 'src'),
-				use: [ 'file-loader' ]
+				test: /\.ts(x)?$/,
+				loader: 'ts-loader',
+				exclude: /node_modules/
 			},
 			{
-				test: /\.(woff|woff2|eot|ttf|otf)$/,
-				include: path.resolve(__dirname, 'src'),
-				use: [ 'file-loader' ]
+				test: /\.css$/,
+				use: [
+					'style-loader',
+					{
+						loader: 'css-loader',
+						options: {
+							importLoaders: 1,
+							modules: true
+						}
+					}
+				],
+				include: /\.module\.css$/
+			},
+			{
+				test: /\.svg$/,
+				use: 'file-loader'
+			},
+			{
+				test: /\.png$/,
+				use: [
+					{
+						loader: 'url-loader',
+						options: {
+							mimetype: 'image/png'
+						}
+					}
+				]
 			}
 		]
-	}
+	},
+	resolve: {
+		extensions: [ '.js', '.jsx', '.tsx', '.ts' ],
+		alias: {
+			'react-dom': '@hot-loader/react-dom'
+		}
+	},
+	devServer: {
+		contentBase: './dist'
+	},
+	plugins: [
+		new CopyWebpackPlugin({
+			patterns: [ { from: 'dist', to: '.' } ]
+		})
+	]
 };
+
+module.exports = config;

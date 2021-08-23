@@ -204,4 +204,5 @@ h5.ant-typography,
 body {
 	min-width: 750px;
 	min-height: auto;
+	background-color: black;
 }
