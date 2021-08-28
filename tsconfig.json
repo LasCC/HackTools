@@ -1,18 +1,16 @@
 {
   "compilerOptions": {
-    "strict": true,
-    "module": "commonjs",
-    "target": "ES6",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "esModuleInterop": true,
-    "rootDir": "src",
-    "outDir": "dist",
-    "noEmitOnError": true,
     "jsx": "react",
-    "typeRoots": [ "node_modules/@types", "./src/types/" ]
-  }
+    "module": "commonjs",
+    "noImplicitAny": true,
+    "outDir": "./dist/",
+    "preserveConstEnums": true,
+    "removeComments": true,
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "target": "es5"
+  },
+  "include": [
+    "./src/**/**/*"
+  ]
 }

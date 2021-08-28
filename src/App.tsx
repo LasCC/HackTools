@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import { Router } from 'react-chrome-extension-router';
 import { BackTop } from 'antd';
 import { QueryClientProvider, QueryClient } from 'react-query';
-import LayoutApp from './components/LayoutApp.jsx';
-import ReverseShell from './components/linux/ReverseShell.jsx';
+import LayoutApp from './components/LayoutApp';
+import ReverseShell from './components/linux/ReverseShell';
 import './assets/css/style.css';
 
 const queryClient = new QueryClient();

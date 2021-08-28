@@ -16,17 +16,18 @@ import {
 } from 'antd';
 import { SendOutlined, FullscreenOutlined, ArrowsAltOutlined, DeleteOutlined } from '@ant-design/icons';
 import { vs2015 } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import axios, { Method } from 'axios';
 import PersistedState from 'use-persisted-state';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import QueueAnim from 'rc-queue-anim';
 import pretty from 'pretty';
-import axios, { Method } from 'axios';
 
 const { Title, Paragraph } = Typography;
 const { TabPane } = Tabs;
 const { TextArea } = Input;
+const { Option } = Select;
 
-export const HTTPUtils = () => {
+export default function LinuxCommands() {
 	const http_url = PersistedState('http_url_repeater');
 	const [ isModalVisible, setIsModalVisible ] = useState(false);
 
@@ -67,15 +68,24 @@ export const HTTPUtils = () => {
 		setValues({ ...values, [name]: event });
 	};
 
+	interface Content {
+		status: string | number;
+		statusText: string;
+		headers: {
+			[key: string]: string;
+		};
+		data: string;
+	}
+
 	// Axios fetch
 	const key = 'updatable';
-	const [ content, setContent ] = useState([]);
+	const [ content, setContent ] = useState<Content>();
 	const [ headerContent, setHeaderContent ] = useState([]);
 	const [ commentResponse, setCommentResponse ] = useState([]);
 	const [ inputResponse, setInputResponse ] = useState([]);
 	const [ _, setLoading ] = useState<Boolean>();
 	const handleDelete = () => {
-		setContent([]);
+		setContent(undefined);
 		setHeaderContent([]);
 		setCommentResponse([]);
 		setInputResponse([]);
@@ -171,7 +181,7 @@ export const HTTPUtils = () => {
 					<Button type='link' danger icon={<DeleteOutlined />} onClick={() => handleDelete()} />
 				</Col>
 			</Row>
-			{content != '' ? (
+			{!content ? (
 				<div style={{ padding: 15 }}>
 					<Descriptions title='Request info' style={{ marginBottom: 15 }}>
 						<Descriptions.Item label='Status code'>
@@ -230,20 +240,33 @@ export const HTTPUtils = () => {
 								{pretty(content.data) || <pre>No response</pre>}
 							</SyntaxHighlighter>
 						</TabPane>
-						{commentResponse != '' && (
+						{!commentResponse && (
 							<TabPane tab='Comment Only' key='2'>
-								{commentResponse.map((matches) => {
-									return (
-										<SyntaxHighlighter language='htmlbars' style={vs2015}>
-											{matches};
-										</SyntaxHighlighter>
-									);
-								})}
+								{commentResponse.map(
+									(
+										matches:
+											| string
+											| number
+											| boolean
+											| {}
+											| React.ReactElement<any, string | React.JSXElementConstructor<any>>
+											| React.ReactNodeArray
+											| React.ReactPortal
+											| null
+											| undefined
+									) => {
+										return (
+											<SyntaxHighlighter language='htmlbars' style={vs2015}>
+												{matches};
+											</SyntaxHighlighter>
+										);
+									}
+								)}
 							</TabPane>
 						)}
-						{inputResponse != '' && (
+						{!inputResponse && (
 							<TabPane tab='Form / Input Only' key='3'>
-								{inputResponse.map((matches) => {
+								{inputResponse.map((matches: string) => {
 									return (
 										<SyntaxHighlighter language='htmlbars' style={vs2015} showLineNumbers={true}>
 											{pretty(matches)};
@@ -283,4 +306,4 @@ export const HTTPUtils = () => {
 			)}
 		</QueueAnim>
 	);
-};
+}

@@ -85,7 +85,7 @@ const MSFBuilder = () => {
 							allowClear
 							onChange={handleChangeSelect('Payload')}
 							placeholder='python/meterpreter/reverse_http'
-							filterOption={(inputValue, option: any) =>
+							filterOption={(inputValue, option) =>
 								option.value.toLowerCase().indexOf(inputValue.toLowerCase()) >= 0}
 						>
 							{payloads.map(

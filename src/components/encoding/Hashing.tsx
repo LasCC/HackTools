@@ -5,6 +5,7 @@ import MD5 from 'crypto-js/md5';
 import SHA1 from 'crypto-js/sha1';
 import SHA256 from 'crypto-js/sha256';
 import SHA512 from 'crypto-js/sha512';
+//@ts-ignore
 import Sm3 from 'sm3';
 import Clipboard from 'react-clipboard.js';
 import QueueAnim from 'rc-queue-anim';
@@ -16,7 +17,7 @@ const IconFont = createFromIconfontCN({
 });
 
 const HashEncode = () => {
-	const [ input, setInput ] = useState('');
+	const [ input, setInput ] = useState<string>('');
 	const [ _, setHashType ] = useState('0');
 	const [ hashname, setHashname ] = useState('MD5');
 	const [ output, setOutput ] = useState('');
@@ -26,13 +27,13 @@ const HashEncode = () => {
 	};
 	const handleEncode = (hashtype: string) => {
 		if (hashtype === 'MD5') {
-			setOutput(MD5(input));
+			setOutput(MD5(input, undefined).toString());
 		} else if (hashtype === 'SHA1') {
-			setOutput(SHA1(input));
+			setOutput(SHA1(input, undefined).toString());
 		} else if (hashtype === 'SHA256') {
-			setOutput(SHA256(input));
+			setOutput(SHA256(input, undefined).toString());
 		} else if (hashtype === 'SHA512') {
-			setOutput(SHA512(input));
+			setOutput(SHA512(input, undefined).toString());
 		} else if (hashtype === 'SM3') {
 			setOutput(Sm3(input));
 		}
