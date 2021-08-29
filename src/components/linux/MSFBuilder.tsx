@@ -60,7 +60,7 @@ const MSFBuilder = () => {
 	return (
 		<QueueAnim delay={300} duration={1500}>
 			<div style={{ margin: 15 }}>
-				<Title level={3} style={{ fontWeight: 'bold' }}>
+				<Title level={2} style={{ fontWeight: 'bold' }}>
 					MSF Venom Builder
 				</Title>
 				<Paragraph>
@@ -279,7 +279,7 @@ const MSFBuilder = () => {
 					<Panel header='MSF Venom Command' key='1'>
 						<Paragraph>
 							<pre>
-								<Text>
+								<Text copyable>
 									msfvenom -p {values.Payload}
 									{values.LHOST > '' && ' LHOST=' + values.LHOST}
 									{values.LPORT > '' && ' LPORT=' + values.LPORT}

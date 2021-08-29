@@ -6,17 +6,17 @@
 		"default_title": "Hack-Tools",
 		"default_popup": "index.html",
 		"default_icon": {
-			"16": "get_started16.png",
-			"32": "get_started32.png",
-			"48": "get_started48.png",
-			"128": "get_started128.png"
+			"16": "./src/assets/img/icons/get_started16.png",
+			"32": "./src/assets/img/icons/get_started32.png",
+			"48": "./src/assets/img/icons/get_started48.png",
+			"128": "./src/assets/img/icons/get_started128.png"
 		}
 	},
 	"icons": {
-		"16": "get_started16.png",
-		"32": "get_started32.png",
-		"48": "get_started48.png",
-		"128": "get_started128.png"
+		"16": "./src/assets/img/icons/get_started16.png",
+		"32": "./src/assets/img/icons/get_started32.png",
+		"48": "./src/assets/img/icons/get_started48.png",
+		"128": "./src/assets/img/icons/get_started128.png"
 	},
 	"permissions": [ "<all_urls>" ],
 	"manifest_version": 2,

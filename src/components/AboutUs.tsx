@@ -8,7 +8,7 @@ export default function AboutUs() {
 	return (
 		<QueueAnim delay={300} duration={1500}>
 			<Title
-				level={3}
+				level={2}
 				style={{
 					fontWeight: 'bold',
 					margin: 15

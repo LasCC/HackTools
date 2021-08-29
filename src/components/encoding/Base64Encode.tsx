@@ -42,7 +42,7 @@ const Base64Encode = () => {
 	return (
 		<QueueAnim delay={300} duration={1500}>
 			<div style={{ margin: 15 }}>
-				<Title level={3} style={{ fontWeight: 'bold' }}>
+				<Title level={2} style={{ fontWeight: 'bold' }}>
 					Base64 Encoder / Decoder
 				</Title>
 				<Paragraph>

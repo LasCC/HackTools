@@ -68,7 +68,7 @@ export default function LinuxCommands() {
 		setValues({ ...values, [name]: event });
 	};
 
-	interface Content {
+	interface ContentProps {
 		status: string | number;
 		statusText: string;
 		headers: {
@@ -79,7 +79,7 @@ export default function LinuxCommands() {
 
 	// Axios fetch
 	const key = 'updatable';
-	const [ content, setContent ] = useState<Content>();
+	const [ content, setContent ] = useState<ContentProps>();
 	const [ headerContent, setHeaderContent ] = useState([]);
 	const [ commentResponse, setCommentResponse ] = useState([]);
 	const [ inputResponse, setInputResponse ] = useState([]);
@@ -91,6 +91,8 @@ export default function LinuxCommands() {
 		setInputResponse([]);
 		values.url = '';
 	};
+
+	console.log(content);
 
 	const fetchData = async () => {
 		message.loading({ content: 'Loading...', key });
@@ -120,7 +122,7 @@ export default function LinuxCommands() {
 
 	return (
 		<QueueAnim delay={300} duration={1500}>
-			<Title level={3} style={{ fontWeight: 'bold', margin: 15 }}>
+			<Title level={2} style={{ fontWeight: 'bold', margin: 15 }}>
 				HTTP Repeater
 			</Title>
 			<Paragraph style={{ marginLeft: 15 }}>
@@ -136,7 +138,6 @@ export default function LinuxCommands() {
 						defaultValue='GET'
 						style={{ width: '100%' }}
 						value={values.type}
-						allowClear
 						placeholder='GET'
 						onChange={handleChangeSelect('type')}
 					>
@@ -153,7 +154,6 @@ export default function LinuxCommands() {
 					<Select
 						defaultValue='http://'
 						style={{ width: '100%' }}
-						allowClear
 						value={values.protocol}
 						placeholder='http://'
 						onChange={handleChangeSelect('protocol')}
@@ -181,7 +181,7 @@ export default function LinuxCommands() {
 					<Button type='link' danger icon={<DeleteOutlined />} onClick={() => handleDelete()} />
 				</Col>
 			</Row>
-			{!content ? (
+			{content != undefined ? (
 				<div style={{ padding: 15 }}>
 					<Descriptions title='Request info' style={{ marginBottom: 15 }}>
 						<Descriptions.Item label='Status code'>

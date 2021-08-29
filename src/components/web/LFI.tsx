@@ -69,7 +69,7 @@ export default function LFI()  {
 
 	return (
 		<QueueAnim delay={300} duration={1500}>
-			<Title level={3} style={{ fontWeight: 'bold', margin: 15 }}>
+			<Title level={2} style={{ fontWeight: 'bold', margin: 15 }}>
 				LFI
 			</Title>
 			<Paragraph style={{ margin: 15 }}>

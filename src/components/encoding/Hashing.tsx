@@ -10,7 +10,7 @@ import Sm3 from 'sm3';
 import Clipboard from 'react-clipboard.js';
 import QueueAnim from 'rc-queue-anim';
 
-const { Title, Paragraph } = Typography;
+const { Title, Paragraph, Text } = Typography;
 const { TextArea } = Input;
 const IconFont = createFromIconfontCN({
 	scriptUrl: [ './iconfont.js' ]
@@ -89,7 +89,7 @@ const HashEncode = () => {
 
 	return (
 		<QueueAnim delay={300} duration={1500}>
-			<Title level={3} style={{ fontWeight: 'bold', margin: 15 }}>
+			<Title level={2} style={{ fontWeight: 'bold', margin: 15 }}>
 				Hash generator
 			</Title>
 			<Paragraph style={{ margin: 15 }}>
