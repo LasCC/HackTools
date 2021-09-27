@@ -76,7 +76,6 @@ export default function LinuxCommands() {
 		};
 		data: string;
 	}
-
 	// Axios fetch
 	const key = 'updatable';
 	const [ content, setContent ] = useState<ContentProps>();
@@ -91,8 +90,6 @@ export default function LinuxCommands() {
 		setInputResponse([]);
 		values.url = '';
 	};
-
-	console.log(content);
 
 	const fetchData = async () => {
 		message.loading({ content: 'Loading...', key });
