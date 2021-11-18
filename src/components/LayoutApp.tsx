@@ -123,7 +123,7 @@ export default function LayoutApp(props: {
 					<IconFont type='icon-http' style={{ fontSize: '1.5em', marginTop: 3 }} />
 				</Badge>
 			),
-			name: 'HTTP Responder',
+			name: 'HTTP Repeater',
 			componentRoute: HTTPUtils
 		},
 		{
