@@ -56,6 +56,7 @@
 		"antd-mask-input": "0.1.15",
 		"axios": "^0.21.1",
 		"crypto-js": "^4.0.0",
+		"escape-quotes": "^1.0.2",
 		"pretty": "^2.0.0",
 		"rc-queue-anim": "^2.0.0",
 		"react": "^17.0.2",
