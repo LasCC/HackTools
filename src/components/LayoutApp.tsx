@@ -106,18 +106,12 @@ export default function LayoutApp(props: {
 		},
 		{
 			key: '12',
-			icon: <IconFont type='icon-hexo' style={{ fontSize: '1.5em', marginTop: 3 }} />,
-			name: 'Hexadecimal Encoder / Decoder',
-			componentRoute: HexEncode
-		},
-		{
-			key: '13',
 			icon: <IconFont type='icon-Cloud' style={{ fontSize: '1.5em', marginTop: 3 }} />,
 			name: 'Feed RSS',
 			componentRoute: FeedRSS
 		},
 		{
-			key: '14',
+			key: '13',
 			icon: (
 				<Badge dot size='default' style={{ transform: `translate(3px, 5px)` }}>
 					<IconFont type='icon-http' style={{ fontSize: '1.5em', marginTop: 3 }} />
@@ -127,7 +121,7 @@ export default function LayoutApp(props: {
 			componentRoute: HTTPUtils
 		},
 		{
-			key: '15',
+			key: '14',
 			icon: (
 				<Badge dot size='default' style={{ transform: `translate(3px, 5px)` }}>
 					<IconFont type='icon-shield' style={{ fontSize: '1.5em', marginTop: 3 }} />
@@ -137,7 +131,7 @@ export default function LayoutApp(props: {
 			componentRoute: MSFBuilder
 		},
 		{
-			key: '16',
+			key: '15',
 			icon: <IconFont type='icon-about' style={{ fontSize: '1.5em', marginTop: 3 }} />,
 			name: 'About us',
 			componentRoute: AboutUs
