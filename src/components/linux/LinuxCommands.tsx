@@ -115,145 +115,136 @@ export default function LinuxCommands() {
 				Useful Linux command for your Penetration Testing
 			</Title>
 			<Paragraph style={{ margin: 15 }}>List of useful commands on Linux</Paragraph>
-			<Divider dashed />
+			<Divider orientation='left'>SUID Commands</Divider>
 			<div
 				key='a'
 				style={{
 					padding: 15
 				}}
 			>
-				<Title level={3}>SUID Commands</Title>
 				{Suid.map((k, i) => {
 					return (
-						<Paragraph key={i} copyable ellipsis={true}>
+						<Paragraph key={i} code editable copyable ellipsis={true}>
 							{k.title}
 						</Paragraph>
 					);
 				})}
 			</div>
-			<Divider dashed />
+			<Divider orientation='left'>What version of the system ?</Divider>
 			<div
 				key='b'
 				style={{
 					padding: 15
 				}}
 			>
-				<Title level={3}>What version of the system ?</Title>
 				{VersionSystem.map((k, i) => {
 					return (
-						<Paragraph key={i} copyable ellipsis={true}>
+						<Paragraph key={i} code editable copyable ellipsis={true}>
 							{k.title}
 						</Paragraph>
 					);
 				})}
 			</div>
-			<Divider dashed />
+			<Divider orientation='left'>What is its kernel version ?</Divider>
 			<div
 				key='c'
 				style={{
 					padding: 15
 				}}
 			>
-				<Title level={3}>What is its kernel version ?</Title>
 				{KernelVersion.map((k, i) => {
 					return (
-						<Paragraph key={i} copyable ellipsis={true}>
+						<Paragraph key={i} code editable copyable ellipsis={true}>
 							{k.title}
 						</Paragraph>
 					);
 				})}
 			</div>
+			<Divider orientation='left'>What is the environment variables ?</Divider>
 			<div
 				key='d'
 				style={{
 					padding: 15
 				}}
 			>
-				<Divider dashed />
-				<Title level={3}>What is the environment variables ?</Title>
 				{EnvironmentVariables.map((k, i) => {
 					return (
-						<Paragraph key={i} copyable ellipsis={true}>
+						<Paragraph key={i} code editable copyable ellipsis={true}>
 							{k.title}
 						</Paragraph>
 					);
 				})}
 			</div>
-			<Divider dashed />
+			<Divider orientation='left'>Service settings, there is any wrong allocation?</Divider>
 			<div
 				key='e'
 				style={{
 					padding: 15
 				}}
 			>
-				<Title level={3}>Service settings, there is any wrong allocation?</Title>
 				{ServiceSettings.map((k, i) => {
 					return (
-						<Paragraph key={i} copyable ellipsis={true}>
+						<Paragraph key={i} code editable copyable ellipsis={true}>
 							{k.title}
 						</Paragraph>
 					);
 				})}
 			</div>
-			<Divider dashed />
+			<Divider orientation='left'>Is there any cron jobs ?</Divider>
 			<div
 				key='f'
 				style={{
 					padding: 15
 				}}
 			>
-				<Title level={3}>Is there any cron jobs ?</Title>
 				{CronJobs.map((k, i) => {
 					return (
-						<Paragraph key={i} copyable ellipsis={true}>
+						<Paragraph key={i} code editable copyable ellipsis={true}>
 							{k.title}
 						</Paragraph>
 					);
 				})}
 			</div>
-			<Divider dashed />
+			<Divider orientation='left'>Other users host communication with the system ?</Divider>
 			<div
 				key='g'
 				style={{
 					padding: 15
 				}}
 			>
-				<Title level={3}>Other users host communication with the system ?</Title>
 				{UsersHost.map((k, i) => {
 					return (
-						<Paragraph key={i} copyable ellipsis={true}>
+						<Paragraph key={i} code editable copyable ellipsis={true}>
 							{k.title}
 						</Paragraph>
 					);
 				})}
 			</div>
-			<Divider dashed />
+			<Divider orientation='left'>How to port forward ?</Divider>
 			<div
 				key='h'
 				style={{
 					padding: 15
 				}}
 			>
-				<Title level={3}>How to port forward ?</Title>
 				{PortForwarding.map((k, i) => {
 					return (
-						<Paragraph key={i} copyable ellipsis={true}>
+						<Paragraph key={i} code editable copyable ellipsis={true}>
 							{k.title}
 						</Paragraph>
 					);
 				})}
 			</div>
-			<Divider dashed />
+			<Divider orientation='left'>TAR wildcard cronjob privilege escalation</Divider>
 			<div
 				key='h'
 				style={{
 					padding: 15
 				}}
 			>
-				<Title level={3}>TAR wildcard cronjob privilege escalation </Title>
 				{wildcardPrivesc.map((k, i) => {
 					return (
-						<Paragraph key={i} copyable ellipsis={true}>
+						<Paragraph key={i} code editable copyable ellipsis={true}>
 							{k.title}
 						</Paragraph>
 					);

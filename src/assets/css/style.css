@@ -76,7 +76,9 @@
 	height: 35px !important;
 	line-height: 35px !important;
 }
-
+.ant-typography-single-line {
+	white-space: normal !important;
+}
 .ant-menu-inline-collapsed > .ant-menu-item .ant-menu-item-icon,
 .ant-menu-inline-collapsed > .ant-menu-item-group > .ant-menu-item-group-list > .ant-menu-item .ant-menu-item-icon,
 .ant-menu-inline-collapsed

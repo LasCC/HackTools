@@ -80,94 +80,87 @@ export default function XSS() {
 				Flaws that allow these attacks to succeed are quite widespread and occur anywhere a web application uses
 				input from a user within the output it generates without validating or encoding it.
 			</Paragraph>
-			<Divider dashed />
+			<Divider orientation='left'>Data grabber for XSS</Divider>
 			<div
 				key='a'
 				style={{
 					padding: 15
 				}}
 			>
-				<Title level={3}>Data grabber for XSS</Title>
 				<Paragraph>
 					Obtains the administrator cookie or sensitive access token, the following payload will send it to a
 					controlled page.
 				</Paragraph>
 				{DataGrabber.map((k, i) => {
 					return (
-						<Paragraph key={i} copyable ellipsis={true}>
+						<Paragraph key={i} copyable code editable ellipsis={true}>
 							{k.title}
 						</Paragraph>
 					);
 				})}
 			</div>
-			<Divider dashed />
+			<Divider orientation='left'>XSS in HTML/Applications</Divider>
 			<div
 				key='b'
 				style={{
 					padding: 15
 				}}
 			>
-				<Title level={3}>XSS in HTML/Applications</Title>
-				<Title level={4}>Basic Payload</Title>
 				{BasicXSS.map((k, i) => {
 					return (
-						<Paragraph key={i} copyable ellipsis={true}>
+						<Paragraph key={i} copyable code editable ellipsis={true}>
 							{k.title}
 						</Paragraph>
 					);
 				})}
-				<Title level={4}>Img tag payload</Title>
 				{ImgPayload.map((k, i) => {
 					return (
-						<Paragraph key={i} copyable ellipsis={true}>
+						<Paragraph key={i} copyable code editable ellipsis={true}>
 							{k.title}
 						</Paragraph>
 					);
 				})}
 			</div>
+			<Divider orientation='left'>XSS in Markdown</Divider>
 			<div
 				key='c'
 				style={{
 					padding: 15
 				}}
 			>
-				<Divider dashed />
-				<Title level={3}>XSS in Markdown</Title>
 				{XSSMarkdown.map((k, i) => {
 					return (
-						<Paragraph key={i} copyable>
+						<Paragraph key={i} copyable code editable>
 							{k.title}
 						</Paragraph>
 					);
 				})}
 			</div>
-			<Divider dashed />
+			<Divider orientation='left'>XSS in SVG (short)</Divider>
 			<div
 				key='d'
 				style={{
 					padding: 15
 				}}
 			>
-				<Title level={3}>XSS in SVG (short)</Title>
 				{XSSSvg.map((k, i) => {
 					return (
-						<Paragraph key={i} copyable ellipsis={true}>
+						<Paragraph key={i} copyable code editable ellipsis={true}>
 							{k.title}
 						</Paragraph>
 					);
 				})}
 			</div>
-			<Divider dashed />
+			<Divider orientation='left'>Bypass word blacklist with code evaluation</Divider>
 			<div
 				key='e'
 				style={{
 					padding: 15
 				}}
 			>
-				<Title level={3}>Bypass word blacklist with code evaluation</Title>
 				{BypassWord.map((k, i) => {
 					return (
-						<Paragraph key={i} copyable>
+						<Paragraph key={i} copyable code editable>
 							{k.title}
 						</Paragraph>
 					);
