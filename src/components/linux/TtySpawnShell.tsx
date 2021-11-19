@@ -27,7 +27,7 @@ export default function TTY() {
 					python -c 'import pty; pty.spawn("/bin/bash")'
 				</Paragraph>
 			</div>
-			<Divider orientation='left'>Fully Interactive TTY</Divider>
+			<Divider orientation='center'>Fully Interactive TTY</Divider>
 			<div
 				key='b'
 				style={{

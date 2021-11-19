@@ -221,7 +221,7 @@ export default function PhpReverseShell() {
 					</Col>
 				</Row>
 			</div>
-			<Divider orientation='left'>Pentestmonkey's reverse shell</Divider>
+			<Divider orientation='center'>Pentestmonkey's reverse shell</Divider>
 			<div
 				key='a'
 				style={{

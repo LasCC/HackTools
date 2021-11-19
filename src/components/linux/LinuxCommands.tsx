@@ -115,7 +115,7 @@ export default function LinuxCommands() {
 				Useful Linux command for your Penetration Testing
 			</Title>
 			<Paragraph style={{ margin: 15 }}>List of useful commands on Linux</Paragraph>
-			<Divider orientation='left'>SUID Commands</Divider>
+			<Divider orientation='center'>SUID Commands</Divider>
 			<div
 				key='a'
 				style={{
@@ -130,7 +130,7 @@ export default function LinuxCommands() {
 					);
 				})}
 			</div>
-			<Divider orientation='left'>What version of the system ?</Divider>
+			<Divider orientation='center'>What version of the system ?</Divider>
 			<div
 				key='b'
 				style={{
@@ -145,7 +145,7 @@ export default function LinuxCommands() {
 					);
 				})}
 			</div>
-			<Divider orientation='left'>What is its kernel version ?</Divider>
+			<Divider orientation='center'>What is its kernel version ?</Divider>
 			<div
 				key='c'
 				style={{
@@ -160,7 +160,7 @@ export default function LinuxCommands() {
 					);
 				})}
 			</div>
-			<Divider orientation='left'>What is the environment variables ?</Divider>
+			<Divider orientation='center'>What is the environment variables ?</Divider>
 			<div
 				key='d'
 				style={{
@@ -175,7 +175,7 @@ export default function LinuxCommands() {
 					);
 				})}
 			</div>
-			<Divider orientation='left'>Service settings, there is any wrong allocation?</Divider>
+			<Divider orientation='center'>Service settings, there is any wrong allocation?</Divider>
 			<div
 				key='e'
 				style={{
@@ -190,7 +190,7 @@ export default function LinuxCommands() {
 					);
 				})}
 			</div>
-			<Divider orientation='left'>Is there any cron jobs ?</Divider>
+			<Divider orientation='center'>Is there any cron jobs ?</Divider>
 			<div
 				key='f'
 				style={{
@@ -205,7 +205,7 @@ export default function LinuxCommands() {
 					);
 				})}
 			</div>
-			<Divider orientation='left'>Other users host communication with the system ?</Divider>
+			<Divider orientation='center'>Other users host communication with the system ?</Divider>
 			<div
 				key='g'
 				style={{
@@ -220,7 +220,7 @@ export default function LinuxCommands() {
 					);
 				})}
 			</div>
-			<Divider orientation='left'>How to port forward ?</Divider>
+			<Divider orientation='center'>How to port forward ?</Divider>
 			<div
 				key='h'
 				style={{
@@ -235,7 +235,7 @@ export default function LinuxCommands() {
 					);
 				})}
 			</div>
-			<Divider orientation='left'>TAR wildcard cronjob privilege escalation</Divider>
+			<Divider orientation='center'>TAR wildcard cronjob privilege escalation</Divider>
 			<div
 				key='h'
 				style={{

@@ -80,7 +80,7 @@ export default function XSS() {
 				Flaws that allow these attacks to succeed are quite widespread and occur anywhere a web application uses
 				input from a user within the output it generates without validating or encoding it.
 			</Paragraph>
-			<Divider orientation='left'>Data grabber for XSS</Divider>
+			<Divider orientation='center'>Data grabber for XSS</Divider>
 			<div
 				key='a'
 				style={{
@@ -99,7 +99,7 @@ export default function XSS() {
 					);
 				})}
 			</div>
-			<Divider orientation='left'>XSS in HTML/Applications</Divider>
+			<Divider orientation='center'>XSS in HTML/Applications</Divider>
 			<div
 				key='b'
 				style={{
@@ -121,7 +121,7 @@ export default function XSS() {
 					);
 				})}
 			</div>
-			<Divider orientation='left'>XSS in Markdown</Divider>
+			<Divider orientation='center'>XSS in Markdown</Divider>
 			<div
 				key='c'
 				style={{
@@ -136,7 +136,7 @@ export default function XSS() {
 					);
 				})}
 			</div>
-			<Divider orientation='left'>XSS in SVG (short)</Divider>
+			<Divider orientation='center'>XSS in SVG (short)</Divider>
 			<div
 				key='d'
 				style={{
@@ -151,7 +151,7 @@ export default function XSS() {
 					);
 				})}
 			</div>
-			<Divider orientation='left'>Bypass word blacklist with code evaluation</Divider>
+			<Divider orientation='center'>Bypass word blacklist with code evaluation</Divider>
 			<div
 				key='e'
 				style={{
