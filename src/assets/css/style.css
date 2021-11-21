@@ -1,5 +1,3 @@
-@import '~antd/dist/antd.dark.min.css';
-
 .logo {
 	height: 32px;
 	margin: 16px;
@@ -26,8 +24,11 @@
 	}
 }
 
+.ant-badge {
+	color: inherit !important;
+}
+
 .site-layout .site-layout-background {
-	background: #0f0f0f !important;
 	border-radius: 10px;
 }
 .ant-menu-inline .ant-menu-item:not(:last-child),
@@ -206,5 +207,4 @@ h5.ant-typography,
 body {
 	min-width: 750px;
 	min-height: auto;
-	background-color: black;
 }

@@ -3,6 +3,16 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+
+const lessLoader = {
+	loader: 'less-loader',
+	options: {
+		lessOptions: {
+			javascriptEnabled: true
+		}
+	}
+};
 
 module.exports = {
 	mode: 'development',
@@ -14,6 +24,7 @@ module.exports = {
 	plugins: [
 		new webpack.HotModuleReplacementPlugin(),
 		new CleanWebpackPlugin(),
+		new ReactRefreshWebpackPlugin(),
 		new HtmlWebpackPlugin({
 			title: 'Output Management',
 			template: './src/index.html'
@@ -70,11 +81,11 @@ module.exports = {
 				loader: 'ts-loader',
 				exclude: /node_modules/
 			},
-			{
+			/* {
 				test: /\.css$/,
 				include: path.resolve(__dirname, 'src'),
 				use: [ 'style-loader', 'css-loader' ]
-			},
+			}, */
 			{
 				test: /\.(png|svg|jpg|gif)$/,
 				include: path.resolve(__dirname, 'src'),
@@ -84,6 +95,22 @@ module.exports = {
 				test: /\.(woff|woff2|eot|ttf|otf)$/,
 				include: path.resolve(__dirname, 'src'),
 				use: [ 'file-loader' ]
+			},
+			{
+				test: /\.theme\.(less|css)$/i,
+				use: [
+					{
+						loader: 'style-loader',
+						options: { injectType: 'lazyStyleTag' }
+					},
+					'css-loader',
+					lessLoader
+				]
+			},
+			{
+				test: /\.(less|css)$/,
+				exclude: /\.theme\.(less|css)$/i,
+				use: [ 'style-loader', 'css-loader' ]
 			}
 		]
 	}
