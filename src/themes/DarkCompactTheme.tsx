@@ -1,3 +1,4 @@
+// @ts-ignore
 import styles from './dark-compact.theme.less';
 import { useApplyStyles } from '../theming';
 

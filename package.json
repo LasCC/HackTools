@@ -5,8 +5,11 @@
 	"main": "index.js",
 	"scripts": {
 		"start": "webpack --watch",
-		"build": "webpack --mode production",
+		"build": "webpack --mode production && rm -f ./dist/*.map",
 		"watch": "webpack --watch",
+		"zip_moz": "zip -r bundle_moz.zip dist/*",
+		"zip_chrome": "zip -r bundle_chrome.zip dist/",
+		"zip_all": "yarn zip_moz && yarn zip_chrome",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"keywords": [],

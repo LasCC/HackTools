@@ -16,7 +16,7 @@ interface DynamicThemeProps {
 }
 
 export default function DynamicTheme ( { themes, value }: DynamicThemeProps ) {
-    const Component = themes.find( theme => theme.id === value )?.component;
+    const Component: any = themes.find( theme => theme.id === value )?.component;
 
     return (
         <Suspense fallback={<LoadingIndicator tip="loading" />}>

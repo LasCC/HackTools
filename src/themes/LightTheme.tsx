@@ -1,4 +1,4 @@
-import * as React from 'react';
+// @ts-ignore
 import styles from './light.theme.less';
 import { useApplyStyles } from '../theming';
 
