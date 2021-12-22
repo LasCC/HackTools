@@ -107,7 +107,11 @@ export default function LayoutApp ( props: {
         },
         {
             key: '9',
-            icon: <IconFont type='icon-sql' style={{ fontSize: '1.5em', marginTop: 3 }} />,
+            icon: (
+                <Badge dot size='default' style={{ transform: `translate(3px, 5px)` }}>
+                    <IconFont type='icon-sql' style={{ fontSize: '1.5em', marginTop: 3 }} />
+                </Badge>
+            ),
             name: 'SQL Injection',
             componentRoute: SQLi
         },
@@ -141,11 +145,7 @@ export default function LayoutApp ( props: {
         }, */
         {
             key: '13',
-            icon: (
-                <Badge dot size='default' style={{ transform: `translate(3px, 5px)` }}>
-                    <IconFont type='icon-shield' style={{ fontSize: '1.5em', marginTop: 3 }} />
-                </Badge>
-            ),
+            icon: <IconFont type='icon-shield' style={{ fontSize: '1.5em', marginTop: 3 }} />,
             name: 'MSF Builder',
             componentRoute: MSFBuilder
         },

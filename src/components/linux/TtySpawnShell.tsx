@@ -2,7 +2,7 @@ import React from 'react';
 import { Typography, Divider } from 'antd';
 import QueueAnim from 'rc-queue-anim';
 
-const { Title, Paragraph } = Typography;
+const { Title, Paragraph, Text } = Typography;
 
 export default function TTY () {
     return (
@@ -23,8 +23,8 @@ export default function TTY () {
                 }}
             >
                 <Title level={3}>Python spawn shell </Title>
-                <Paragraph editable code copyable>
-                    python -c 'import pty; pty.spawn("/bin/bash")'
+                <Paragraph>
+                    <pre><Text copyable>python -c 'import pty; pty.spawn("/bin/bash")'</Text></pre>
                 </Paragraph>
             </div>
             <Divider orientation='center'>Fully Interactive TTY</Divider>
@@ -39,7 +39,7 @@ export default function TTY () {
                 <Paragraph>
                     <strong>The first step:</strong>
                     <pre>
-                        <Paragraph style={{ margin: 0 }} copyable>
+                        <Paragraph style={{ margin: 0 }}>
                             python3 -c 'import pty;pty.spawn("/bin/bash")'
                         </Paragraph>
                     </pre>
@@ -90,8 +90,8 @@ export default function TTY () {
                 }}
             >
                 <Title level={3}>OS system spawn shell</Title>
-                <Paragraph copyable code editable>
-                    echo os.system("/bin/bash")
+                <Paragraph>
+                    <pre><Text copyable>echo os.system("/bin/bash")</Text></pre>
                 </Paragraph>
             </div>
             <div
@@ -102,8 +102,8 @@ export default function TTY () {
                 }}
             >
                 <Title level={3}>Bash spawn shell </Title>
-                <Paragraph copyable code editable>
-                    /bin/sh -i
+                <Paragraph>
+                    <pre><Text copyable>/bin/sh -i</Text></pre>
                 </Paragraph>
             </div>
             <div
@@ -114,8 +114,8 @@ export default function TTY () {
                 }}
             >
                 <Title level={3}>Perl spawn shell </Title>
-                <Paragraph copyable code editable>
-                    perl —e 'exec "/bin/sh";'
+                <Paragraph>
+                    <pre><Text copyable>perl —e 'exec "/bin/sh";'</Text></pre>
                 </Paragraph>
             </div>
             <div
@@ -126,8 +126,8 @@ export default function TTY () {
                 }}
             >
                 <Title level={3}>Ruby spawn shell </Title>
-                <Paragraph copyable code editable>
-                    ruby: exec "/bin/sh"
+                <Paragraph>
+                    <pre><Text copyable>ruby: exec "/bin/sh"</Text></pre>
                 </Paragraph>
             </div>
             <div
@@ -138,8 +138,8 @@ export default function TTY () {
                 }}
             >
                 <Title level={3}>Lua spawn shell </Title>
-                <Paragraph copyable code editable>
-                    lua: os.execute("/bin/sh")
+                <Paragraph>
+                    <pre><Text copyable>lua: os.execute("/bin/sh")</Text></pre>
                 </Paragraph>
             </div>
             <div
@@ -150,8 +150,8 @@ export default function TTY () {
                 }}
             >
                 <Title level={3}>IRB spawn shell </Title>
-                <Paragraph copyable code editable>
-                    exec "/bin/sh"
+                <Paragraph>
+                    <pre><Text copyable>exec "/bin/sh"</Text></pre>
                 </Paragraph>
             </div>
             <div
@@ -162,8 +162,8 @@ export default function TTY () {
                 }}
             >
                 <Title level={3}>VI spawn shell </Title>
-                <Paragraph copyable code editable>
-                    :!bash
+                <Paragraph>
+                    <pre><Text copyable>:!bash</Text></pre>
                 </Paragraph>
             </div>
             <div
@@ -174,8 +174,8 @@ export default function TTY () {
                 }}
             >
                 <Title level={3}>VI(2) spawn shell </Title>
-                <Paragraph copyable code editable>
-                    :set shell=/bin/bash:shell
+                <Paragraph>
+                    <pre><Text copyable>:set shell=/bin/bash:shell</Text></pre>
                 </Paragraph>
             </div>
             <div
@@ -186,8 +186,8 @@ export default function TTY () {
                 }}
             >
                 <Title level={3}>Nmap spawn shell </Title>
-                <Paragraph copyable code editable>
-                    !sh
+                <Paragraph>
+                    <pre><Text copyable>!sh</Text></pre>
                 </Paragraph>
             </div>
         </QueueAnim>

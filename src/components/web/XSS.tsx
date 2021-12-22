@@ -1,7 +1,8 @@
 import React from 'react';
 import { Typography, Divider } from 'antd';
-const { Title, Paragraph } = Typography;
 import QueueAnim from 'rc-queue-anim';
+
+const { Title, Paragraph, Text } = Typography;
 
 export default function XSS () {
     const DataGrabber = [
@@ -93,8 +94,8 @@ export default function XSS () {
                 </Paragraph>
                 {DataGrabber.map( ( k, i ) => {
                     return (
-                        <Paragraph key={i} copyable code editable ellipsis={true}>
-                            {k.title}
+                        <Paragraph key={i}>
+                            <pre><Text copyable>{k.title}</Text></pre>
                         </Paragraph>
                     );
                 } )}
@@ -108,15 +109,15 @@ export default function XSS () {
             >
                 {BasicXSS.map( ( k, i ) => {
                     return (
-                        <Paragraph key={i} copyable code editable ellipsis={true}>
-                            {k.title}
+                        <Paragraph key={i}>
+                            <pre><Text copyable>{k.title}</Text></pre>
                         </Paragraph>
                     );
                 } )}
                 {ImgPayload.map( ( k, i ) => {
                     return (
-                        <Paragraph key={i} copyable code editable ellipsis={true}>
-                            {k.title}
+                        <Paragraph key={i}>
+                            <pre><Text copyable>{k.title}</Text></pre>
                         </Paragraph>
                     );
                 } )}
@@ -130,8 +131,8 @@ export default function XSS () {
             >
                 {XSSMarkdown.map( ( k, i ) => {
                     return (
-                        <Paragraph key={i} copyable code editable>
-                            {k.title}
+                        <Paragraph key={i}>
+                            <pre><Text copyable>{k.title}</Text></pre>
                         </Paragraph>
                     );
                 } )}
@@ -145,8 +146,8 @@ export default function XSS () {
             >
                 {XSSSvg.map( ( k, i ) => {
                     return (
-                        <Paragraph key={i} copyable code editable ellipsis={true}>
-                            {k.title}
+                        <Paragraph key={i}>
+                            <pre><Text copyable>{k.title}</Text></pre>
                         </Paragraph>
                     );
                 } )}
@@ -160,8 +161,8 @@ export default function XSS () {
             >
                 {BypassWord.map( ( k, i ) => {
                     return (
-                        <Paragraph key={i} copyable code editable>
-                            {k.title}
+                        <Paragraph key={i}>
+                            <pre><Text copyable>{k.title}</Text></pre>
                         </Paragraph>
                     );
                 } )}

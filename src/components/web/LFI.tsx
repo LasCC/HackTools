@@ -4,7 +4,7 @@ import { CopyOutlined, LinkOutlined } from '@ant-design/icons';
 import QueueAnim from 'rc-queue-anim';
 import Clipboard from 'react-clipboard.js';
 
-const { Title, Paragraph } = Typography;
+const { Title, Paragraph, Text } = Typography;
 
 export default function LFI () {
     const successInfoReverseShell = () => {
@@ -82,8 +82,8 @@ export default function LFI () {
             <Divider dashed />
             <div style={{ padding: 10, marginTop: 15 }} key='a'>
                 <Title level={3}>Directory traversal</Title>
-                <Paragraph copyable code editable ellipsis={true}>
-                    {directoryTraversal}
+                <Paragraph ellipsis={true}>
+                    <pre><Text copyable>{directoryTraversal}</Text></pre>
                 </Paragraph>
                 <Clipboard component='a' data-clipboard-text={directoryTraversal}>
                     <Button
@@ -113,8 +113,8 @@ export default function LFI () {
                 }}
             >
                 <Title level={3}>PHP Wrapper php://file</Title>
-                <Paragraph copyable code editable ellipsis={true}>
-                    {phpWrapperLfi}
+                <Paragraph ellipsis={true}>
+                    <pre><Text copyable>{phpWrapperLfi}</Text></pre>
                 </Paragraph>
                 <Clipboard component='a' data-clipboard-text={phpWrapperLfi}>
                     <Button
@@ -145,8 +145,8 @@ export default function LFI () {
                 }}
             >
                 <Title level={3}>PHP Wrapper php://filter</Title>
-                <Paragraph copyable code editable ellipsis={true}>
-                    {phpWrapperFilter}
+                <Paragraph ellipsis={true}>
+                    <pre><Text copyable>{phpWrapperFilter}</Text></pre>
                 </Paragraph>
                 <Clipboard component='a' data-clipboard-text={phpWrapperFilter}>
                     <Button
@@ -177,8 +177,8 @@ export default function LFI () {
                 }}
             >
                 <Title level={3}>PHP Wrapper php://filter</Title>
-                <Paragraph copyable code editable ellipsis={true}>
-                    {phpRfi}
+                <Paragraph ellipsis={true}>
+                    <pre><Text copyable>{phpRfi}</Text></pre>
                 </Paragraph>
                 <Clipboard component='a' data-clipboard-text={phpRfi}>
                     <Button
@@ -212,8 +212,8 @@ export default function LFI () {
                 <Title level={4}>Linux</Title>
                 {linux.map( ( k, i ) => {
                     return (
-                        <Paragraph key={i} copyable code editable>
-                            {k.title}
+                        <Paragraph key={i}>
+                            <pre><Text copyable>{k.title}</Text></pre>
                         </Paragraph>
                     );
                 } )}
@@ -221,8 +221,8 @@ export default function LFI () {
                 <Title level={4}>Apache</Title>
                 {apache.map( ( k, i ) => {
                     return (
-                        <Paragraph key={i} copyable code editable>
-                            {k.title}
+                        <Paragraph key={i}>
+                            <pre><Text copyable>{k.title}</Text></pre>
                         </Paragraph>
                     );
                 } )}
@@ -230,8 +230,8 @@ export default function LFI () {
                 <Title level={4}>MySQL</Title>
                 {mysql.map( ( k, i ) => {
                     return (
-                        <Paragraph key={i} copyable code editable>
-                            {k.title}
+                        <Paragraph key={i}>
+                            <pre><Text copyable>{k.title}</Text></pre>
                         </Paragraph>
                     );
                 } )}
@@ -239,8 +239,8 @@ export default function LFI () {
                 <Title level={4}>Windows</Title>
                 {windows.map( ( k, i ) => {
                     return (
-                        <Paragraph key={i} copyable code editable>
-                            {k.title}
+                        <Paragraph key={i}>
+                            <pre><Text copyable>{k.title}</Text></pre>
                         </Paragraph>
                     );
                 } )}

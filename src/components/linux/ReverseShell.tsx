@@ -5,7 +5,7 @@ import PersistedState from 'use-persisted-state';
 import QueueAnim from 'rc-queue-anim';
 import Clipboard from 'react-clipboard.js';
 
-const { Title, Paragraph } = Typography;
+const { Title, Paragraph, Text } = Typography;
 const IconFont = createFromIconfontCN( {
     scriptUrl: [ './iconfont.js' ]
 } );
@@ -70,8 +70,10 @@ export default function ReverseShell () {
             </div>
             <Divider orientation='center'>Bash</Divider>
             <div style={{ padding: 10, marginTop: 15 }} key='a'>
-                <Paragraph code ellipsis={true}>
-                    {bash_rshell}
+                <Paragraph>
+                    <pre>
+                        <Text copyable>{bash_rshell}</Text>
+                    </pre>
                 </Paragraph>
                 <Clipboard component='a' data-clipboard-text={bash_rshell}>
                     <Button
@@ -94,8 +96,10 @@ export default function ReverseShell () {
             </div>
             <Divider orientation='center'>Zsh</Divider>
             <div style={{ padding: 10, marginTop: 15 }} key='a'>
-                <Paragraph code ellipsis={true}>
-                    {zsh_rshell}
+                <Paragraph>
+                    <pre>
+                        <Text copyable>{zsh_rshell}</Text>
+                    </pre>
                 </Paragraph>
                 <Clipboard component='a' data-clipboard-text={zsh_rshell}>
                     <Button
@@ -118,8 +122,10 @@ export default function ReverseShell () {
             </div>
             <Divider orientation='center'>Netcat</Divider>
             <div style={{ padding: 10, marginTop: 15 }} key='b'>
-                <Paragraph code ellipsis={true}>
-                    {netcat_rshell}
+                <Paragraph>
+                    <pre>
+                        <Text copyable>{netcat_rshell}</Text>
+                    </pre>
                 </Paragraph>
                 <Clipboard component='a' data-clipboard-text={netcat_rshell}>
                     <Button
@@ -148,8 +154,10 @@ export default function ReverseShell () {
                     marginTop: 15
                 }}
             >
-                <Paragraph code ellipsis={true}>
-                    {php_rshell}
+                <Paragraph>
+                    <pre>
+                        <Text copyable>{php_rshell}</Text>
+                    </pre>
                 </Paragraph>
                 <Clipboard component='a' data-clipboard-text={php_rshell}>
                     <Button
@@ -174,8 +182,10 @@ export default function ReverseShell () {
 
             <Divider orientation='center'>PowerShell</Divider>
             <div style={{ padding: 10, marginTop: 15 }} key='a'>
-                <Paragraph code ellipsis={true}>
-                    {PS_rshell}
+                <Paragraph>
+                    <pre>
+                        <Text copyable>{PS_rshell}</Text>
+                    </pre>
                 </Paragraph>
                 <Clipboard component='a' data-clipboard-text={PS_rshell}>
                     <Button
@@ -204,8 +214,10 @@ export default function ReverseShell () {
                 }}
             >
                 <Divider orientation='center'>Perl</Divider>
-                <Paragraph code ellipsis={true}>
-                    {perl_rshell}
+                <Paragraph>
+                    <pre>
+                        <Text copyable>{perl_rshell}</Text>
+                    </pre>
                 </Paragraph>
                 <Clipboard component='a' data-clipboard-text={perl_rshell}>
                     <Button
@@ -235,8 +247,10 @@ export default function ReverseShell () {
                     marginTop: 15
                 }}
             >
-                <Paragraph code ellipsis={true}>
-                    {python_rshell}
+                <Paragraph>
+                    <pre>
+                        <Text copyable>{python_rshell}</Text>
+                    </pre>
                 </Paragraph>
                 <Clipboard component='a' data-clipboard-text={python_rshell}>
                     <Button
@@ -266,8 +280,10 @@ export default function ReverseShell () {
                     marginTop: 15
                 }}
             >
-                <Paragraph code ellipsis={true}>
-                    {ruby_rshell}
+                <Paragraph>
+                    <pre>
+                        <Text copyable>{ruby_rshell}</Text>
+                    </pre>
                 </Paragraph>
                 <Clipboard component='a' data-clipboard-text={ruby_rshell}>
                     <Button
@@ -291,8 +307,10 @@ export default function ReverseShell () {
             </div>
             <Divider orientation='center'>Telnet</Divider>
             <div style={{ padding: 15, marginTop: 15 }} key='g'>
-                <Paragraph code ellipsis={true}>
-                    {telnet_rshell}
+                <Paragraph>
+                    <pre>
+                        <Text copyable>{telnet_rshell}</Text>
+                    </pre>
                 </Paragraph>
                 <Clipboard component='a' data-clipboard-text={telnet_rshell}>
                     <Button

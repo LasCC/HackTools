@@ -76,38 +76,38 @@ export default function PowershellCommands () {
                 <Title level={3}>System enumeration</Title>
                 {local_sys_enum.map( ( k, i ) => {
                     return (
-                        <Paragraph key={i} copyable code editable ellipsis={true}>
-                            {k.title}
+                        <Paragraph key={i}>
+                            <pre><Text copyable>{k.title}</Text></pre>
                         </Paragraph>
                     );
                 } )}
                 <Text strong># List Security patches</Text>
-                <Paragraph copyable code editable ellipsis={true}>
-                    {lastpatchlist}
+                <Paragraph>
+                    <pre><Text copyable>{lastpatchlist}</Text></pre>
                 </Paragraph>
-                <Paragraph copyable code editable ellipsis={true}>
-                    {lastpatchlist_wmic}
+                <Paragraph>
+                    <pre><Text copyable>{lastpatchlist_wmic}</Text></pre>
                 </Paragraph>
                 <Text strong># Environment Variables</Text>
-                <Paragraph copyable code editable ellipsis={true}>
-                    {envVar}
+                <Paragraph>
+                    <pre><Text copyable>{envVar}</Text></pre>
                 </Paragraph>
                 <Text strong> (over cmd.exe) </Text>
-                <Paragraph copyable code editable ellipsis={true}>
-                    {envVar_cmd}
+                <Paragraph>
+                    <pre><Text copyable>{envVar_cmd}</Text></pre>
                 </Paragraph>
                 <Divider orientation='center'>HTTP download (wget like)</Divider>
-                <Paragraph copyable code editable ellipsis={true}>
-                    {powershell_http_dl}
+                <Paragraph>
+                    <pre><Text copyable>{powershell_http_dl}</Text></pre>
                 </Paragraph>
                 <Text strong># Cmd compatible</Text>
-                <Paragraph copyable code editable ellipsis={true}>
-                    {cmd_cert_http_dl}
+                <Paragraph>
+                    <pre><Text copyable>{cmd_cert_http_dl}</Text></pre>
                 </Paragraph>
                 <Divider orientation='center'>WLAN enumeration</Divider>
                 {wlan_creddump.map( ( k, i ) => {
                     return (
-                        <Paragraph key={i} copyable code editable ellipsis={true}>
+                        <Paragraph key={i} copyable code editable>
                             {k.title}
                         </Paragraph>
                     );
@@ -122,116 +122,116 @@ export default function PowershellCommands () {
                 }}
             >
                 <Paragraph>Require Powerview.ps1</Paragraph>
-                <Paragraph copyable code editable ellipsis={true}>
-                    {power_view_repo}
+                <Paragraph>
+                    <pre><Text copyable>{power_view_repo}</Text></pre>
                 </Paragraph>
                 <Text strong># Domain enumeration</Text>
-                <Paragraph copyable code editable ellipsis={true}>
-                    {domain_name}
+                <Paragraph>
+                    <pre><Text copyable>{domain_name}</Text></pre>
                 </Paragraph>
 
                 <Text strong># List Forest Domains </Text>
-                <Paragraph copyable code editable ellipsis={true}>
-                    {forest_domain_list}
+                <Paragraph>
+                    <pre><Text copyable>{forest_domain_list}</Text></pre>
                 </Paragraph>
 
                 <Text strong># Domain SID </Text>
-                <Paragraph copyable code editable ellipsis={true}>
-                    {domain_SID}
+                <Paragraph>
+                    <pre><Text copyable>{domain_SID}</Text></pre>
                 </Paragraph>
 
                 <Text strong># Domain Policy </Text>
-                <Paragraph copyable code editable ellipsis={true}>
-                    {domain_Policy}
+                <Paragraph>
+                    <pre><Text copyable>{domain_Policy}</Text></pre>
                 </Paragraph>
 
                 <Text strong># Domain Organizational Units </Text>
-                <Paragraph copyable code editable ellipsis={true}>
-                    {domain_OUs}
+                <Paragraph>
+                    <pre><Text copyable>{domain_OUs}</Text></pre>
                 </Paragraph>
 
                 <Text strong># List trusted Domains</Text>
-                <Paragraph copyable code editable ellipsis={true}>
-                    {domain_trust}
+                <Paragraph>
+                    <pre><Text copyable>{domain_trust}</Text></pre>
                 </Paragraph>
 
                 <Divider orientation='center'>GPO enumeration</Divider>
 
                 <Text strong># GPO applied to the machine</Text>
-                <Paragraph copyable code editable ellipsis={true}>
-                    {gpo_enum}
+                <Paragraph>
+                    <pre><Text copyable>{gpo_enum}</Text></pre>
                 </Paragraph>
 
                 <Divider orientation='center'>Password enumeration</Divider>
 
                 <Text strong># Last Password Set date</Text>
-                <Paragraph copyable code editable ellipsis={true}>
-                    {passwd_lastset}
+                <Paragraph>
+                    <pre><Text copyable>{passwd_lastset}</Text></pre>
                 </Paragraph>
                 <Text strong># Description of User object </Text>
-                <Paragraph copyable code editable ellipsis={true}>
-                    {user_desc_harvest}
+                <Paragraph>
+                    <pre><Text copyable>{user_desc_harvest}</Text></pre>
                 </Paragraph>
                 <Divider orientation='center'>Computer enumeration</Divider>
 
                 <Text strong># List Computers of the Domain</Text>
-                <Paragraph copyable code editable ellipsis={true}>
-                    {domain_computers}
+                <Paragraph>
+                    <pre><Text copyable>{domain_computers}</Text></pre>
                 </Paragraph>
                 <Text strong># List Pingable Hosts </Text>
-                <Paragraph copyable code editable ellipsis={true}>
-                    {domain_pingable_computers}
+                <Paragraph>
+                    <pre><Text copyable>{domain_pingable_computers}</Text></pre>
                 </Paragraph>
                 <Text strong># List Windows 7 Ultimate Computers </Text>
-                <Paragraph copyable code editable ellipsis={true}>
-                    {domain_win7U_computers}
+                <Paragraph>
+                    <pre><Text copyable>{domain_win7U_computers}</Text></pre>
                 </Paragraph>
 
                 <Divider orientation='center'>Admin groups and account enumeration</Divider>
 
                 <Text strong># List Domain Admin members</Text>
-                <Paragraph copyable code editable ellipsis={true}>
-                    {domain_admin_members}
+                <Paragraph>
+                    <pre><Text copyable>{domain_admin_members}</Text></pre>
                 </Paragraph>
                 <Text strong># List Admin Groups </Text>
-                <Paragraph copyable code editable ellipsis={true}>
-                    {domain_admins_groups}
+                <Paragraph>
+                    <pre><Text copyable>{domain_admins_groups}</Text></pre>
                 </Paragraph>
                 <Text strong># List Local Admins [need Administrative rights] </Text>
-                <Paragraph copyable code editable ellipsis={true}>
-                    {local_admins}
+                <Paragraph>
+                    <pre><Text copyable>{local_admins}</Text></pre>
                 </Paragraph>
 
                 <Text strong># Get groups of user [need Administrative rights] </Text>
-                <Paragraph copyable code editable ellipsis={true}>
-                    {user_group_membership}
+                <Paragraph>
+                    <pre><Text copyable>{user_group_membership}</Text></pre>
                 </Paragraph>
 
                 <Divider orientation='center'>ACL enumeration</Divider>
 
                 <Text strong># User ACL </Text>
-                <Paragraph copyable code editable ellipsis={true}>
-                    {ACL_user_enum}
+                <Paragraph>
+                    <pre><Text copyable>{ACL_user_enum}</Text></pre>
                 </Paragraph>
 
                 <Text strong># GPO modifications rights</Text>
-                <Paragraph copyable code editable ellipsis={true}>
-                    {ACL_gpoedit_rights}
+                <Paragraph>
+                    <pre><Text copyable>{ACL_gpoedit_rights}</Text></pre>
                 </Paragraph>
 
                 <Text strong># Password reset rights</Text>
-                <Paragraph copyable code editable ellipsis={true}>
-                    {ACL_passwd_edit_rights}
+                <Paragraph>
+                    <pre><Text copyable>{ACL_passwd_edit_rights}</Text></pre>
                 </Paragraph>
 
                 <Divider orientation='center'>Local reconnaissance</Divider>
                 <Text strong># Export user accounts with ldifde</Text>
-                <Paragraph copyable code editable ellipsis={true}>
-                    {local_recon_ldifde}
+                <Paragraph>
+                    <pre><Text copyable>{local_recon_ldifde}</Text></pre>
                 </Paragraph>
                 <Text strong># Export user accounts with csvde</Text>
-                <Paragraph copyable code editable ellipsis={true}>
-                    {local_recon_csvde}
+                <Paragraph>
+                    <pre><Text copyable>{local_recon_csvde}</Text></pre>
                 </Paragraph>
             </div>
         </QueueAnim>
