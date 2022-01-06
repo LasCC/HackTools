@@ -106,7 +106,6 @@
 h1.ant-typography,
 .ant-typography h1 {
 	margin-bottom: 0.5em;
-
 	font-weight: 600;
 	font-size: 33px;
 	line-height: 1.23;
@@ -191,7 +190,7 @@ h5.ant-typography,
 .ant-typography h3 + h5,
 .ant-typography h4 + h5,
 .ant-typography h5 + h5 {
-	margin-top: 1.2em !important;
+	margin-top: 1.2em;
 }
 
 .iconfont {
