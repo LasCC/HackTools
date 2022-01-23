@@ -81,14 +81,14 @@ export default function PowershellCommands () {
                         </Paragraph>
                     );
                 } )}
-                <Text strong># List Security patches</Text>
+                <Text strong>List Security patches</Text>
                 <Paragraph>
                     <pre><Text copyable>{lastpatchlist}</Text></pre>
                 </Paragraph>
                 <Paragraph>
                     <pre><Text copyable>{lastpatchlist_wmic}</Text></pre>
                 </Paragraph>
-                <Text strong># Environment Variables</Text>
+                <Text strong>Environment Variables</Text>
                 <Paragraph>
                     <pre><Text copyable>{envVar}</Text></pre>
                 </Paragraph>
@@ -100,15 +100,15 @@ export default function PowershellCommands () {
                 <Paragraph>
                     <pre><Text copyable>{powershell_http_dl}</Text></pre>
                 </Paragraph>
-                <Text strong># Cmd compatible</Text>
+                <Text strong>Cmd compatible</Text>
                 <Paragraph>
                     <pre><Text copyable>{cmd_cert_http_dl}</Text></pre>
                 </Paragraph>
                 <Divider orientation='center'>WLAN enumeration</Divider>
                 {wlan_creddump.map( ( k, i ) => {
                     return (
-                        <Paragraph key={i} copyable code editable>
-                            {k.title}
+                        <Paragraph key={i}>
+                            <pre><Text copyable>{k.title}</Text></pre>
                         </Paragraph>
                     );
                 } )}
@@ -121,115 +121,115 @@ export default function PowershellCommands () {
                     padding: 15
                 }}
             >
-                <Paragraph>Require Powerview.ps1</Paragraph>
+                <Paragraph mark>Require Powerview.ps1</Paragraph>
                 <Paragraph>
                     <pre><Text copyable>{power_view_repo}</Text></pre>
                 </Paragraph>
-                <Text strong># Domain enumeration</Text>
+                <Text strong>Domain enumeration</Text>
                 <Paragraph>
                     <pre><Text copyable>{domain_name}</Text></pre>
                 </Paragraph>
 
-                <Text strong># List Forest Domains </Text>
+                <Text strong>List Forest Domains </Text>
                 <Paragraph>
                     <pre><Text copyable>{forest_domain_list}</Text></pre>
                 </Paragraph>
 
-                <Text strong># Domain SID </Text>
+                <Text strong>Domain SID </Text>
                 <Paragraph>
                     <pre><Text copyable>{domain_SID}</Text></pre>
                 </Paragraph>
 
-                <Text strong># Domain Policy </Text>
+                <Text strong>Domain Policy </Text>
                 <Paragraph>
                     <pre><Text copyable>{domain_Policy}</Text></pre>
                 </Paragraph>
 
-                <Text strong># Domain Organizational Units </Text>
+                <Text strong>Domain Organizational Units </Text>
                 <Paragraph>
                     <pre><Text copyable>{domain_OUs}</Text></pre>
                 </Paragraph>
 
-                <Text strong># List trusted Domains</Text>
+                <Text strong>List trusted Domains</Text>
                 <Paragraph>
                     <pre><Text copyable>{domain_trust}</Text></pre>
                 </Paragraph>
 
                 <Divider orientation='center'>GPO enumeration</Divider>
 
-                <Text strong># GPO applied to the machine</Text>
+                <Text strong>GPO applied to the machine</Text>
                 <Paragraph>
                     <pre><Text copyable>{gpo_enum}</Text></pre>
                 </Paragraph>
 
                 <Divider orientation='center'>Password enumeration</Divider>
 
-                <Text strong># Last Password Set date</Text>
+                <Text strong>Last Password Set date</Text>
                 <Paragraph>
                     <pre><Text copyable>{passwd_lastset}</Text></pre>
                 </Paragraph>
-                <Text strong># Description of User object </Text>
+                <Text strong>Description of User object </Text>
                 <Paragraph>
                     <pre><Text copyable>{user_desc_harvest}</Text></pre>
                 </Paragraph>
                 <Divider orientation='center'>Computer enumeration</Divider>
 
-                <Text strong># List Computers of the Domain</Text>
+                <Text strong>List Computers of the Domain</Text>
                 <Paragraph>
                     <pre><Text copyable>{domain_computers}</Text></pre>
                 </Paragraph>
-                <Text strong># List Pingable Hosts </Text>
+                <Text strong>List Pingable Hosts </Text>
                 <Paragraph>
                     <pre><Text copyable>{domain_pingable_computers}</Text></pre>
                 </Paragraph>
-                <Text strong># List Windows 7 Ultimate Computers </Text>
+                <Text strong>List Windows 7 Ultimate Computers </Text>
                 <Paragraph>
                     <pre><Text copyable>{domain_win7U_computers}</Text></pre>
                 </Paragraph>
 
                 <Divider orientation='center'>Admin groups and account enumeration</Divider>
 
-                <Text strong># List Domain Admin members</Text>
+                <Text strong>List Domain Admin members</Text>
                 <Paragraph>
                     <pre><Text copyable>{domain_admin_members}</Text></pre>
                 </Paragraph>
-                <Text strong># List Admin Groups </Text>
+                <Text strong>List Admin Groups </Text>
                 <Paragraph>
                     <pre><Text copyable>{domain_admins_groups}</Text></pre>
                 </Paragraph>
-                <Text strong># List Local Admins [need Administrative rights] </Text>
+                <Text strong>List Local Admins [need Administrative rights] </Text>
                 <Paragraph>
                     <pre><Text copyable>{local_admins}</Text></pre>
                 </Paragraph>
 
-                <Text strong># Get groups of user [need Administrative rights] </Text>
+                <Text strong>Get groups of user [need Administrative rights] </Text>
                 <Paragraph>
                     <pre><Text copyable>{user_group_membership}</Text></pre>
                 </Paragraph>
 
                 <Divider orientation='center'>ACL enumeration</Divider>
 
-                <Text strong># User ACL </Text>
+                <Text strong>User ACL </Text>
                 <Paragraph>
                     <pre><Text copyable>{ACL_user_enum}</Text></pre>
                 </Paragraph>
 
-                <Text strong># GPO modifications rights</Text>
+                <Text strong>GPO modifications rights</Text>
                 <Paragraph>
                     <pre><Text copyable>{ACL_gpoedit_rights}</Text></pre>
                 </Paragraph>
 
-                <Text strong># Password reset rights</Text>
+                <Text strong>Password reset rights</Text>
                 <Paragraph>
                     <pre><Text copyable>{ACL_passwd_edit_rights}</Text></pre>
                 </Paragraph>
 
                 <Divider orientation='center'>Local reconnaissance</Divider>
-                <Text strong># Export user accounts with ldifde</Text>
+                <Text strong>Export user accounts with ldifde</Text>
                 <Paragraph>
                     <pre><Text copyable>{local_recon_ldifde}</Text></pre>
                 </Paragraph>
-                <Text strong># Export user accounts with csvde</Text>
+                <Text strong>Export user accounts with csvde</Text>
                 <Paragraph>
                     <pre><Text copyable>{local_recon_csvde}</Text></pre>
                 </Paragraph>

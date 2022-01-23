@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { Layout, Menu, Typography, Button, Badge, Select, } from 'antd';
 import { CopyrightCircleOutlined, FullscreenOutlined, ArrowsAltOutlined } from '@ant-design/icons';
 import { createFromIconfontCN } from '@ant-design/icons';
@@ -6,7 +6,7 @@ import { goTo } from 'react-chrome-extension-router';
 import ReverseShell from './linux/ReverseShell';
 import PhpReverseShell from './web/PhpReverseShell';
 import TtySpawnShell from './linux/TtySpawnShell';
-import Base64Encode from './encoding/Base64Encode';
+import Base64Encode from './encoding/DataEncoding';
 import Hashing from './encoding/Hashing';
 import LinuxCommands from './linux/LinuxCommands';
 import PowershellCommands from './linux/PowershellCommands';
@@ -21,6 +21,7 @@ import MSFBuilder from './linux/MSFBuilder';
 import HTTPUtils from './http_utils/HTTP-Utils';
 import DynamicTheme from '../theming';
 import { themes } from '../themes';
+import EchoBase64 from './file_transfer/ObfuscatedFiles';
 
 const { Paragraph } = Typography;
 const { Sider, Content, Footer } = Layout;
@@ -118,17 +119,27 @@ export default function LayoutApp ( props: {
         {
             key: '10',
             icon: <IconFont type='icon-jiemaleixing' style={{ fontSize: '1.5em', marginTop: 3 }} />,
-            name: 'Base64 Encoder / Decoder',
+            name: 'Data Encoding',
             componentRoute: Base64Encode
         },
         {
             key: '11',
+            icon: (
+                <Badge dot size='default' style={{ transform: `translate(3px, 5px)` }}>
+                    <IconFont type='icon-Encode-File' style={{ fontSize: '1.5em', marginTop: 3 }} />
+                </Badge>
+            ),
+            name: 'Obfuscated Files or Information',
+            componentRoute: EchoBase64
+        },
+        {
+            key: '12',
             icon: <IconFont type='icon-hash' style={{ fontSize: '1.5em', marginTop: 3 }} />,
             name: 'Hashing',
             componentRoute: Hashing
         },
         {
-            key: '12',
+            key: '13',
             icon: <IconFont type='icon-Cloud' style={{ fontSize: '1.5em', marginTop: 3 }} />,
             name: 'Feed RSS',
             componentRoute: FeedRSS
@@ -144,13 +155,13 @@ export default function LayoutApp ( props: {
             componentRoute: HTTPUtils
         }, */
         {
-            key: '13',
+            key: '14',
             icon: <IconFont type='icon-shield' style={{ fontSize: '1.5em', marginTop: 3 }} />,
             name: 'MSF Builder',
             componentRoute: MSFBuilder
         },
         {
-            key: '14',
+            key: '15',
             icon: <IconFont type='icon-about' style={{ fontSize: '1.5em', marginTop: 3 }} />,
             name: 'About us',
             componentRoute: AboutUs

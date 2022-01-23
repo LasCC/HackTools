@@ -97,11 +97,10 @@ const Base64Encode = () => {
         <QueueAnim delay={300} duration={1500}>
             <div style={{ margin: 15 }}>
                 <Title level={2} style={{ fontWeight: 'bold' }}>
-                    Encoder / Decoder
+                    Data Encoding
                 </Title>
                 <Paragraph>
-                    In computer science, Base64 is a group of binary-to-text encoding schemes that represent binary data
-                    in an ASCII string format by translating it into a radix-64 representation.
+                    Adversaries may encode data to make the content of command and control traffic more difficult to detect. Command and control (C2) information can be encoded using a standard data encoding system. Use of data encoding may adhere to existing protocol specifications and includes use of ASCII, Unicode, Base64, MIME, or other binary-to-text and character encoding systems.Some data encoding systems may also result in data compression, such as gzip.
                 </Paragraph>
             </div>
             <Divider dashed />

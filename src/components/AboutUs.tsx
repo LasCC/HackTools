@@ -86,6 +86,7 @@ export default function AboutUs () {
                 <Paragraph> PayloadsAllTheThings </Paragraph>
                 <Paragraph> Fabien LOISON(flozz) for the p0wny @shell </Paragraph>
                 <Paragraph> GoProSlowYo for the zsh reverse shell </Paragraph>
+                <Paragraph> MITRE ATT&CK </Paragraph>
             </div>
         </QueueAnim>
     );

@@ -8,11 +8,11 @@ const { Title, Paragraph, Text } = Typography;
 
 export default function LFI () {
     const successInfoReverseShell = () => {
-        message.success( 'Your payload has been copied' );
+        message.success( 'Your payload has been copied successfully !' );
     };
 
     const successInfoEncodeURL = () => {
-        message.success( 'Your payload URL encoded has been copied' );
+        message.success( 'Your payload URL encoded has been copied successfully !' );
     };
 
     const directoryTraversal = `foo.php?file=../../../../../../../etc/passwd`;

