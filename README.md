@@ -58,7 +58,7 @@ With the extension you **no longer need to search for payloads in different webs
 ## Preview
 
 <div align='center'>
-  <img alt="preview_1" src="https://s10.gifyu.com/images/Screen-Recording-2022-01-23-at-15.30.19.gif" />
+  <img alt="preview_1" src="./src/assets/img/preview.gif?raw=true" />
 </div>
 
 <div align='center'>
