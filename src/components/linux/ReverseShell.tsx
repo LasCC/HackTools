@@ -95,7 +95,7 @@ export default function ReverseShell () {
                 </Clipboard>
             </div>
             <Divider orientation='center'>Zsh</Divider>
-            <div style={{ padding: 10, marginTop: 15 }} key='a'>
+            <div style={{ padding: 10, marginTop: 15 }} key='b'>
                 <Paragraph>
                     <pre>
                         <Text copyable>{zsh_rshell}</Text>
@@ -121,7 +121,7 @@ export default function ReverseShell () {
                 </Clipboard>
             </div>
             <Divider orientation='center'>Netcat</Divider>
-            <div style={{ padding: 10, marginTop: 15 }} key='b'>
+            <div style={{ padding: 10, marginTop: 15 }} key='c'>
                 <Paragraph>
                     <pre>
                         <Text copyable>{netcat_rshell}</Text>
@@ -148,7 +148,7 @@ export default function ReverseShell () {
             </div>
             <Divider orientation='center'>PHP</Divider>
             <div
-                key='c'
+                key='d'
                 style={{
                     padding: 15,
                     marginTop: 15
@@ -181,7 +181,7 @@ export default function ReverseShell () {
             </div>
 
             <Divider orientation='center'>PowerShell</Divider>
-            <div style={{ padding: 10, marginTop: 15 }} key='a'>
+            <div style={{ padding: 10, marginTop: 15 }} key='e'>
                 <Paragraph>
                     <pre>
                         <Text copyable>{PS_rshell}</Text>
@@ -207,7 +207,7 @@ export default function ReverseShell () {
                 </Clipboard>
             </div>
             <div
-                key='d'
+                key='f'
                 style={{
                     padding: 15,
                     marginTop: 15
@@ -241,7 +241,7 @@ export default function ReverseShell () {
             </div>
             <Divider orientation='center'>Python</Divider>
             <div
-                key='e'
+                key='g'
                 style={{
                     padding: 15,
                     marginTop: 15
@@ -274,7 +274,7 @@ export default function ReverseShell () {
             </div>
             <Divider orientation='center'>Ruby</Divider>
             <div
-                key='f'
+                key='h'
                 style={{
                     padding: 15,
                     marginTop: 15
@@ -306,7 +306,7 @@ export default function ReverseShell () {
                 </Clipboard>
             </div>
             <Divider orientation='center'>Telnet</Divider>
-            <div style={{ padding: 15, marginTop: 15 }} key='g'>
+            <div style={{ padding: 15, marginTop: 15 }} key='i'>
                 <Paragraph>
                     <pre>
                         <Text copyable>{telnet_rshell}</Text>

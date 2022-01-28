@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Layout, Menu, Typography, Button, Badge, Select, } from 'antd';
 import { CopyrightCircleOutlined, FullscreenOutlined, ArrowsAltOutlined } from '@ant-design/icons';
 import { createFromIconfontCN } from '@ant-design/icons';
@@ -174,8 +174,8 @@ export default function LayoutApp ( props: {
         </Menu.Item>
     ) );
 
-    const useMenuIndex = PersistedState( 'tab_index_cache' );
-    const [ index, setIndex ] = useMenuIndex( '1' );
+    //const useMenuIndex = PersistedState( 'tab_index_cache' ); // Disabled for now
+    const [ index, setIndex ] = useState( '1' );
 
     const navigate = ( { componentRoute, key }: { componentRoute: React.FunctionComponent; key: string } ) => {
         goTo( componentRoute );
