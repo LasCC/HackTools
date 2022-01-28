@@ -87,6 +87,7 @@ export default function AboutUs () {
                 <Paragraph> Fabien LOISON(flozz) for the p0wny @shell </Paragraph>
                 <Paragraph> GoProSlowYo for the zsh reverse shell </Paragraph>
                 <Paragraph> MITRE ATT&CK </Paragraph>
+                <Paragraph> Thanks to dejisec for the Active Directory scripts ! <Link href='https://gist.github.com/dejisec/3477eff3258f1f43fc3c57de56295f34' target='_blank'>Link</Link> </Paragraph>
             </div>
         </QueueAnim>
     );
