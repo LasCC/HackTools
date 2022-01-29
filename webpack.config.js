@@ -17,10 +17,8 @@ const lessLoader = {
 module.exports = {
 	mode: 'development',
 	entry: {
-		app: './src/App.tsx',
-		vendor: [ 'react', 'react-dom' ]
+		app: './src/App.tsx'
 	},
-	devtool: 'source-map',
 	plugins: [
 		new webpack.HotModuleReplacementPlugin(),
 		new CleanWebpackPlugin(),
@@ -69,6 +67,11 @@ module.exports = {
 		filename: '[name].bundle.js',
 		path: path.resolve(__dirname, 'dist')
 	},
+	optimization: {
+		splitChunks: {
+			chunks: 'all'
+		}
+	},
 	module: {
 		rules: [
 			{
@@ -81,11 +84,6 @@ module.exports = {
 				loader: 'ts-loader',
 				exclude: /node_modules/
 			},
-			/* {
-				test: /\.css$/,
-				include: path.resolve(__dirname, 'src'),
-				use: [ 'style-loader', 'css-loader' ]
-			}, */
 			{
 				test: /\.(png|svg|jpg|gif)$/,
 				include: path.resolve(__dirname, 'src'),
