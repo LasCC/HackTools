@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "jsx": "react",
+    "module": "commonjs",
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": false,
+    "outDir": "./dist/",
+    "preserveConstEnums": true,
+    "removeComments": true,
+    "esModuleInterop": true,
+    "baseUrl": "src",
+    "sourceMap": true,
+    "moduleResolution": "node",
+    "target": "es6",
+    "paths": {
+      "compforms": [
+        "compforms"
+      ],
+      "components": [
+        "components"
+      ],
+      "utils": [
+        "utils"
+      ]
+    }
+  },
+  "include": [
+    "./src/**/**/*"
+  ]
+}

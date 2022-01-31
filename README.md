@@ -2,7 +2,7 @@
   <img alt="logo_hack_tools" src="https://i.postimg.cc/GtLdZ2rZ/noun-Panama-hat-1454601.png" />
   <h1>Welcome to HackTools 🛠</h1>
   <p>
-    <img alt="Version" src="https://img.shields.io/badge/version-0.3.8-blue.svg?cacheSeconds=2592000&style=for-the-badge" />
+    <img alt="Version" src="https://img.shields.io/badge/version-0.4.0-blue.svg?cacheSeconds=2592000&style=for-the-badge" />
     <img alt="release" src="https://img.shields.io/github/v/release/LasCC/Hack-Tools?color=yellow&style=for-the-badge" />
     <a href="https://addons.mozilla.org/en-US/firefox/addon/hacktools" target="_blank">
       <img alt="mozilla" src="https://img.shields.io/amo/v/hacktools?color=purple&label=mozilla%20addons&logo=mozilla&style=for-the-badge" />
@@ -47,7 +47,8 @@ With the extension you **no longer need to search for payloads in different webs
 - XSS Payloads
 - Basic SQLi payloads
 - Local file inclusion payloads (LFI)
-- Base64 Encoder / Decoder
+- Data Encoding
+- Obfuscated Files or Information
 - Hash Generator (MD5, SHA1, SHA256, SHA512, SM3)
 - Useful Linux commands (Port Forwarding, SUID)
 - RSS Feed (Exploit DB, Cisco Security Advisories, CXSECURITY)
@@ -57,23 +58,23 @@ With the extension you **no longer need to search for payloads in different webs
 ## Preview
 
 <div align='center'>
-  <img alt="preview_1" src="https://i.postimg.cc/VNmtdskN/Untitled-1.png" />
+  <img alt="preview_1" src="./src/assets/img/preview.gif?raw=true" />
 </div>
 
 <div align='center'>
-  <img alt="preview_2" src="https://i.imgur.com/N6qJX8U.png" />
+  <img alt="preview_2" src="https://i.imgur.com/5HIr6a6.png" />
 </div>
 
 <div align='center'>
-  <img alt="preview_3" src="https://i.imgur.com/wJr1xYX.png" />
+  <img alt="preview_3" src="https://i.imgur.com/Q6cXVBw.png" />
 </div>
 
 <div align='center'>
-  <img alt="preview_4" src="https://i.imgur.com/bh896v1.png" />
+  <img alt="preview_4" src="https://i.imgur.com/ME6lyOU.png" />
 </div>
 
 <div align='center'>
-  <img alt="preview_5" src="https://i.imgur.com/dMvkn0g.png" />
+  <img alt="preview_5" src="https://i.imgur.com/HQsboJW.png" />
 </div>
 
 
@@ -149,4 +150,4 @@ You can give a ⭐️ if this project helped you !
 
 Note that this project is maintained, developed and made available for **free**, you can offer us a coffee, it will be very **encouraging and greatly appreciated** 😊
 
-<a href="https://www.paypal.me/hacktoolsEXT" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important"></a>
+<a href="https://www.paypal.me/hacktoolsEXT" target="_blank"><img src="https://paymentweek.com/wp-content/uploads/2014/09/paypal-copy-1024x489.png" alt="Paypal" style="height: 50px !important;width: auto !important"></a>
