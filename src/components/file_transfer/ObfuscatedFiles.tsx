@@ -12,7 +12,7 @@ const IconFont = createFromIconfontCN( {
 
 const EchoBase64 = () => {
     const [ output, setOutput ] = useState( '' );
-    const echoFileName = PersistedState( 'echo_file_name' );
+    const echoFileName = PersistedState<EchoFilename>( 'echo_file_name' );
     const { TextArea } = Input;
 
     const [ values, setValues ] = echoFileName( {

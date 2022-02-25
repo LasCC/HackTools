@@ -13,6 +13,7 @@ import Clipboard from 'react-clipboard.js';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { vs2015 } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import pretty from 'pretty';
+import { Ipv4TcpCacheState } from 'components/types/Ipv4TcpCache';
 
 const { Title, Paragraph, Text } = Typography;
 const { Panel } = Collapse;
@@ -21,7 +22,7 @@ const IconFont = createFromIconfontCN( {
 } );
 
 export default function PhpReverseShell () {
-    const useIPv4State = PersistedState( 'ipv4_tcp_cache' );
+    const useIPv4State = PersistedState<Ipv4TcpCacheState>( 'ipv4_tcp_cache' );
     const [ values, setValues ] = useIPv4State( {
         ip: '',
         port: ''

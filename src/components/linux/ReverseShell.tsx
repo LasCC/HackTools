@@ -4,6 +4,7 @@ import { CopyOutlined, WifiOutlined, LinkOutlined, createFromIconfontCN } from '
 import PersistedState from 'use-persisted-state';
 import QueueAnim from 'rc-queue-anim';
 import Clipboard from 'react-clipboard.js';
+import { Ipv4TcpCacheState } from 'components/types/Ipv4TcpCache';
 
 const { Title, Paragraph, Text } = Typography;
 const IconFont = createFromIconfontCN( {
@@ -11,7 +12,7 @@ const IconFont = createFromIconfontCN( {
 } );
 
 export default function ReverseShell () {
-    const useIPv4State = PersistedState( 'ipv4_tcp_cache' );
+    const useIPv4State = PersistedState<Ipv4TcpCacheState>( 'ipv4_tcp_cache' );
     const [ values, setValues ] = useIPv4State( {
         ip: '',
         port: ''

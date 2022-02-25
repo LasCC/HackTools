@@ -2,12 +2,13 @@ import React from 'react';
 import { Input, Typography, Row, Divider, Select, Form, Col, Collapse } from 'antd';
 import PersistedState from 'use-persisted-state';
 import QueueAnim from 'rc-queue-anim';
+import { MSFBuilder } from 'components/types/MSFBuilder';
 
 const { Title, Paragraph } = Typography;
 
 const MSFBuilder = () => {
 	// LocalStorage stuff
-	const msfVenomBuilder = PersistedState('msfVenomBuilder');
+	const msfVenomBuilder = PersistedState<MSFBuilder>('msfVenomBuilder');
 
 	// Antd stuff
 	const { Option } = Select;
@@ -19,21 +20,8 @@ const MSFBuilder = () => {
 	let platform = require('../../assets/data/Platform.json');
 	let format = require('../../assets/data/Format.json');
 
-	interface IMSFBuilderProps {
-		Payload: string;
-		LHOST: string;
-		LPORT: string;
-		Encoder: string;
-		EncoderIterations: string;
-		Platform: string;
-		Arch: string;
-		NOP: string;
-		BadCharacters: string;
-		Format: string;
-		Outfile: string;
-	}
 
-	const [ values, setValues ] = msfVenomBuilder<IMSFBuilderProps>({
+	const [ values, setValues ] = msfVenomBuilder({
 		Payload: 'generic/shell_reverse_tcp',
 		LHOST: '10.10.13.37',
 		LPORT: '4444',
