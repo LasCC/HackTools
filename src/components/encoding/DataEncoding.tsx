@@ -47,12 +47,12 @@ const Base64Encode = () => {
             try {
                 setOutput( decodeURI( input ) );
             } catch ( ex ) {
-                setOutput( 'Unable to decode properly : Incorrect base64 ' );
-                message.error( 'Incorrect Base64 please try something else' );
+                setOutput( 'Unable to decode properly : Incorrect URI ' );
+                message.error( 'Incorrect URI please try something else' );
             }
         } else if ( type === 'encode' && encMode === 'uri' ) {
             try {
-                setOutput( encodeURI( input ) );
+                setOutput( encodeURIComponent( input ) );
             } catch ( error ) {
                 setOutput( 'Unable to decode properly : Incorrect URI ' );
                 message.error( 'Incorrect format please try something else' );
