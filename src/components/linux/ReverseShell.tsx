@@ -3,6 +3,7 @@ import { Button, message, Typography, Row, Col, Divider, Input } from 'antd';
 import { CopyOutlined, WifiOutlined, LinkOutlined, createFromIconfontCN } from '@ant-design/icons';
 import PersistedState from 'use-persisted-state';
 import QueueAnim from 'rc-queue-anim';
+import { Ipv4TcpCacheState } from 'components/types/Ipv4TcpCacheState';
 import Clipboard from 'react-clipboard.js';
 
 const { Title, Paragraph, Text } = Typography;
@@ -11,7 +12,7 @@ const IconFont = createFromIconfontCN( {
 } );
 
 export default function ReverseShell () {
-    const useIPv4State = PersistedState( 'ipv4_tcp_cache' );
+    const useIPv4State = PersistedState<Ipv4TcpCacheState>( 'ipv4_tcp_cache' );
     const [ values, setValues ] = useIPv4State( {
         ip: '',
         port: ''

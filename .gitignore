@@ -9,3 +9,4 @@ yarn-error.log
 .vscode
 .idea
 .github
+pnpm-lock.yaml

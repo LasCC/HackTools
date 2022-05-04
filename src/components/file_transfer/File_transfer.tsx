@@ -2,7 +2,9 @@ import React from 'react';
 import PersistedState from 'use-persisted-state';
 import { Typography, Row, Col, Divider, Input } from 'antd';
 import { WifiOutlined, createFromIconfontCN, FolderOutlined } from '@ant-design/icons';
+import { Ipv4TcpCacheState } from "components/types/Ipv4TcpCacheState";
 import QueueAnim from 'rc-queue-anim';
+
 
 const { Title, Paragraph, Text } = Typography;
 const IconFont = createFromIconfontCN( {
@@ -10,12 +12,12 @@ const IconFont = createFromIconfontCN( {
 } );
 
 export default function FileTransfer () {
-    const useIPv4State = PersistedState( 'ipv4_tcp_cache' );
+    const useIPv4State = PersistedState<Ipv4TcpCacheState>( 'ipv4_tcp_cache' );
 
     const [ values, setValues ] = useIPv4State( {
         ip: '',
         port: '',
-        file_name: ''
+        file_name: '',
     } );
     const handleChange = ( name: string ) => ( event: { target: { value: string } } ) => {
         setValues( { ...values, [ name ]: event.target.value } );

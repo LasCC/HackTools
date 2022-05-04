@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PersistedState from 'use-persisted-state';
 import { Button, Input, Typography, message, Divider, Menu, Dropdown, Space } from 'antd';
 import { CopyOutlined, createFromIconfontCN, ClearOutlined, DownOutlined, FileTextOutlined } from '@ant-design/icons';
+import { ObfuscatedFile } from 'components/types/ObfuscatedFile';
 import Clipboard from 'react-clipboard.js';
 import QueueAnim from 'rc-queue-anim';
 
@@ -12,7 +13,7 @@ const IconFont = createFromIconfontCN( {
 
 const EchoBase64 = () => {
     const [ output, setOutput ] = useState( '' );
-    const echoFileName = PersistedState( 'echo_file_name' );
+    const echoFileName = PersistedState<ObfuscatedFile>( 'echo_file_name' );
     const { TextArea } = Input;
 
     const [ values, setValues ] = echoFileName( {

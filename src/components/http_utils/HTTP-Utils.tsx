@@ -28,7 +28,7 @@ const { TextArea } = Input;
 const { Option } = Select;
 
 export default function LinuxCommands () {
-    const http_url = PersistedState( 'http_url_repeater' );
+    const http_url = PersistedState<IHTTP_UtilsProps>( 'http_url_repeater' );
     const [ isModalVisible, setIsModalVisible ] = useState( false );
 
     const windowMode = () => {
@@ -56,7 +56,7 @@ export default function LinuxCommands () {
         type: string;
     }
 
-    const [ values, setValues ] = http_url<IHTTP_UtilsProps>( {
+    const [ values, setValues ] = http_url( {
         url: '',
         protocol: 'http://',
         type: 'GET'

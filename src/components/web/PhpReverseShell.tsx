@@ -11,6 +11,7 @@ import {
 import QueueAnim from 'rc-queue-anim';
 import Clipboard from 'react-clipboard.js';
 import SyntaxHighlighter from 'react-syntax-highlighter';
+import { Ipv4TcpCacheState } from "components/types/Ipv4TcpCacheState";
 import { vs2015 } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import pretty from 'pretty';
 
@@ -21,10 +22,10 @@ const IconFont = createFromIconfontCN( {
 } );
 
 export default function PhpReverseShell () {
-    const useIPv4State = PersistedState( 'ipv4_tcp_cache' );
+    const useIPv4State = PersistedState<Ipv4TcpCacheState>( 'ipv4_tcp_cache' );
     const [ values, setValues ] = useIPv4State( {
-        ip: '',
-        port: ''
+        ip: 'A.B.C.D',
+        port: '1111',
     } );
     const handleChange = ( name: string ) => ( event: { target: { value: string; }; } ) => {
         setValues( { ...values, [ name ]: event.target.value } );
