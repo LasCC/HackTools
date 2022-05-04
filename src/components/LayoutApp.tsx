@@ -173,8 +173,8 @@ export default function LayoutApp ( props: {
         </Menu.Item>
     ) );
 
-    //const useMenuIndex = PersistedState( 'tab_index_cache' ); // Disabled for now
-    const [ index, setIndex ] = useState( '1' );
+    const useMenuIndex = PersistedState<string>( 'tab_index_cache' ); // Disabled for now
+    const [ index, setIndex ] = useMenuIndex( '1' );
 
     const navigate = ( { componentRoute, key }: { componentRoute: React.FunctionComponent; key: string } ) => {
         goTo( componentRoute );
