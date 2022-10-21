@@ -9,7 +9,7 @@ export default function LinuxCommands () {
         { title: 'find / -user root -perm /4000 2>/dev/null' },
         { title: 'find / -perm -u=s -type f 2>/dev/null' },
         { title: "find / -type f -name '*.txt' 2>/dev/null" },
-        { title: 'find / -user root -perm -4000 -exec ls -ldb {}; > /tmp/suid' },
+        { title: 'find / -user root -perm -4000 -exec ls -ldb {} \; > /tmp/suid' },
         { title: 'getcap -r / 2>/dev/null' }
     ];
     const VersionSystem = [
