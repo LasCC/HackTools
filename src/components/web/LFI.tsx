@@ -1,7 +1,6 @@
 import React from 'react';
 import { Button, message, Typography, Divider } from 'antd';
 import { CopyOutlined, LinkOutlined } from '@ant-design/icons';
-import QueueAnim from 'rc-queue-anim';
 import Clipboard from 'react-clipboard.js';
 
 const { Title, Paragraph, Text } = Typography;
@@ -68,7 +67,7 @@ export default function LFI () {
     ];
 
     return (
-        <QueueAnim delay={300} duration={1500}>
+        <div>
             <Title level={2} style={{ fontWeight: 'bold', margin: 15 }}>
                 LFI
             </Title>
@@ -246,6 +245,6 @@ export default function LFI () {
                 } )}
             </div>
             <Divider dashed />
-        </QueueAnim>
+        </div>
     );
 };

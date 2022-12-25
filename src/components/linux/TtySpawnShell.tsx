@@ -1,12 +1,11 @@
 import React from 'react';
 import { Typography, Divider } from 'antd';
-import QueueAnim from 'rc-queue-anim';
 
 const { Title, Paragraph, Text } = Typography;
 
 export default function TTY () {
     return (
-        <QueueAnim delay={300} duration={1500}>
+        <div>
             <Title level={2} style={{ fontWeight: 'bold', margin: 15 }}>
                 TTY Spawn Shell
             </Title>
@@ -16,7 +15,6 @@ export default function TTY () {
                 depend on the system environment and installed packages.
             </Paragraph>
             <div
-                key='a'
                 style={{
                     padding: 15,
                     marginTop: 15
@@ -29,7 +27,6 @@ export default function TTY () {
             </div>
             <Divider orientation='center'>Fully Interactive TTY</Divider>
             <div
-                key='b'
                 style={{
                     padding: 15,
                     marginTop: 15
@@ -83,7 +80,6 @@ export default function TTY () {
             </div>
             <Divider />
             <div
-                key='c'
                 style={{
                     padding: 15,
                     marginTop: 15
@@ -95,7 +91,6 @@ export default function TTY () {
                 </Paragraph>
             </div>
             <div
-                key='d'
                 style={{
                     padding: 15,
                     marginTop: 15
@@ -107,7 +102,6 @@ export default function TTY () {
                 </Paragraph>
             </div>
             <div
-                key='e'
                 style={{
                     padding: 15,
                     marginTop: 15
@@ -119,7 +113,6 @@ export default function TTY () {
                 </Paragraph>
             </div>
             <div
-                key='f'
                 style={{
                     padding: 15,
                     marginTop: 15
@@ -131,7 +124,6 @@ export default function TTY () {
                 </Paragraph>
             </div>
             <div
-                key='g'
                 style={{
                     padding: 15,
                     marginTop: 15
@@ -143,7 +135,6 @@ export default function TTY () {
                 </Paragraph>
             </div>
             <div
-                key='h'
                 style={{
                     padding: 15,
                     marginTop: 15
@@ -155,7 +146,6 @@ export default function TTY () {
                 </Paragraph>
             </div>
             <div
-                key='i'
                 style={{
                     padding: 15,
                     marginTop: 15
@@ -167,7 +157,6 @@ export default function TTY () {
                 </Paragraph>
             </div>
             <div
-                key='j'
                 style={{
                     padding: 15,
                     marginTop: 15
@@ -179,7 +168,6 @@ export default function TTY () {
                 </Paragraph>
             </div>
             <div
-                key='k'
                 style={{
                     padding: 15,
                     marginTop: 15
@@ -190,6 +178,6 @@ export default function TTY () {
                     <pre><Text copyable>!sh</Text></pre>
                 </Paragraph>
             </div>
-        </QueueAnim>
+        </div>
     );
 }

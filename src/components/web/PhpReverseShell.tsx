@@ -8,7 +8,6 @@ import {
     ArrowsAltOutlined,
     createFromIconfontCN
 } from '@ant-design/icons';
-import QueueAnim from 'rc-queue-anim';
 import Clipboard from 'react-clipboard.js';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { Ipv4TcpCacheState } from "components/types/Ipv4TcpCacheState";
@@ -190,7 +189,7 @@ export default function PhpReverseShell () {
   ?> 
   `;
     return (
-        <QueueAnim delay={300} duration={1500}>
+        <div>
             <Title level={2} style={{ fontWeight: 'bold', margin: 15 }}>
                 PHP Reverse Shell
             </Title>
@@ -224,7 +223,6 @@ export default function PhpReverseShell () {
             </div>
             <Divider orientation='center'>Pentestmonkey's reverse shell</Divider>
             <div
-                key='a'
                 style={{
                     padding: 15,
                     marginTop: 15
@@ -236,15 +234,9 @@ export default function PhpReverseShell () {
                         <SyntaxHighlighter language='php' style={vs2015} showLineNumbers={true}>
                             {pretty( phpReverseShell )}
                         </SyntaxHighlighter>
-                        <Button type='dashed' style={{ marginBottom: 10, marginTop: 15 }}>
-                            <a
-                                href='https://raw.githubusercontent.com/pentestmonkey/php-reverse-shell/master/php-reverse-shell.php'
-                                target='_blank'
-                                rel='noreferrer noopener'
-                            >
-                                <ArrowsAltOutlined style={{ marginRight: 10 }} />
-                                Pentestmonkey's repository
-                            </a>
+                        <Button href="https://raw.githubusercontent.com/pentestmonkey/php-reverse-shell/master/php-reverse-shell.php" target='blank' type='dashed' style={{ marginBottom: 10, marginTop: 15 }}>
+                            <ArrowsAltOutlined style={{ marginRight: 10 }} />
+                            Pentestmonkey's repository
                         </Button>
                     </Panel>
                 </Collapse>
@@ -278,7 +270,6 @@ export default function PhpReverseShell () {
             </div>
             <Divider orientation="center">Basic RCE</Divider>
             <div
-                key='b'
                 style={{
                     padding: 15,
                     marginTop: 15
@@ -319,7 +310,6 @@ export default function PhpReverseShell () {
             </div>
             <Divider orientation="center">Web Shell</Divider>
             <div
-                key='c'
                 style={{
                     padding: 15,
                     marginTop: 15
@@ -338,24 +328,15 @@ export default function PhpReverseShell () {
                         />
                     </Panel>
                 </Collapse>
-                <Button type='primary' style={{ marginBottom: 10, marginTop: 15 }}>
-                    <a
-                        href='https://raw.githubusercontent.com/flozz/p0wny-shell/master/shell.php'
-                        target='_blank'
-                        rel='noopener noreferrer'
-                    >
-                        <DownloadOutlined /> Download
-                    </a>
+                <Button href="https://raw.githubusercontent.com/flozz/p0wny-shell/master/shell.php" target='blank' type='primary' style={{ marginBottom: 10, marginTop: 15 }}>
+                    <DownloadOutlined /> Download
                 </Button>
-                <Button type='dashed' style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }}>
-                    <a href='https://github.com/flozz/p0wny-shell' target='_blank' rel='noopener noreferrer'>
-                        <ArrowsAltOutlined /> Flozz's repository
-                    </a>
+                <Button href='https://github.com/flozz/p0wny-shell' target='blank' type='dashed' style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }}>
+                    <ArrowsAltOutlined /> Flozz's repository
                 </Button>
             </div>
             <Divider orientation="center">Obfuscated PHP Web Shell</Divider>
             <div
-                key='d'
                 style={{
                     padding: 15,
                     marginTop: 15
@@ -386,7 +367,6 @@ export default function PhpReverseShell () {
                 </Clipboard>
             </div>
             <div
-                key='e'
                 style={{
                     padding: 15,
                     marginTop: 15
@@ -417,7 +397,6 @@ export default function PhpReverseShell () {
                 </Clipboard>
             </div>
             <div
-                key='f'
                 style={{
                     padding: 15,
                     marginTop: 15
@@ -450,7 +429,6 @@ export default function PhpReverseShell () {
                 </Clipboard>
             </div >
             <div
-                key='f'
                 style={{
                     padding: 15,
                     marginTop: 15
@@ -482,7 +460,6 @@ export default function PhpReverseShell () {
                 </Clipboard>
             </div >
             <div
-                key='g'
                 style={{
                     padding: 15,
                     marginTop: 15
@@ -514,6 +491,6 @@ export default function PhpReverseShell () {
                     </Button>
                 </Clipboard>
             </div >
-        </QueueAnim >
+        </div >
     );
 };

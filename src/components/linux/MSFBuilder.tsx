@@ -2,7 +2,6 @@ import React from 'react';
 import { Input, Typography, Row, Divider, Select, Form, Col, Collapse } from 'antd';
 import PersistedState from 'use-persisted-state';
 import { MSFBuilder } from 'components/types/MSFBuilder';
-import QueueAnim from 'rc-queue-anim';
 
 const { Title, Paragraph } = Typography;
 
@@ -21,17 +20,17 @@ const MSFBuilder = () => {
     let format = require( '../../assets/data/Format.json' );
 
     const [ values, setValues ] = msfVenomBuilder( {
-        Payload: 'generic/shell_reverse_tcp',
+        Payload: 'windows/meterpreter/bind_tcp',
         LHOST: '10.10.13.37',
         LPORT: '4444',
-        Encoder: '',
-        EncoderIterations: '',
-        Platform: '',
-        Arch: '',
-        NOP: '',
-        BadCharacters: '',
-        Format: '',
-        Outfile: ''
+        Encoder: 'generic/none',
+        EncoderIterations: '4',
+        Platform: 'windows',
+        Arch: 'x64',
+        NOP: '200',
+        BadCharacters: `00`,
+        Format: 'exe',
+        Outfile: 'reverse_shell.exe'
     } );
 
     const launchCommand = `msfconsole -qx "use exploit/multi/handler; set PAYLOAD ${ values.Payload }; set LHOST ${ values.LHOST }; set LPORT ${ values.LPORT }; run"`;
@@ -45,7 +44,7 @@ const MSFBuilder = () => {
     };
 
     return (
-        <QueueAnim delay={300} duration={1500}>
+        <div>
             <div style={{ margin: 15 }}>
                 <Title level={2} style={{ fontWeight: 'bold' }}>
                     MSF Venom Builder
@@ -73,14 +72,14 @@ const MSFBuilder = () => {
                             onChange={handleChangeSelect( 'Payload' )}
                             placeholder='python/meterpreter/reverse_http'
                             filterOption={( inputValue, option ) =>
-                                option.value.toLowerCase().indexOf( inputValue.toLowerCase() ) >= 0}
+                                option.value.toString().toUpperCase().indexOf( inputValue.toUpperCase() ) !== -1
+                            }
                         >
                             {payloads.map(
                                 (
                                     data: {
                                         value:
                                         | boolean
-                                        | React.ReactChild
                                         | React.ReactFragment
                                         | React.ReactPortal
                                         | null
@@ -135,7 +134,6 @@ const MSFBuilder = () => {
                                             data: {
                                                 value:
                                                 | boolean
-                                                | React.ReactChild
                                                 | React.ReactFragment
                                                 | React.ReactPortal
                                                 | null
@@ -185,7 +183,7 @@ const MSFBuilder = () => {
                                 {platform.map(
                                     (
                                         data: {
-                                            value: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal;
+                                            value: boolean | React.ReactFragment | React.ReactPortal;
                                         },
                                         key: string | number
                                     ) => {
@@ -237,7 +235,6 @@ const MSFBuilder = () => {
                                         data: {
                                             value:
                                             | boolean
-                                            | React.ReactChild
                                             | React.ReactFragment
                                             | React.ReactPortal
                                             | null
@@ -304,7 +301,7 @@ run`}
                     </Panel>
                 </Collapse>
             </div>
-        </QueueAnim>
+        </div>
     );
 };
 

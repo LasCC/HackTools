@@ -1,6 +1,5 @@
 import React from 'react';
 import { Typography, Divider } from 'antd';
-import QueueAnim from 'rc-queue-anim';
 
 const { Title, Paragraph, Text } = Typography;
 
@@ -68,7 +67,7 @@ export default function XSS () {
         { title: 'Set.constructor`al\x65rt\x2814\x29```;' }
     ];
     return (
-        <QueueAnim delay={300} duration={1500}>
+        <div>
             <Title level={2} style={{ fontWeight: 'bold', margin: 15 }}>
                 Cross Site Scripting (XSS)
             </Title>
@@ -167,6 +166,6 @@ export default function XSS () {
                     );
                 } )}
             </div>
-        </QueueAnim>
+        </div>
     );
 }

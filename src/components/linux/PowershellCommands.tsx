@@ -3,7 +3,6 @@ import { Typography, Divider, Button, message } from 'antd';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { vs2015 } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import Clipboard from 'react-clipboard.js';
-import QueueAnim from 'rc-queue-anim';
 import { CopyOutlined } from '@ant-design/icons';
 
 const { Title, Paragraph, Text } = Typography;
@@ -143,7 +142,7 @@ Foreach($obj in $Result)
 }`;
 
     return (
-        <QueueAnim delay={300} duration={1500}>
+        <div>
             <Title level={2} style={{ fontWeight: 'bold', margin: 15 }}>
                 Powershell handy commands
             </Title>
@@ -386,6 +385,6 @@ Foreach($obj in $Result)
                     </Clipboard>
                 </div>
             </div>
-        </QueueAnim>
+        </div>
     );
 }
