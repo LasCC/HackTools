@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router } from 'react-chrome-extension-router';
-import { BackTop } from 'antd';
+import { FloatButton } from 'antd';
 import { QueryClientProvider, QueryClient } from 'react-query';
 import LayoutApp from './components/LayoutApp';
 import ReverseShell from './components/linux/ReverseShell';
@@ -17,13 +17,14 @@ const App = () => {
     );
 };
 
+
 ReactDOM.render(
     <QueryClientProvider client={queryClient}>
         <LayoutApp>
             <Router>
                 <App />
             </Router>
-            <BackTop />
+            <FloatButton.BackTop />
         </LayoutApp>
     </QueryClientProvider>,
     document.getElementById( 'app' )
