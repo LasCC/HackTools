@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Button, Input, Typography, message, Divider, Menu, Dropdown } from 'antd';
 import { CopyOutlined, createFromIconfontCN, ClearOutlined, DownOutlined } from '@ant-design/icons';
 import Clipboard from 'react-clipboard.js';
-import QueueAnim from 'rc-queue-anim';
 import escape_quotes from 'escape-quotes';
 
 const { Title, Paragraph } = Typography;
@@ -34,45 +33,60 @@ const Base64Encode = () => {
         setInput( event.target.value );
     };
     const handleClick = ( type: string ) => {
-        if ( type === 'encode' && encMode === 'base64' ) {
-            setOutput( btoa( input ) );
-        } else if ( type === 'decode' && encMode === 'base64' ) {
-            try {
-                setOutput( atob( input ) );
-            } catch ( ex ) {
-                setOutput( 'Unable to decode properly : Incorrect base64 ' );
-                message.error( 'Incorrect Base64 please try something else' );
-            }
-        } else if ( type === 'decode' && encMode === 'uri' ) {
-            try {
-                setOutput( decodeURI( input ) );
-            } catch ( ex ) {
-                setOutput( 'Unable to decode properly : Incorrect base64 ' );
-                message.error( 'Incorrect Base64 please try something else' );
-            }
-        } else if ( type === 'encode' && encMode === 'uri' ) {
-            try {
-                setOutput( encodeURI( input ) );
-            } catch ( error ) {
-                setOutput( 'Unable to decode properly : Incorrect URI ' );
-                message.error( 'Incorrect format please try something else' );
-            }
-        } else if ( type === 'decode' && encMode === 'hex' ) {
-            try {
-                setOutput( hex2a( input ) );
-            } catch ( ex ) {
-                setOutput( 'Unable to decode properly : Incorrect hexadecimal ' );
-                message.error( 'Incorrect Hex please try something else' );
-            }
-        } else if ( type === 'encode' && encMode === 'hex' ) {
-            try {
-                setOutput( toHex( input ) );
-            } catch ( error ) {
-                setOutput( 'Unable to decode properly : Incorrect hexadecimal ' );
-                message.error( 'Incorrect Hex please try something else' );
-            }
+        let output;
+        let errorMessage;
+        switch ( type ) {
+            case "encode":
+                switch ( encMode ) {
+                    case "base64":
+                        output = btoa( input );
+                        break;
+                    case "uri":
+                        try {
+                            output = encodeURI( input );
+                        } catch ( error ) {
+                            errorMessage = "Incorrect format, please try something else.";
+                        }
+                        break;
+                    case "hex":
+                        try {
+                            output = toHex( input );
+                        } catch ( error ) {
+                            errorMessage = "Incorrect Hex, please try something else.";
+                        }
+                        break;
+                }
+                break;
+            case "decode":
+                switch ( encMode ) {
+                    case "base64":
+                        try {
+                            output = atob( input );
+                        } catch ( ex ) {
+                            errorMessage = "Incorrect Base64, please try something else.";
+                        }
+                        break;
+                    case "uri":
+                        try {
+                            output = decodeURI( input );
+                        } catch ( ex ) {
+                            errorMessage = "Incorrect URI, please try something else.";
+                        }
+                        break;
+                    case "hex":
+                        try {
+                            output = hex2a( input );
+                        } catch ( ex ) {
+                            errorMessage = "Incorrect hexadecimal, please try something else.";
+                        }
+                        break;
+                }
+                break;
         }
-        return;
+        setOutput( errorMessage ? "Unable to decode properly: " + errorMessage : output );
+        if ( errorMessage ) {
+            message.error( errorMessage );
+        }
     };
     const [ encMode, setEncmode ] = useState( 'base64' );
     const handleQuoteEscaper = () => {
@@ -94,7 +108,7 @@ const Base64Encode = () => {
     );
 
     return (
-        <QueueAnim delay={300} duration={1500}>
+        <div>
             <div style={{ margin: 15 }}>
                 <Title level={2} style={{ fontWeight: 'bold' }}>
                     Data Encoding
@@ -176,7 +190,7 @@ const Base64Encode = () => {
                     <ClearOutlined /> Clear
                 </Button>
             </div>
-        </QueueAnim>
+        </div>
     );
 };
 
