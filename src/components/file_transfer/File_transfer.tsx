@@ -3,7 +3,6 @@ import PersistedState from 'use-persisted-state';
 import { Typography, Row, Col, Divider, Input } from 'antd';
 import { WifiOutlined, createFromIconfontCN, FolderOutlined } from '@ant-design/icons';
 import { Ipv4TcpCacheState } from "components/types/Ipv4TcpCacheState";
-import QueueAnim from 'rc-queue-anim';
 
 
 const { Title, Paragraph, Text } = Typography;
@@ -33,7 +32,7 @@ export default function FileTransfer () {
     const scp_dl = `scp user@${ values.ip || 'IP' }:~/path_to_file file_saved ${ values.port && '-P ' + values.port }`;
 
     return (
-        <QueueAnim delay={300} duration={1500}>
+        <div>
             <Title level={2} style={{ fontWeight: 'bold', margin: 15 }}>
                 File Transfer
             </Title>
@@ -166,6 +165,6 @@ export default function FileTransfer () {
                     <pre><Text copyable>{scp_dl}</Text></pre>
                 </Paragraph>
             </div>
-        </QueueAnim>
+        </div>
     );
 }

@@ -1,12 +1,11 @@
 import React from 'react';
 import { Typography, Divider } from 'antd';
-import QueueAnim from 'rc-queue-anim';
 
 const { Title, Paragraph, Link } = Typography;
 
 export default function AboutUs () {
     return (
-        <QueueAnim delay={300} duration={1500}>
+        <div>
             <Title
                 level={2}
                 style={{
@@ -25,7 +24,6 @@ export default function AboutUs () {
             </Paragraph>
             <Divider dashed />
             <div
-                key='a'
                 style={{
                     padding: 15,
                     marginTop: 15
@@ -56,7 +54,6 @@ export default function AboutUs () {
             </div>
             <Divider dashed />
             <div
-                key='b'
                 style={{
                     padding: 15,
                     marginTop: 15
@@ -89,6 +86,6 @@ export default function AboutUs () {
                 <Paragraph> MITRE ATT&CK </Paragraph>
                 <Paragraph> Thanks to dejisec for the Active Directory scripts ! <Link href='https://gist.github.com/dejisec/3477eff3258f1f43fc3c57de56295f34' target='_blank'>Link</Link> </Paragraph>
             </div>
-        </QueueAnim>
+        </div>
     );
 }

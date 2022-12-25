@@ -4,7 +4,6 @@ import { Button, Input, Typography, message, Divider, Menu, Dropdown, Space } fr
 import { CopyOutlined, createFromIconfontCN, ClearOutlined, DownOutlined, FileTextOutlined } from '@ant-design/icons';
 import { ObfuscatedFile } from 'components/types/ObfuscatedFile';
 import Clipboard from 'react-clipboard.js';
-import QueueAnim from 'rc-queue-anim';
 
 const { Title, Paragraph } = Typography;
 const IconFont = createFromIconfontCN( {
@@ -90,7 +89,7 @@ Remove-Variable ${ pwsh_random }` );
     );
 
     return (
-        <QueueAnim delay={300} duration={1500}>
+        <div>
             <div style={{ margin: 15 }}>
                 <Title level={2} style={{ fontWeight: 'bold' }}>
                     Obfuscated Files or Information
@@ -180,7 +179,7 @@ public class wvlgi {
                     <ClearOutlined /> Clear
                 </Button>
             </div>
-        </QueueAnim>
+        </div>
     );
 };
 

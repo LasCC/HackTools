@@ -1,6 +1,5 @@
 import React from 'react';
 import { Typography, Divider } from 'antd';
-import QueueAnim from 'rc-queue-anim';
 
 const { Title, Paragraph, Text } = Typography;
 
@@ -110,14 +109,13 @@ export default function LinuxCommands () {
         }
     ];
     return (
-        <QueueAnim delay={300} duration={1500}>
+        <div>
             <Title level={2} style={{ fontWeight: 'bold', margin: 15 }}>
                 Useful Linux command for your Penetration Testing
             </Title>
             <Paragraph style={{ margin: 15 }}>List of useful commands on Linux</Paragraph>
             <Divider orientation='center'>SUID Commands</Divider>
             <div
-                key='a'
                 style={{
                     padding: 15
                 }}
@@ -132,7 +130,6 @@ export default function LinuxCommands () {
             </div>
             <Divider orientation='center'>What version of the system ?</Divider>
             <div
-                key='b'
                 style={{
                     padding: 15
                 }}
@@ -147,7 +144,6 @@ export default function LinuxCommands () {
             </div>
             <Divider orientation='center'>What is its kernel version ?</Divider>
             <div
-                key='c'
                 style={{
                     padding: 15
                 }}
@@ -162,7 +158,6 @@ export default function LinuxCommands () {
             </div>
             <Divider orientation='center'>What is the environment variables ?</Divider>
             <div
-                key='d'
                 style={{
                     padding: 15
                 }}
@@ -177,7 +172,6 @@ export default function LinuxCommands () {
             </div>
             <Divider orientation='center'>Service settings, there is any wrong allocation?</Divider>
             <div
-                key='e'
                 style={{
                     padding: 15
                 }}
@@ -192,7 +186,6 @@ export default function LinuxCommands () {
             </div>
             <Divider orientation='center'>Is there any cron jobs ?</Divider>
             <div
-                key='f'
                 style={{
                     padding: 15
                 }}
@@ -207,7 +200,6 @@ export default function LinuxCommands () {
             </div>
             <Divider orientation='center'>Other users host communication with the system ?</Divider>
             <div
-                key='g'
                 style={{
                     padding: 15
                 }}
@@ -222,7 +214,6 @@ export default function LinuxCommands () {
             </div>
             <Divider orientation='center'>How to port forward ?</Divider>
             <div
-                key='h'
                 style={{
                     padding: 15
                 }}
@@ -237,7 +228,6 @@ export default function LinuxCommands () {
             </div>
             <Divider orientation='center'>TAR wildcard cronjob privilege escalation</Divider>
             <div
-                key='h'
                 style={{
                     padding: 15
                 }}
@@ -250,6 +240,6 @@ export default function LinuxCommands () {
                     );
                 } )}
             </div>
-        </QueueAnim>
+        </div>
     );
 }
