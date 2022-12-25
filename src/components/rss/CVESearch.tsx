@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Typography, Empty, Spin, Button, PageHeader, Tag, Descriptions, Input, List, Divider, Result } from 'antd';
-import QueueAnim from 'rc-queue-anim';
+import { Typography, Empty, Spin, Button, Tag, Descriptions, Input, List, Divider, Result } from 'antd';
+import { PageHeader } from '@ant-design/pro-layout';
 import { CloseCircleOutlined } from '@ant-design/icons';
 import { goTo } from 'react-chrome-extension-router';
 import { useQuery } from 'react-query';
@@ -17,7 +17,7 @@ export default function CVESearch () {
         setValues( { ...values, [ name ]: event.target.value } );
     };
     const fetchApi = async () => {
-        const res = await fetch( `https://corsanywhere.herokuapp.com/https://cve.circl.lu/api/cve/${ values.cve }` );
+        const res = await fetch( `https://corsproxy.io/?https://cve.circl.lu/api/cve/${ values.cve }` );
         return res.json();
     };
     const { isLoading, isError, data, refetch, isFetching } = useQuery( 'cve', fetchApi );
@@ -40,10 +40,8 @@ export default function CVESearch () {
                     }}
                     description={<span>Error getting the data please contact us.</span>}
                 >
-                    <Button danger>
-                        <a href='https://github.com/LasCC/Hack-Tools/issues' rel='noreferrer noopener' target='_blank'>
-                            Report the bug
-                        </a>
+                    <Button href='https://github.com/LasCC/Hack-Tools/issues' target='blank' danger>
+                        Report the bug
                     </Button>
                 </Empty>
             </div>
@@ -51,15 +49,13 @@ export default function CVESearch () {
     }
 
     return (
-        <QueueAnim delay={300} duration={1500}>
+        <div>
             <PageHeader
                 onBack={() => goTo( FeedRSS )}
                 title='CVE Search engine'
                 extra={[
-                    <Button key='1' type='primary'>
-                        <a href='https://www.cve-search.org/' rel='noreferrer noopener' target='_blank'>
-                            Visit orignal website
-                        </a>
+                    <Button key='1' href='https://www.cve-search.org/' target='blank' type='primary'>
+                        Visit orignal website
                     </Button>
                 ]}
             />
@@ -202,6 +198,6 @@ export default function CVESearch () {
                     </div>
                 ) : null}
             </div>
-        </QueueAnim>
+        </div>
     );
 }
