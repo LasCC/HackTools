@@ -10,15 +10,24 @@ const IconFont = createFromIconfontCN( {
 } );
 
 function toHex ( str: string ) {
-    var result = '';
-    for ( var i = 0; i < str.length; i++ ) {
-        result += str.charCodeAt( i ).toString( 16 ).toUpperCase();
+    var result: string = '';
+    for ( var i: number = 0; i < str.length; i++ ) {
+        var hex: string = str.charCodeAt( i ).toString( 16 ).toUpperCase();
+        if ( hex.length === 1 ) {
+            hex = '0' + hex;
+        }
+        result += hex;
     }
     return result;
 }
 function hex2a ( hex: string ) {
-    var str = '';
-    for ( var i = 0; i < hex.length; i += 2 ) str += String.fromCharCode( parseInt( hex.substr( i, 2 ), 16 ) );
+    var str: string = '';
+    for ( var i: number = 0; i < hex.length; i += 2 ) {
+        var code: number = parseInt( hex.substr( i, 2 ), 16 );
+        if ( !isNaN( code ) ) {
+            str += String.fromCharCode( code );
+        }
+    }
     return str;
 }
 
