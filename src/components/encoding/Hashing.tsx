@@ -134,7 +134,7 @@ const HashEncode = () => {
                     style={{ cursor: 'auto', marginTop: 15, color: '#777' }}
                     placeholder='The results will appear here'
                 />
-                <pre>Cryptographic Hash Algorithm : {hashname}</pre>
+                <pre><Text>Cryptographic Hash Algorithm : {hashname}</Text></pre>
                 <Clipboard component='a' data-clipboard-text={output}>
                     <Button type='primary' style={{ marginBottom: 10, marginTop: 15 }} onClick={successInfoHashing}>
                         <CopyOutlined /> Copy
