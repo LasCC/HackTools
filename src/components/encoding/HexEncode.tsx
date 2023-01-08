@@ -9,16 +9,29 @@ const IconFont = createFromIconfontCN( {
 } );
 
 function toHex ( str: string ): string {
-    let result = '';
+    let result = "";
     for ( const ch of str ) {
-        result += ch.charCodeAt( 0 ).toString( 16 ).toUpperCase();
+        let hex = ch.charCodeAt( 0 ).toString( 16 ).toUpperCase();
+        if ( hex.length < 2 ) {
+            hex = "0" + hex;
+        }
+        result += hex;
     }
     return result;
 }
+
 function hex2a ( hex: string ): string {
-    let str = '';
+    let str = "";
     for ( let i = 0; i < hex.length; i += 2 ) {
-        str += String.fromCharCode( parseInt( hex.substr( i, 2 ), 16 ) );
+        const hexChar = hex.substr( i, 2 );
+        if ( hexChar.length < 2 ) {
+            throw new Error( "invalid hexadecimal" );
+        }
+        const num = parseInt( hexChar, 16 );
+        if ( num < 0 || num > 255 ) {
+            throw new Error( "invalid hexadecimal" );
+        }
+        str += String.fromCharCode( num );
     }
     return str;
 }
