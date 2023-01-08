@@ -7,9 +7,9 @@
         "start": "webpack --watch",
         "build": "webpack --mode production && rm -f ./dist/*.map",
         "watch": "webpack --watch",
-        "zip_moz": "zip -r bundle_moz.zip dist/*",
-        "zip_chrome": "zip -r bundle_chrome.zip dist/",
-        "zip_all": "yarn zip_moz && yarn zip_chrome",
+        "zip_chrome": "rm -f './dist/*.map' && zip -r bundle_chrome.zip dist/",
+        "zip_moz": " rm -f './dist/*.map' && sed -i 's/\"manifest_version\": 3/\"manifest_version\": 2/g' ./dist/manifest.json  && sed -i 's/\"action\":/\"browser_action\":/g' ./dist/manifest.json & zip -r bundle_moz.zip dist/*",
+        "zip_all": "yarn zip_chrome && yarn zip_moz",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "keywords": [],
