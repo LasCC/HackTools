@@ -112,8 +112,7 @@ export default function FileTransfer () {
                 </Title>
                 <Text strong># Upload payload</Text>
                 <Paragraph ellipsis={true}>
-                    <pre><Text copyable>nc -lnvp ; {values.port}
-                        {netcat_transfer}</Text></pre>
+                    <pre><Text copyable>nc -lnvp {values.port} ; {netcat_transfer}</Text></pre>
                 </Paragraph>
                 <Text strong style={{ marginTop: '2em' }}>
                     # Download
