@@ -35,7 +35,7 @@ export default function LinuxCommands () {
         const height = 800;
 
         chrome.windows.create( {
-            url: chrome.extension.getURL( 'index.html' ),
+            url: chrome.runtime.getURL( 'index.html' ),
             width: width,
             height: height,
             type: 'popup'
