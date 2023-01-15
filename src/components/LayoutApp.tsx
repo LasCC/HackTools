@@ -33,14 +33,11 @@ export default function LayoutApp ( props: {
     const { defaultAlgorithm, darkAlgorithm } = theme;
     const setDarkMode = PersistedState<boolean>( 'dark_mode' );
     const [ darkMode, setDarkModeState ] = setDarkMode( false );
-    const handleSwtichTheme = ( e ) => {
-        setDarkModeState( ( previousValue ) => !previousValue );
-        console.log( e );
-        if ( e === true ) {
-            console.log( e );
-        } else {
-            setDarkModeState( false );
-        }
+    const handleSwtichTheme = ( value: string ) => {
+        // Set the dark mode state based on the selected value
+        // We can use the '===' operator because we know the value can only be 'dark' or 'light'.
+        const isDarkMode = value === 'dark';
+        setDarkModeState( isDarkMode );
     }
 
     interface IRouterComponent {
@@ -171,7 +168,7 @@ export default function LayoutApp ( props: {
         const height = 800;
 
         chrome.windows.create( {
-            url: chrome.extension.getURL( 'index.html' ),
+            url: chrome.runtime.getURL( 'index.html' ),
             width: width,
             height: height,
             type: 'popup'
@@ -192,6 +189,7 @@ export default function LayoutApp ( props: {
                 },
                 algorithm: darkMode ? darkAlgorithm : defaultAlgorithm,
             }}
+
         >
             <Layout style={{ minHeight: '100vh' }}>
                 <Sider
@@ -242,15 +240,24 @@ export default function LayoutApp ( props: {
                                 Fullscreen mode
                             </a>
                         </Button>
+                        <Select
+                            defaultValue="light"
+                            style={{ width: 150 }}
+                            onChange={handleSwtichTheme}
+                            options={[
+                                {
+                                    value: 'light',
+                                    label: 'Light',
+                                },
+                                {
+                                    value: 'dark',
+                                    label: 'Dark',
+                                },
+                            ]}
+                        />
                         <Button icon={<ArrowsAltOutlined style={{ margin: 5 }} />} onClick={() => windowMode()} type='link'>
                             Pop-up mode
                         </Button>
-                        <Switch
-                            checkedChildren="dark"
-                            unCheckedChildren="light"
-                            defaultChecked={darkMode}
-                            onChange={handleSwtichTheme}
-                        />
                     </Footer>
                 </Layout>
             </Layout >
