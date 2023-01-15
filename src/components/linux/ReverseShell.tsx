@@ -65,7 +65,7 @@ export default function ReverseShell () {
 
     const [ filteredInfo, setFilteredInfo ] = useState<Record<string, FilterValue | null>>( {} );
     const [ sortedInfo, setSortedInfo ] = useState<SorterResult<DataType>>( {} );
-    const handleChangeFilter: TableProps<DataType>[ 'onChange' ] = ( pagination, filters, sorter ) => {
+    const handleChangeFilter: TableProps<DataType>[ 'onChange' ] = ( _, filters, sorter ) => {
         setFilteredInfo( filters );
         setSortedInfo( sorter as SorterResult<DataType> );
     };
@@ -144,9 +144,13 @@ export default function ReverseShell () {
                 .toString()
                 .toLowerCase()
                 .includes( ( value as string ).toLowerCase() ),
-        onFilterDropdownOpenChange: ( visible ) => {
+        onFilterDropdownVisibleChange: ( visible: any ) => {
             if ( visible ) {
-                setTimeout( () => searchInput.current?.select(), 100 );
+                setTimeout( () => {
+                    searchInput.current?.select();
+                }, 100 );
+            } else {
+                setSearchedColumn( "" );
             }
         },
         render: ( text ) =>
@@ -263,72 +267,76 @@ export default function ReverseShell () {
     return (
         <div>
             {contextHolder}
-            <Title level={2} style={{ fontWeight: 'bold', margin: 15 }}>
-                Reverse shell
-            </Title>
-            <Paragraph style={{ margin: 15 }}>
-                A reverse shell is a type of network communication in which a connection is established from a remote host (the "attacker") to a target host (the "victim") and the attacker is able to execute commands on the victim's machine as if they were running on the attacker's machine. This is typically done by exploiting a vulnerability in the victim's system or by tricking the victim into running a malicious program that establishes the reverse shell.
-            </Paragraph>
-            <div style={{ padding: 15 }}>
-                <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-                    <Col span={8}>
-                        <Input
-                            maxLength={15}
-                            prefix={<WifiOutlined />}
-                            name='Ip adress'
-                            placeholder='IP Address or domain (ex: 212.212.111.222)'
-                            onChange={handleChange( 'ip' )}
-                            value={values.ip}
-                        />
-                    </Col>
-                    <Col span={8}>
-                        <Input
-                            maxLength={5}
-                            prefix={<IconFont type='icon-Network-Plug' />}
-                            name='Port'
-                            placeholder='Port (ex: 1337)'
-                            onChange={handleChange( 'port' )}
-                            value={values.port}
-                        />
-                    </Col>
-                    <Col span={8}>
-                        <Form.Item name='shell' valuePropName={String( values.shell )} label='Shell'>
-                            <Select
-                                showSearch
-                                onChange={handleChangeSelect( 'shell' )}
-                                placeholder='/bin/sh'
-                                value={String( values.shell )}
-                                allowClear
-                            >
-                                <Option value={'sh'}>sh</Option>
-                                <Option value={'/bin/sh'}>/bin/sh</Option>
-                                <Option value={'bash'}>bash</Option>
-                                <Option value={'/bin/bash'}>/bin/bash</Option>
-                                <Option value={'cmd'}>cmd</Option>
-                                <Option value={'powershell'}>powershell</Option>
-                                <Option value={'pwsh'}>pwsh</Option>
-                            </Select>
-                        </Form.Item>
-                    </Col>
-                </Row>
+            <div>
+                <Title level={2} style={{ fontWeight: 'bold', margin: 15 }}>
+                    Reverse shell
+                </Title>
+                <Paragraph style={{ margin: 15 }}>
+                    A reverse shell is a type of network communication in which a connection is established from a remote host (the "attacker") to a target host (the "victim") and the attacker is able to execute commands on the victim's machine as if they were running on the attacker's machine. This is typically done by exploiting a vulnerability in the victim's system or by tricking the victim into running a malicious program that establishes the reverse shell.
+                </Paragraph>
+                <div style={{ padding: 15 }}>
+                    <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+                        <Col span={8}>
+                            <Input
+                                maxLength={15}
+                                prefix={<WifiOutlined />}
+                                name='Ip adress'
+                                placeholder='IP Address or domain (ex: 212.212.111.222)'
+                                onChange={handleChange( 'ip' )}
+                                value={values.ip}
+                            />
+                        </Col>
+                        <Col span={8}>
+                            <Input
+                                maxLength={5}
+                                prefix={<IconFont type='icon-Network-Plug' />}
+                                name='Port'
+                                placeholder='Port (ex: 1337)'
+                                onChange={handleChange( 'port' )}
+                                value={values.port}
+                            />
+                        </Col>
+                        <Col span={8}>
+                            <Form.Item name='shell' valuePropName={String( values.shell )} label='Shell'>
+                                <Select
+                                    showSearch
+                                    onChange={handleChangeSelect( 'shell' )}
+                                    placeholder='/bin/sh'
+                                    value={String( values.shell )}
+                                    allowClear
+                                >
+                                    <Option value={'sh'}>sh</Option>
+                                    <Option value={'/bin/sh'}>/bin/sh</Option>
+                                    <Option value={'bash'}>bash</Option>
+                                    <Option value={'/bin/bash'}>/bin/bash</Option>
+                                    <Option value={'cmd'}>cmd</Option>
+                                    <Option value={'powershell'}>powershell</Option>
+                                    <Option value={'pwsh'}>pwsh</Option>
+                                </Select>
+                            </Form.Item>
+                        </Col>
+                    </Row>
+                </div>
             </div>
-            <Table
-                columns={columns}
-                expandable={{
-                    expandedRowRender: ( record ) => (
-                        <Paragraph>
-                            <pre>
-                                <Text copyable>
-                                    {record.command}
-                                </Text>
-                            </pre>
-                        </Paragraph>
-                    ),
-                    rowExpandable: ( record ) => record.name !== 'Not Expandable',
-                }}
-                dataSource={data}
-                onChange={values.ip && values.port && values.shell ? handleChangeFilter : undefined}
-            />
-        </div>
+            <div>
+                <Table
+                    columns={columns}
+                    expandable={{
+                        expandedRowRender: ( record ) => (
+                            <Paragraph>
+                                <pre>
+                                    <Text copyable>
+                                        {record.command}
+                                    </Text>
+                                </pre>
+                            </Paragraph>
+                        ),
+                        rowExpandable: ( record ) => record.name !== 'Not Expandable',
+                    }}
+                    dataSource={data}
+                    onChange={values.ip && values.port && values.shell ? handleChangeFilter : undefined}
+                />
+            </div>
+        </div >
     );
 }
