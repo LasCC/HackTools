@@ -241,7 +241,7 @@ export default function LayoutApp ( props: {
                             </a>
                         </Button>
                         <Select
-                            defaultValue="light"
+                            defaultValue={darkMode ? 'dark' : 'light'}
                             style={{ width: 150 }}
                             onChange={handleSwtichTheme}
                             options={[
