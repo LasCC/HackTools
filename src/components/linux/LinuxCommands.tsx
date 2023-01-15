@@ -1,7 +1,9 @@
 import React from 'react';
-import { Typography, Divider } from 'antd';
+import { Typography, Divider, Button, Collapse } from 'antd';
+import { ArrowsAltOutlined } from '@ant-design/icons';
 
 const { Title, Paragraph, Text } = Typography;
+const { Panel } = Collapse;
 
 export default function LinuxCommands () {
     const Suid = [
@@ -44,7 +46,7 @@ export default function LinuxCommands () {
         { title: 'cat /etc/my.conf' },
         { title: 'cat /etc/httpd/conf/httpd.conf' },
         { title: 'cat /opt/lampp/etc/httpd.conf' },
-        { title: 'ls -aRl /etc/ | awk ‘$1 ~ /^.*r.*/' }
+        { title: "ls -aRl /etc/ | awk '$1 ~ /^.*r.*/'" }
     ];
     const CronJobs = [
         { title: 'crontab -l' },
@@ -109,17 +111,28 @@ export default function LinuxCommands () {
         }
     ];
     return (
-        <div>
-            <Title level={2} style={{ fontWeight: 'bold', margin: 15 }}>
+        <div style={{ margin: 15 }}>
+            <Title level={2} style={{ fontWeight: 'bold' }}>
                 Useful Linux command for your Penetration Testing
             </Title>
-            <Paragraph style={{ margin: 15 }}>List of useful commands on Linux</Paragraph>
-            <Divider orientation='center'>SUID Commands</Divider>
-            <div
-                style={{
-                    padding: 15
-                }}
-            >
+            <Paragraph>List of useful commands on Linux</Paragraph>
+            <Divider orientation='center' style={{ padding: 5 }}>Script to check every misconfigurations</Divider>
+            <Collapse defaultActiveKey={[ '0' ]}>
+                <Panel header='View the souce code' key='1'>
+                    <img
+                        alt='misconfigcode'
+                        src='https://i.imgur.com/07ft3W4.png'
+                        style={{ height: '100%', width: '100%' }}
+                    />
+                    <br />
+                    <Button href="https://gist.githubusercontent.com/LasCC/6f3838dc02f46b14e9dbc9bc0972407e/raw/8c29317645df2e1d39777e95df8cf7760458d4d0/misconfiguration.sh" target='blank' type='primary' style={{ marginBottom: 10, marginTop: 15 }}>
+                        <ArrowsAltOutlined style={{ marginRight: 5 }} />
+                        Download the script
+                    </Button>
+                </Panel>
+            </Collapse>
+            <Divider orientation='center' style={{ padding: 5 }}>SUID Commands</Divider>
+            <div>
                 {Suid.map( ( k, i ) => {
                     return (
                         <Paragraph key={i}>
@@ -128,12 +141,8 @@ export default function LinuxCommands () {
                     );
                 } )}
             </div>
-            <Divider orientation='center'>What version of the system ?</Divider>
-            <div
-                style={{
-                    padding: 15
-                }}
-            >
+            <Divider orientation='center' style={{ padding: 5 }}>What version of the system ?</Divider>
+            <div>
                 {VersionSystem.map( ( k, i ) => {
                     return (
                         <Paragraph key={i}>
@@ -142,12 +151,8 @@ export default function LinuxCommands () {
                     );
                 } )}
             </div>
-            <Divider orientation='center'>What is its kernel version ?</Divider>
-            <div
-                style={{
-                    padding: 15
-                }}
-            >
+            <Divider orientation='center' style={{ padding: 5 }}>What is its kernel version ?</Divider>
+            <div>
                 {KernelVersion.map( ( k, i ) => {
                     return (
                         <Paragraph key={i}>
@@ -156,12 +161,8 @@ export default function LinuxCommands () {
                     );
                 } )}
             </div>
-            <Divider orientation='center'>What is the environment variables ?</Divider>
-            <div
-                style={{
-                    padding: 15
-                }}
-            >
+            <Divider orientation='center' style={{ padding: 5 }}>What is the environment variables ?</Divider>
+            <div>
                 {EnvironmentVariables.map( ( k, i ) => {
                     return (
                         <Paragraph key={i}>
@@ -170,12 +171,8 @@ export default function LinuxCommands () {
                     );
                 } )}
             </div>
-            <Divider orientation='center'>Service settings, there is any wrong allocation?</Divider>
-            <div
-                style={{
-                    padding: 15
-                }}
-            >
+            <Divider orientation='center' style={{ padding: 5 }}>Service settings, there is any wrong allocation?</Divider>
+            <div>
                 {ServiceSettings.map( ( k, i ) => {
                     return (
                         <Paragraph key={i}>
@@ -184,12 +181,8 @@ export default function LinuxCommands () {
                     );
                 } )}
             </div>
-            <Divider orientation='center'>Is there any cron jobs ?</Divider>
-            <div
-                style={{
-                    padding: 15
-                }}
-            >
+            <Divider orientation='center' style={{ padding: 5 }}>Is there any cron jobs ?</Divider>
+            <div>
                 {CronJobs.map( ( k, i ) => {
                     return (
                         <Paragraph key={i}>
@@ -198,12 +191,8 @@ export default function LinuxCommands () {
                     );
                 } )}
             </div>
-            <Divider orientation='center'>Other users host communication with the system ?</Divider>
-            <div
-                style={{
-                    padding: 15
-                }}
-            >
+            <Divider orientation='center' style={{ padding: 5 }}>Other users host communication with the system ?</Divider>
+            <div>
                 {UsersHost.map( ( k, i ) => {
                     return (
                         <Paragraph key={i}>
@@ -212,12 +201,8 @@ export default function LinuxCommands () {
                     );
                 } )}
             </div>
-            <Divider orientation='center'>How to port forward ?</Divider>
-            <div
-                style={{
-                    padding: 15
-                }}
-            >
+            <Divider orientation='center' style={{ padding: 5 }}>How to port forward ?</Divider>
+            <div>
                 {PortForwarding.map( ( k, i ) => {
                     return (
                         <Paragraph key={i}>
@@ -226,12 +211,8 @@ export default function LinuxCommands () {
                     );
                 } )}
             </div>
-            <Divider orientation='center'>TAR wildcard cronjob privilege escalation</Divider>
-            <div
-                style={{
-                    padding: 15
-                }}
-            >
+            <Divider orientation='center' style={{ padding: 5 }}>TAR wildcard cronjob privilege escalation</Divider>
+            <div>
                 {wildcardPrivesc.map( ( k, i ) => {
                     return (
                         <Paragraph key={i}>
