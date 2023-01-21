@@ -13,7 +13,7 @@ const IconFont = createFromIconfontCN( {
 
 
 const NOTEPAD = () => {
-    const [value, setValue] = PersistedState('ht_notepad_content')('');
+    const [value, setValue] = PersistedState<string>('notepad')('');
     return (
       <div className="container">
         <MDEditor
