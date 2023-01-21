@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Button, Input, Typography, message, Divider } from 'antd';
 import { CopyOutlined, createFromIconfontCN, ClearOutlined } from '@ant-design/icons';
 import Clipboard from 'react-clipboard.js';
+import { escape, unescape } from 'querystring';
 
 const { Title, Paragraph } = Typography;
 const IconFont = createFromIconfontCN( {
@@ -20,10 +21,10 @@ const Base64Encode = () => {
     };
     const handleClick = ( type: string ) => {
         if ( type === 'encode' ) {
-            setOutput( encodeURI( input ) );
+            setOutput( escape( input ) );
         } else if ( type === 'decode' ) {
             try {
-                setOutput( decodeURI( input ) );
+                setOutput( unescape( input ) );
             } catch ( ex ) {
                 setOutput( 'Unable to decode properly : Incorrect base64 :-( ' );
                 message.error( 'Incorrect Base64 please try something else' );
