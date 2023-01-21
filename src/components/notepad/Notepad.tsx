@@ -26,6 +26,7 @@ const NOTEPAD = () => {
           }}
           value={value || ''}
           onChange={setValue}
+          height={520}
           />
         {/* <MDEditor.Markdown source={value} /> */}
       </div>
