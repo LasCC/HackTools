@@ -186,10 +186,11 @@ export default function LayoutApp ( props: {
     const handleHatClick = () => {
         // navigate( Notepad );
         const notepad_route_ctx  ={
-            key: '0',
+            key: '1', // to  prevent error in useEffect
             name: 'Hat Clicked',
             componentRoute: Notepad
         }
+
         navigate( notepad_route_ctx );
     };
     
