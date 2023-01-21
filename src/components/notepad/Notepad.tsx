@@ -6,6 +6,7 @@ import escape_quotes from 'escape-quotes';
 import MDEditor from '@uiw/react-md-editor';
 const { Title, Paragraph } = Typography;
 import PersistedState from 'use-persisted-state';
+import mermaid from "mermaid";
 const IconFont = createFromIconfontCN( {
     scriptUrl: [ './iconfont.js' ]
 } );
