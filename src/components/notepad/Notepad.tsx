@@ -13,15 +13,23 @@ const IconFont = createFromIconfontCN( {
 
 
 const NOTEPAD = () => {
-    const [value, setValue] = PersistedState<string>('notepad')('');
-    return (
+    const [value, setValue] = PersistedState<string|string>('notepad')('');
+  return (
+      <>
+      <Paragraph>
+      
+      </Paragraph>
       <div className="container">
         <MDEditor
-          value={value}
+        textareaProps={{
+          placeholder: 'This is an offline markdown editor to help you take some small notes (data is kept in your browser localstorage)'
+          }}
+          value={value || ''}
           onChange={setValue}
-        />
+          />
         {/* <MDEditor.Markdown source={value} /> */}
       </div>
+      </>
     );
   
 };
