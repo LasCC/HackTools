@@ -19,6 +19,7 @@ import FileTransfer from './file_transfer/File_transfer';
 import PersistedState from 'use-persisted-state';
 import MSFBuilder from './linux/MSFBuilder';
 import EchoBase64 from './file_transfer/ObfuscatedFiles';
+import Notepad from './notepad/Notepad';
 
 const { Paragraph } = Typography;
 const { Sider, Content, Footer } = Layout;
@@ -181,6 +182,17 @@ export default function LayoutApp ( props: {
     }, [] );
 
     const target = window.location.href;
+
+    const handleHatClick = () => {
+        // navigate( Notepad );
+        const notepad_route_ctx  ={
+            key: '0',
+            name: 'Hat Clicked',
+            componentRoute: Notepad
+        }
+        navigate( notepad_route_ctx );
+    };
+    
     return (
         <ConfigProvider
             theme={{
@@ -201,7 +213,7 @@ export default function LayoutApp ( props: {
                         left: 0
                     }}
                 >
-                    <div className='logo'>
+                    <div className='logo' onClick={handleHatClick}>
                         <svg xmlns='http://www.w3.org/2000/svg' width='45' height='35' viewBox='0 0 134.624 80.584'>
                             <g transform='translate(-6.457 -23.8)'>
                                 <path

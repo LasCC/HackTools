@@ -58,6 +58,7 @@
         "@types/node": "^18.11.17",
         "@types/react": "^18.0.26",
         "@types/react-dom": "^18.0.9",
+        "@uiw/react-md-editor": "^3.20.2",
         "antd": "5.1.0",
         "antd-mask-input": "2.0.7",
         "axios": "^1.2.1",
