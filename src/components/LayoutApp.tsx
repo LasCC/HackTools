@@ -185,15 +185,15 @@ export default function LayoutApp ( props: {
 
     const handleHatClick = () => {
         // navigate( Notepad );
-        const notepad_route_ctx  ={
-            key: '1', // to  prevent error in useEffect
+        const notepad_route_ctx = {
+            key: '1', // to prevent error in useEffect
             name: 'Hat Clicked',
             componentRoute: Notepad
         }
 
         navigate( notepad_route_ctx );
     };
-    
+
     return (
         <ConfigProvider
             theme={{
