@@ -8,7 +8,6 @@ import { ColumnType, FilterConfirmProps, FilterValue, SorterResult } from 'antd/
 import Highlighter from 'react-highlight-words';
 
 const { Title, Paragraph, Text } = Typography;
-const { Option } = Select;
 const IconFont = createFromIconfontCN( {
     scriptUrl: [ './iconfont.js' ]
 } );
@@ -212,7 +211,6 @@ export default function ReverseShell () {
             key: 'action',
             render: ( _, { command } ) => (
                 <>
-
                     <Dropdown.Button
                         menu={{
                             items, onClick: ( e ) => {
@@ -299,19 +297,29 @@ export default function ReverseShell () {
                         <Col span={8}>
                             <Form.Item name='shell' valuePropName={String( values.shell )} label='Shell'>
                                 <Select
-                                    showSearch
                                     onChange={handleChangeSelect( 'shell' )}
                                     placeholder='/bin/sh'
                                     value={String( values.shell )}
                                     allowClear
-                                >
-                                    <Option value={'sh'}>sh</Option>
-                                    <Option value={'/bin/sh'}>/bin/sh</Option>
-                                    <Option value={'bash'}>bash</Option>
-                                    <Option value={'/bin/bash'}>/bin/bash</Option>
-                                    <Option value={'cmd'}>cmd</Option>
-                                    <Option value={'powershell'}>powershell</Option>
-                                    <Option value={'pwsh'}>pwsh</Option>
+                                    options={[
+                                        {
+                                            label: 'Linux / macOS',
+                                            options: [
+                                                { label: 'sh', value: 'sh' },
+                                                { label: '/bin/sh', value: '/bin/sh' },
+                                                { label: 'bash', value: 'bash' },
+                                                { label: '/bin/bash', value: '/bin/bash' },
+                                            ],
+                                        },
+                                        {
+                                            label: 'Windows',
+                                            options: [
+                                                { label: 'cmd', value: 'cmd' },
+                                                { label: 'powershell', value: 'powershell' },
+                                                { label: 'pwsh', value: 'pwsh' },
+                                            ],
+                                        },
+                                    ]}>
                                 </Select>
                             </Form.Item>
                         </Col>

