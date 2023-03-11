@@ -19,7 +19,6 @@ import { vs2015 } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import axios, { Method } from 'axios';
 import PersistedState from 'use-persisted-state';
 import SyntaxHighlighter from 'react-syntax-highlighter';
-import QueueAnim from 'rc-queue-anim';
 import pretty from 'pretty';
 
 const { Title, Paragraph } = Typography;
@@ -36,7 +35,7 @@ export default function LinuxCommands () {
         const height = 800;
 
         chrome.windows.create( {
-            url: chrome.extension.getURL( 'index.html' ),
+            url: chrome.runtime.getURL( 'index.html' ),
             width: width,
             height: height,
             type: 'popup'
@@ -118,7 +117,7 @@ export default function LinuxCommands () {
     };
 
     return (
-        <QueueAnim delay={300} duration={1500}>
+        <div>
             <Title level={2} style={{ fontWeight: 'bold', margin: 15 }}>
                 HTTP Repeater
             </Title>
@@ -234,7 +233,7 @@ export default function LinuxCommands () {
                                 <div dangerouslySetInnerHTML={{ __html: content.data || '' }} />
                             </Modal>
                             <SyntaxHighlighter language='htmlbars' style={vs2015} showLineNumbers={true}>
-                                {pretty( content.data ) || <pre>No response</pre>}
+                                {/* {pretty( content.data ) || <pre>No response</pre>} */}
                             </SyntaxHighlighter>
                         </TabPane>
                         {!commentResponse && (
@@ -247,14 +246,13 @@ export default function LinuxCommands () {
                                             | boolean
                                             | {}
                                             | React.ReactElement<any, string | React.JSXElementConstructor<any>>
-                                            | React.ReactNodeArray
                                             | React.ReactPortal
                                             | null
                                             | undefined
                                     ) => {
                                         return (
                                             <SyntaxHighlighter language='htmlbars' style={vs2015}>
-                                                {matches};
+                                                {/* aa{matches}; */}
                                             </SyntaxHighlighter>
                                         );
                                     }
@@ -301,6 +299,6 @@ export default function LinuxCommands () {
                     </Button>
                 </div>
             )}
-        </QueueAnim>
+        </div>
     );
 }

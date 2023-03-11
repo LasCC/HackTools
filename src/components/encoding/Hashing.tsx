@@ -8,7 +8,6 @@ import SHA512 from 'crypto-js/sha512';
 //@ts-ignore
 import Sm3 from 'sm3';
 import Clipboard from 'react-clipboard.js';
-import QueueAnim from 'rc-queue-anim';
 
 const { Title, Paragraph, Text } = Typography;
 const { TextArea } = Input;
@@ -26,17 +25,28 @@ const HashEncode = () => {
         resolvehashname( type.key );
     };
     const handleEncode = ( hashtype: string ) => {
-        if ( hashtype === 'MD5' ) {
-            setOutput( MD5( input, undefined ).toString() );
-        } else if ( hashtype === 'SHA1' ) {
-            setOutput( SHA1( input, undefined ).toString() );
-        } else if ( hashtype === 'SHA256' ) {
-            setOutput( SHA256( input, undefined ).toString() );
-        } else if ( hashtype === 'SHA512' ) {
-            setOutput( SHA512( input, undefined ).toString() );
-        } else if ( hashtype === 'SM3' ) {
-            setOutput( Sm3( input ) );
+        let output: string;
+        switch ( hashtype ) {
+            case 'MD5':
+                output = MD5( input, undefined ).toString();
+                break;
+            case 'SHA1':
+                output = SHA1( input, undefined ).toString();
+                break;
+            case 'SHA256':
+                output = SHA256( input, undefined ).toString();
+                break;
+            case 'SHA512':
+                output = SHA512( input, undefined ).toString();
+                break;
+            case 'SM3':
+                output = Sm3( input );
+                break;
+            default:
+                // If the hashtype is not recognized, return an empty string
+                output = '';
         }
+        setOutput( output );
     };
     const successInfoHashing = () => {
         message.success( 'Your hash has been copied successfully !' );
@@ -88,7 +98,7 @@ const HashEncode = () => {
     };
 
     return (
-        <QueueAnim delay={300} duration={1500}>
+        <div>
             <Title level={2} style={{ fontWeight: 'bold', margin: 15 }}>
                 Hash generator
             </Title>
@@ -124,7 +134,7 @@ const HashEncode = () => {
                     style={{ cursor: 'auto', marginTop: 15, color: '#777' }}
                     placeholder='The results will appear here'
                 />
-                <pre>Cryptographic Hash Algorithm : {hashname}</pre>
+                <pre><Text>Cryptographic Hash Algorithm : {hashname}</Text></pre>
                 <Clipboard component='a' data-clipboard-text={output}>
                     <Button type='primary' style={{ marginBottom: 10, marginTop: 15 }} onClick={successInfoHashing}>
                         <CopyOutlined /> Copy
@@ -136,7 +146,7 @@ const HashEncode = () => {
                     </a>
                 </Button>
             </div>
-        </QueueAnim>
+        </div>
     );
 };
 

@@ -3,7 +3,6 @@ import { Typography, Divider, Button, message } from 'antd';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { vs2015 } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import Clipboard from 'react-clipboard.js';
-import QueueAnim from 'rc-queue-anim';
 import { CopyOutlined } from '@ant-design/icons';
 
 const { Title, Paragraph, Text } = Typography;
@@ -44,19 +43,19 @@ export default function PowershellCommands () {
     // gpo
     const gpo_enum = `Get-NetGPO -ComputerName computername.domain.com`;
     // passwd enum
-    const passwd_lastset = `Get-UserProperty –Properties pwdlastset`;
-    const user_desc_harvest = `Find-UserField -SearchField Description –SearchTerm “pass”`;
+    const passwd_lastset = `Get-UserProperty -Properties pwdlastset`;
+    const user_desc_harvest = `Find-UserField -SearchField Description -SearchTerm “pass”`;
 
     //computers domain
     const domain_computers = `Get-NetComputer`;
     const domain_pingable_computers = `Get-NetComputer -Ping`;
-    const domain_win7U_computers = `Get-NetComputer –OperatingSystem "Windows 7 Ultimate"`;
+    const domain_win7U_computers = `Get-NetComputer -OperatingSystem "Windows 7 Ultimate"`;
 
     //domain admins
     const domain_admin_members = `Get-NetGroupMember -GroupName "Domain Admins"`;
     const domain_admins_groups = `Get-NetGroup *admin*`;
-    const local_admins = `Get-NetLocalGroup –ComputerName PCNAME-001`;
-    const user_group_membership = `Get-NetGroup –UserName "username"`;
+    const local_admins = `Get-NetLocalGroup -ComputerName PCNAME-001`;
+    const user_group_membership = `Get-NetGroup -UserName "username"`;
 
     //acl
     const ACL_user_enum = `Get-ObjectAcl -SamAccountName "users" -ResolveGUIDs`;
@@ -143,7 +142,7 @@ Foreach($obj in $Result)
 }`;
 
     return (
-        <QueueAnim delay={300} duration={1500}>
+        <div>
             <Title level={2} style={{ fontWeight: 'bold', margin: 15 }}>
                 Powershell handy commands
             </Title>
@@ -386,6 +385,6 @@ Foreach($obj in $Result)
                     </Clipboard>
                 </div>
             </div>
-        </QueueAnim>
+        </div>
     );
 }

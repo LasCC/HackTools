@@ -1,8 +1,8 @@
 {
     "name": "Hack-Tools",
-    "version": "0.4.0",
+    "version": "0.5.0",
     "description": "The all in one Red team extension for web pentester",
-    "browser_action": {
+    "action": {
         "default_title": "Hack-Tools",
         "default_popup": "index.html",
         "default_icon": {
@@ -18,6 +18,6 @@
         "48": "./src/assets/img/icons/get_started48.png",
         "128": "./src/assets/img/icons/get_started128.png"
     },
-    "manifest_version": 2,
+    "manifest_version": 3,
     "devtools_page": "devtools.html"
 }

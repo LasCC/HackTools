@@ -4,15 +4,23 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+const { theme } = require('antd/lib');
+const { convertLegacyToken } = require('@ant-design/compatible/lib');
+const { defaultAlgorithm, defaultSeed } = theme;
+const mapToken = defaultAlgorithm(defaultSeed);
+const v4Token = convertLegacyToken(mapToken);
 
 const lessLoader = {
 	loader: 'less-loader',
 	options: {
 		lessOptions: {
-			javascriptEnabled: true
+			javascriptEnabled: true,
+            modifyVars: v4Token,
 		}
 	}
 };
+
+
 
 module.exports = {
 	mode: 'development',

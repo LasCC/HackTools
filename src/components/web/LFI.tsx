@@ -1,7 +1,6 @@
 import React from 'react';
 import { Button, message, Typography, Divider } from 'antd';
 import { CopyOutlined, LinkOutlined } from '@ant-design/icons';
-import QueueAnim from 'rc-queue-anim';
 import Clipboard from 'react-clipboard.js';
 
 const { Title, Paragraph, Text } = Typography;
@@ -29,8 +28,8 @@ export default function LFI () {
         { title: '/etc/ssh/sshd_config' },
         { title: '/root/.ssh/id_rsa' },
         { title: '/root/.ssh/authorized_keys' },
-        { title: '/home/user/.ssh/authorized_keys' },
-        { title: '/home/user/.ssh/id_rsa' },
+        { title: '/home/$USER/.ssh/authorized_keys' },
+        { title: '/home/$USER/.ssh/id_rsa' },
         { title: '/proc/[0-9]*/fd/[0-9]*' },
         { title: '/proc/mounts' },
         { title: '/home/$USER/.bash_history' },
@@ -68,16 +67,16 @@ export default function LFI () {
     ];
 
     return (
-        <QueueAnim delay={300} duration={1500}>
+        <div>
             <Title level={2} style={{ fontWeight: 'bold', margin: 15 }}>
                 LFI
             </Title>
             <Paragraph style={{ margin: 15 }}>
-                LFI stands for Local File Includes - it’s a file local inclusion vulnerability that allows an attacker
+                LFI stands for Local File Includes - it's a file local inclusion vulnerability that allows an attacker
                 to include files that exist on the target web server.
             </Paragraph>
             <Paragraph style={{ marginLeft: 15 }}>
-                Typically this is exploited by abusing dynamic file inclusion mechanisms that don’t sanitize user input.
+                Typically this is exploited by abusing dynamic file inclusion mechanisms that don't sanitize user input.
             </Paragraph>
             <Divider dashed />
             <div style={{ padding: 10, marginTop: 15 }} key='a'>
@@ -246,6 +245,6 @@ export default function LFI () {
                 } )}
             </div>
             <Divider dashed />
-        </QueueAnim>
+        </div>
     );
 };

