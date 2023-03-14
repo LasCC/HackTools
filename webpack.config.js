@@ -77,7 +77,9 @@ module.exports = {
 	},
 	optimization: {
 		splitChunks: {
-			chunks: 'all'
+			chunks: 'all',
+			// for firefox 4MB limit
+			maxSize: 2*1024*1024
 		}
 	},
 	module: {
