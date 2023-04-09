@@ -1,12 +1,12 @@
 {
     "name": "hack-tools",
-    "version": "1.0.0",
+    "version": "0.5.0",
     "description": "The all in one Red team browser extension for web pentesters",
     "main": "index.js",
     "scripts": {
         "watch": "webpack --watch",
         "zip_chrome": "rm -f './dist/*{.map,.txt}' && zip -r bundle_chrome.zip dist/",
-        "zip_moz": " rm -f './dist/*{.map,.txt}' && sed -i 's/\"manifest_version\": 3/\"manifest_version\": 2/g' ./dist/manifest.json  && sed -i 's/\"action\":/\"browser_action\":/g' ./dist/manifest.json && cd ./dist && zip -r ../bundle_moz.zip * && cd -",
+        "zip_moz": " rm -f './dist/*{.map,.txt}' && cd ./dist && zip -r ../bundle_moz.zip * && cd -",
         "zip_all": "npm run  zip_chrome && npm run  zip_moz",
         "build": "tsc --noEmit && vite build",
         "build:watch": "__DEV__=true vite build --watch",
