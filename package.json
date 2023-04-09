@@ -7,7 +7,7 @@
         "watch": "webpack --watch",
         "zip_chrome": "rm -f './dist/*{.map,.txt}' && zip -r bundle_chrome.zip dist/",
         "zip_moz": " rm -f './dist/*{.map,.txt}' && sed -i 's/\"manifest_version\": 3/\"manifest_version\": 2/g' ./dist/manifest.json  && sed -i 's/\"action\":/\"browser_action\":/g' ./dist/manifest.json && cd ./dist && zip -r ../bundle_moz.zip * && cd -",
-        "zip_all": "yarn zip_chrome && yarn zip_moz",
+        "zip_all": "npm run  zip_chrome && npm run  zip_moz",
         "build": "tsc --noEmit && vite build",
         "build:watch": "__DEV__=true vite build --watch",
         "build:hmr": "rollup --config utils/reload/rollup.config.ts",
