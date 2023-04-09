@@ -1,13 +1,19 @@
-/.git
+# dependencies
 /node_modules
+
+# testing
+/coverage
+
+# build
 /dist
+
+# etc
 .DS_Store
-yarn.lock
-package-lock.json
-yarn-error.log
-.scannerwork
-.vscode
+.env.local
 .idea
-.github
-pnpm-lock.yaml
-bundle*.zip
+.vscode
+
+# compiled
+utils/reload/*.js
+utils/reload/injections/*.js
+public/manifest.json

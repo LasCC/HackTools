@@ -1,0 +1,23 @@
+name: Build And Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        cache: 'yarn'
+    - run: yarn install
+    - run: yarn build:hmr
+    - run: yarn test
+    - run: yarn build
