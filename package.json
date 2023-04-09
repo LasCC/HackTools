@@ -4,7 +4,6 @@
     "description": "The all in one Red team browser extension for web pentesters",
     "main": "index.js",
     "scripts": {
-        "watch": "webpack --watch",
         "zip_chrome": "rm -f './dist/*{.map,.txt}' && zip -r bundle_chrome.zip dist/",
         "zip_moz": " rm -f './dist/*{.map,.txt}' && cd ./dist && zip -r ../bundle_moz.zip * && cd -",
         "zip_all": "npm run  zip_chrome && npm run  zip_moz",
