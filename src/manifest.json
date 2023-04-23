@@ -19,5 +19,18 @@
         "128": "./src/assets/img/icons/get_started128.png"
     },
     "manifest_version": 3,
-    "devtools_page": "devtools.html"
+    "devtools_page": "devtools.html",
+    "commands": {
+        "panel": {
+            "description": "Open popup window",
+            "global": true,
+            "suggested_key": {
+                "default": "Ctrl+Shift+2",
+                "mac": "MacCtrl+Shift+2"
+            }
+        }
+    },
+    "background": {
+        "service_worker": "sw.js"
+    }
 }

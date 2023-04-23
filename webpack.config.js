@@ -43,6 +43,11 @@ module.exports = {
 					noErrorOnMissing: true
 				},
 				{
+					from: './src/sw.js',
+					to: './',
+					noErrorOnMissing: true
+				},
+				{
 					from: './src/assets/img/icons/*',
 					to: './',
 					noErrorOnMissing: true
