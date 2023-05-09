@@ -1,0 +1,3 @@
+[submodule "hacktools-server"]
+	path = hacktools-server
+	url = https://github.com/rb-x/hacktools-server
