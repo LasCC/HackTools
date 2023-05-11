@@ -343,7 +343,7 @@ export default function PhpReverseShell () {
                     <ArrowsAltOutlined /> Flozz's repository
                 </Button>
             </div>
-            <Divider orientation="center">Obfuscated PHP Web Shell</Divider>
+            <Divider orientation="center">Tiny OneLiner Webshell</Divider>
             <div
                 style={{
                     padding: 15,

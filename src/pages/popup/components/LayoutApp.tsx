@@ -4,7 +4,7 @@ import { CopyrightCircleOutlined, FullscreenOutlined, ArrowsAltOutlined } from '
 import { createFromIconfontCN } from '@ant-design/icons';
 import { goTo } from 'react-chrome-extension-router';
 import PersistedState from 'use-persisted-state';
-import Notepad from './notepad/Notepad';
+import Notepad from './misc/Notepad';
 import { IRouterComponent } from './LayoutAppSideItems';
 import Tabs from "./LayoutAppSideItems"
 import LayoutChoice from './LayoutChoice';

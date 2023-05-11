@@ -31,7 +31,7 @@ function hex2a ( hex: string ) {
     return str;
 }
 
-const Base64Encode = () => {
+const DataEncoding = () => {
     const [ input, setInput ] = useState( '' );
     const [ output, setOutput ] = useState( '' );
     const { TextArea } = Input;
@@ -203,4 +203,4 @@ const Base64Encode = () => {
     );
 };
 
-export default Base64Encode;
+export default DataEncoding;

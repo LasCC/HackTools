@@ -3,29 +3,28 @@ import { Layout, Menu, Typography, theme, Button, Select, ConfigProvider, Switch
 import { CopyrightCircleOutlined, FullscreenOutlined, ArrowsAltOutlined } from '@ant-design/icons';
 import { createFromIconfontCN } from '@ant-design/icons';
 import { goTo } from 'react-chrome-extension-router';
-import ReverseShell from './linux/ReverseShell';
-import PhpReverseShell from './web/PhpReverseShell';
+import ReverseShell from './system/linux/ReverseShell';
+import PHP from './web/PHP/';
 import JWToken from './web/JWToken';
-import TtySpawnShell from './linux/TtySpawnShell';
-import Base64Encode from './encoding/DataEncoding';
-import Hashing from './encoding/Hashing';
-import LinuxCommands from './linux/LinuxCommands';
-import PowershellCommands from './linux/PowershellCommands';
+import TtySpawnShell from './system/linux/TtySpawnShell';
+import DataManipulation from './web/DataManipulation/';
+import LinuxCommands from './system/linux/LinuxCommands';
+import PowershellCommands from './system/windows/Powershell/PowershellCommands';
 import LFI from './web/LFI';
 import XSS from './web/XSS';
-import SQLi from './web/SqlInjection';
+import SQLMainPage from './web/SQLPage';
 import AboutUs from './AboutUs';
-import FeedRSS from './rss/FeedRSS';
+import FeedRSS from './misc/rss/FeedRSS';
 import FileTransfer from './file_transfer/File_transfer';
-import MSFBuilder from './linux/MSFBuilder';
+import MSFBuilder from './system/CnCutils/MSFBuilder';
 import EchoBase64 from './file_transfer/ObfuscatedFiles';
-import Notepad from './notepad/Notepad';
+import Notepad from './misc/Notepad';
 import CVEResearch from './misc/CVEResearch';
-import {GiEyeTarget} from 'react-icons/gi';
-import {BiNotepad} from 'react-icons/bi';
-import {SiJsonwebtokens, SiGraphql} from 'react-icons/si';
-import MethodologyChecklist from './misc/MethodologyChecklist';
-import {MdChecklist} from 'react-icons/md';
+import { GiEyeTarget } from 'react-icons/gi';
+import { BiNotepad } from 'react-icons/bi';
+import { SiJsonwebtokens, SiGraphql } from 'react-icons/si';
+import  Checklists from './misc/Checklists';
+import { MdChecklist } from 'react-icons/md';
 const { Paragraph } = Typography;
 const { Sider, Content, Footer } = Layout;
 const IconFont = createFromIconfontCN({
@@ -47,8 +46,8 @@ const WebTab: Array<IRouterComponent> = [
     {
         key: '1',
         icon: <IconFont type='icon-php' style={{ fontSize: '1.5em', marginTop: 3 }} />,
-        name: 'PHP Reverse Shell',
-        componentRoute: PhpReverseShell,
+        name: 'PHP Utils',
+        componentRoute: PHP,
         type: "web"
     },
     {
@@ -68,26 +67,19 @@ const WebTab: Array<IRouterComponent> = [
     {
         key: '4',
         icon: <IconFont type='icon-sql' style={{ fontSize: '1.5em', marginTop: 3 }} />,
-        name: 'QL Injection',
-        componentRoute: SQLi,
+        name: 'SQL Injection',
+        componentRoute: SQLMainPage,
         type: "web"
     },
     {
         key: '5',
         icon: <IconFont type='icon-jiemaleixing' style={{ fontSize: '1.5em', marginTop: 3 }} />,
         name: 'Data Encoding',
-        componentRoute: Base64Encode, 
+        componentRoute: DataManipulation,
         type: "web"
     },
     {
         key: '6',
-        icon: <IconFont type='icon-hash' style={{ fontSize: '1.5em', marginTop: 3 }} />,
-        name: 'Hashing',
-        componentRoute: Hashing,
-        type: "web"
-    },
-    {
-        key: '7',
         icon: <SiJsonwebtokens style={{ fontSize: '1.5em', marginTop: 3 }} />,
         name: 'JSON Web Token',
         componentRoute: JWToken,
@@ -181,7 +173,7 @@ const MiscTab: Array<IRouterComponent> = [
         key: '4',
         icon: <MdChecklist style={{ fontSize: '1.5em', marginTop: 3 }} />,
         name: 'Checklist',
-        componentRoute: MethodologyChecklist,
+        componentRoute: Checklists,
         type: "misc"
     },
 ]

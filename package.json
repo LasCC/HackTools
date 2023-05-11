@@ -42,6 +42,7 @@
         "node-forge": "^1.3.1",
         "node-sql-parser": "^4.6.6",
         "papaparse": "^5.4.1",
+        "phpunserialize": "^1.3.0",
         "pretty": "^2.0.0",
         "rc-queue-anim": "^2.0.0",
         "react": "18.2.0",

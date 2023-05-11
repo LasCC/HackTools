@@ -6,7 +6,7 @@ import PersistedState from 'use-persisted-state';
 import { Ipv4TcpCacheState } from 'src/pages/popup/components/types/Ipv4TcpCacheState';
 import { ColumnType, FilterConfirmProps, FilterValue, SorterResult } from 'antd/es/table/interface';
 import Highlighter from 'react-highlight-words';
-import payloads from '../../assets/data/RevShell.json';
+import payloads from '../../../assets/data/RevShell.json';
 const { Title, Paragraph, Text } = Typography;
 const IconFont = createFromIconfontCN( {
     scriptUrl: [ './iconfont.js' ]

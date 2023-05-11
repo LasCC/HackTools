@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Tabs } from 'antd';
 import { TabsProps, Breadcrumb, BreadcrumbItemProps } from 'antd';
-import NOTEPAD from '../notepad/Notepad';
+import NOTEPAD from '../misc/Notepad';
 import { HomeOutlined, UserOutlined } from '@ant-design/icons';
 import { goTo, getCurrent, Link } from 'react-chrome-extension-router';
 import PersistedState from 'use-persisted-state';

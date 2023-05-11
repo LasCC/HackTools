@@ -4,7 +4,7 @@ import { Router } from 'react-chrome-extension-router';
 import { FloatButton } from 'antd';
 import { QueryClientProvider, QueryClient } from 'react-query';
 import LayoutApp from './components/LayoutApp';
-import ReverseShell from './components/linux/ReverseShell';
+import ReverseShell from './components/system/linux/ReverseShell';
 import './assets/css/style.css';
 
 const queryClient = new QueryClient();
