@@ -14,7 +14,7 @@ const LayoutChoice = () => {
   
   const useMenuIndex = PersistedState<string>('tab_index_cache'); // Disabled for now
   
-  const hackToolsState = PersistedState<string>(HackToolsMode.web);
+  const hackToolsState = PersistedState<string>("hack_tools_mode");
   const [hackTools, setHackTools] = hackToolsState("web");
   const modes = ["web", "system", "forensic", "misc"];
   // setting to 1 to prevent array index overflow inter-mode routing 

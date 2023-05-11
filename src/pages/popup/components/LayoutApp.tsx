@@ -31,7 +31,7 @@ export default function LayoutApp(props: {
     const setDarkMode = PersistedState<boolean>('dark_mode');
     const [darkMode, setDarkModeState] = setDarkMode(false);
     const [menuItems, setMenuItems] = useState<Array<IRouterComponent>>(Tabs);
-    const hackToolsState = PersistedState<string>(HackToolsMode.web);
+    const hackToolsState = PersistedState<string>("hack_tools_mode");
     const [hackTools, setHackToolsState] = hackToolsState(HackToolsMode.web)
 
     const handleSwtichTheme = (value: string) => {

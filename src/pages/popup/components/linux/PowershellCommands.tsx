@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, Divider, Button, message } from 'antd';
+import { Typography, Divider, Button, message, TabsProps, Tabs } from 'antd';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { vs2015 } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import Clipboard from 'react-clipboard.js';
@@ -7,9 +7,9 @@ import { CopyOutlined } from '@ant-design/icons';
 
 const { Title, Paragraph, Text } = Typography;
 
-export default function PowershellCommands () {
+export default function PowershellCommands() {
     const successInfoReverseShell = () => {
-        message.success( 'The script has been copied successfully !' );
+        message.success('The script has been copied successfully !');
     };
     const local_sys_enum = [
         { title: 'systeminfo' },
@@ -141,7 +141,10 @@ Foreach($obj in $Result)
  }
 }`;
 
-    return (
+
+
+
+    const PowershellCommands = ((
         <div>
             <Title level={2} style={{ fontWeight: 'bold', margin: 15 }}>
                 Powershell handy commands
@@ -155,13 +158,13 @@ Foreach($obj in $Result)
                 }}
             >
                 <Title level={3}>System enumeration</Title>
-                {local_sys_enum.map( ( k, i ) => {
+                {local_sys_enum.map((k, i) => {
                     return (
                         <Paragraph key={i}>
                             <pre><Text copyable>{k.title}</Text></pre>
                         </Paragraph>
                     );
-                } )}
+                })}
                 <Text strong>List Security patches</Text>
                 <Paragraph>
                     <pre><Text copyable>{lastpatchlist}</Text></pre>
@@ -186,13 +189,13 @@ Foreach($obj in $Result)
                     <pre><Text copyable>{cmd_cert_http_dl}</Text></pre>
                 </Paragraph>
                 <Divider orientation='center'>WLAN enumeration</Divider>
-                {wlan_creddump.map( ( k, i ) => {
+                {wlan_creddump.map((k, i) => {
                     return (
                         <Paragraph key={i}>
                             <pre><Text copyable>{k.title}</Text></pre>
                         </Paragraph>
                     );
-                } )}
+                })}
             </div>
 
             <Divider orientation='center'>Active Directory enumeration</Divider>
@@ -386,5 +389,29 @@ Foreach($obj in $Result)
                 </div>
             </div>
         </div>
-    );
+    ))
+
+
+
+    const items: TabsProps['items'] = [
+        {
+            key: '1',
+            label: 'PowerShell Commands',
+            children: PowershellCommands
+        },
+        {
+            key: '2',
+            label: `AMSI Bypass`,
+            children: "2"
+        },
+    ];
+
+
+    return (
+        <>
+        <Tabs defaultActiveKey="1" items={items} />
+    </>
+    )
+
+
 }
