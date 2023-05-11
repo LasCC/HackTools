@@ -25,7 +25,7 @@ const items: TabsProps['items'] = [
         label: `Checklist`,
         children: (
         <div>
-            <BreadcrumbMenu/>
+            {/* <BreadcrumbMenu/> */}
             <HomeMethdologyPane/>
         </div>
         
@@ -50,22 +50,23 @@ const breadCrumbGeneralMenuItems = [
 
 
 function BreadcrumbMenu () {
-    return <Breadcrumb
-    items={[
-        {
-            title: (
-                <>
-                <HomeOutlined/>
-                <a href="">Home</a>
-                </>
-            ),
-        },
+    return
+    //  <Breadcrumb
+    // items={[
+    //     {
+    //         title: (
+    //             <>
+    //             <HomeOutlined/>
+    //             <a href="">Home</a>
+    //             </>
+    //         ),
+    //     },
         // {
         //     title: "Methodology",
         //     menu: { items: breadCrumbGeneralMenuItems },
-        // },
-    ]}
-/>
+//         // },
+//     ]}
+// />
 }
 
 

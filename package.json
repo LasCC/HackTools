@@ -30,10 +30,14 @@
         "crypto-js": "^4.1.1",
         "darkreader": "^4.9.58",
         "escape-quotes": "^1.0.2",
+        "jose": "^4.14.4",
+        "jsonwebtoken": "^9.0.0",
+        "jwt-decode": "^3.1.2",
         "less": "^4.1.3",
         "less-loader": "^11.1.0",
         "mermaid": "^9.4.3",
         "node-forge": "^1.3.1",
+        "node-sql-parser": "^4.6.6",
         "pretty": "^2.0.0",
         "rc-queue-anim": "^2.0.0",
         "react": "18.2.0",
@@ -42,14 +46,15 @@
         "react-color": "^2.19.3",
         "react-dom": "18.2.0",
         "react-highlight-words": "^0.18.0",
+        "react-icons": "^4.8.0",
         "react-query": "^3.39.3",
         "react-refresh-typescript": "^2.0.8",
         "react-syntax-highlighter": "^15.5.0",
         "sm3": "^1.0.3",
         "ts-loader": "^9.4.2",
         "use-persisted-state": "^0.3.3"
-      },
-      "devDependencies": {
+    },
+    "devDependencies": {
         "@ant-design/compatible": "^5.1.1",
         "@ant-design/cssinjs": "^1.6.1",
         "@ant-design/icons": "4.8.0",
@@ -57,8 +62,6 @@
         "@ant-design/pro-layout": "^7.10.0",
         "@hot-loader/react-dom": "^17.0.2",
         "@originjs/vite-plugin-commonjs": "^1.0.3",
-        "@uiw/react-md-editor": "^3.20.5",
-        "@vitejs/plugin-legacy": "^4.0.2",
         "@rollup/plugin-typescript": "^8.5.0",
         "@testing-library/react": "13.4.0",
         "@types/chrome": "0.0.197",
@@ -69,6 +72,8 @@
         "@types/ws": "^8.5.3",
         "@typescript-eslint/eslint-plugin": "5.38.1",
         "@typescript-eslint/parser": "5.38.1",
+        "@uiw/react-md-editor": "^3.20.5",
+        "@vitejs/plugin-legacy": "^4.0.2",
         "@vitejs/plugin-react": "2.1.0",
         "chokidar": "^3.5.3",
         "eslint": "8.24.0",
@@ -81,6 +86,7 @@
         "npm-run-all": "^4.1.5",
         "prettier": "2.7.1",
         "rollup": "2.79.1",
+        "rollup-plugin-polyfill-node": "^0.12.0",
         "sass": "1.55.0",
         "terser": "^5.16.8",
         "ts-jest": "29.0.2",
@@ -89,5 +95,5 @@
         "vite": "3.1.3",
         "vite-plugin-static-copy": "^0.13.1",
         "ws": "8.9.0"
-      }
+    }
 }

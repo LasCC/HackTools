@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Typography, Divider } from 'antd';
-
+import { Tabs } from 'antd';
+import type { TabsProps } from 'antd';
 const { Title, Paragraph, Text, Link } = Typography;
+import NodeSQLParser from 'node-sql-parser'
+import TextArea from 'antd/lib/input/TextArea';
 
-export default function SQLi () {
+/*************************************** */
+
+export default function SQLi() {
+
     const DbColumnNumber = [
         {
             db_type: 'MySQL/MSSQL/PGSQL',
@@ -131,182 +137,244 @@ export default function SQLi () {
             title: "' and 1 in (select min(name) from sysobjects where xtype = 'U' and name > '.') --"
         }
     ];
-    return (
-        <div>
-            <Title level={2} style={{ fontWeight: 'bold', margin: 15 }}>
-                SQL Injection
-            </Title>
-            <Paragraph style={{ margin: 15 }}>
-                SQL injection (SQLi) is an application security weakness that allows attackers to control an
-                application’s database letting them access or delete data, change an application’s data-driven behavior,
-                and do other undesirable things by tricking the application into sending unexpected SQL commands.
-            </Paragraph>
-            <Divider dashed />
-            <div style={{ padding: 10, marginTop: 15 }} key='a'>
-                <Title level={3}>Number of column</Title>
-                {DbColumnNumber.map( ( k, i ) => {
-                    return (
-                        <>
-                            <Paragraph key={i}>
-                                <Link href={`#${ k.db_type }`}>{k.db_type}</Link>
-                            </Paragraph>
 
-                            <Paragraph key={i}>
-                                <pre><Text copyable>{k.title}</Text></pre>
-                            </Paragraph>
-                        </>
-                    );
-                } )}
-            </div>
-            <Divider dashed />
-            <div style={{ padding: 10, marginTop: 15 }} key='a'>
-                <Title level={3}>Database enumeration</Title>
-                {DbVersionEnumeration.map( ( k, i ) => {
-                    return (
-                        <>
-                            <Paragraph key={i}>
-                                <Link href={`#${ k.db_type }`}>{k.db_type}</Link>
-                            </Paragraph>
-                            <Paragraph key={i}>
-                                <pre><Text copyable>{k.title}</Text></pre>
-                            </Paragraph>
-                        </>
-                    );
-                } )}
-            </div>
-            <Divider dashed />
-            <div style={{ padding: 10, marginTop: 15 }} key='a'>
-                <Title level={3}>Tablename enumeration</Title>
-                {DbTableEnumeration.map( ( k, i ) => {
-                    return (
-                        <>
-                            <Paragraph key={i}>
-                                <Link href={`#${ k.db_type }`}>{k.db_type}</Link>
-                            </Paragraph>
-                            <Paragraph key={i}>
-                                <pre><Text copyable>{k.title}</Text></pre>
-                            </Paragraph>
-                        </>
-                    );
-                } )}
-            </div>
-            <Divider dashed />
-            <div style={{ padding: 10, marginTop: 15 }} key='a'>
-                <Title level={3}>Column name enumeration</Title>
-                {DbColumnEnumeration.map( ( k, i ) => {
-                    return (
-                        <>
-                            <Paragraph key={i}>
-                                <Link href={`#${ k.db_type }`}>{k.db_type}</Link>
-                            </Paragraph>
-                            <Paragraph key={i}>
-                                <pre><Text copyable>{k.title}</Text></pre>
-                            </Paragraph>
-                        </>
-                    );
-                } )}
-            </div>
-            <Divider dashed />
-            <div style={{ padding: 10, marginTop: 15 }} key='a'>
-                <Title level={3}>Column values concatenation</Title>
-                {DbColValueConcatenation.map( ( k, i ) => {
-                    return (
-                        <>
-                            <Paragraph key={i}>
-                                <Link href={`#${ k.db_type }`}>{k.db_type}</Link>
-                            </Paragraph>
-                            <Paragraph key={i}>
-                                <pre><Text copyable>{k.title}</Text></pre>
-                            </Paragraph>
-                        </>
-                    );
-                } )}
-            </div>
-            <Divider dashed />
-            <div style={{ padding: 10, marginTop: 15 }} key='a'>
-                <Title level={3}>Conditional ( Error Based ) </Title>
-                {DbConditionalErrors.map( ( k, i ) => {
-                    return (
-                        <>
-                            <Paragraph key={i}>
-                                <Link href={`#${ k.db_type }`}>{k.db_type}</Link>
-                            </Paragraph>
-                            <Paragraph key={i}>
-                                <pre><Text copyable>{k.title}</Text></pre>
-                            </Paragraph>
-                        </>
-                    );
-                } )}
-            </div>
-            <Divider dashed />
-            <div
-                key='b'
-                style={{
-                    padding: 15,
-                    marginTop: 15
-                }}
-            >
-                <Title level={3}>Time-Based</Title>
-                {TimeBased.map( ( k, i ) => {
-                    return (
+
+    const SQLIPayloads = (<div>
+        <Title level={2} style={{ fontWeight: 'bold', margin: 15 }}>
+            SQL Injection
+        </Title>
+        <Paragraph style={{ margin: 15 }}>
+            SQL injection (SQLi) is an application security weakness that allows attackers to control an
+            application’s database letting them access or delete data, change an application’s data-driven behavior,
+            and do other undesirable things by tricking the application into sending unexpected SQL commands.
+        </Paragraph>
+        <Divider dashed />
+        <div style={{ padding: 10, marginTop: 15 }} key='a'>
+            <Title level={3}>Number of column</Title>
+            {DbColumnNumber.map((k, i) => {
+                return (
+                    <>
+                        <Paragraph key={i}>
+                            <Link href={`#${k.db_type}`}>{k.db_type}</Link>
+                        </Paragraph>
+
                         <Paragraph key={i}>
                             <pre><Text copyable>{k.title}</Text></pre>
                         </Paragraph>
-                    );
-                } )}
-            </div>
-            <Divider dashed />
-            <div
-                key='c'
-                style={{
-                    padding: 15,
-                    marginTop: 15
-                }}
-            >
-                <Title level={3}>Generic Error Based Payloads</Title>
-                {DbConditionalErrors.map( ( k, i ) => {
-                    return (
-                        <Paragraph key={i}>
-                            <Link>{k.db_type}</Link>
-                            <pre><Text copyable>{k.title}</Text></pre>
-                        </Paragraph>
-                    );
-                } )}
-            </div>
-            <Divider dashed />
-            <div
-                key='d'
-                style={{
-                    padding: 15,
-                    marginTop: 15
-                }}
-            >
-                <Title level={3}>Authentication Based Payloads</Title>
-                {AuthBased.map( ( k, i ) => {
-                    return (
-                        <Paragraph key={i}>
-                            <pre><Text copyable>{k.title}</Text></pre>
-                        </Paragraph>
-                    );
-                } )}
-            </div>
-            <Divider dashed />
-            <div
-                key='e'
-                style={{
-                    padding: 15,
-                    marginTop: 15
-                }}
-            >
-                <Title level={3}>Order by and UNION Based Payloads</Title>
-                {OrderUnion.map( ( k, i ) => {
-                    return (
-                        <Paragraph key={i}>
-                            <pre><Text copyable>{k.title}</Text></pre>
-                        </Paragraph>
-                    );
-                } )}
-            </div>
+                    </>
+                );
+            })}
         </div>
-    );
+        <Divider dashed />
+        <div style={{ padding: 10, marginTop: 15 }} key='a'>
+            <Title level={3}>Database enumeration</Title>
+            {DbVersionEnumeration.map((k, i) => {
+                return (
+                    <>
+                        <Paragraph key={i}>
+                            <Link href={`#${k.db_type}`}>{k.db_type}</Link>
+                        </Paragraph>
+                        <Paragraph key={i}>
+                            <pre><Text copyable>{k.title}</Text></pre>
+                        </Paragraph>
+                    </>
+                );
+            })}
+        </div>
+        <Divider dashed />
+        <div style={{ padding: 10, marginTop: 15 }} key='a'>
+            <Title level={3}>Tablename enumeration</Title>
+            {DbTableEnumeration.map((k, i) => {
+                return (
+                    <>
+                        <Paragraph key={i}>
+                            <Link href={`#${k.db_type}`}>{k.db_type}</Link>
+                        </Paragraph>
+                        <Paragraph key={i}>
+                            <pre><Text copyable>{k.title}</Text></pre>
+                        </Paragraph>
+                    </>
+                );
+            })}
+        </div>
+        <Divider dashed />
+        <div style={{ padding: 10, marginTop: 15 }} key='a'>
+            <Title level={3}>Column name enumeration</Title>
+            {DbColumnEnumeration.map((k, i) => {
+                return (
+                    <>
+                        <Paragraph key={i}>
+                            <Link href={`#${k.db_type}`}>{k.db_type}</Link>
+                        </Paragraph>
+                        <Paragraph key={i}>
+                            <pre><Text copyable>{k.title}</Text></pre>
+                        </Paragraph>
+                    </>
+                );
+            })}
+        </div>
+        <Divider dashed />
+        <div style={{ padding: 10, marginTop: 15 }} key='a'>
+            <Title level={3}>Column values concatenation</Title>
+            {DbColValueConcatenation.map((k, i) => {
+                return (
+                    <>
+                        <Paragraph key={i}>
+                            <Link href={`#${k.db_type}`}>{k.db_type}</Link>
+                        </Paragraph>
+                        <Paragraph key={i}>
+                            <pre><Text copyable>{k.title}</Text></pre>
+                        </Paragraph>
+                    </>
+                );
+            })}
+        </div>
+        <Divider dashed />
+        <div style={{ padding: 10, marginTop: 15 }} key='a'>
+            <Title level={3}>Conditional ( Error Based ) </Title>
+            {DbConditionalErrors.map((k, i) => {
+                return (
+                    <>
+                        <Paragraph key={i}>
+                            <Link href={`#${k.db_type}`}>{k.db_type}</Link>
+                        </Paragraph>
+                        <Paragraph key={i}>
+                            <pre><Text copyable>{k.title}</Text></pre>
+                        </Paragraph>
+                    </>
+                );
+            })}
+        </div>
+        <Divider dashed />
+        <div
+            key='b'
+            style={{
+                padding: 15,
+                marginTop: 15
+            }}
+        >
+            <Title level={3}>Time-Based</Title>
+            {TimeBased.map((k, i) => {
+                return (
+                    <Paragraph key={i}>
+                        <pre><Text copyable>{k.title}</Text></pre>
+                    </Paragraph>
+                );
+            })}
+        </div>
+        <Divider dashed />
+        <div
+            key='c'
+            style={{
+                padding: 15,
+                marginTop: 15
+            }}
+        >
+            <Title level={3}>Generic Error Based Payloads</Title>
+            {DbConditionalErrors.map((k, i) => {
+                return (
+                    <Paragraph key={i}>
+                        <Link>{k.db_type}</Link>
+                        <pre><Text copyable>{k.title}</Text></pre>
+                    </Paragraph>
+                );
+            })}
+        </div>
+        <Divider dashed />
+        <div
+            key='d'
+            style={{
+                padding: 15,
+                marginTop: 15
+            }}
+        >
+            <Title level={3}>Authentication Based Payloads</Title>
+            {AuthBased.map((k, i) => {
+                return (
+                    <Paragraph key={i}>
+                        <pre><Text copyable>{k.title}</Text></pre>
+                    </Paragraph>
+                );
+            })}
+        </div>
+        <Divider dashed />
+        <div
+            key='e'
+            style={{
+                padding: 15,
+                marginTop: 15
+            }}
+        >
+            <Title level={3}>Order by and UNION Based Payloads</Title>
+            {OrderUnion.map((k, i) => {
+                return (
+                    <Paragraph key={i}>
+                        <pre><Text copyable>{k.title}</Text></pre>
+                    </Paragraph>
+                );
+            })}
+        </div>
+    </div>)
+
+
+    /*************************************************** */
+
+    const SQLParserPrompt = () => {
+        const [sql, setSql] = useState("select id, name from students where age < 1");
+        const [sqlast, setSQLast] = useState("");
+        const [error, setError] = useState("");
+    
+        const parser = new NodeSQLParser.Parser()
+    
+        const handleOnChange = (e) => {
+            const value = e.target.value;
+            setSql(value);
+            try {
+                const ast = parser.astify(value);
+                setSQLast(JSON.stringify(ast, null, 2));
+                setError("");  // clear previous error if any
+            } catch (err) {
+                setError(err.message);  // set the error message
+            }
+        }
+    
+        return (
+            <>
+                <TextArea rows={4} onChange={handleOnChange} value={sql} />
+                <h3>AST</h3>
+                <TextArea rows={4} value={sqlast} />
+                {error && (
+                    <>
+                        <h3>Error</h3>
+                        <TextArea rows={4} value={error} />
+                    </>
+                )}
+            </>
+        )
+    }
+
+
+    /*****************************   */
+
+    const items: TabsProps['items'] = [
+        {
+            key: '1',
+            label: `SQLI Payloads`,
+            children: SQLIPayloads
+        },
+        {
+            key: '2',
+            label: `SQL Syntax linter`,
+            children: SQLParserPrompt()
+        },
+    ];
+
+
+
+
+    return (
+        <>
+            <Tabs defaultActiveKey="1" items={items} />
+        </>
+    )
 }

