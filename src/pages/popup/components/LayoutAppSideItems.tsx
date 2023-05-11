@@ -24,6 +24,8 @@ import CVEResearch from './misc/CVEResearch';
 import {GiEyeTarget} from 'react-icons/gi';
 import {BiNotepad} from 'react-icons/bi';
 import {SiJsonwebtokens, SiGraphql} from 'react-icons/si';
+import MethodologyChecklist from './misc/MethodologyChecklist';
+import {MdChecklist} from 'react-icons/md';
 const { Paragraph } = Typography;
 const { Sider, Content, Footer } = Layout;
 const IconFont = createFromIconfontCN({
@@ -51,55 +53,41 @@ const WebTab: Array<IRouterComponent> = [
     },
     {
         key: '2',
-        icon: <IconFont type='icon-transfer' style={{ fontSize: '1.5em', marginTop: 3 }} />,
-        name: 'Transfer Methods',
-        componentRoute: FileTransfer,
-        type: "web"
-    },
-    {
-        key: '3',
         icon: <IconFont type='icon-l-file' style={{ fontSize: '1.5em', marginTop: 3 }} />,
         name: 'LFI',
         componentRoute: LFI,
         type: "web"
     },
     {
-        key: '4',
+        key: '3',
         icon: <IconFont type='icon-js' style={{ fontSize: '1.5em', marginTop: 3 }} />,
         name: 'XSS',
         componentRoute: XSS,
         type: "web"
     },
     {
-        key: '5',
+        key: '4',
         icon: <IconFont type='icon-sql' style={{ fontSize: '1.5em', marginTop: 3 }} />,
         name: 'QL Injection',
         componentRoute: SQLi,
         type: "web"
     },
     {
-        key: '6',
+        key: '5',
         icon: <IconFont type='icon-jiemaleixing' style={{ fontSize: '1.5em', marginTop: 3 }} />,
         name: 'Data Encoding',
         componentRoute: Base64Encode, 
         type: "web"
     },
     {
-        key: '7',
-        icon: <IconFont type='icon-Encode-File' style={{ fontSize: '1.5em', marginTop: 3 }} />,
-        name: 'Obfuscated Files or Information',
-        componentRoute: EchoBase64,
-        type: "web"
-    },
-    {
-        key: '8',
+        key: '6',
         icon: <IconFont type='icon-hash' style={{ fontSize: '1.5em', marginTop: 3 }} />,
         name: 'Hashing',
         componentRoute: Hashing,
         type: "web"
     },
     {
-        key: '9',
+        key: '7',
         icon: <SiJsonwebtokens style={{ fontSize: '1.5em', marginTop: 3 }} />,
         name: 'JSON Web Token',
         componentRoute: JWToken,
@@ -145,11 +133,25 @@ const SystemTab: Array<IRouterComponent> = [
     },
     {
         key: '6',
+        icon: <IconFont type='icon-Encode-File' style={{ fontSize: '1.5em', marginTop: 3 }} />,
+        name: 'Obfuscated Files or Information',
+        componentRoute: EchoBase64,
+        type: "system"
+    },
+    {
+        key: '7',
+        icon: <IconFont type='icon-transfer' style={{ fontSize: '1.5em', marginTop: 3 }} />,
+        name: 'Transfer Methods',
+        componentRoute: FileTransfer,
+        type: "system"
+    },
+    {
+        key: '8',
         icon: <IconFont type='icon-about' style={{ fontSize: '1.5em', marginTop: 3 }} />,
         name: 'About us',
         componentRoute: AboutUs,
         type: "system"
-    }
+    },
 ]
 const ForensicTab: Array<IRouterComponent> = [
 ]
@@ -173,6 +175,13 @@ const MiscTab: Array<IRouterComponent> = [
         icon: <IconFont type='icon-Cloud' style={{ fontSize: '1.5em', marginTop: 3 }} />,
         name: 'Feed RSS',
         componentRoute: FeedRSS,
+        type: "misc"
+    },
+    {
+        key: '4',
+        icon: <MdChecklist style={{ fontSize: '1.5em', marginTop: 3 }} />,
+        name: 'Checklist',
+        componentRoute: MethodologyChecklist,
         type: "misc"
     },
 ]
