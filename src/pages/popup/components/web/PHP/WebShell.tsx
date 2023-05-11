@@ -198,7 +198,7 @@ export default function PhpReverseShell () {
             {contextHolder}
             <div>
                 <Title level={2} style={{ fontWeight: 'bold', margin: 15 }}>
-                    PHP Reverse Shell
+                    PHP Webshell
                 </Title>
                 <Paragraph style={{ margin: 15 }}>
                     Attackers who successfully exploit a remote command execution vulnerability can use a reverse shell to

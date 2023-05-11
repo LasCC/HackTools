@@ -1,13 +1,66 @@
-import React, { useState } from 'react';
-import { Collapse, List, Checkbox, Radio, Input, Button, Divider, Popconfirm, message } from 'antd';
-import Papa from 'papaparse'; // Import PapaParse
+import React, { useEffect, useState } from 'react';
+import { Collapse, List, Checkbox, Radio, Input, Button, Divider, Popconfirm, message, Row, Col, Tooltip } from 'antd';
+import Papa from 'papaparse';
 import WSTG from '../../../assets/data/Methodology/WSTG.json';
+
+import { Progress, Card } from 'antd';
 
 const { Panel } = Collapse;
 const { TextArea } = Input;
 
 const MethodologyChecklist = () => {
-    const [state, setState] = useState({});
+
+
+    const initialState = {};
+    Object.entries(WSTG.categories).forEach(([category, tests]) => {
+        initialState[category] = {};
+        tests.tests.forEach(test => {
+            initialState[category][test.id] = {
+                name: test.name,
+                reference: test.reference,
+                objectives: test.objectives,
+                isDone: false,
+                hasVuln: 'no',
+                vulnDescription: ''
+            };
+        });
+    });
+
+    const [state, setState] = useState(initialState);
+    const [totalTests, setTotalTests] = useState(0);
+    const [completedTests, setCompletedTests] = useState(0);
+    const [vulnerableTests, setVulnerableTests] = useState(0);
+    const [notVulnerableTests, setNotVulnerableTests] = useState(0);
+
+
+
+
+    useEffect(() => {
+        let total = 0;
+        let completed = 0;
+        let vulnerable = 0;
+        let notVulnerable = 0;
+
+        Object.values(state).forEach(category => {
+            Object.values(category).forEach(test => {
+                total++;
+                if (test.isDone) {
+                    completed++;
+                }
+                if (test.hasVuln === 'yes') {
+                    vulnerable++;
+                } else if (test.hasVuln === 'no') {
+                    notVulnerable++;
+                }
+            });
+        });
+
+        setTotalTests(total);
+        setCompletedTests(completed);
+        setVulnerableTests(vulnerable);
+        setNotVulnerableTests(notVulnerable);
+    }, [state]);
+
 
     const prepareDataForCSV = () => {
         const result = [];
@@ -60,10 +113,6 @@ const MethodologyChecklist = () => {
                 existingTestData.vuln = value ? 'Yes' : 'No';
             }
 
-
-
-
-
             return {
                 ...prevState,
                 [category]: {
@@ -89,6 +138,34 @@ const MethodologyChecklist = () => {
 
     return (
         <>
+            <Row gutter={[16, 16]}>
+                <Col span={16}>
+                    <Card title="Total progress" style={{ width: 300 }}>
+                        <Tooltip title={`${completedTests} / ${totalTests} completed`}>
+                            <Progress
+                                type="circle"
+                                percent={parseFloat(((completedTests / totalTests) * 100).toFixed(2))}
+                                strokeColor={{
+                                    '0%': '#108ee9',
+                                    '100%': '#87d068',
+                                }}
+                                style={{ marginRight: '10px' }}
+                                size='small'
+                            />
+                        </Tooltip>
+                        <Tooltip title={`${vulnerableTests} / ${totalTests} issue(s) identified`}>
+                            <Progress
+                                type="circle"
+                                percent={parseFloat(((vulnerableTests / totalTests) * 100).toFixed(2))}
+                                strokeColor="red"
+                                style={{ marginTop: '10px' }}
+                                size='small'
+                            />
+                        </Tooltip>
+                    </Card>
+                </Col>
+            </Row>
+            <Divider />
             <Button onClick={exportToCSV} style={{ position: 'absolute', right: 0, top: 0 }}>Export to CSV</Button>
             <Popconfirm
                 title="Delete the task"
