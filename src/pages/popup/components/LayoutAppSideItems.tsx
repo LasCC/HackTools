@@ -21,10 +21,12 @@ import EchoBase64 from './file_transfer/ObfuscatedFiles';
 import Notepad from './misc/Notepad';
 import CVEResearch from './misc/CVEResearch';
 import { GiEyeTarget } from 'react-icons/gi';
-import { BiNotepad } from 'react-icons/bi';
+import { BiLockOpen, BiNotepad } from 'react-icons/bi';
 import { SiJsonwebtokens, SiGraphql } from 'react-icons/si';
 import  Checklists from './misc/Checklists';
 import { MdChecklist } from 'react-icons/md';
+import SAMComponent from './system/windows/SecretsDumper/SAM';
+import WindowSecretDumper from './system/windows/SecretsDumper';
 const { Paragraph } = Typography;
 const { Sider, Content, Footer } = Layout;
 const IconFont = createFromIconfontCN({
@@ -139,6 +141,13 @@ const SystemTab: Array<IRouterComponent> = [
     },
     {
         key: '8',
+        icon: <BiLockOpen style={{ fontSize: '1.5em', marginTop: 3 }} />,
+        name: 'Secrets Dumper', 
+        componentRoute: WindowSecretDumper,
+        type: "system"
+    },
+    {
+        key: '99',
         icon: <IconFont type='icon-about' style={{ fontSize: '1.5em', marginTop: 3 }} />,
         name: 'About us',
         componentRoute: AboutUs,
