@@ -3,7 +3,7 @@ import { Typography, Empty, Spin, Button, Tag, Descriptions, Input, List, Divide
 import { PageHeader } from '@ant-design/pro-layout';
 import { CloseCircleOutlined } from '@ant-design/icons';
 import { goTo } from 'react-chrome-extension-router';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import FeedRSS from './FeedRSS';
 
 const { Paragraph, Title, Text } = Typography;
@@ -20,7 +20,11 @@ export default function CVESearch () {
         const res = await fetch( `https://corsproxy.io/?https://cve.circl.lu/api/cve/${ values.cve }` );
         return res.json();
     };
-    const { isLoading, isError, data, refetch, isFetching } = useQuery( 'cve', fetchApi );
+    const { isLoading, isError, data, refetch, isFetching } = useQuery( {
+        queryKey: [ 'cve', values.cve ],
+        queryFn: fetchApi
+    } );
+
 
     if ( isLoading ) {
         return (

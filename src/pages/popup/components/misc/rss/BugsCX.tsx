@@ -2,7 +2,7 @@ import React from 'react';
 import { Typography, Empty, Spin, Button, List, Tag } from 'antd';
 import { PageHeader } from '@ant-design/pro-layout';
 import { goTo } from 'react-chrome-extension-router';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import CxsecurityChoose from './CxsecurityChoose';
 
 const { Title } = Typography;
@@ -14,8 +14,13 @@ const fetchApi = async () => {
     return res.json();
 };
 
-export default function BugsCX () {
-    const { data, status } = useQuery( 'cisco', fetchApi );
+export default function BugsCX() {
+    const { data, status } = useQuery({
+        queryKey: ['bugscx'],
+        queryFn: fetchApi
+    });
+
+
 
     interface IBugsCX {
         content: any;
@@ -27,7 +32,7 @@ export default function BugsCX () {
     return (
         <div>
             <PageHeader
-                onBack={() => goTo( CxsecurityChoose )}
+                onBack={() => goTo(CxsecurityChoose)}
                 title='Vulnerabilities Database'
                 subTitle='World Laboratory of Bugtraq 2 CXSecurity.com'
             />
@@ -72,27 +77,27 @@ export default function BugsCX () {
                         itemLayout='horizontal'
                         dataSource={data.items}
                         style={{ marginTop: 15 }}
-                        renderItem={( list: IBugsCX ) => (
+                        renderItem={(list: IBugsCX) => (
                             <List.Item
                                 actions={[
                                     <div>
-                                        {( () => {
-                                            const severityLevel = list.content.match( /Risk: (\w{1,})/ );
-                                            if ( !severityLevel ) {
+                                        {(() => {
+                                            const severityLevel = list.content.match(/Risk: (\w{1,})/);
+                                            if (!severityLevel) {
                                                 return 'None';
                                             } else {
-                                                switch ( severityLevel[ 1 ] ) {
+                                                switch (severityLevel[1]) {
                                                     case 'High':
-                                                        return <Tag color='red'>{severityLevel[ 1 ]}</Tag>;
+                                                        return <Tag color='red'>{severityLevel[1]}</Tag>;
                                                     case 'Medium':
-                                                        return <Tag color='orange'>{severityLevel[ 1 ]}</Tag>;
+                                                        return <Tag color='orange'>{severityLevel[1]}</Tag>;
                                                     case 'Low':
-                                                        return <Tag color='green'>{severityLevel[ 1 ]}</Tag>;
+                                                        return <Tag color='green'>{severityLevel[1]}</Tag>;
                                                     default:
                                                         return 'None';
                                                 }
                                             }
-                                        } )()}
+                                        })()}
                                     </div>,
                                     <Tag color='geekblue' style={{ marginLeft: 5 }}>
                                         {list.author}

@@ -2,7 +2,7 @@ import React from 'react';
 import { Typography, Empty, Spin, Button, List, Tag } from 'antd';
 import { PageHeader } from '@ant-design/pro-layout';
 import { goTo } from 'react-chrome-extension-router';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query'
 import CxsecurityChoose from './CxsecurityChoose';
 
 const { Title } = Typography;
@@ -15,7 +15,12 @@ const fetchApi = async () => {
 };
 
 export default function DorksCX () {
-    const { data, status } = useQuery( 'cisco', fetchApi );
+    const { data, status } = useQuery(
+        {
+            queryKey: [ 'dorkscx' ],
+            queryFn: fetchApi
+        }
+    );
 
     interface IDorksCX {
         title: string;

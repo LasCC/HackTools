@@ -2,7 +2,7 @@ import React from 'react';
 import { Typography, Empty, Spin, Button, List, Tag } from 'antd';
 import { PageHeader } from '@ant-design/pro-layout';
 import { goTo } from 'react-chrome-extension-router';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import FeedRSS from './FeedRSS';
 
 const { Title } = Typography;
@@ -14,8 +14,13 @@ const fetchApi = async () => {
     return res.json();
 };
 
-export default function Cisco () {
-    const { data, status } = useQuery( 'cisco', fetchApi );
+export default function Cisco() {
+    const { data, status } = useQuery(
+        {
+            queryKey: ['cisco'],
+            queryFn: fetchApi
+        });
+
 
     interface ICisco {
         content: any;
@@ -26,7 +31,7 @@ export default function Cisco () {
     return (
         <div>
             <PageHeader
-                onBack={() => goTo( FeedRSS )}
+                onBack={() => goTo(FeedRSS)}
                 title='Feed RSS'
                 subTitle='Cisco Security Advisories'
                 extra={[
@@ -82,13 +87,13 @@ export default function Cisco () {
                         itemLayout='horizontal'
                         dataSource={data.items}
                         style={{ marginTop: 15 }}
-                        renderItem={( list: ICisco ) => (
+                        renderItem={(list: ICisco) => (
                             <List.Item
                                 actions={[
                                     <div>
-                                        {( () => {
-                                            const severityLevel = list.content.match( /(  )[a-zA-Z]+/ )[ 0 ];
-                                            switch ( severityLevel ) {
+                                        {(() => {
+                                            const severityLevel = list.content.match(/(  )[a-zA-Z]+/)[0];
+                                            switch (severityLevel) {
                                                 case '  Critical':
                                                     return <Tag color='red'>{severityLevel}</Tag>;
                                                 case '  High':
@@ -102,17 +107,17 @@ export default function Cisco () {
                                                 default:
                                                     return 'None';
                                             }
-                                        } )()}
+                                        })()}
                                     </div>,
                                     <Tag color='geekblue' style={{ marginLeft: 5 }}>
-                                        {( () => {
-                                            const cveMatch = list.content.match( /CVE-(\d{4})-(\d{4,5})/ );
-                                            if ( !cveMatch ) {
+                                        {(() => {
+                                            const cveMatch = list.content.match(/CVE-(\d{4})-(\d{4,5})/);
+                                            if (!cveMatch) {
                                                 return 'None';
                                             } else {
-                                                return cveMatch[ 0 ];
+                                                return cveMatch[0];
                                             }
-                                        } )()}
+                                        })()}
                                     </Tag>
                                 ]}
                             >
