@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Card, Table, Checkbox, Radio, Divider, Button, Popconfirm, Tooltip, Progress, Layout, Row, Col, Modal } from 'antd';
+import { Card, Table, Checkbox, Radio, Divider, Button, Popconfirm, Tooltip, Progress, Layout, Row, Col, Modal, message } from 'antd';
 import jsyaml from 'js-yaml';
 import useStore from './store';
 import { Category, Test, Substep } from './store';
@@ -45,10 +45,11 @@ const OWSTG = () => {
 
   const confirm = () => {
     reset();
+    message.success('Resetted');
   };
 
   const cancel = () => {
-    console.log("Cancelled");
+    message.error('Cancelled');
   };
 
 
@@ -66,10 +67,10 @@ const OWSTG = () => {
         category.atomic_tests.map((test) => ({ text: test.description, value: test.description }))
       ),
 
-    onFilter: (value, record) => record.description.indexOf(value) === 0,
-    render: (text, record) => (
-      <a onClick={() => openModal(record)}>{text}</a>
-    ),
+      onFilter: (value, record) => record.description.indexOf(value) === 0,
+      render: (text, record) => (
+        <a onClick={() => openModal(record)}>{text}</a>
+      ),
     },
     {
       title: 'Tested',
@@ -139,20 +140,83 @@ const OWSTG = () => {
     setCurrentTest(null);
     setIsModalVisible(false);
   };
-  
+
+
+
+
+
   return (
     <>
-    <Table columns={columns} dataSource={data} rowKey="id" />
-    <Modal open={isModalVisible} onCancel={closeModal}>
-      <h2>{currentTest?.description}</h2>
-      <TextArea
-        rows={4}
-        value={currentTest?.note}
-        placeholder="Notes"
-        onChange={(e) => setNote(currentTest?.categoryId, currentTest?.id, e.target.value)}
-      />
-    </Modal>
-  </>
+
+
+      <Row gutter={[16, 16]}>
+
+        <Col span={24} >
+          <Card title="Total progress" style={{ width: "100%" }}>
+            <Tooltip title={`${completedTests} / ${totalTests} completed`}>
+              <Progress
+                type="circle"
+                percent={parseFloat(((completedTests / totalTests) * 100).toFixed(2))}
+                strokeColor={{
+                  '0%': '#108ee9',
+                  '100%': '#87d068',
+                }}
+                style={{ marginRight: '10px' }}
+                size='small'
+              />
+            </Tooltip>
+            <Tooltip title={`${vulnerableTests} / ${totalTests} issue(s) identified`}>
+              <Progress
+                type="circle"
+                percent={parseFloat(((vulnerableTests / totalTests) * 100).toFixed(2))}
+                strokeColor="red"
+                style={{ marginTop: '10px' }}
+                size='small'
+              />
+            </Tooltip>
+            <Button type="primary" onClick={downloadCSV} style={{ marginLeft: '10px' }}>Export as CSV</Button>
+            <Popconfirm
+              title="Are you sure to reset all your progress?"
+              onConfirm={confirm}
+              onCancel={cancel}
+              okText="Yes"
+              cancelText="No"
+              placement="bottom"
+
+            >
+              <Button type="primary" danger style={{ marginLeft: '10px' }} >Reset</Button>
+            </Popconfirm>
+
+          </Card>
+        </Col>
+
+
+
+
+      </Row>
+
+
+      <Divider />
+
+      <Table columns={columns} dataSource={data} rowKey="id" />
+      <Modal open={isModalVisible} onCancel={closeModal}>
+        <h2>{currentTest?.description}</h2>
+        <TextArea
+          rows={4}
+          value={currentTest?.note}
+          placeholder="Notes"
+          onChange={(e) => setNote(currentTest?.categoryId, currentTest?.id, e.target.value)}
+        />
+        <Divider />
+
+        {currentTest?.substeps.map((substep: Substep) => (
+          <>
+            <p>{`${substep}`}</p>
+          </>
+        ))}
+
+      </Modal>
+    </>
   );
 };
 

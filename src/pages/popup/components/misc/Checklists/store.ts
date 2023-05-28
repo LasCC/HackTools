@@ -4,7 +4,6 @@ import Papa from 'papaparse';
 import { saveAs } from 'file-saver';
 
 export type Substep = {
-  id: string;
   description: string;
 };
 
