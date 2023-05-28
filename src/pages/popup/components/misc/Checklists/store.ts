@@ -34,11 +34,12 @@ export type State = {
   setVulnerable: (categoryId: string, testId: string, vulnerability: boolean) => void;
   setNote: (categoryId: string, testId: string, note: string) => void;
   downloadCSV: () => void;
+  reset: () => void;
 };
 
 const useStore = create<State>(
   
-  // @ts-ignore
+  // @ts-ignore: Argument is not assignable to parameter of type 'Partial<State>'...
   persist(
     (set, get) => ({
       categories: [],
@@ -84,6 +85,9 @@ const useStore = create<State>(
         const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
         saveAs(blob, `checklist-${new Date().toISOString()}.csv`);
       },
+      reset: () => set({ categories: [] }),
+
+
     }),
     {
       name: 'owstg-checklist', // Unique key

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Card, Collapse, List, Checkbox, Radio, Divider, Button } from 'antd';
+import { Card, Collapse, List, Checkbox, Radio, Divider, Button, Popconfirm } from 'antd';
 import jsyaml from 'js-yaml';
 import useStore from './store';
 import { Category, Test, Substep } from './store';
@@ -17,6 +17,8 @@ const OWSTG = () => {
   const setVulnerable = useStore(state => state.setVulnerable);
   const setNote = useStore(state => state.setNote);
   const downloadCSV = useStore((state) => state.downloadCSV);
+  const reset = useStore((state) => state.reset);
+  
 
   useEffect(() => {
     const fetchChecklist = async () => {
@@ -38,8 +40,30 @@ const OWSTG = () => {
   }, [setCategories, categories]);
   
 
+  const confirm = () => {
+    reset();
+  };
+
+  const cancel = () => {
+    console.log("Cancelled");
+  };
+
+
   return (
     <div>
+
+<Popconfirm
+      title="Delete the task"
+      description="Are you sure to clear all your checklist ?"
+      onConfirm={confirm}
+      onCancel={cancel}
+      okText="Yes"
+      cancelText="No"
+    >
+      <Button type="link">Delete</Button>
+    </Popconfirm>
+
+
       <Button onClick={downloadCSV}>Download CSV</Button>
       <Collapse accordion>
         {categories.map((category: Category, index: number) => (
