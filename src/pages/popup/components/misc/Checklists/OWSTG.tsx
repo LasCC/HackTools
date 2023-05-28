@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Card, Collapse, List, Checkbox, Radio, Divider, Button, Popconfirm } from 'antd';
+import { Card, Collapse, List, Checkbox, Radio, Divider, Button, Popconfirm, Row, Col, Tooltip, Progress } from 'antd';
 import jsyaml from 'js-yaml';
 import useStore from './store';
 import { Category, Test, Substep } from './store';
@@ -18,7 +18,12 @@ const OWSTG = () => {
   const setNote = useStore(state => state.setNote);
   const downloadCSV = useStore((state) => state.downloadCSV);
   const reset = useStore((state) => state.reset);
+  const totalTests = categories.reduce((total, category) => total + category.atomic_tests.length, 0);
+  const completedTests = categories.reduce((total, category) => total + category.atomic_tests.filter(test => test.wasTested).length, 0);
   
+  const vulnerableTests = categories.reduce((total, category) => total + category.atomic_tests.filter(test => test.wasVulnerable).length, 0);
+  const notVulnerableTests = categories.reduce((total, category) => total + category.atomic_tests.filter(test => !test.wasVulnerable && test.wasTested).length, 0);
+
 
   useEffect(() => {
     const fetchChecklist = async () => {
@@ -51,7 +56,34 @@ const OWSTG = () => {
 
   return (
     <div>
-
+            <Row gutter={[16, 16]}>
+        <Col span={16}>
+          <Card title="Total progress" style={{ width: 300 }}>
+            <Tooltip title={`${completedTests} / ${totalTests} completed`}>
+              <Progress
+                type="circle"
+                percent={parseFloat(((completedTests / totalTests) * 100).toFixed(2))}
+                strokeColor={{
+                  '0%': '#108ee9',
+                  '100%': '#87d068',
+                }}
+                style={{ marginRight: '10px' }}
+                size='small'
+              />
+            </Tooltip>
+            <Tooltip title={`${vulnerableTests} / ${totalTests} issue(s) identified`}>
+              <Progress
+                type="circle"
+                percent={parseFloat(((vulnerableTests / totalTests) * 100).toFixed(2))}
+                strokeColor="red"
+                style={{ marginTop: '10px' }}
+                size='small'
+              />
+            </Tooltip>
+          </Card>
+        </Col>
+      </Row>
+      <Divider />
 <Popconfirm
       title="Delete the task"
       description="Are you sure to clear all your checklist ?"
