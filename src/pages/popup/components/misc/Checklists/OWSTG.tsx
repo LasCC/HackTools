@@ -76,6 +76,15 @@ const OWSTG = () => {
       title: 'Tested',
       dataIndex: 'wasTested',
       key: 'wasTested',
+      // filter by checkbox and reference link since some tests have the same name but different reference links
+
+
+      filters: [
+        { text: 'Yes', value: true },
+        { text: 'No', value: false },
+      ],
+      onFilter: (value, record) => record.wasTested === value,
+
       render: (text, record) => (
         <Checkbox
           checked={record.wasTested}
@@ -92,6 +101,12 @@ const OWSTG = () => {
       title: 'Vulnerability',
       dataIndex: 'wasVulnerable',
       key: 'wasVulnerable',
+
+      filters: [
+        { text: 'Vulnerable', value: true },
+        { text: 'Not Vulnerable', value: false },
+      ],
+      onFilter: (value, record) => record.wasVulnerable === value,
       render: (text, record) => (
         <Radio.Group
           value={record.wasVulnerable}
@@ -126,6 +141,18 @@ const OWSTG = () => {
 
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [currentTest, setCurrentTest] = useState(null);
+  const [exportOption, setExportOption] = useState('all');
+  const [isExportModalVisible, setIsExportModalVisible] = useState(false);
+
+  const openExportModal = () => {
+    setIsExportModalVisible(true);
+  };
+
+  const closeExportModal = () => {
+    setIsExportModalVisible(false);
+  };
+
+
 
 
 
@@ -141,7 +168,44 @@ const OWSTG = () => {
     setIsModalVisible(false);
   };
 
+  const exportCSVModal = (
+    <Modal
+      title="Export as CSV"
+      open={isExportModalVisible}
+      onOk={() => {
+        downloadCSV(exportOption);
+        closeExportModal();
+      }}
+      onCancel={closeExportModal}
+    >
+      <p>Please select which tests you want to export:</p>
+      <Radio.Group onChange={(e) => setExportOption(e.target.value)} value={exportOption}>
+        <Radio value='all'>All Tests</Radio>
+        <Radio value='vulnerable'>Vulnerable Tests</Radio>
+        <Radio value='not_vulnerable'>Not Vulnerable Tests</Radio>
+      </Radio.Group>
+    </Modal>
 
+  )
+
+  const onDescriptionCaseClickModal = (
+    <Modal open={isModalVisible} onCancel={closeModal}>
+      <h2>{currentTest?.description}</h2>
+      <TextArea
+        rows={4}
+        value={currentTest?.note}
+        placeholder="Notes"
+        onChange={(e) => setNote(currentTest?.categoryId, currentTest?.id, e.target.value)}
+      />
+      <Divider />
+
+      {currentTest?.substeps.map((substep: Substep) => (
+        <>
+          <p>{`${substep}`}</p>
+        </>
+      ))}
+
+    </Modal>)
 
 
 
@@ -174,7 +238,7 @@ const OWSTG = () => {
                 size='small'
               />
             </Tooltip>
-            <Button type="primary" onClick={downloadCSV} style={{ marginLeft: '10px' }}>Export as CSV</Button>
+            <Button type="primary" onClick={openExportModal} style={{ marginLeft: '10px' }}>Export as CSV</Button>
             <Popconfirm
               title="Are you sure to reset all your progress?"
               onConfirm={confirm}
@@ -199,23 +263,9 @@ const OWSTG = () => {
       <Divider />
 
       <Table columns={columns} dataSource={data} rowKey="id" />
-      <Modal open={isModalVisible} onCancel={closeModal}>
-        <h2>{currentTest?.description}</h2>
-        <TextArea
-          rows={4}
-          value={currentTest?.note}
-          placeholder="Notes"
-          onChange={(e) => setNote(currentTest?.categoryId, currentTest?.id, e.target.value)}
-        />
-        <Divider />
 
-        {currentTest?.substeps.map((substep: Substep) => (
-          <>
-            <p>{`${substep}`}</p>
-          </>
-        ))}
-
-      </Modal>
+      {onDescriptionCaseClickModal}
+      {exportCSVModal}
     </>
   );
 };

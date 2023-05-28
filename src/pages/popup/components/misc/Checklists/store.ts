@@ -32,7 +32,7 @@ export type State = {
   toggleTested: (categoryId: string, testId: string) => void;
   setVulnerable: (categoryId: string, testId: string, vulnerability: boolean) => void;
   setNote: (categoryId: string, testId: string, note: string) => void;
-  downloadCSV: () => void;
+  downloadCSV: (exportOption: string) => void;
   reset: () => void;
 };
 
@@ -64,26 +64,36 @@ const useStore = create<State>(
         if (test) test.note = note;
         set({ categories });
       },
-      downloadCSV: () => {
+      
+
+      downloadCSV: (exportOption) => {
         const categories = [...get().categories];
-        const csvData = [];
+        let csvData = [];
+      
         categories.forEach((category) => {
           category.atomic_tests.forEach((test) => {
-            csvData.push({
-              category: category.title,
-              id: test.id,
-              name: test.description,
-              reference: test.reference,
-              tested: test.wasTested ? 'Yes' : 'No',
-              vuln: test.wasVulnerable ? 'Yes' : 'No',
-              vulnDescription: test.note || '',
-            });
+            if (exportOption === 'all' || 
+                (exportOption === 'vulnerable' && test.wasVulnerable) || 
+                (exportOption === 'not_vulnerable' && test.wasTested && !test.wasVulnerable)) {
+              csvData.push({
+                category: category.title,
+                id: test.id,
+                name: test.description,
+                reference: test.reference,
+                tested: test.wasTested ? 'Yes' : 'No',
+                vuln: test.wasVulnerable ? 'Yes' : 'No',
+                vulnDescription: test.note || '',
+              });
+            }
           });
         });
+      
         const csv = Papa.unparse(csvData);
         const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
         saveAs(blob, `checklist-${new Date().toISOString()}.csv`);
       },
+
+
       reset: () => set({ categories: [] }),
 
 
