@@ -28,7 +28,7 @@ const OWSTG = () => {
       // Only fetch if categories are empty
       if (categories.length === 0) {
         try {
-          const response = await fetch('https://raw.githubusercontent.com/rb-x/ht-methodology-test/master/owstg.yaml');
+          const response = await fetch('https://raw.githubusercontent.com/LasCC/Hack-Tools/dev/src/pages/popup/assets/data/Methodology/owstg.yaml');
           const data = await response.text();
           const parsedData = jsyaml.load(data).map(item => item.category) as Category[];
           console.log(parsedData);
