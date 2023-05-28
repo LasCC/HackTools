@@ -1,14 +1,12 @@
-import React, { useEffect } from 'react';
-import { Card, Collapse, List, Checkbox, Radio, Divider, Button, Popconfirm, Row, Col, Tooltip, Progress } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { Card, Table, Checkbox, Radio, Divider, Button, Popconfirm, Tooltip, Progress, Layout, Row, Col, Modal } from 'antd';
 import jsyaml from 'js-yaml';
 import useStore from './store';
 import { Category, Test, Substep } from './store';
-
 import { Input } from 'antd';
 
 const { TextArea } = Input;
-
-const { Panel } = Collapse;
+const { Header, Content } = Layout;
 
 const OWSTG = () => {
   const setCategories = useStore((state) => state.setCategories);
@@ -20,7 +18,7 @@ const OWSTG = () => {
   const reset = useStore((state) => state.reset);
   const totalTests = categories.reduce((total, category) => total + category.atomic_tests.length, 0);
   const completedTests = categories.reduce((total, category) => total + category.atomic_tests.filter(test => test.wasTested).length, 0);
-  
+
   const vulnerableTests = categories.reduce((total, category) => total + category.atomic_tests.filter(test => test.wasVulnerable).length, 0);
   const notVulnerableTests = categories.reduce((total, category) => total + category.atomic_tests.filter(test => !test.wasVulnerable && test.wasTested).length, 0);
 
@@ -40,10 +38,10 @@ const OWSTG = () => {
         }
       }
     };
-  
+
     fetchChecklist();
   }, [setCategories, categories]);
-  
+
 
   const confirm = () => {
     reset();
@@ -54,120 +52,111 @@ const OWSTG = () => {
   };
 
 
+  const columns = [
+    {
+      title: 'Test ID',
+      dataIndex: 'id',
+      key: 'id',
+    },
+    {
+      title: 'Description',
+      dataIndex: 'description',
+      key: 'description',
+      filters: categories.flatMap((category) =>
+        category.atomic_tests.map((test) => ({ text: test.description, value: test.description }))
+      ),
+
+    onFilter: (value, record) => record.description.indexOf(value) === 0,
+    render: (text, record) => (
+      <a onClick={() => openModal(record)}>{text}</a>
+    ),
+    },
+    {
+      title: 'Tested',
+      dataIndex: 'wasTested',
+      key: 'wasTested',
+      render: (text, record) => (
+        <Checkbox
+          checked={record.wasTested}
+          onClick={(e) => {
+            e.stopPropagation();
+            toggleTested(record.categoryId, record.id);
+          }}
+        >
+          Was Tested
+        </Checkbox>
+      ),
+    },
+    {
+      title: 'Vulnerability',
+      dataIndex: 'wasVulnerable',
+      key: 'wasVulnerable',
+      render: (text, record) => (
+        <Radio.Group
+          value={record.wasVulnerable}
+          onChange={(e) => {
+            e.stopPropagation();
+            setVulnerable(record.categoryId, record.id, e.target.value);
+          }}
+        >
+          <Radio value={true}>Vulnerable</Radio>
+          <Radio value={false}>Not Vulnerable</Radio>
+        </Radio.Group>
+      ),
+    },
+    {
+      title: 'Notes',
+      dataIndex: 'note',
+      key: 'note',
+      render: (text, record) => (
+        <TextArea
+          rows={4}
+          value={record.note}
+          placeholder="Notes"
+          onChange={(e) => setNote(record.categoryId, record.id, e.target.value)}
+        />
+      ),
+    },
+  ];
+
+  const data = categories.flatMap((category) =>
+    category.atomic_tests.map((test) => ({ ...test, categoryId: category.id }))
+  );
+
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [currentTest, setCurrentTest] = useState(null);
+
+
+
+  // Open the modal and set the current test
+  const openModal = (record) => {
+    setCurrentTest(record);
+    setIsModalVisible(true);
+  };
+
+  // Close the modal and clear the current test
+  const closeModal = () => {
+    setCurrentTest(null);
+    setIsModalVisible(false);
+  };
+  
   return (
-    <div>
-            <Row gutter={[16, 16]}>
-        <Col span={16}>
-          <Card title="Total progress" style={{ width: 300 }}>
-            <Tooltip title={`${completedTests} / ${totalTests} completed`}>
-              <Progress
-                type="circle"
-                percent={parseFloat(((completedTests / totalTests) * 100).toFixed(2))}
-                strokeColor={{
-                  '0%': '#108ee9',
-                  '100%': '#87d068',
-                }}
-                style={{ marginRight: '10px' }}
-                size='small'
-              />
-            </Tooltip>
-            <Tooltip title={`${vulnerableTests} / ${totalTests} issue(s) identified`}>
-              <Progress
-                type="circle"
-                percent={parseFloat(((vulnerableTests / totalTests) * 100).toFixed(2))}
-                strokeColor="red"
-                style={{ marginTop: '10px' }}
-                size='small'
-              />
-            </Tooltip>
-          </Card>
-        </Col>
-      </Row>
-      <Divider />
-<Popconfirm
-      title="Delete the task"
-      description="Are you sure to clear all your checklist ?"
-      onConfirm={confirm}
-      onCancel={cancel}
-      okText="Yes"
-      cancelText="No"
-    >
-      <Button type="link">Delete</Button>
-    </Popconfirm>
-
-
-      <Button onClick={downloadCSV}>Download CSV</Button>
-      <Collapse accordion>
-        {categories.map((category: Category, index: number) => (
-          <Panel header={category.title} key={index} >
-            {category.atomic_tests.map((test: Test) => (
-              // add onlickihandler to go to owasp page
-              <Card title={`${test.id} - ${test.description}`} key={test.id} style={{ marginBottom: 16 }}>
-
-
-                { /* if Objectives are available, render them */}
-                {test.objectives && test.objectives.length > 0 && (
-                  <>
-
-                    <h3>Objectives</h3>
-                    <List
-                      size="small"
-                      bordered
-                      dataSource={test.objectives}
-                      renderItem={(item) => <List.Item>{item}</List.Item>}
-                    />
-                    <Divider />
-                  </>
-                )}
-
-
-
-                {/* if substeps are available, render them */}
-                {test.substeps && Object.values(test.substeps).length > 0 && (
-                  <>
-                    <h3>Substeps</h3>
-                    {Object.values(test.substeps).map((substep: Substep, index: number) => (
-                      <p key={index}>{substep.description}</p>
-                    ))}
-                    <Divider />
-                  </>
-                )}
-
-                <Checkbox
-                  checked={test.wasTested}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    toggleTested(category.id, test.id);
-                  }}
-                >
-                  Was Tested
-                </Checkbox>
-
-                <Radio.Group
-                  value={test.wasVulnerable}
-                  onChange={(e) => {
-                    e.stopPropagation();
-                    setVulnerable(category.id, test.id, e.target.value);
-                  }}
-                >
-                  <Radio value={true}>Vulnerable</Radio>
-                  <Radio value={false}>Not Vulnerable</Radio>
-                </Radio.Group>
-
-                <Divider />
-                <TextArea
-                  rows={4}
-                  value={test.note}
-                  placeholder="Notes"
-                  onChange={(e) => setNote(category.id, test.id, e.target.value)}
-                />
-              </Card>
-            ))}
-          </Panel>
-        ))}
-      </Collapse>
-    </div>
+    <>
+    <Table columns={columns} dataSource={data} rowKey="id" />
+    <Modal open={isModalVisible} onCancel={closeModal}>
+      <h2>{currentTest?.description}</h2>
+      <TextArea
+        rows={4}
+        value={currentTest?.note}
+        placeholder="Notes"
+        onChange={(e) => setNote(currentTest?.categoryId, currentTest?.id, e.target.value)}
+      />
+    </Modal>
+  </>
   );
 };
 
 export default OWSTG;
+
+
+
