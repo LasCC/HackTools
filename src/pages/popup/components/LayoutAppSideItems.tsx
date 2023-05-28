@@ -154,7 +154,7 @@ const SystemTab: Array<IRouterComponent> = [
         type: "system"
     },
 ]
-const ForensicTab: Array<IRouterComponent> = [
+const MobileTab: Array<IRouterComponent> = [
 ]
 const MiscTab: Array<IRouterComponent> = [
     {
@@ -188,6 +188,6 @@ const MiscTab: Array<IRouterComponent> = [
 ]
 
 // Make a single list of all tabs
-const Tabs = [...WebTab, ...SystemTab, ...ForensicTab, ...MiscTab];
+const Tabs = [...WebTab, ...SystemTab, ...MobileTab, ...MiscTab];
 console.log(Tabs);
 export default Tabs;

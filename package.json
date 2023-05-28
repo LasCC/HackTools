@@ -36,6 +36,7 @@
         "escape-quotes": "^1.0.2",
         "file-saver": "^2.0.5",
         "jose": "^4.14.4",
+        "js-yaml": "^4.1.0",
         "json2csv": "6.0.0-alpha.2",
         "jsonwebtoken": "^9.0.0",
         "jwt-decode": "^3.1.2",
@@ -62,6 +63,7 @@
         "sm3": "^1.0.3",
         "ts-loader": "^9.4.2",
         "use-persisted-state": "^0.3.3",
+        "yaml": "^2.3.1",
         "zustand": "^4.3.8"
     },
     "devDependencies": {

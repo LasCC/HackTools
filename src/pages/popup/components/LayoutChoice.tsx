@@ -6,7 +6,7 @@ import PersistedState from 'use-persisted-state';
 enum HackToolsMode {
   web = "web",
   system = "system",
-  forensic = "forensic",
+  mobile = "mobile",
   misc = "misc"
 }
 
@@ -16,7 +16,7 @@ const LayoutChoice = () => {
   
   const hackToolsState = PersistedState<string>("hack_tools_mode");
   const [hackTools, setHackTools] = hackToolsState("web");
-  const modes = ["web", "system", "forensic", "misc"];
+  const modes = ["web", "system", "mobile", "misc"];
   // setting to 1 to prevent array index overflow inter-mode routing 
   const [index, setIndex] = useMenuIndex('1')
 
