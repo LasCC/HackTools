@@ -12,6 +12,7 @@ const { Panel } = Collapse;
 
 const OWSTG = () => {
   const setCategories = useStore((state) => state.setCategories);
+  const categories = useStore((state) => state.categories);
   const toggleTested = useStore(state => state.toggleTested);
   const setVulnerable = useStore(state => state.setVulnerable);
   const setNote = useStore(state => state.setNote);
@@ -19,21 +20,23 @@ const OWSTG = () => {
 
   useEffect(() => {
     const fetchChecklist = async () => {
-      try {
-        const response = await fetch('https://raw.githubusercontent.com/rb-x/ht-methodology-test/master/owstg.yaml');
-        const data = await response.text();
-        const parsedData = jsyaml.load(data).map(item => item.category) as Category[];
-        console.log(parsedData);
-        setCategories(parsedData);
-      } catch (error) {
-        console.error('Failed to fetch OWSTG checklist:', error);
+      // Only fetch if categories are empty
+      if (categories.length === 0) {
+        try {
+          const response = await fetch('https://raw.githubusercontent.com/rb-x/ht-methodology-test/master/owstg.yaml');
+          const data = await response.text();
+          const parsedData = jsyaml.load(data).map(item => item.category) as Category[];
+          console.log(parsedData);
+          setCategories(parsedData);
+        } catch (error) {
+          console.error('Failed to fetch OWSTG checklist:', error);
+        }
       }
     };
-
+  
     fetchChecklist();
-  }, [setCategories]);
-
-  const categories = useStore((state) => state.categories);
+  }, [setCategories, categories]);
+  
 
   return (
     <div>
