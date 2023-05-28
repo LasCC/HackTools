@@ -139,7 +139,7 @@ export default function SQLInjection() {
 
     return (
         <>
-            (<div>
+            <div>
                 <Title level={2} style={{ fontWeight: 'bold', margin: 15 }}>
                     SQL Injection
                 </Title>
