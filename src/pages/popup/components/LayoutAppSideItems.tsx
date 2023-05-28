@@ -1,32 +1,31 @@
-import React, { useEffect, useState } from 'react';
-import { Layout, Menu, Typography, theme, Button, Select, ConfigProvider, Switch } from 'antd';
-import { CopyrightCircleOutlined, FullscreenOutlined, ArrowsAltOutlined } from '@ant-design/icons';
 import { createFromIconfontCN } from '@ant-design/icons';
-import { goTo } from 'react-chrome-extension-router';
-import ReverseShell from './system/linux/ReverseShell';
-import PHP from './web/PHP/';
-import JWToken from './web/JWToken';
-import TtySpawnShell from './system/linux/TtySpawnShell';
-import DataManipulation from './web/DataManipulation/';
-import LinuxCommands from './system/linux/LinuxCommands';
-import PowershellCommands from './system/windows/Powershell/PowershellCommands';
-import LFI from './web/LFI';
-import XSS from './web/XSS';
-import SQLMainPage from './web/SQLPage';
-import AboutUs from './AboutUs';
-import FeedRSS from './misc/rss/FeedRSS';
-import FileTransfer from './file_transfer/File_transfer';
-import MSFBuilder from './system/CnCutils/MSFBuilder';
-import EchoBase64 from './file_transfer/ObfuscatedFiles';
-import Notepad from './misc/Notepad';
-import CVEResearch from './misc/CVEResearch';
-import { GiEyeTarget } from 'react-icons/gi';
+import { Layout, Typography } from 'antd';
+import React from 'react';
 import { BiLockOpen, BiNotepad } from 'react-icons/bi';
-import { SiJsonwebtokens, SiGraphql } from 'react-icons/si';
-import  Checklists from './misc/Checklists';
-import { MdChecklist } from 'react-icons/md';
-import SAMComponent from './system/windows/SecretsDumper/SAM';
+import { GiEyeTarget, GiPirateHook } from 'react-icons/gi';
+import { MdChecklist, MdOutlineAdb } from 'react-icons/md';
+import { SiJsonwebtokens } from 'react-icons/si';
+import AboutUs from './AboutUs';
+import FileTransfer from './file_transfer/File_transfer';
+import EchoBase64 from './file_transfer/ObfuscatedFiles';
+import CVEResearch from './misc/CVEResearch';
+import Checklists from './misc/Checklists';
+import Notepad from './misc/Notepad';
+import FeedRSS from './misc/rss/FeedRSS';
+import MSFBuilder from './system/CnCutils/MSFBuilder';
+import LinuxCommands from './system/linux/LinuxCommands';
+import ReverseShell from './system/linux/ReverseShell';
+import TtySpawnShell from './system/linux/TtySpawnShell';
+import PowershellCommands from './system/windows/Powershell/PowershellCommands';
 import WindowSecretDumper from './system/windows/SecretsDumper';
+import DataManipulation from './web/DataManipulation/';
+import ADB from "./mobile/Android/ADB";
+import Hooking from './mobile/Hooking';
+import JWToken from './web/JWToken';
+import LFI from './web/LFI';
+import PHP from './web/PHP/';
+import SQLMainPage from './web/SQLPage';
+import XSS from './web/XSS';
 const { Paragraph } = Typography;
 const { Sider, Content, Footer } = Layout;
 const IconFont = createFromIconfontCN({
@@ -155,6 +154,20 @@ const SystemTab: Array<IRouterComponent> = [
     },
 ]
 const MobileTab: Array<IRouterComponent> = [
+    {
+        key: '1',
+        icon: <MdOutlineAdb style={{ fontSize: '1.5em', marginTop: 3 }} />,
+        name: 'ADB Commands',
+        componentRoute: ADB,
+        type: "mobile"
+    },
+    {
+        key: '2',
+        icon: <GiPirateHook style={{ fontSize: '1.5em', marginTop: 3 }} />,
+        name: 'Hooking',
+        componentRoute: Hooking,
+        type: "mobile"
+    },
 ]
 const MiscTab: Array<IRouterComponent> = [
     {
