@@ -87,6 +87,9 @@ const OWSTG = ({ id }: { id: string }) => {
       title: 'Test ID',
       dataIndex: 'id',
       key: 'id',
+      render: (text, record) => (
+          <a href={`${record.reference}`} target="_blank" rel="noreferrer">{text}</a>
+      ),
     },
     {
       title: 'Description',
