@@ -2,9 +2,10 @@ import { Button, Card, Checkbox, Col, Divider, Input, Layout, Modal, Popconfirm,
 import jsyaml from 'js-yaml';
 import { useEffect, useRef, useState } from 'react';
 import createOWSTGStore, { Category, Substep } from './stores/MethodologyStore';
-
+import tabStateStore from './stores/TabStateStore';
 const { TextArea } = Input;
 const { Header, Content } = Layout;
+
 
 const OWSTG = ({ id }: { id: string }) => {
   const useStore = createOWSTGStore(id);
@@ -15,26 +16,27 @@ const OWSTG = ({ id }: { id: string }) => {
   const setNote = useStore(state => state.setNote);
   const downloadCSV = useStore((state) => state.downloadCSV);
   const reset = useStore((state) => state.reset);
+  
   const totalTests = categories.reduce((total, category) => total + category.atomic_tests.length, 0);
   const completedTests = categories.reduce((total, category) => total + category.atomic_tests.filter(test => test.wasTested).length, 0);
-
   const vulnerableTests = categories.reduce((total, category) => total + category.atomic_tests.filter(test => test.wasVulnerable).length, 0);
   const notVulnerableTests = categories.reduce((total, category) => total + category.atomic_tests.filter(test => !test.wasVulnerable && test.wasTested).length, 0);
 
-
   const fileInputRef = useRef<HTMLInputElement>(null);
-  
 
+  // Function to export state
   const exportState = () => {
-    const currentState = useStore.getState();  // Get current state from Zustand store
-    const blob = new Blob([JSON.stringify(currentState)], { type: "application/json" });  // Create a Blob from the JSON string
+    const tabName = tabStateStore.getState().items.find(item => item.key === id)?.label;
+    const currentState = useStore.getState();  
+    const blob = new Blob([JSON.stringify(currentState)], { type: "application/json" });  
     const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");  // Create a new anchor element
+    const link = document.createElement("a");  
     link.href = url;
-    link.download = "methodology_state.json";  // Set the download filename
-    link.click();  // Programmatically click the anchor element to trigger the download
-    URL.revokeObjectURL(url);  // Clean up to avoid memory leak
+    link.download = `methodology_state_${tabName}_${new Date().toISOString()}.json`;
+    link.click();  
+    URL.revokeObjectURL(url);  
   };
+
 
   const importState = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -45,18 +47,15 @@ const OWSTG = ({ id }: { id: string }) => {
     const reader = new FileReader();
     reader.onload = (event) => {
       const result = event.target?.result as string;
-      const newState = JSON.parse(result);  // Parse the file content back to JavaScript object
-      useStore.setState(newState);  // Dispatch the new state to the Zustand store
+      const newState = JSON.parse(result);  
+      useStore.setState(newState);  
     };
     reader.readAsText(file);
   };
 
-
-
-
+  // Fetch OWSTG checklist
   useEffect(() => {
     const fetchChecklist = async () => {
-      // Only fetch if categories are empty
       if (categories.length === 0) {
         try {
           const response = await fetch('https://raw.githubusercontent.com/LasCC/Hack-Tools/dev/src/pages/popup/assets/data/Methodology/owstg.yaml');
@@ -73,12 +72,11 @@ const OWSTG = ({ id }: { id: string }) => {
     fetchChecklist();
   }, [setCategories, categories]);
 
-
+  // Popconfirm functions
   const confirm = () => {
     reset();
     message.success('Resetted');
   };
-
   const cancel = () => {
     message.error('Cancelled');
   };
@@ -107,9 +105,6 @@ const OWSTG = ({ id }: { id: string }) => {
       title: 'Tested',
       dataIndex: 'wasTested',
       key: 'wasTested',
-      // filter by checkbox and reference link since some tests have the same name but different reference links
-
-
       filters: [
         { text: 'Yes', value: true },
         { text: 'No', value: false },
@@ -166,39 +161,35 @@ const OWSTG = ({ id }: { id: string }) => {
     },
   ];
 
+
+  // Table data
   const data = categories.flatMap((category) =>
     category.atomic_tests.map((test) => ({ ...test, categoryId: category.id }))
   );
 
+  // Modal states
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [currentTest, setCurrentTest] = useState(null);
   const [exportOption, setExportOption] = useState('all');
   const [isExportModalVisible, setIsExportModalVisible] = useState(false);
 
+  // Modal functions
   const openExportModal = () => {
     setIsExportModalVisible(true);
   };
-
   const closeExportModal = () => {
     setIsExportModalVisible(false);
   };
-
-
-
-
-
-  // Open the modal and set the current test
   const openModal = (record) => {
     setCurrentTest(record);
     setIsModalVisible(true);
   };
-
-  // Close the modal and clear the current test
   const closeModal = () => {
     setCurrentTest(null);
     setIsModalVisible(false);
   };
 
+  // Modal components
   const exportCSVModal = (
     <Modal
       title="Export as CSV"
@@ -216,12 +207,11 @@ const OWSTG = ({ id }: { id: string }) => {
         <Radio value='not_vulnerable'>Not Vulnerable Tests</Radio>
       </Radio.Group>
     </Modal>
-
   )
 
   const onDescriptionCaseClickModal = (
     <Modal open={isModalVisible} onCancel={closeModal}>
-      <h2>{currentTest?.description}</h2>
+        <h2>{currentTest?.description}</h2>
       <TextArea
         rows={4}
         value={currentTest?.note}
@@ -235,20 +225,14 @@ const OWSTG = ({ id }: { id: string }) => {
           <p>{`${substep}`}</p>
         </>
       ))}
-
     </Modal>)
-
-
 
   return (
     <>
-
-
       <Row gutter={[16, 16]}>
-
         <Col span={24} >
           <Card title="Total progress" style={{ width: "100%" }}>
-            <Tooltip title={`${completedTests} / ${totalTests} completed`}>
+          <Tooltip title={`${completedTests} / ${totalTests} completed`}>
               <Progress
                 type="circle"
                 percent={parseFloat(((completedTests / totalTests) * 100).toFixed(2))}
@@ -286,12 +270,7 @@ const OWSTG = ({ id }: { id: string }) => {
       <Button type="primary" onClick={() => fileInputRef.current?.click()} style={{ marginLeft: '10px' }}>Import State</Button>
           </Card>
         </Col>
-
-
-
-
       </Row>
-
 
       <Divider />
 
@@ -304,6 +283,3 @@ const OWSTG = ({ id }: { id: string }) => {
 };
 
 export default OWSTG;
-
-
-

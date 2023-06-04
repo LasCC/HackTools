@@ -1,6 +1,5 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import OWSTG from '../OWSTG';
 
 interface TabItem {
   label: string;
@@ -22,9 +21,11 @@ interface State {
   add: () => void;
   remove: (targetKey: string) => void;
   rename: (targetKey: string, newLabel: string) => void;
+  exportState: () => string;
+  importState: (newState: string) => void;
 }
 
-const useStore = create<State>(
+const tabStateStore = create<State>(
     // @ts-ignore
   persist(
     (set, get) => ({
@@ -65,6 +66,10 @@ const useStore = create<State>(
           set({ items: newItems });
         }
       },
+      exportState: () => JSON.stringify(get()),
+      importState: (newState: string) => {
+        set(() => JSON.parse(newState));
+      },
     }),
     {
       name: `tab-management-store`,
@@ -73,4 +78,4 @@ const useStore = create<State>(
   )
 );
 
-export default useStore;
+export default tabStateStore;

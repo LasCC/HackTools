@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Tabs, Modal, Input, Popconfirm } from "antd";
-import useStore from './stores/TabStateStore';
+import tabStateStore from './stores/TabStateStore';
 import OWSTG from './OWSTG';
 const { TabPane } = Tabs;
 
 const Index = () => {
-  const { activeKey, items, add, remove, rename } = useStore();
-  const onChange = useStore(state => state.setActiveKey);
+  const { activeKey, items, add, remove, rename } = tabStateStore();
+  const onChange = tabStateStore(state => state.setActiveKey);
   const [isModelOpen, setIsModalVisible] = useState(false);
   const [currentTab, setCurrentTab] = useState("");
   const [newLabel, setNewLabel] = useState("");
