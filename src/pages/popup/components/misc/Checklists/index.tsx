@@ -1,41 +1,42 @@
 import React from 'react';
 import { Tabs } from "antd";
 import useStore from './stores/TabStateStore';
+import OWSTG from './OWSTG';
 const { TabPane } = Tabs;
 
 const Index = () => {
-    const { activeKey, items, add, remove } = useStore();
-    const onChange = useStore(state => state.setActiveKey);
+  const { activeKey, items, add, remove } = useStore();
+  const onChange = useStore(state => state.setActiveKey);
 
-    const onEdit = (
-        targetKey: string | React.MouseEvent | React.KeyboardEvent,
-        action: "add" | "remove"
-    ) => {
-        if (action === "add") {
-            add();
-        } else {
-            remove(targetKey as string);
-        }
-    };
+  const onEdit = (
+    targetKey: string | React.MouseEvent | React.KeyboardEvent,
+    action: "add" | "remove"
+  ) => {
+    if (action === "add") {
+      add();
+    } else {
+      remove(targetKey as string);
+    }
+  };
 
-    return (
-        <Tabs
-            type="editable-card"
-            onChange={onChange}
-            activeKey={activeKey}
-            onEdit={onEdit}
+  return (
+    <Tabs
+      type="editable-card"
+      onChange={onChange}
+      activeKey={activeKey}
+      onEdit={onEdit}
+    >
+      {items.map(item => (
+        <TabPane
+          tab={item.label}
+          key={item.key}
+          closable={item.closable ?? true}
         >
-            {items.map(item => (
-                <TabPane
-                    tab={item.label}
-                    key={item.key}
-                    closable={item.closable ?? true}
-                >
-                    {item.children}
-                </TabPane>
-            ))}
-        </Tabs>
-    );
+          <OWSTG id={item.id} />
+        </TabPane>
+      ))}
+    </Tabs>
+  );
 };
 
 export default Index;
