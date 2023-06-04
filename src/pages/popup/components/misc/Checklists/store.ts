@@ -103,7 +103,7 @@ const createOWSTGStore = (id:string | TargetKey) => create<State>(
 
     }),
     {
-      name: `owstg-${id}-store`, // unique name
+      name: `methodology-tab-state-${id}`, // unique name
       getStorage: () => window.localStorage, // Use local storage
     }
   )
