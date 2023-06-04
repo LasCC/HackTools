@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Tabs, Modal, Input } from "antd";
+import { Tabs, Modal, Input, Popconfirm } from "antd";
 import useStore from './stores/TabStateStore';
 import OWSTG from './OWSTG';
 const { TabPane } = Tabs;
@@ -17,8 +17,6 @@ const Index = () => {
   ) => {
     if (action === "add") {
       add();
-    } else if (action === "remove") {
-      remove(targetKey as string);
     }
   };
 
@@ -53,12 +51,22 @@ const Index = () => {
             }
             key={item.key}
             closable={item.closable ?? true}
+            closeIcon={
+              <Popconfirm
+                title="Are you sure you want to close this tab? all progress will be lost (Think about exporting your data first)"
+                onConfirm={() => remove(item.key)}
+                okText="Close and delete tab"
+                cancelText="Cancel"
+              >
+                <div>×</div>
+              </Popconfirm>
+            }
           >
             <OWSTG id={item.id} />
           </TabPane>
         ))}
       </Tabs>
-      <Modal title="Edit Tab Name" visible={isModelOpen} onOk={handleOk} onCancel={handleCancel}>
+      <Modal title="Edit Tab Name" open={isModelOpen} onOk={handleOk} onCancel={handleCancel}>
         <Input placeholder="Enter new name" onChange={(e) => setNewLabel(e.target.value)} />
       </Modal>
     </div>
