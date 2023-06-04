@@ -21,10 +21,11 @@ interface State {
   setItems: (items: TabItem[]) => void;
   add: () => void;
   remove: (targetKey: string) => void;
+  rename: (targetKey: string, newLabel: string) => void;
 }
 
 const useStore = create<State>(
-  // @ts-ignore
+    // @ts-ignore
   persist(
     (set, get) => ({
       activeKey: initialItems[0].key,
@@ -39,13 +40,30 @@ const useStore = create<State>(
         set({ items: newPanes, activeKey: newActiveKey, newTabIndex: get().newTabIndex });
       },
       remove: (targetKey: string) => {
-        const newPanes = get().items.filter(item => item.key !== targetKey);
         let newActiveKey = get().activeKey;
-        if (newActiveKey === targetKey) {
-          newActiveKey = newPanes.length ? newPanes[0].key : "";
+        let lastIndex = -1;
+        get().items.forEach((item, i) => {
+          if (item.key === targetKey) {
+            lastIndex = i - 1;
+          }
+        });
+        const newPanes = get().items.filter((item) => item.key !== targetKey);
+        if (newPanes.length && newActiveKey === targetKey) {
+          if (lastIndex >= 0) {
+            newActiveKey = newPanes[lastIndex].key;
+          } else {
+            newActiveKey = newPanes[0].key;
+          }
         }
         set({ items: newPanes, activeKey: newActiveKey });
-        window.localStorage.removeItem(`methodology-tab-state-${targetKey}`);
+      },
+      rename: (targetKey: string, newLabel: string) => {
+        let newItems = [...get().items];
+        const itemToRename = newItems.find((item) => item.key === targetKey);
+        if (itemToRename) {
+          itemToRename.label = newLabel;
+          set({ items: newItems });
+        }
       },
     }),
     {
