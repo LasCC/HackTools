@@ -1,6 +1,6 @@
 import { Button, Card, Checkbox, Col, Divider, Input, Layout, Modal, Popconfirm, Progress, Radio, Row, Table, Tooltip, message } from 'antd';
 import jsyaml from 'js-yaml';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import createOWSTGStore, { Category, Substep } from './stores/MethodologyStore';
 
 const { TextArea } = Input;
@@ -20,6 +20,38 @@ const OWSTG = ({ id }: { id: string }) => {
 
   const vulnerableTests = categories.reduce((total, category) => total + category.atomic_tests.filter(test => test.wasVulnerable).length, 0);
   const notVulnerableTests = categories.reduce((total, category) => total + category.atomic_tests.filter(test => !test.wasVulnerable && test.wasTested).length, 0);
+
+
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  
+
+  const exportState = () => {
+    const currentState = useStore.getState();  // Get current state from Zustand store
+    const blob = new Blob([JSON.stringify(currentState)], { type: "application/json" });  // Create a Blob from the JSON string
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");  // Create a new anchor element
+    link.href = url;
+    link.download = "methodology_state.json";  // Set the download filename
+    link.click();  // Programmatically click the anchor element to trigger the download
+    URL.revokeObjectURL(url);  // Clean up to avoid memory leak
+  };
+
+  const importState = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) {
+      console.warn("No file selected!");
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const result = event.target?.result as string;
+      const newState = JSON.parse(result);  // Parse the file content back to JavaScript object
+      useStore.setState(newState);  // Dispatch the new state to the Zustand store
+    };
+    reader.readAsText(file);
+  };
+
+
 
 
   useEffect(() => {
@@ -249,7 +281,9 @@ const OWSTG = ({ id }: { id: string }) => {
             >
               <Button type="primary" danger style={{ marginLeft: '10px' }} >Reset</Button>
             </Popconfirm>
-
+            <Button type="primary" onClick={exportState} style={{ marginLeft: '10px' }}>Export State</Button>
+      <input ref={fileInputRef} type="file" hidden onChange={importState} />
+      <Button type="primary" onClick={() => fileInputRef.current?.click()} style={{ marginLeft: '10px' }}>Import State</Button>
           </Card>
         </Col>
 
