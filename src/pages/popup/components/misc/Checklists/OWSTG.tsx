@@ -1,7 +1,7 @@
 import { Button, Card, Checkbox, Col, Divider, Input, Layout, Modal, Popconfirm, Progress, Radio, Row, Table, Tooltip, message } from 'antd';
 import jsyaml from 'js-yaml';
 import { useEffect, useState } from 'react';
-import createOWSTGStore, { Category, Substep } from './store';
+import createOWSTGStore, { Category, Substep } from './stores/MethodologyStore';
 
 const { TextArea } = Input;
 const { Header, Content } = Layout;
