@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { Card, Table, Checkbox, Radio, Divider, Button, Popconfirm, Tooltip, Progress, Layout, Row, Col, Modal, message } from 'antd';
+import { Button, Card, Checkbox, Col, Divider, Input, Layout, Modal, Popconfirm, Progress, Radio, Row, Table, Tooltip, message } from 'antd';
 import jsyaml from 'js-yaml';
-import useStore from './store';
-import { Category, Test, Substep } from './store';
-import { Input } from 'antd';
+import { useEffect, useState } from 'react';
+import createOWSTGStore, { Category, Substep } from './store';
 
 const { TextArea } = Input;
 const { Header, Content } = Layout;
 
-const OWSTG = () => {
+const OWSTG = ({ id }: { id: string }) => {
+  const useStore = createOWSTGStore(id);
   const setCategories = useStore((state) => state.setCategories);
   const categories = useStore((state) => state.categories);
   const toggleTested = useStore(state => state.toggleTested);

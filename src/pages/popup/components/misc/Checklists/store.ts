@@ -1,7 +1,7 @@
+import { saveAs } from 'file-saver';
+import Papa from 'papaparse';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import Papa from 'papaparse';
-import { saveAs } from 'file-saver';
 
 export type Substep = {
   description: string;
@@ -36,9 +36,13 @@ export type State = {
   reset: () => void;
 };
 
-const useStore = create<State>(
-  
-  // @ts-ignore: Argument is not assignable to parameter of type 'Partial<State>'...
+
+
+type TargetKey = React.MouseEvent | React.KeyboardEvent | string;
+
+const createOWSTGStore = (id:string | TargetKey) => create<State>( 
+
+  // @ts-ignore
   persist(
     (set, get) => ({
       categories: [],
@@ -99,10 +103,11 @@ const useStore = create<State>(
 
     }),
     {
-      name: 'owstg-checklist', // Unique key
+      name: `owstg-${id}-store`, // unique name
       getStorage: () => window.localStorage, // Use local storage
     }
   )
 );
 
-export default useStore;
+
+export default createOWSTGStore;
