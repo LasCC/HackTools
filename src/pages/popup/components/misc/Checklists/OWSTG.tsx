@@ -1,4 +1,4 @@
-import { Button, Card, Checkbox, Col, Divider, Input, Layout, Modal, Popconfirm, Progress, Radio, Row, Table, Tooltip, message } from 'antd';
+import { Button, Card, Checkbox, Col, Divider, Form, Input, Layout, Modal, Popconfirm, Progress, Radio, Row, Table, Tooltip, message } from 'antd';
 import jsyaml from 'js-yaml';
 import { useEffect, useRef, useState } from 'react';
 import createOWSTGStore, { Category, Substep } from './stores/MethodologyStore';
@@ -16,7 +16,15 @@ const OWSTG = ({ id }: { id: string }) => {
   const setNote = useStore(state => state.setNote);
   const downloadCSV = useStore((state) => state.downloadCSV);
   const reset = useStore((state) => state.reset);
+
   
+  const fetchMethodology = useStore((state) => state.fetchMethodology);
+  const [methodologyURL, setMethodologyURL] = useState('');
+
+  const methodologyOption = useStore((state) => state.methodologyOption);
+  const setMethodologyOption = useStore((state) => state.setMethodologyOption);
+
+
   const totalTests = categories.reduce((total, category) => total + category.atomic_tests.length, 0);
   const completedTests = categories.reduce((total, category) => total + category.atomic_tests.filter(test => test.wasTested).length, 0);
   const vulnerableTests = categories.reduce((total, category) => total + category.atomic_tests.filter(test => test.wasVulnerable).length, 0);
@@ -27,14 +35,14 @@ const OWSTG = ({ id }: { id: string }) => {
   // Function to export state
   const exportState = () => {
     const tabName = tabStateStore.getState().items.find(item => item.key === id)?.label;
-    const currentState = useStore.getState();  
-    const blob = new Blob([JSON.stringify(currentState)], { type: "application/json" });  
+    const currentState = useStore.getState();
+    const blob = new Blob([JSON.stringify(currentState)], { type: "application/json" });
     const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");  
+    const link = document.createElement("a");
     link.href = url;
     link.download = `methodology_state_${tabName}_${new Date().toISOString()}.json`;
-    link.click();  
-    URL.revokeObjectURL(url);  
+    link.click();
+    URL.revokeObjectURL(url);
   };
 
 
@@ -47,8 +55,8 @@ const OWSTG = ({ id }: { id: string }) => {
     const reader = new FileReader();
     reader.onload = (event) => {
       const result = event.target?.result as string;
-      const newState = JSON.parse(result);  
-      useStore.setState(newState);  
+      const newState = JSON.parse(result);
+      useStore.setState(newState);
     };
     reader.readAsText(file);
   };
@@ -88,7 +96,7 @@ const OWSTG = ({ id }: { id: string }) => {
       dataIndex: 'id',
       key: 'id',
       render: (text, record) => (
-          <a href={`${record.reference}`} target="_blank" rel="noreferrer">{text}</a>
+        <a href={`${record.reference}`} target="_blank" rel="noreferrer">{text}</a>
       ),
     },
     {
@@ -175,6 +183,22 @@ const OWSTG = ({ id }: { id: string }) => {
   const [currentTest, setCurrentTest] = useState(null);
   const [exportOption, setExportOption] = useState('all');
   const [isExportModalVisible, setIsExportModalVisible] = useState(false);
+  const [isMethodologyModalVisible, setIsMethodologyModalVisible] = useState(false);
+
+
+
+
+  const openMethodologyModal = () => {
+    setIsMethodologyModalVisible(true);
+  };
+
+  const closeMethodologyModal = () => {
+    setIsMethodologyModalVisible(false);
+  };
+  const loadMethodology = async () => {
+    await fetchMethodology(methodologyURL);
+    closeMethodologyModal();
+  };
 
   // Modal functions
   const openExportModal = () => {
@@ -191,6 +215,34 @@ const OWSTG = ({ id }: { id: string }) => {
     setCurrentTest(null);
     setIsModalVisible(false);
   };
+
+  const onChangeMethodologyOption = (e) => {
+    // @ts-ignore
+    setMethodologyOption(e.target.value);
+  };
+
+
+  const loadMethodologyModal = (
+    <Modal
+      title="Load Methodology"
+      open={isMethodologyModalVisible}
+      onOk={loadMethodology}
+      onCancel={closeMethodologyModal}
+    >
+      <Radio.Group onChange={onChangeMethodologyOption} value={methodologyOption}>
+        <Radio value="default">Load Default OWSTG</Radio>
+        <Radio value="custom">Load Custom Methodology</Radio>
+      </Radio.Group>
+  
+      {methodologyOption === 'custom' && (
+        <Form.Item label="Methodology URL">
+          <Input value={methodologyURL} onChange={(e) => setMethodologyURL(e.target.value)} />
+        </Form.Item>
+      )}
+    </Modal>
+  );
+
+
 
   // Modal components
   const exportCSVModal = (
@@ -214,7 +266,7 @@ const OWSTG = ({ id }: { id: string }) => {
 
   const onDescriptionCaseClickModal = (
     <Modal open={isModalVisible} onCancel={closeModal}>
-        <h2>{currentTest?.description}</h2>
+      <h2>{currentTest?.description}</h2>
       <TextArea
         rows={4}
         value={currentTest?.note}
@@ -235,7 +287,7 @@ const OWSTG = ({ id }: { id: string }) => {
       <Row gutter={[16, 16]}>
         <Col span={24} >
           <Card title="Total progress" style={{ width: "100%" }}>
-          <Tooltip title={`${completedTests} / ${totalTests} completed`}>
+            <Tooltip title={`${completedTests} / ${totalTests} completed`}>
               <Progress
                 type="circle"
                 percent={parseFloat(((completedTests / totalTests) * 100).toFixed(2))}
@@ -269,8 +321,11 @@ const OWSTG = ({ id }: { id: string }) => {
               <Button type="primary" danger style={{ marginLeft: '10px' }} >Reset</Button>
             </Popconfirm>
             <Button type="primary" onClick={exportState} style={{ marginLeft: '10px' }}>Export State</Button>
-      <input ref={fileInputRef} type="file" hidden onChange={importState} />
-      <Button type="primary" onClick={() => fileInputRef.current?.click()} style={{ marginLeft: '10px' }}>Import State</Button>
+            <input ref={fileInputRef} type="file" hidden onChange={importState} />
+            <Button type="primary" onClick={() => fileInputRef.current?.click()} style={{ marginLeft: '10px' }}>Import State</Button>
+            <Button type="primary" onClick={openMethodologyModal} style={{ marginLeft: '10px' }}>
+              Load Methodology
+            </Button>
           </Card>
         </Col>
       </Row>
@@ -281,6 +336,8 @@ const OWSTG = ({ id }: { id: string }) => {
 
       {onDescriptionCaseClickModal}
       {exportCSVModal}
+      {loadMethodologyModal}
+
     </>
   );
 };
