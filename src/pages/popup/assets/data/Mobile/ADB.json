@@ -1,0 +1,15 @@
+[
+    {
+        "description": "list all connected devices",
+        "command": "adb devices"
+
+    }, 
+    {
+        "description": "list all installed packages",
+        "command": "adb shell pm list packages"
+    }, 
+    {
+        "description": "Download an APK from the device",
+        "command": "adb pull /data/app/com.example.apk"
+    }
+]
