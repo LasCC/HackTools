@@ -41,7 +41,7 @@ const OWSTG = ({ id }: { id: string }) => {
     const blob = new Blob([JSON.stringify(currentState)], { type: "application/json" });
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
-    link.href = data[0]?.url;
+    link.href = data[0]?.reference
     link.download = `methodology_state_${tabName}_${new Date().toISOString()}.json`;
     link.click();
     URL.revokeObjectURL(url);
