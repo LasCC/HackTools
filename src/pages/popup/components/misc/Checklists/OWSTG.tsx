@@ -12,12 +12,14 @@ const OWSTG = ({ id }: { id: string }) => {
   const setCategories = useStore((state) => state.setCategories);
   const categories = useStore((state) => state.categories);
   const toggleTested = useStore(state => state.toggleTested);
-  const setVulnerable = useStore(state => state.setVulnerable);
+  const setVulnerable = useStore(state => state.setHasConcern);
   const setNote = useStore(state => state.setNote);
   const downloadCSV = useStore((state) => state.downloadCSV);
   const reset = useStore((state) => state.reset);
+  const typeOfChecklist = useStore((state) => state.typeOfChecklist);
+  const setTypeOfChecklist = useStore((state) => state.setTypeOfChecklist);
 
-  
+
   const fetchMethodology = useStore((state) => state.fetchMethodology);
   const [methodologyURL, setMethodologyURL] = useState('');
 
@@ -27,8 +29,8 @@ const OWSTG = ({ id }: { id: string }) => {
 
   const totalTests = categories.reduce((total, category) => total + category.atomic_tests.length, 0);
   const completedTests = categories.reduce((total, category) => total + category.atomic_tests.filter(test => test.wasTested).length, 0);
-  const vulnerableTests = categories.reduce((total, category) => total + category.atomic_tests.filter(test => test.wasVulnerable).length, 0);
-  const notVulnerableTests = categories.reduce((total, category) => total + category.atomic_tests.filter(test => !test.wasVulnerable && test.wasTested).length, 0);
+  const vulnerableTests = categories.reduce((total, category) => total + category.atomic_tests.filter(test => test.hasConcern).length, 0);
+  const notVulnerableTests = categories.reduce((total, category) => total + category.atomic_tests.filter(test => !test.hasConcern && test.wasTested).length, 0);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -39,7 +41,7 @@ const OWSTG = ({ id }: { id: string }) => {
     const blob = new Blob([JSON.stringify(currentState)], { type: "application/json" });
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
-    link.href = url;
+    link.href = data[0]?.url;
     link.download = `methodology_state_${tabName}_${new Date().toISOString()}.json`;
     link.click();
     URL.revokeObjectURL(url);
@@ -66,11 +68,10 @@ const OWSTG = ({ id }: { id: string }) => {
     const fetchChecklist = async () => {
       if (categories.length === 0) {
         try {
-          const response = await fetch('https://raw.githubusercontent.com/LasCC/Hack-Tools/dev/src/pages/popup/assets/data/Methodology/owstg.yaml');
-          const data = await response.text();
-          const parsedData = jsyaml.load(data).map(item => item.category) as Category[];
-          console.log(parsedData);
-          setCategories(parsedData);
+          const response = await fetch('https://raw.githubusercontent.com/rb-x/ht-methodology-test/master/owstg.yaml');
+          let data = jsyaml.load(await response.text())
+          setCategories(data.map(item => item.category).filter(item => item) as Category[]);
+          setTypeOfChecklist(data[0]?.type)
         } catch (error) {
           console.error('Failed to fetch OWSTG checklist:', error);
         }
@@ -135,18 +136,18 @@ const OWSTG = ({ id }: { id: string }) => {
       ),
     },
     {
-      title: 'Vulnerability',
-      dataIndex: 'wasVulnerable',
-      key: 'wasVulnerable',
+      title: typeOfChecklist === 'pentest' ? 'Vulnerable' : 'Has Concern',
+      dataIndex: 'hasConcern',
+      key: 'hasConcern',
 
       filters: [
         { text: 'Vulnerable', value: true },
         { text: 'Not Vulnerable', value: false },
       ],
-      onFilter: (value, record) => record.wasVulnerable === value,
+      onFilter: (value, record) => record.hasConcern === value,
       render: (text, record) => (
         <Radio.Group
-          value={record.wasVulnerable}
+          value={record.hasConcern}
           onChange={(e) => {
             e.stopPropagation();
             setVulnerable(record.categoryId, record.id, e.target.value);
@@ -233,7 +234,7 @@ const OWSTG = ({ id }: { id: string }) => {
         <Radio value="default">Load Default OWSTG</Radio>
         <Radio value="custom">Load Custom Methodology</Radio>
       </Radio.Group>
-  
+
       {methodologyOption === 'custom' && (
         <Form.Item label="Methodology URL">
           <Input value={methodologyURL} onChange={(e) => setMethodologyURL(e.target.value)} />

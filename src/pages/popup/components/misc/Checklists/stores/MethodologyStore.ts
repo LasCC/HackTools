@@ -1,8 +1,8 @@
 import { saveAs } from 'file-saver';
+import jsyaml from 'js-yaml';
 import Papa from 'papaparse';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import jsyaml from 'js-yaml';
 
 export type Substep = {
   description: string;
@@ -11,13 +11,12 @@ export type Substep = {
 export type Test = {
   id: string;
   description: string;
-  isvulnerable: boolean;
   reference: string;
   objectives: string[];
   observations: string;
   substeps: Substep[];
   wasTested: boolean;
-  wasVulnerable: boolean;
+  hasConcern: boolean;
   note: string;
 };
 
@@ -28,10 +27,12 @@ export type Category = {
 };
 
 export type State = {
+  typeOfChecklist: 'pentest' | 'generic' | '';
+  setTypeOfChecklist: (type: 'pentest' | 'generic' | '') => void;
   categories: Category[];
   setCategories: (categories: Category[]) => void;
   toggleTested: (categoryId: string, testId: string) => void;
-  setVulnerable: (categoryId: string, testId: string, vulnerability: boolean) => void;
+  setHasConcern: (categoryId: string, testId: string, concern: boolean) => void;
   setNote: (categoryId: string, testId: string, note: string) => void;
   downloadCSV: (exportOption: string) => void;
   reset: () => void;
@@ -41,11 +42,22 @@ export type State = {
   methodologyOption: 'default' | 'custom'; // New state variable
 };
 
+
+
+const extractTypeofChecklist = parsedData => {
+
+}
+
+
+
 const createOWSTGStore = (id: string) =>
   create<State>(
     // @ts-ignore
     persist(
       (set, get) => ({
+        // Define the checklist type to display the appropriate fields in the UI
+        typeOfChecklist: '',
+        setTypeOfChecklist: (type: 'pentest' | 'generic' | '') => set({ typeOfChecklist: type }),
         categories: [],
         setCategories: (categories: Category[]) => set({ categories }),
         toggleTested: (categoryId: string, testId: string) => {
@@ -55,11 +67,11 @@ const createOWSTGStore = (id: string) =>
           if (test) test.wasTested = !test.wasTested;
           set({ categories });
         },
-        setVulnerable: (categoryId: string, testId: string, vulnerability: boolean) => {
+        setHasConcern: (categoryId: string, testId: string, concern: boolean) => {
           const categories = [...get().categories];
           const category = categories.find((cat) => cat.id === categoryId);
           const test = category?.atomic_tests.find((test) => test.id === testId);
-          if (test) test.wasVulnerable = vulnerability;
+          if (test) test.hasConcern = concern;
           set({ categories });
         },
         setNote: (categoryId: string, testId: string, note: string) => {
@@ -77,8 +89,8 @@ const createOWSTGStore = (id: string) =>
             category.atomic_tests.forEach((test) => {
               if (
                 exportOption === 'all' ||
-                (exportOption === 'vulnerable' && test.wasVulnerable) ||
-                (exportOption === 'not_vulnerable' && test.wasTested && !test.wasVulnerable)
+                (exportOption === 'vulnerable' && test.hasConcern) ||
+                (exportOption === 'not_vulnerable' && test.wasTested && !test.hasConcern)
               ) {
                 csvData.push({
                   category: category.title,
@@ -86,7 +98,7 @@ const createOWSTGStore = (id: string) =>
                   name: test.description,
                   reference: test.reference,
                   tested: test.wasTested ? 'Yes' : 'No',
-                  vuln: test.wasVulnerable ? 'Yes' : 'No',
+                  vuln: test.hasConcern ? 'Yes' : 'No',
                   vulnDescription: test.note || '',
                 });
               }
@@ -121,6 +133,7 @@ const createOWSTGStore = (id: string) =>
             // Fetch default OWSTG methodology
             try {
               const response = await fetch('https://raw.githubusercontent.com/LasCC/Hack-Tools/dev/src/pages/popup/assets/data/Methodology/owstg.yaml');
+              set({typeOfChecklist: 'pentest'})
               const data = await response.text();
               const parsedData = jsyaml.load(data).map((item) => item.category) as Category[];
               set({ categories: parsedData });
@@ -132,8 +145,9 @@ const createOWSTGStore = (id: string) =>
             try {
               const response = await fetch(url);
               const data = await response.text();
-              const parsedData = jsyaml.load(data).map((item) => item.category) as Category[];
-              set({ categories: parsedData });
+              const parsedData = jsyaml.load(data)
+              set({ categories:  parsedData.map((item) => item.category) as Category[] }) ;
+              set({typeOfChecklist: parsedData[0]?.type})
             } catch (error) {
               console.error('Failed to fetch custom methodology:', error);
             }

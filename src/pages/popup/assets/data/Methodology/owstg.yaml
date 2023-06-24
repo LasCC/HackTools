@@ -1,4 +1,5 @@
 - category:
+    type: pentest
     atomic_tests:
     - description: Conduct Search Engine Discovery Reconnaissance for Information
         Leakage
@@ -12,7 +13,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Fingerprint Web Server
       id: WSTG-INFO-02
       objectives:
@@ -23,7 +24,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Review Webserver Metafiles for Information Leakage
       id: WSTG-INFO-03
       objectives:
@@ -36,7 +37,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Enumerate Applications on Webserver
       id: WSTG-INFO-04
       objectives:
@@ -46,7 +47,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Review Webpage Content for Information Leakage
       id: WSTG-INFO-05
       objectives:
@@ -60,7 +61,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Identify Application Entry Points
       id: WSTG-INFO-06
       objectives:
@@ -71,7 +72,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Map Execution Paths Through Application
       id: WSTG-INFO-07
       objectives:
@@ -81,7 +82,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Fingerprint Web Application Framework
       id: WSTG-INFO-08
       objectives:
@@ -91,7 +92,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Fingerprint Web Application
       id: WSTG-INFO-09
       objectives:
@@ -101,7 +102,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Map Application Architecture
       id: WSTG-INFO-10
       objectives:
@@ -111,7 +112,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     id: WSTG-INFO
     title: Information Gathering
 - category:
@@ -129,7 +130,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Test Application Platform Configuration
       id: WSTG-CONF-02
       objectives:
@@ -141,7 +142,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Test File Extensions Handling for Sensitive Information
       id: WSTG-CONF-03
       objectives:
@@ -153,7 +154,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Review Old Backup and Unreferenced Files for Sensitive Information
       id: WSTG-CONF-04
       objectives:
@@ -163,7 +164,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Enumerate Infrastructure and Application Admin Interfaces
       id: WSTG-CONF-05
       objectives:
@@ -173,7 +174,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Test HTTP Methods
       id: WSTG-CONF-06
       objectives:
@@ -185,7 +186,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Test HTTP Strict Transport Security
       id: WSTG-CONF-07
       objectives:
@@ -195,7 +196,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Test RIA Cross Domain Policy
       id: WSTG-CONF-08
       objectives:
@@ -205,7 +206,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Test File Permission
       id: WSTG-CONF-09
       objectives:
@@ -215,7 +216,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Test for Subdomain Takeover
       id: WSTG-CONF-10
       objectives:
@@ -226,7 +227,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Test Cloud Storage
       id: WSTG-CONF-11
       objectives:
@@ -237,7 +238,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing for Content Security Policy
       id: WSTG-CONF-12
       objectives:
@@ -247,7 +248,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Test Path Confusion
       id: WSTG-CONF-13
       objectives:
@@ -257,7 +258,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     id: WSTG-CONF
     title: Configuration and Deployment Management Testing
 - category:
@@ -273,7 +274,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Test User Registration Process
       id: WSTG-IDNT-02
       objectives:
@@ -285,7 +286,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Test Account Provisioning Process
       id: WSTG-IDNT-03
       objectives:
@@ -295,7 +296,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing for Account Enumeration and Guessable User Account
       id: WSTG-IDNT-04
       objectives:
@@ -307,7 +308,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing for Weak or Unenforced Username Policy
       id: WSTG-IDNT-05
       objectives:
@@ -319,7 +320,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     id: WSTG-IDNT
     title: Identity Management Testing
 - category:
@@ -333,7 +334,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing for Default Credentials
       id: WSTG-ATHN-02
       objectives:
@@ -344,7 +345,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing for Weak Lock Out Mechanism
       id: WSTG-ATHN-03
       objectives:
@@ -356,7 +357,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing for Bypassing Authentication Schema
       id: WSTG-ATHN-04
       objectives:
@@ -366,7 +367,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing for Vulnerable Remember Password
       id: WSTG-ATHN-05
       objectives:
@@ -377,7 +378,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing for Browser Cache Weaknesses
       id: WSTG-ATHN-06
       objectives:
@@ -388,7 +389,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing for Weak Password Policy
       id: WSTG-ATHN-07
       objectives:
@@ -400,7 +401,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing for Weak Security Question Answer
       id: WSTG-ATHN-08
       objectives:
@@ -411,7 +412,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing for Weak Password Change or Reset Functionalities
       id: WSTG-ATHN-09
       objectives:
@@ -422,7 +423,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing for Weaker Authentication in Alternative Channel
       id: WSTG-ATHN-10
       objectives:
@@ -434,7 +435,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing Multi-Factor Authentication (MFA)
       id: WSTG-ATHN-11
       objectives:
@@ -446,7 +447,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     id: WSTG-ATHN
     title: Authentication Testing
 - category:
@@ -461,7 +462,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing for Bypassing Authorization Schema
       id: WSTG-ATHZ-02
       objectives:
@@ -471,7 +472,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing for Privilege Escalation
       id: WSTG-ATHZ-03
       objectives:
@@ -482,7 +483,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing for Insecure Direct Object References
       id: WSTG-ATHZ-04
       objectives:
@@ -493,7 +494,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing for OAuth Weaknesses
       id: WSTG-ATHZ-05
       objectives:
@@ -504,7 +505,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     id: WSTG-ATHZ
     title: Authorization Testing
 - category:
@@ -520,7 +521,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing for Cookies Attributes
       id: WSTG-SESS-02
       objectives:
@@ -530,7 +531,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing for Session Fixation
       id: WSTG-SESS-03
       objectives:
@@ -541,7 +542,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing for Exposed Session Variables
       id: WSTG-SESS-04
       objectives:
@@ -553,7 +554,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing for Cross Site Request Forgery
       id: WSTG-SESS-05
       objectives:
@@ -564,7 +565,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing for Logout Functionality
       id: WSTG-SESS-06
       objectives:
@@ -575,7 +576,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing Session Timeout
       id: WSTG-SESS-07
       objectives:
@@ -585,7 +586,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing for Session Puzzling
       id: WSTG-SESS-08
       objectives:
@@ -596,7 +597,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing for Session Hijacking
       id: WSTG-SESS-09
       objectives:
@@ -607,7 +608,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing JSON Web Tokens
       id: WSTG-SESS-10
       objectives:
@@ -618,7 +619,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     id: WSTG-SESS
     title: Session Management Testing
 - category:
@@ -634,7 +635,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing for Stored Cross Site Scripting
       id: WSTG-INPV-02
       objectives:
@@ -646,7 +647,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing for HTTP Verb Tampering
       id: WSTG-INPV-03
       objectives:
@@ -656,7 +657,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing for HTTP Parameter Pollution
       id: WSTG-INPV-04
       objectives:
@@ -667,7 +668,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing for SQL Injection
       id: WSTG-INPV-05
       objectives:
@@ -679,7 +680,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing for LDAP Injection
       id: WSTG-INPV-06
       objectives:
@@ -690,7 +691,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing for XML Injection
       id: WSTG-INPV-07
       objectives:
@@ -701,7 +702,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing for SSI Injection
       id: WSTG-INPV-08
       objectives:
@@ -712,7 +713,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing for XPath Injection
       id: WSTG-INPV-09
       objectives:
@@ -722,7 +723,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing for IMAP SMTP Injection
       id: WSTG-INPV-10
       objectives:
@@ -734,7 +735,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing for Code Injection
       id: WSTG-INPV-11
       objectives:
@@ -745,7 +746,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing for Command Injection
       id: WSTG-INPV-12
       objectives:
@@ -755,7 +756,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing for Buffer Overflow
       id: WSTG-INPV-13
       objectives:
@@ -765,7 +766,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing for Format String Injection
       id: WSTG-INPV-13-bis
       objectives:
@@ -776,7 +777,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing for Incubated Vulnerability
       id: WSTG-INPV-14
       objectives:
@@ -789,7 +790,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing for HTTP Splitting Smuggling
       id: WSTG-INPV-15
       objectives:
@@ -802,7 +803,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing for HTTP Incoming Requests
       id: WSTG-INPV-16
       objectives:
@@ -815,7 +816,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing for Host Header Injection
       id: WSTG-INPV-17
       objectives:
@@ -826,7 +827,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing for Server-side Template Injection
       id: WSTG-INPV-18
       objectives:
@@ -838,7 +839,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing for Server-Side Request Forgery
       id: WSTG-INPV-19
       objectives:
@@ -850,7 +851,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing for Mass Assignment
       id: WSTG-INPV-20
       objectives:
@@ -862,7 +863,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     id: WSTG-INPV
     title: Input Validation Testing
 - category:
@@ -877,7 +878,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing for Stack Traces
       id: WSTG-ERRH-02
       objectives:
@@ -887,7 +888,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     id: WSTG-ERRH
     title: Testing for Error Handling
 - category:
@@ -904,7 +905,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing for Padding Oracle
       id: WSTG-CRYP-02
       objectives:
@@ -916,7 +917,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing for Sensitive Information Sent via Unencrypted Channels
       id: WSTG-CRYP-03
       objectives:
@@ -927,7 +928,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing for Weak Encryption
       id: WSTG-CRYP-04
       objectives:
@@ -938,7 +939,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     id: WSTG-CRYP
     title: Testing for Weak Cryptography
 - category:
@@ -955,7 +956,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Test Ability to Forge Requests
       id: WSTG-BUSL-02
       objectives:
@@ -967,7 +968,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Test Integrity Checks
       id: WSTG-BUSL-03
       objectives:
@@ -983,7 +984,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Test for Process Timing
       id: WSTG-BUSL-04
       objectives:
@@ -995,7 +996,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Test Number of Times a Function Can Be Used Limits
       id: WSTG-BUSL-05
       objectives:
@@ -1007,7 +1008,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing for the Circumvention of Work Flows
       id: WSTG-BUSL-06
       objectives:
@@ -1020,7 +1021,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Test Defenses Against Application Misuse
       id: WSTG-BUSL-07
       objectives:
@@ -1033,7 +1034,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Test Upload of Unexpected File Types
       id: WSTG-BUSL-08
       objectives:
@@ -1046,7 +1047,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Test Upload of Malicious Files
       id: WSTG-BUSL-09
       objectives:
@@ -1064,7 +1065,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Test Payment Functionality
       id: WSTG-BUSL-10
       objectives:
@@ -1076,7 +1077,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     id: WSTG-BUSL
     title: Business Logic Testing
 - category:
@@ -1091,7 +1092,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing for JavaScript Execution
       id: WSTG-CLNT-02
       objectives:
@@ -1101,7 +1102,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing for HTML Injection
       id: WSTG-CLNT-03
       objectives:
@@ -1111,7 +1112,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing for Client-side URL Redirect
       id: WSTG-CLNT-04
       objectives:
@@ -1122,7 +1123,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing for CSS Injection
       id: WSTG-CLNT-05
       objectives:
@@ -1133,7 +1134,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing for Client-side Resource Manipulation
       id: WSTG-CLNT-06
       objectives:
@@ -1144,7 +1145,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing Cross Origin Resource Sharing
       id: WSTG-CLNT-07
       objectives:
@@ -1155,7 +1156,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing for Cross Site Flashing
       id: WSTG-CLNT-08
       objectives:
@@ -1166,7 +1167,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing for Clickjacking
       id: WSTG-CLNT-09
       objectives:
@@ -1177,7 +1178,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing WebSockets
       id: WSTG-CLNT-10
       objectives:
@@ -1188,7 +1189,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing Web Messaging
       id: WSTG-CLNT-11
       objectives:
@@ -1199,7 +1200,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing Browser Storage
       id: WSTG-CLNT-12
       objectives:
@@ -1211,7 +1212,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing for Cross Site Script Inclusion
       id: WSTG-CLNT-13
       objectives:
@@ -1222,7 +1223,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     - description: Testing for Reverse Tabnabbing
       id: WSTG-CLNT-14
       objectives:
@@ -1232,7 +1233,7 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     id: WSTG-CLNT
     title: Client-side Testing
 - category:
@@ -1248,6 +1249,6 @@
       substeps:
       - Your note 1
       wasTested: false
-      wasVulnerable: false
+      hasConcern: false
     id: WSTG-APIT
     title: API Testing
