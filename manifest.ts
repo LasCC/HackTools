@@ -19,8 +19,17 @@ const manifest: chrome.runtime.ManifestV3 = {
         "48": "./icons/ht_icon48.png",
         "128": "./icons/ht_icon128.png",
     },
-    // permissions: ["contextMenus", "tabs", "activeTab", "storage"],
-    // background: { service_worker: "src/pages/background/index.js" },
+    commands: {
+        panel: {
+            description: "Open popup window",
+            global: true,
+            suggested_key: {
+                default: "Ctrl+Shift+2",
+                mac: "MacCtrl+Shift+2"
+            }
+        }
+    },
+    background: { service_worker: "src/pages/background/index.js" },
     devtools_page: "src/pages/devtools/index.html",
 };
 
