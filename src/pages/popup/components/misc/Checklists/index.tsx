@@ -1,8 +1,8 @@
+import { Input, Modal, Popconfirm, Tabs } from "antd";
 import React, { useState } from 'react';
-import { Tabs, Modal, Input, Popconfirm } from "antd";
-import tabStateStore from './stores/TabStateStore';
-import OWSTG from './OWSTG';
 import { useHotkeys } from 'react-hotkeys-hook';
+import OWSTG from './OWSTG';
+import tabStateStore from './stores/TabStateStore';
 const { TabPane } = Tabs;
 
 const Index = () => {
@@ -46,13 +46,13 @@ const Index = () => {
 
   const closeAndDeleteConfirmModal = (item: any) => (
     <Popconfirm
-    title="Are you sure you want to close this tab? all progress will be lost (Think about exporting your data first)"
-    onConfirm={() => remove(item.key)}
-    okText="Close and delete tab"
-    cancelText="Cancel"
-  >
-    <div>×</div>
-  </Popconfirm>
+      title="Are you sure you want to close this tab? all progress will be lost (Think about exporting your data first)"
+      onConfirm={() => remove(item.key)}
+      okText="Close and delete tab"
+      cancelText="Cancel"
+    >
+      <div>×</div>
+    </Popconfirm>
   );
 
   return (
@@ -66,10 +66,19 @@ const Index = () => {
         {items.map(item => (
           <TabPane
             tab={
-              <div onDoubleClick={() => {
-                setCurrentTab(item.key);
-                setIsModalVisible(true);
-              }}>
+              <div
+                onDoubleClick={() => {
+                  setCurrentTab(item.key);
+                  setIsModalVisible(true);
+                }}
+                onMouseUp={(e) => {
+                  // middle click
+                  if (e.button === 1) {
+                    setCurrentTab(item.key);
+                    setIsModalVisible(true);
+                  }
+                }}
+              >
                 {item.label}
               </div>
             }
