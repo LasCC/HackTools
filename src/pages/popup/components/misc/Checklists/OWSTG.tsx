@@ -8,6 +8,8 @@ const { Header, Content } = Layout;
 
 
 const OWSTG = ({ id }: { id: string }) => {
+
+  // id to create a new store for each tab 
   const useStore = createOWSTGStore(id);
   const setCategories = useStore((state) => state.setCategories);
   const categories = useStore((state) => state.categories);
@@ -186,8 +188,7 @@ const OWSTG = ({ id }: { id: string }) => {
   const [isExportModalVisible, setIsExportModalVisible] = useState(false);
   const [isMethodologyModalVisible, setIsMethodologyModalVisible] = useState(false);
 
-
-
+  // KeyPress handler
 
   const openMethodologyModal = () => {
     setIsMethodologyModalVisible(true);
@@ -249,7 +250,7 @@ const OWSTG = ({ id }: { id: string }) => {
   const exportCSVModal = (
     <Modal
       title="Export as CSV"
-      open={isExportModalVisible}
+      open={isExportModalVisible}      
       onOk={() => {
         downloadCSV(exportOption);
         closeExportModal();

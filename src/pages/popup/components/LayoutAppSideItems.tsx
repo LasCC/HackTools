@@ -146,7 +146,7 @@ const SystemTab: Array<IRouterComponent> = [
         type: "system"
     },
     {
-        key: '99',
+        key: '9',
         icon: <IconFont type='icon-about' style={{ fontSize: '1.5em', marginTop: 3 }} />,
         name: 'About us',
         componentRoute: AboutUs,

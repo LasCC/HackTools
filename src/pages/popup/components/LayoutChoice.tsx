@@ -1,7 +1,9 @@
-import { useState } from "react";
-import { Card, Col, Row, Skeleton, Switch } from "antd";
-import { EditOutlined, EllipsisOutlined, SettingOutlined } from "@ant-design/icons";
+import React, { useState } from "react";
+import { SettingOutlined } from "@ant-design/icons";
+import { Card, Col, Row } from "antd";
+import { goTo } from "react-chrome-extension-router";
 import PersistedState from 'use-persisted-state';
+import Tabs from "./LayoutAppSideItems";
 
 enum HackToolsMode {
   web = "web",
@@ -17,18 +19,20 @@ const LayoutChoice = () => {
   const hackToolsState = PersistedState<string>("hack_tools_mode");
   const [hackTools, setHackTools] = hackToolsState("web");
   const modes = ["web", "system", "mobile", "misc"];
-  // setting to 1 to prevent array index overflow inter-mode routing 
   const [index, setIndex] = useMenuIndex('1')
 
+
   const navigateAndSetMode = (mode: string) => {
-    // navigate to the page and set its mode in persisted 
+    // Navigate to the page and set its mode with persisted state
+    // Fixing to the first element to 1 to prevent array index overflow when switching between modes that have different lengths of tabs
+    // TODO: Implement a caching system ?
+    setIndex('1');
     setHackTools(mode);
+    // Not pretty but it works ...
+    goTo(Tabs.filter((tab) => tab.type === mode)[0].componentRoute);
   }
 
   const handleClickOnMode = (mode: string) => {
-    // setting to 1 to prevent array index overflow inter-mode routing 
-    // TODO: set index to 1 when switching mode properly
-    setIndex('1');
     navigateAndSetMode(mode);
   }
 
