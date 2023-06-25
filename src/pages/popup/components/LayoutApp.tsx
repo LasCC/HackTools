@@ -5,15 +5,21 @@ import { goTo } from 'react-chrome-extension-router';
 import PersistedState from 'use-persisted-state';
 import Tabs, { IRouterComponent } from "./LayoutAppSideItems";
 import LayoutChoice from './LayoutChoice';
+import { useHotkeys } from 'react-hotkeys-hook';
 const { Paragraph } = Typography;
 const { Sider, Content, Footer } = Layout;
 const IconFont = createFromIconfontCN({
     scriptUrl: ['./iconfont.js']
 });
 
+
 export default function LayoutApp(props: {
     children: boolean | React.ReactFragment | React.ReactPortal | null | undefined;
 }) {
+
+
+
+    
 
 
     enum HackToolsMode {
@@ -45,6 +51,41 @@ export default function LayoutApp(props: {
             </Menu.Item>
         );
     });
+
+    /*----------- HOTKEYS -----------*/
+    useHotkeys('alt+1', () => {
+        setHackToolsState(HackToolsMode.web);
+        setIndex('1');
+        goTo(Tabs.filter(item => item.type === HackToolsMode.web)[0].componentRoute);
+    });
+    useHotkeys('alt+2', () => {
+        setHackToolsState(HackToolsMode.system);
+        setIndex('1');
+        goTo(Tabs.filter(item => item.type === HackToolsMode.system)[0].componentRoute);
+    });
+    useHotkeys('alt+3', () => {
+        setHackToolsState(HackToolsMode.mobile);
+        setIndex('1');
+        goTo(Tabs.filter(item => item.type === HackToolsMode.mobile)[0].componentRoute);
+    });
+    useHotkeys('alt+4', () => {
+        setHackToolsState(HackToolsMode.misc);
+        setIndex('1');
+        goTo(Tabs.filter(item => item.type === HackToolsMode.misc)[0].componentRoute);
+    });
+
+    useHotkeys('alt+c', () => {
+        setHackToolsState(HackToolsMode.misc);
+        setIndex(Tabs.filter(item => item.name === "Checklist")[0].key);
+        // go to the methodology page
+        goTo(Tabs.filter(item => item.type === HackToolsMode.misc)[1].componentRoute);
+    });
+
+    /*--------------------------------*/
+    
+
+
+
 
 
     const useMenuIndex = PersistedState<string>('tab_index_cache'); // Disabled for now

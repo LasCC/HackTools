@@ -77,20 +77,18 @@ export default function LFI () {
         { title: '/windows/system32/license.rtf' },
         { title: '/windows/system32/eula.txt' }
     ];
-
+// TODO: Reorganize LFI/LFR into multiple tabs
     return (
         <div style={{ margin: 15 }}>
             <Title level={2} style={{ fontWeight: 'bold' }}>
-                LFI
+                LF(R|I)
             </Title>
             <Paragraph>
-                LFI stands for Local File Includes - it's a file local
-                inclusion vulnerability that allows an attacker
-                to include files that exist on the target web server.
+                LFR (Local File Read) is a vulnerability that allows an attacker to read files on the server running the web application.
+                LFI is similar to the LFR vulnerability, but it allows an attacker to <b>include</b> a file on the web server which is evaluated interpreter, thus allowing code execution.
             </Paragraph>
             <Paragraph>
-                Typically this is exploited by abusing dynamic file inclusion
-                mechanisms that don't sanitize user input.
+                Typically this is exploited because of a lack of input validation. The attacker can use a relative path to read files on the server.
             </Paragraph>
             <div key='a'>
                 <Title level={3}>Directory traversal</Title>

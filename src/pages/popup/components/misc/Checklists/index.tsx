@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Tabs, Modal, Input, Popconfirm } from "antd";
 import tabStateStore from './stores/TabStateStore';
 import OWSTG from './OWSTG';
+import { useHotkeys } from 'react-hotkeys-hook';
 const { TabPane } = Tabs;
 
 const Index = () => {
@@ -20,7 +21,19 @@ const Index = () => {
     }
   };
 
-  const handleOk = () => {
+  useHotkeys('n', () => {
+    // create a new tab of methodology
+    add();
+  }
+  );
+
+  useHotkeys('r', () => {
+    // rename current tab by opening the modal
+    setIsModalVisible(true);
+  }
+  );
+
+  const handleRename = () => {
     rename(currentTab, newLabel);
     setIsModalVisible(false);
     setNewLabel("");
@@ -30,6 +43,17 @@ const Index = () => {
     setIsModalVisible(false);
     setNewLabel("");
   };
+
+  const closeAndDeleteConfirmModal = (item: any) => (
+    <Popconfirm
+    title="Are you sure you want to close this tab? all progress will be lost (Think about exporting your data first)"
+    onConfirm={() => remove(item.key)}
+    okText="Close and delete tab"
+    cancelText="Cancel"
+  >
+    <div>×</div>
+  </Popconfirm>
+  );
 
   return (
     <div>
@@ -51,22 +75,13 @@ const Index = () => {
             }
             key={item.key}
             closable={item.closable ?? true}
-            closeIcon={
-              <Popconfirm
-                title="Are you sure you want to close this tab? all progress will be lost (Think about exporting your data first)"
-                onConfirm={() => remove(item.key)}
-                okText="Close and delete tab"
-                cancelText="Cancel"
-              >
-                <div>×</div>
-              </Popconfirm>
-            }
+            closeIcon={closeAndDeleteConfirmModal(item)}
           >
             <OWSTG id={item.id} />
           </TabPane>
         ))}
       </Tabs>
-      <Modal title="Edit Tab Name" open={isModelOpen} onOk={handleOk} onCancel={handleCancel}>
+      <Modal title="Edit Tab Name" open={isModelOpen} onOk={handleRename} onCancel={handleCancel}>
         <Input placeholder="Enter new name" onChange={(e) => setNewLabel(e.target.value)} />
       </Modal>
     </div>

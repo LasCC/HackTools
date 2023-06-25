@@ -4,10 +4,14 @@ import { useEffect, useRef, useState } from 'react';
 import createOWSTGStore, { Category, Substep } from './stores/MethodologyStore';
 import tabStateStore from './stores/TabStateStore';
 const { TextArea } = Input;
+import { useHotkeys } from 'react-hotkeys-hook';
 const { Header, Content } = Layout;
 
 
 const OWSTG = ({ id }: { id: string }) => {
+
+
+
 
   // id to create a new store for each tab 
   const useStore = createOWSTGStore(id);
@@ -188,7 +192,6 @@ const OWSTG = ({ id }: { id: string }) => {
   const [isExportModalVisible, setIsExportModalVisible] = useState(false);
   const [isMethodologyModalVisible, setIsMethodologyModalVisible] = useState(false);
 
-  // KeyPress handler
 
   const openMethodologyModal = () => {
     setIsMethodologyModalVisible(true);
@@ -245,12 +248,25 @@ const OWSTG = ({ id }: { id: string }) => {
   );
 
 
+  /*----- Hotkeys -----*/
+  useHotkeys('e', () => {
+    // open the export modal
+    openExportModal();
+  }
+  );
+  useHotkeys('l', () => {
+    // open the load methodology modal
+    openMethodologyModal();
+  }
+  );
+
+  /*----------------*/
 
   // Modal components
   const exportCSVModal = (
     <Modal
       title="Export as CSV"
-      open={isExportModalVisible}      
+      open={isExportModalVisible}
       onOk={() => {
         downloadCSV(exportOption);
         closeExportModal();

