@@ -1,18 +1,17 @@
-import React from 'react';
-import PersistedState from 'use-persisted-state';
-import { Input, Button, message, Typography, Row, Col, Divider, Collapse } from 'antd';
 import {
-    CopyOutlined,
-    WifiOutlined,
-    DownloadOutlined,
     ArrowsAltOutlined,
+    CopyOutlined,
+    DownloadOutlined,
+    WifiOutlined,
     createFromIconfontCN
 } from '@ant-design/icons';
+import { Button, Col, Collapse, Divider, Input, Row, Typography, message } from 'antd';
+import pretty from 'pretty';
 import Clipboard from 'react-clipboard.js';
 import SyntaxHighlighter from 'react-syntax-highlighter';
-import { Ipv4TcpCacheState } from "src/pages/popup/components/types/Ipv4TcpCacheState";
 import { vs2015 } from 'react-syntax-highlighter/dist/esm/styles/hljs';
-import pretty from 'pretty';
+import { Ipv4TcpCacheState } from "src/pages/popup/components/types/Ipv4TcpCacheState";
+import PersistedState from 'use-persisted-state';
 
 const { Title, Paragraph, Text } = Typography;
 const { Panel } = Collapse;

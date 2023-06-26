@@ -11,15 +11,15 @@ const SQLMainPage = () => {
             children: <div>SSRF Payloads</div>,
         },
         {
-            key: '2',
-            label: `Juicy cloud files`,
-            children: <div>SSRF Payloads</div>,
-        },
-        {
             key: '3',
-            label: `SSRF Bypass`,
+            label: `Filter Bypass`,
             children: <div>SSRF Bypass</div>,
         },
+        {
+            key: '4',
+            label: `XXE`,
+            children: <div>XXE based</div>,
+        }
     ];
 
     

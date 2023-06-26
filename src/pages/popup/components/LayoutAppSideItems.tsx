@@ -26,7 +26,7 @@ import PowershellCommands from './system/windows/Powershell/PowershellCommands';
 import WindowSecretDumper from './system/windows/SecretsDumper';
 import DataManipulation from './web/DataManipulation/';
 import JWToken from './web/JWToken';
-import LFI from './web/LFI';
+import Path_traversal from './web/Path_Traversal';
 import WebShells from './web/WebShells';
 import SQLMainPage from './web/SQLPage';
 import SSRF from './web/SSRF';
@@ -60,8 +60,8 @@ const WebTab: Array<IRouterComponent> = [
     {
         key: '2',
         icon: (<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path d="M13.94 3.045a.75.75 0 0 0-1.38-.59l-4.5 10.5a.75.75 0 1 0 1.38.59l4.5-10.5ZM5 11.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z" fill='white'></path></svg>),
-        name: 'LFI',
-        componentRoute: LFI,
+        name: 'Path Traversal',
+        componentRoute: Path_traversal,
         type: "web"
     },
     {

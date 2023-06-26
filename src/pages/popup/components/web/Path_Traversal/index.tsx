@@ -3,6 +3,7 @@ import { Tabs } from 'antd';
 import type { TabsProps } from 'antd';
 import LFI from './LFR';
 import RCE from './RCE';
+import ZipSlip from './ZipSlip';
 
 const SQLMainPage = () => {
 
@@ -17,6 +18,11 @@ const SQLMainPage = () => {
             label: `RCE`,
             children: RCE()
         },
+        {
+            key: '3',
+            label: `Zip Slip`,
+            children: ZipSlip()
+        }
     ];
 
     
