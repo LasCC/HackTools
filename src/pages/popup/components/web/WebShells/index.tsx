@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Tabs } from 'antd';
 import type { TabsProps } from 'antd';
-import PHPWebshell from './PHP';
+import PHP from './PHP';
 import Java from './Java';
+import ASP from './ASP';
 
 
 const index = () => {
@@ -11,13 +12,18 @@ const index = () => {
         {
             key: '1',
             label: 'PHP',
-            children: PHPWebshell()
+            children: PHP()
         },
         {
             key: '2',
             label: 'Java',
             children: Java()
         },
+        {
+            key: '3',
+            label: 'ASP',
+            children: ASP()
+        }
     ];
 
     return (
