@@ -1,5 +1,6 @@
 import type { TabsProps } from 'antd';
 import { Tabs } from 'antd';
+import PayloadBuilder from './PayloadBuilder';
 
 
 const SQLMainPage = () => {
@@ -19,6 +20,11 @@ const SQLMainPage = () => {
             key: '4',
             label: `XXE`,
             children: <div>XXE based</div>,
+        },
+        {
+            key: '5',
+            label: `Payload Builder`,
+            children: PayloadBuilder()
         }
     ];
 
