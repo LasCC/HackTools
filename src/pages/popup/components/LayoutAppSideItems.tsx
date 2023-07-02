@@ -4,10 +4,11 @@ import React from 'react';
 import { BiLockOpen, BiNotepad } from 'react-icons/bi';
 import { GiEyeTarget, GiPirateHook } from 'react-icons/gi';
 import { HiOutlineTemplate } from 'react-icons/hi';
-import { MdChecklist, MdOutlineAdb } from 'react-icons/md';
+import { MdChecklist, MdOutlineAdb, MdOutlineOpenInBrowser } from 'react-icons/md';
 import { RiRouteLine } from 'react-icons/ri';
 import { SiJsonwebtokens } from 'react-icons/si';
-import { TbBinary } from 'react-icons/tb';
+import { TbArrowRotaryLastRight, TbBinary } from 'react-icons/tb';
+import {BsDatabaseFillGear} from 'react-icons/bs';
 import {GiWebSpit} from 'react-icons/gi';
 import AboutUs from './AboutUs';
 import FileTransfer from './file_transfer/File_transfer';
@@ -28,10 +29,11 @@ import DataManipulation from './web/DataManipulation/';
 import JWToken from './web/JWToken';
 import Path_traversal from './web/Path_Traversal';
 import WebShells from './web/WebShells';
-import SQLMainPage from './web/SQLPage';
+import DBAttacks from './web/DataBase/index';
 import SSRF from './web/SSRF';
 import SSTI from './web/SSTI';
 import XSS from './web/XSS';
+import CSRF from './web/CSRF';
 const { Paragraph } = Typography;
 const { Sider, Content, Footer } = Layout;
 const IconFont = createFromIconfontCN({
@@ -73,9 +75,9 @@ const WebTab: Array<IRouterComponent> = [
     },
     {
         key: '4',
-        icon: <IconFont type='icon-sql' style={{ fontSize: '1.5em', marginTop: 3 }} />,
-        name: 'SQL Injection',
-        componentRoute: SQLMainPage,
+        icon: <BsDatabaseFillGear style={{ fontSize: '1.5em', marginTop: 3 }} />,
+        name: 'Database attacks',
+        componentRoute: DBAttacks,
         type: "web"
     },
     {
@@ -94,7 +96,7 @@ const WebTab: Array<IRouterComponent> = [
     },
     {
         key: '7',
-        icon: <RiRouteLine style={{ fontSize: '1.5em', marginTop: 3 }} />,
+        icon: <TbArrowRotaryLastRight style={{ fontSize: '1.5em', marginTop: 3 }} />,
         name: 'SSRF',
         componentRoute: SSRF,
         type: "web"
@@ -104,6 +106,13 @@ const WebTab: Array<IRouterComponent> = [
         icon: <HiOutlineTemplate style={{ fontSize: '1.5em', marginTop: 3 }} />,
         name: 'SSTI',
         componentRoute: SSTI,
+        type: "web"
+    },
+    {
+        key: '9',
+        icon: <MdOutlineOpenInBrowser style={{ fontSize: '1.5em', marginTop: 3 }} />,
+        name: 'CSRF',
+        componentRoute: CSRF,
         type: "web"
     },
 

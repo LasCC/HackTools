@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Input, Typography, message } from 'antd';
-import { useStore } from './store';
+import { useStore, GopherPayload } from '../store';
+import Paragraph from 'antd/es/typography/Paragraph';
 
 const { Text } = Typography;
 
@@ -13,9 +14,9 @@ const FormRenderer: React.FC = () => {
   const [gopherLink, setGopherLink] = useState('');
 
   useEffect(() => {
-    if(payload === 'MySQL') {
+    if (payload === GopherPayload.MySQL) {
       if (username === '' || query === '') {
-        return setGopherLink('Enter username and query to generate Gopher Link');
+        return setGopherLink('Fill the required fields to generate the gopher payload');
       }
       setGopherLink(generateMysqlSSRF(username, query));
     }
@@ -25,7 +26,7 @@ const FormRenderer: React.FC = () => {
     try {
       await navigator.clipboard.writeText(gopherLink);
       message.success('Copied to clipboard!');
-    } catch(err) {
+    } catch (err) {
       message.error('Failed to copy text');
     }
   };
@@ -40,7 +41,7 @@ const FormRenderer: React.FC = () => {
           </Form.Item>
         </Form>
       );
-    case 'MySQL':
+    case GopherPayload.MySQL:
       return (
         <Form>
           {/* Your form for MySQL payload */}
@@ -48,19 +49,22 @@ const FormRenderer: React.FC = () => {
             <Input placeholder="Enter username" value={username} onChange={(e) => setUsername(e.target.value)} required />
           </Form.Item>
           <Form.Item label="Query to execute">
-            <Input placeholder="Enter query" value={query} onChange={(e) => setQuery(e.target.value)} required />
+            <Input placeholder="SELECT column FROM table;" value={query} onChange={(e) => setQuery(e.target.value)} required />
           </Form.Item>
-          <Form.Item label="Generated Gopher Link">
-            <Text copyable={{ onCopy: handleCopy }}>{gopherLink}</Text>
-          </Form.Item>
+          {/* HERE copyable gopher link */}
+          <Paragraph><pre>
+            <Text copyable>
+              {gopherLink}
+            </Text>
+          </pre></Paragraph>
         </Form>
       );
     case 'Custom':
       return (
         <Form>
           {/* Your form for custom payload */}
-          <Form.Item label="Custom field 1">
-            <Input placeholder="Enter data" />
+          <Form.Item label="Raw tcp protocol message">
+            <Input placeholder="Enter raw tcp protocol message" />
           </Form.Item>
         </Form>
       );

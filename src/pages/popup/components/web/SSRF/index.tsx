@@ -1,7 +1,7 @@
 import type { TabsProps } from 'antd';
 import { Tabs } from 'antd';
-import PayloadBuilder from './PayloadBuilder';
-
+import Gopherizer from './Gopherizer';
+import XXE from './XXE';
 
 const SQLMainPage = () => {
 
@@ -17,14 +17,14 @@ const SQLMainPage = () => {
             children: <div>SSRF Bypass</div>,
         },
         {
-            key: '4',
+            key: '2',
             label: `XXE`,
-            children: <div>XXE based</div>,
+            children: XXE(),
         },
         {
             key: '5',
-            label: `Payload Builder`,
-            children: PayloadBuilder()
+            label: `Gopherizer`,
+            children: Gopherizer()
         }
     ];
 
