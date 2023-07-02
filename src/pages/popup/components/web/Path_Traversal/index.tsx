@@ -20,7 +20,7 @@ const SQLMainPage = () => {
         },
         {
             key: '3',
-            label: `Zip Slip`,
+            label: `Zipslip`,
             children: ZipSlip()
         }
     ];

@@ -51,7 +51,7 @@ const ZipSlip = () => {
   return (
     <>
       <Title level={2} style={{ fontWeight: 'bold', margin: 15 }}>
-        Zip slip
+        Zipslip
       </Title>
       <Typography>
         Zipslip exploit is a form of directory traversal that can be exploited by specialy naming files with specific characters that can be used to traverse directories. This can be used to overwrite files or create new files in arbitrary locations on the server during extraction of an archive.

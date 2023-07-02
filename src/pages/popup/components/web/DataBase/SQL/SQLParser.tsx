@@ -1,56 +1,71 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Parser } from 'node-sql-parser';
-import { Input, Row, Col, Alert, Collapse } from 'antd';
+import { Row, Col, Alert, Collapse } from 'antd';
 import { CheckCircleOutlined, WarningOutlined } from '@ant-design/icons';
+import CodeMirror from '@uiw/react-codemirror';
+import { sql } from '@codemirror/lang-sql';
+import { dracula, draculaInit } from '@uiw/codemirror-theme-dracula';
+import './SQLSyntaxParser.css';
 
 const SQLSyntaxParser = () => {
-    const [sql, setSql] = useState("select id, name from students where age < 1");
+    const [sqlcode, setSqlcode] = useState("select id, name from students where age < 1;"); 
     const [sqlast, setSQLast] = useState("");
     const [error, setError] = useState("");
 
+    
     const parser = new Parser();
 
-    const handleOnChange = useCallback((e) => {
-        const value = e.target.value;
-        setSql(value);
+    useEffect(() => {
         try {
-            const ast = parser.astify(value);
+            const ast = parser.astify(sqlcode);
             setSQLast(JSON.stringify(ast, null, 2));
             setError("");  // clear previous error if any
         } catch (err) {
             setError(err.message);  // set the error message
         }
-    }, []);
+    }, [sqlcode]);
 
     return (
         <Row gutter={16}>
-            <Col span={12}>
-                <Input.TextArea rows={4} onChange={handleOnChange} value={sql} />
+            <Col span={24} style={{ margin: "1rem 0" }}>
+                <CodeMirror
+                    theme={dracula} 
+                    value={sqlcode}
+                    extensions={[sql()]}
+                    onChange={(value) => setSqlcode(value)}
+                    height="auto"  // adjusts height based on content
+                    minHeight="200px"  // minimum height of 10 lines approximately
+                />
             </Col>
-            <Col span={12}>
+            <Col span={24}>
                 {!error && (
                     <Alert
-                        message="SQL is valid"
-                        description="SQL syntax is correct."
+                        message="SQL query is syntactically correct"
                         type="success"
                         showIcon
-                        icon={<CheckCircleOutlined />}
+                        icon={
+                            <CheckCircleOutlined style={{ color: '#52c41a' }} />
+                        }
                     />
                 )}
                 {error && (
                     <Alert
-                        message="Error"
+                        message="Query seems invalid"
                         description={error}
                         type="error"
                         showIcon
                         icon={<WarningOutlined />}
                     />
                 )}
-                { !error && <Collapse>
-                    <Collapse.Panel header="See AST Result" key="1">
-                        <Input.TextArea rows={4} value={sqlast} readOnly />
-                    </Collapse.Panel>
-                </Collapse>}
+                {!error &&
+                    <div className="my-4">
+                        <Collapse>
+                            <Collapse.Panel header="View AST" key="1">
+                                <pre>{sqlast}</pre>
+                            </Collapse.Panel>
+                        </Collapse>
+                    </div>
+                }
             </Col>
         </Row>
     )
