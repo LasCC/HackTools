@@ -1,35 +1,68 @@
-import React, { useState } from 'react';
-import { Typography, Divider, Tabs, Row } from 'antd';
-import TextArea from 'antd/lib/input/TextArea';
+import React, { useState, useEffect } from 'react';
+import { Typography, Row, Col, Select, Input } from 'antd';
+
+const { TextArea } = Input;
+
 const { Title } = Typography;
+const { Option } = Select;
 
 const XSSObfuscation = () => {
-
     const [js, setJS] = useState('');
     const [obfuscated, setObfuscated] = useState('');
+    const [obfuscationMethod, setObfuscationMethod] = useState('base64');
+
+    useEffect(() => {
+        switch (obfuscationMethod) {
+            case 'base64':
+                if (js) {
+                    const obf = btoa(js);
+                    setObfuscated(`eval(atob('${obf}'))`);
+                } else {
+                    setObfuscated('');
+                }
+                break;
+            case 'charcode':
+                if (js) {
+                    const charObf = js.split('').map(c => c.charCodeAt(0)).join(',');
+                    setObfuscated(`eval(String.fromCharCode(${charObf}))`);
+                } else {
+                    setObfuscated('');
+                }
+                break;
+            default:
+                break;
+        }
+    }, [js, obfuscationMethod]);
 
     const handleOnChange = (e) => {
         setJS(e.target.value);
-        // base64 encode the js
-        const obf = btoa(e.target.value);
-        setObfuscated(`eval(atob('${obf}'))`)
+    }
+
+    const handleObfuscationMethodChange = (value) => {
+        setObfuscationMethod(value);
     }
 
     return (
-        <>
-            <Title level={2} style={{ fontWeight: 'bold', margin: 15 }}>
-                JS Obfuscatation
-            </Title>
-
-            <TextArea rows={4} onChange={handleOnChange} value={js} style={{ cursor: 'auto', marginTop: 15, color: '#777' }} placeholder='Enter some JS to obfuscate...' />
-
-            <Divider orientation='center'>Obfuscated</Divider>
-
-            <TextArea rows={4} value={obfuscated} />
-
-
-        </>)
-
+        <Row gutter={[16, 16]}>
+            <Col xs={24}>
+                <Title level={2} style={{ fontWeight: 'bold', margin: 15 }}>JS Obfuscation</Title>
+            </Col>
+            <Col xs={12} >
+                <TextArea rows={10} onChange={handleOnChange} value={js} placeholder='Enter some JS to obfuscate...' />
+            </Col>
+            <Col xs={12}>
+                <TextArea rows={10} value={js ? obfuscated : ''} placeholder='Obfuscated JS...' />
+            </Col>
+            <Col xs={12} offset={12}>
+                <Select defaultValue="base64" style={{
+                    width: "100%"
+                }} onChange={handleObfuscationMethodChange}>
+                    <Option value="base64">Base64</Option>
+                    <Option value="charcode">Char Code | No Quotes</Option>
+                </Select>
+            </Col>
+        </Row>
+    )
 }
 
 export default XSSObfuscation;

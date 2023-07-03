@@ -8,6 +8,7 @@ import { dracula, draculaInit } from '@uiw/codemirror-theme-dracula';
 import './SQLSyntaxParser.css';
 
 const SQLSyntaxParser = () => {
+    // TODO: store it in zustand
     const [sqlcode, setSqlcode] = useState("select id, name from students where age < 1;"); 
     const [sqlast, setSQLast] = useState("");
     const [error, setError] = useState("");

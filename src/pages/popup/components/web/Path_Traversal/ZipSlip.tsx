@@ -30,7 +30,7 @@ const ZipSlip = () => {
       zip.file(file.name, file.content);
     });
     zip.generateAsync({ type: 'blob' }).then(function (content) {
-      saveAs(content, `${archiveName}.zip`);
+      saveAs(content, `${archiveName}`);
     });
   };
 
