@@ -14,19 +14,27 @@ const XSSObfuscation = () => {
     useEffect(() => {
         switch (obfuscationMethod) {
             case 'base64':
-                if (js) {
-                    const obf = btoa(js);
-                    setObfuscated(`eval(atob('${obf}'))`);
-                } else {
-                    setObfuscated('');
+                try {
+                    if (js) {
+                        const obf = btoa(js);
+                        setObfuscated(`eval(atob('${obf}'))`);
+                    } else {
+                        setObfuscated('');
+                    }
+                } catch (e) {
+                    console.error(e);
                 }
                 break;
             case 'charcode':
-                if (js) {
-                    const charObf = js.split('').map(c => c.charCodeAt(0)).join(',');
-                    setObfuscated(`eval(String.fromCharCode(${charObf}))`);
-                } else {
-                    setObfuscated('');
+                try {
+                    if (js) {
+                        const charObf = js.split('').map(c => c.charCodeAt(0)).join(',');
+                        setObfuscated(`eval(String.fromCharCode(${charObf}))`);
+                    } else {
+                        setObfuscated('');
+                    }
+                } catch (e) {
+                    console.error(e);
                 }
                 break;
             default:
@@ -34,8 +42,43 @@ const XSSObfuscation = () => {
         }
     }, [js, obfuscationMethod]);
 
+    useEffect(() => {
+        switch (obfuscationMethod) {
+            case 'base64':
+                try {
+                    if (obfuscated) {
+                        const deobf = atob(obfuscated.replace('eval(atob(\'', '').replace('\'))', ''));
+                        setJS(deobf);
+                    } else {
+                        setJS('');
+                    }
+                } catch (e) {
+                    console.error(e);
+                }
+                break;
+            case 'charcode':
+                try {
+                    if (obfuscated) {
+                        const deobf = String.fromCharCode(...obfuscated.replace('eval(String.fromCharCode(', '').replace('))', '').split(',').map(c => parseInt(c)));
+                        setJS(deobf);
+                    } else {
+                        setJS('');
+                    }
+                } catch (e) {
+                    console.error(e);
+                }
+                break;
+            default:
+                break;
+        }
+    }, [obfuscated, obfuscationMethod]);
+
     const handleOnChange = (e) => {
         setJS(e.target.value);
+    }
+
+    const handleObfuscatedChange = (e) => {
+        setObfuscated(e.target.value);
     }
 
     const handleObfuscationMethodChange = (value) => {
@@ -51,7 +94,7 @@ const XSSObfuscation = () => {
                 <TextArea rows={10} onChange={handleOnChange} value={js} placeholder='Enter some JS to obfuscate...' />
             </Col>
             <Col xs={12}>
-                <TextArea rows={10} value={js ? obfuscated : ''} placeholder='Obfuscated JS...' />
+                <TextArea rows={10} onChange={handleObfuscatedChange} value={obfuscated} placeholder='Obfuscated JS...' />
             </Col>
             <Col xs={12} offset={12}>
                 <Select defaultValue="base64" style={{
