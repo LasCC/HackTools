@@ -42,36 +42,6 @@ const XSSObfuscation = () => {
         }
     }, [js, obfuscationMethod]);
 
-    useEffect(() => {
-        switch (obfuscationMethod) {
-            case 'base64':
-                try {
-                    if (obfuscated) {
-                        const deobf = atob(obfuscated.replace('eval(atob(\'', '').replace('\'))', ''));
-                        setJS(deobf);
-                    } else {
-                        setJS('');
-                    }
-                } catch (e) {
-                    console.error(e);
-                }
-                break;
-            case 'charcode':
-                try {
-                    if (obfuscated) {
-                        const deobf = String.fromCharCode(...obfuscated.replace('eval(String.fromCharCode(', '').replace('))', '').split(',').map(c => parseInt(c)));
-                        setJS(deobf);
-                    } else {
-                        setJS('');
-                    }
-                } catch (e) {
-                    console.error(e);
-                }
-                break;
-            default:
-                break;
-        }
-    }, [obfuscated, obfuscationMethod]);
 
     const handleOnChange = (e) => {
         setJS(e.target.value);

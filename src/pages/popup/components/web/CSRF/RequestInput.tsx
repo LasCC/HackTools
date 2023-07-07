@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { Input, Alert } from 'antd';
+import React, { useState, useEffect} from 'react';
+import { Input, Alert, Row, Col , Typography} from 'antd';
 import { useStore } from './store';
+import Title from 'antd/es/typography/Title';
 
 const RequestInput: React.FC = () => {
   const error = useStore(state => state.error);
@@ -14,6 +15,7 @@ const RequestInput: React.FC = () => {
   };
 
   useEffect(() => {
+    // FIXME: it crashes when i type a random string in the request input
     if (isValidRequest(request)) {
       try {
         const requestBody = request.split('\n\n')[1];
@@ -25,8 +27,6 @@ const RequestInput: React.FC = () => {
       } catch (err) {
         setError('Invalid HTTP request format.');
       }
-    } else {
-      setError('Invalid HTTP request format.');
     }
   }, [request]);
 
@@ -43,20 +43,31 @@ const RequestInput: React.FC = () => {
       return JSON.parse(body);
     }
 
-    // For other content types like XML or multipart form data, you can add additional parsing logic here
+    // TODO: add support for other content types
 
     return {};
   };
   return (
-    <>
+    
+    <Row gutter={[16, 16]}>
+      <Col xs={24}>
+        <Title level={2}>Cross Site Request Forgery (CSRF)</Title>
+        <Typography.Text type="secondary">Cross Site Request Forgery (CSRF) is an attack that forces an end user to execute unwanted actions on a web application in which they're currently authenticated.</Typography.Text>
+        <Typography.Text type="secondary">This tool will generate a CSRF HTML POC for you, based on the HTTP request you provide.</Typography.Text>
+      </Col>
+      <Col xs={24}>
       {error && <Alert message={error} type="error" />}
+      </Col>
+      <Col xs={24}>
       <Input.TextArea
         value={request}
         onChange={(e) => setRequest(e.target.value)}
-        placeholder="Paste your POST HTTP request here"
-        style={{ minHeight: '200px' }} // min height added
+        placeholder="Paste your raw POST HTTP request here"
+        style={{ minHeight: '250px' }} 
       />
-    </>
+      </Col>
+    </Row>
+    
   );
 }
 

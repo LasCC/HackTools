@@ -2,7 +2,7 @@ import React from 'react';
 import { Tabs } from 'antd';
 import type { TabsProps } from 'antd';
 import LFI from './LFR';
-import RCE from './RCE';
+import RCE from './phpFilterBuilder';
 import ZipSlip from './ZipSlip';
 
 const SQLMainPage = () => {

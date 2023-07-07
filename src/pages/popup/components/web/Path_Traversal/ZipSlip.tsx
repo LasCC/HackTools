@@ -54,14 +54,14 @@ const ZipSlip = () => {
         Zipslip
       </Title>
       <Typography>
-        Zipslip exploit is a form of directory traversal that can be exploited by specialy naming files with specific characters that can be used to traverse directories. This can be used to overwrite files or create new files in arbitrary locations on the server during extraction of an archive.
+        Zipslip exploit is a form of directory traversal that can be exploited by specially naming files with characters that could be used to traverse directories. This can be used to overwrite files or create new files in arbitrary locations on the server during extraction of an archive to achieve potentilly remote code execution.
       </Typography>
 
       <Divider />
 
 
       <Row gutter={16} style={{ marginBottom: 16 }}>
-        <Col xs={24} sm={24} md={12} lg={12} xl={12} xxl={12}>
+        <Col xs={24} >
           <Form form={form} layout="vertical">
             <Row gutter={16}>
               <Col span={12}>
@@ -89,8 +89,8 @@ const ZipSlip = () => {
               </Button>
             </Form.Item>
             <Form.Item>
-              <Button type="dashed" onClick={handleDeleteAllFiles}>
-                Clear All
+              <Button type="dashed" danger onClick={handleDeleteAllFiles}>
+                Delete All Files
               </Button>
             </Form.Item>
           </Form>
@@ -105,7 +105,7 @@ const ZipSlip = () => {
             )}
           />
         </Col>
-        <Col xs={24} sm={24} md={12} lg={12} xl={12} xxl={12}>
+        <Col xs={24}>
           <Form layout="vertical" style={{ marginBottom: 16 }}>
             <Form.Item label="Archive Name">
               <Input value={archiveName} onChange={handleArchiveNameChange} placeholder='archive.zip' />

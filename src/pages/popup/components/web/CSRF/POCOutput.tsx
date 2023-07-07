@@ -39,7 +39,7 @@ const POCOutput: React.FC = () => {
     <Input.TextArea
       value={csrfPayload}
       readOnly
-      style={{ minHeight: '200px' }}
+      style={{ minHeight: '250px' }}
     />
   );
 }
