@@ -2,7 +2,7 @@ import React from 'react';
 import { Tabs } from 'antd';
 import type { TabsProps } from 'antd';
 import LFI from './LFR';
-import RCE from './phpFilterBuilder';
+import PHPfilerBuilder from './phpFilterBuilder';
 import ZipSlip from './ZipSlip';
 
 const SQLMainPage = () => {
@@ -15,8 +15,8 @@ const SQLMainPage = () => {
         },
         {
             key: '2',
-            label: `RCE`,
-            children: RCE()
+            label: `PHP filter generator`,
+            children: PHPfilerBuilder()
         },
         {
             key: '3',
