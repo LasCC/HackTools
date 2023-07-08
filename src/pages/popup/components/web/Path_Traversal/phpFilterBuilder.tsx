@@ -120,13 +120,13 @@ const ChainInput = () => {
         <Typography.Title level={3}>PHP Filter Chain Generator</Typography.Title>
         <Typography.Paragraph>
           This technique is based on the <a onClick={
-            () => (window.open('https://www.synacktiv.com/en/publications/php-filters-chain-what-is-it-and-how-to-use-it', '_blank'))}>research</a> done by <b>Rémi Matasse (@remsio from Synacktiv)</b> all credits goes to him.
+            () => (window.open('https://www.synacktiv.com/en/publications/php-filters-chain-what-is-it-and-how-to-use-it', '_blank'))}>research</a> done by <b>Rémi Matasse (@remsio-syn from Synacktiv)</b> all credits goes to him.
         </Typography.Paragraph>
         <Typography.Paragraph>
-          This is an implementation in Javascript of the original <a 
-          onClick={
-            () => (window.open('https://github.com/synacktiv/php_filter_chain_generator', '_blank'))}>project repository</a>. 
-            By using multiple chain of php encoding wrappers, this technique can turn file inclusion primitive into remote code execution without upload.
+          This is an implementation in Javascript of the original <a
+            onClick={
+              () => (window.open('https://github.com/synacktiv/php_filter_chain_generator', '_blank'))}>project repository</a>.
+          By using multiple chain of php encoding wrappers, this technique can turn file inclusion primitive into remote code execution without upload.
         </Typography.Paragraph>
         <Input
           value={chainInput}
