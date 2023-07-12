@@ -283,7 +283,9 @@ const OWSTG = ({ id }: { id: string }) => {
   )
 
   const onDescriptionCaseClickModal = (
-    <Modal open={isModalVisible} onCancel={closeModal}>
+    <Modal open={isModalVisible} onCancel={closeModal}
+    onOk={closeModal}
+    >
       <h2>{currentTest?.description}</h2>
       <TextArea
         rows={4}
