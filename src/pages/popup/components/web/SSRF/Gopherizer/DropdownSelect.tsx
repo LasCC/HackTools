@@ -1,6 +1,6 @@
 import React from 'react';
 import { Select, Col, Row } from 'antd';
-import { useStore, payloadOptions } from '../store';
+import { useStore, GopherPayload } from '../store';
 
 const { Option } = Select;
 
@@ -8,7 +8,7 @@ const DropdownSelect: React.FC = () => {
   const payload = useStore((state) => state.payload);
   const setPayload = useStore((state) => state.setPayload);
 
-  const handlePayloadChange = (value: string) => {
+  const handlePayloadChange = (value: GopherPayload) => {
     setPayload(value);
   };
 
@@ -22,7 +22,7 @@ const DropdownSelect: React.FC = () => {
           onChange={handlePayloadChange}
           style={{ width: '100%' }}
         >
-          {payloadOptions.map((option) => (
+          {Object.values(GopherPayload).map((option) => (
             <Option key={option} value={option}>
               {option}
             </Option>

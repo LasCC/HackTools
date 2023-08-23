@@ -58,7 +58,6 @@ const ADB = () => {
         </>
       </Row>
           <Divider />
-          
     </>
   )
 }

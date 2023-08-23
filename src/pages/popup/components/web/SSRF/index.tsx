@@ -2,6 +2,7 @@ import type { TabsProps } from 'antd';
 import { Tabs } from 'antd';
 import Gopherizer from './Gopherizer';
 import XXE from './XXE';
+import FilterBypass from './FilterBypass'
 
 const SQLMainPage = () => {
 
@@ -14,7 +15,7 @@ const SQLMainPage = () => {
         {
             key: '3',
             label: `Filter Bypass`,
-            children: <div>SSRF Bypass</div>,
+            children: FilterBypass()
         },
         {
             key: '2',
