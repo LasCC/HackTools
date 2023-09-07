@@ -31,7 +31,7 @@
         "@tanstack/react-query-persist-client": "^4.29.7",
         "@uiw/codemirror-theme-dracula": "^4.21.7",
         "@uiw/react-codemirror": "^4.21.7",
-        "antd": "5.1.0",
+        "antd": "5.8.6",
         "antd-mask-input": "2.0.7",
         "axios": "^1.4.0",
         "crypto-browserify": "^3.12.0",

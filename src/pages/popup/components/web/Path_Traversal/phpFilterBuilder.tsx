@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Input, Button, Row, Col, Typography } from 'antd';
+import { Input, Button, Row, Col, Typography, message, Divider, Collapse, Badge } from 'antd';
 import Paragraph from 'antd/es/typography/Paragraph';
 
 const { Text } = Typography;
@@ -82,8 +82,6 @@ const ChainInput = () => {
     setChainInput(e.target.value);
   }
 
-
-
   function generate_filter_chain(chain, debug_base64 = false) {
     console.log(`Generating filter chain for ${chain}`);
     let encoded_chain = chain;
@@ -114,32 +112,90 @@ const ChainInput = () => {
 
   }, [chainInput]);
 
+
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(chainOutput);
+      message.success('Payload copied to clipboard!');
+    } catch (err) {
+      message.error('Failed to copy payload');
+    }
+  };
+
+  const serverLimits = {
+    'Apache - 8177': 8177,
+    'NGINX - 4096': 4096,
+    'Microsoft IIS - 16384': 16384,
+    'Fastly (CDN) - 8192': 8192,
+    'Amazon Cloudfront CDN - 8192': 8192,
+    'Cloudflare (CDN) - 32768': 32768
+  };
+
+  // Helper function to check payload size
+  const checkPayloadSize = (size) => {
+    const exceededServers = [];
+    for (const server in serverLimits) {
+      if (size > serverLimits[server]) {
+        exceededServers.push(server);
+      }
+    }
+    return exceededServers;
+  };
+
+  const exceededServers = checkPayloadSize(chainOutput.length);
+  const badges = exceededServers.map(server => <Badge count={server} style={{ backgroundColor: '#f5222d' }} />);
+
+
   return (
     <Row gutter={[16, 16]}>
       <Col xs={24} >
         <Typography.Title level={3}>PHP Filter Chain Generator</Typography.Title>
         <Typography.Paragraph>
           This technique is based on the <a onClick={
-            () => (window.open('https://www.synacktiv.com/en/publications/php-filters-chain-what-is-it-and-how-to-use-it', '_blank'))}>research</a> done by <b>Rémi Matasse (@remsio-syn from Synacktiv)</b> all credits goes to him.
+            () => (window.open('https://www.synacktiv.com/en/publications/php-filters-chain-what-is-it-and-how-to-use-it#from-hacktools', '_blank'))}>research</a> done by <b>Rémi Matasse (@remsio-syn from Synacktiv)</b> all credits goes to him.
         </Typography.Paragraph>
         <Typography.Paragraph>
           This is an implementation in Javascript of the original <a
             onClick={
-              () => (window.open('https://github.com/synacktiv/php_filter_chain_generator', '_blank'))}>project repository</a>.
+              () => (window.open('https://github.com/synacktiv/php_filter_chain_generator#from-hacktools', '_blank'))}>project repository</a>.
           By using multiple chain of php encoding wrappers, this technique can turn file inclusion primitive into remote code execution without upload.
         </Typography.Paragraph>
         <Input
           value={chainInput}
           onChange={handleChange}
-          placeholder="<?php <php code>; ?> | some extra spaces for padding may be required at the end"
+          placeholder="<?php <php code>; ?> | some extra spaces for padding (it may be required)"
         />
       </Col>
+      <Divider />
       <Col xs={24}>
-        <Paragraph><pre>
-          <Text copyable>
-            {chainOutput}
-          </Text>
-        </pre></Paragraph>
+        <Button type="primary" onClick={handleCopy}>Copy payload</Button>
+      </Col>
+      <Col xs={24}>
+
+        <Collapse
+          items={[{
+            key: '1',
+            label: (
+              <>
+                <span>{`Payload Size (${chainOutput.length}) bytes`}</span>
+                {badges.length > 0 && (
+                  <span>{` | Potential URI length exception on : `}</span>
+                )}
+                {badges}
+              </>
+            ),
+            children: (
+              <Paragraph>
+                <pre>
+                  <Text>
+                    {chainOutput}
+                  </Text>
+                </pre>
+              </Paragraph>
+            )
+          }]}
+        />
 
       </Col>
     </Row>
