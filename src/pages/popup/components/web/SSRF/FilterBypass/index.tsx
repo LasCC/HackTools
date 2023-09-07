@@ -10,8 +10,8 @@ const index = () => {
   const { obfuscatedIPv4, setIPv4forObfuscation, ipv4forObfuscation } = useStore()
 
   useEffect(() => {
-    setIPv4forObfuscation('127.0.0.1');
-  }, []);
+    setIPv4forObfuscation(ipv4forObfuscation);
+  }, [ipv4forObfuscation]);
 
   const handleCopy = async () => {
     try {

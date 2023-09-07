@@ -83,7 +83,7 @@ const ChainInput = () => {
   }
 
   function generate_filter_chain(chain, debug_base64 = false) {
-    console.log(`Generating filter chain for ${chain}`);
+    // console.log(`Generating filter chain for ${chain}`);
     let encoded_chain = chain;
     let filters = "convert.iconv.UTF8.CSISO2022KR|";
     filters += "convert.base64-encode|";
@@ -106,7 +106,7 @@ const ChainInput = () => {
   useEffect(() => {
     if (chainInput.length === 0) return setChainOutput('');
     let base64_value = btoa(chainInput).replace("=", "");
-    console.log(base64_value);
+    // console.log(base64_value);
     const chain = generate_filter_chain(base64_value);
     setChainOutput(chain);
 
