@@ -53,28 +53,28 @@ export default function LayoutApp(props: {
     });
 
     /*----------- HOTKEYS -----------*/
-    useHotkeys('alt+1', () => {
+    useHotkeys('ctrl+alt+1', () => {
         setHackToolsState(HackToolsMode.web);
         setIndex('1');
         goTo(Tabs.filter(item => item.type === HackToolsMode.web)[0].componentRoute);
     });
-    useHotkeys('alt+2', () => {
+    useHotkeys('ctrl+alt+2', () => {
         setHackToolsState(HackToolsMode.system);
         setIndex('1');
         goTo(Tabs.filter(item => item.type === HackToolsMode.system)[0].componentRoute);
     });
-    useHotkeys('alt+3', () => {
+    useHotkeys('ctrl+alt+3', () => {
         setHackToolsState(HackToolsMode.mobile);
         setIndex('1');
         goTo(Tabs.filter(item => item.type === HackToolsMode.mobile)[0].componentRoute);
     });
-    useHotkeys('alt+4', () => {
+    useHotkeys('ctrl+alt+4', () => {
         setHackToolsState(HackToolsMode.misc);
         setIndex('1');
         goTo(Tabs.filter(item => item.type === HackToolsMode.misc)[0].componentRoute);
     });
 
-    useHotkeys('alt+c', () => {
+    useHotkeys('ctrl+alt+c', () => {
         setHackToolsState(HackToolsMode.misc);
         setIndex(Tabs.filter(item => item.name === "Checklist")[0].key);
         // go to the methodology page
