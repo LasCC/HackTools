@@ -2,10 +2,10 @@ import { ArrowsAltOutlined, CopyrightCircleOutlined, FullscreenOutlined, createF
 import { Button, ConfigProvider, Layout, Menu, Select, Typography, theme } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { goTo } from 'react-chrome-extension-router';
+import { useHotkeys } from 'react-hotkeys-hook';
 import PersistedState from 'use-persisted-state';
 import Tabs, { IRouterComponent } from "./LayoutAppSideItems";
 import LayoutChoice from './LayoutChoice';
-import { useHotkeys } from 'react-hotkeys-hook';
 const { Paragraph } = Typography;
 const { Sider, Content, Footer } = Layout;
 const IconFont = createFromIconfontCN({
@@ -16,11 +16,6 @@ const IconFont = createFromIconfontCN({
 export default function LayoutApp(props: {
     children: boolean | React.ReactFragment | React.ReactPortal | null | undefined;
 }) {
-
-
-
-    
-
 
     enum HackToolsMode {
         web = "web",
@@ -82,7 +77,7 @@ export default function LayoutApp(props: {
     });
 
     /*--------------------------------*/
-    
+
 
 
 

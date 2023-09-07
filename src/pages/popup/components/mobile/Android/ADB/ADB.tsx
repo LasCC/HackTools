@@ -7,7 +7,6 @@ import { FaUsb } from 'react-icons/fa';
 import { FaDoorOpen } from 'react-icons/fa';
 import { TbBrandAndroid } from 'react-icons/tb';
 
-
 const ADB = () => {
   const { mode,
     handleModeChange,
@@ -37,7 +36,7 @@ const ADB = () => {
               maxLength={30}
               prefix={<TbBrandAndroid />}
               name='Ip address'
-              placeholder={mode === ADB_MODE.LOCAL ? 'ADB Device name' : 'ADB IP address (ex: IP:PORT)'}
+              placeholder={mode === ADB_MODE.LOCAL ? 'ADB device name | (adb devices)' : 'ADB IP address (ex: IP:PORT)'}
               onChange={handleIPChange}
               value={adb_ip}
             />
