@@ -1,11 +1,12 @@
-import React from 'react'
-import useADBStore from './store/ADBStore'
-import { Col, Divider, Input, Row, Select, Switch } from 'antd';
-import { ADB_MODE } from './store/ADBStore';
+import { useEffect, useState } from 'react';
 import { WifiOutlined } from '@ant-design/icons';
-import { FaUsb } from 'react-icons/fa';
-import { FaDoorOpen } from 'react-icons/fa';
+import { Col, Divider, Input, Row, Select, Table, Typography } from 'antd';
+import { FaDoorOpen, FaUsb } from 'react-icons/fa';
 import { TbBrandAndroid } from 'react-icons/tb';
+import useADBStore, { ADB_MODE } from './store/ADBStore';
+import adbCommands from '../../../../assets/data/Mobile/ADB.json'
+const { Title, Paragraph, Text } = Typography;
+
 
 const ADB = () => {
   const { mode,
@@ -14,6 +15,18 @@ const ADB = () => {
     handleIPChange,
     adb_port,
     handlePortChange } = useADBStore()
+
+    const handleCommand = (command) => {
+      if (adb_ip && command.command.includes("${device}")) {
+        if (mode === ADB_MODE.REMOTE) {
+          return command.command.replace(/\${device}/g, String("-s " + adb_ip + ":" + (adb_port? adb_port: "5555")));
+        } else if (mode === ADB_MODE.LOCAL) {
+          return command.command.replace(/\${device}/g, String("-s " + adb_ip));
+        }
+      } else {
+        return command.command.replace(/\${device}/g, "");
+      }
+    }
 
   return (
     <>
@@ -53,10 +66,22 @@ const ADB = () => {
               />
             </Col>
           }
-
         </>
       </Row>
-          <Divider />
+      <Divider />
+
+      {adbCommands.map((command, index) => (
+        <div key={index}>
+          <Title level={4}>{command.name}</Title>
+          <Paragraph>{command.description}</Paragraph>
+          <Paragraph>
+            <pre><Text copyable>
+            {handleCommand(command)}
+            </Text></pre>
+          </Paragraph>
+        </div >
+      ))
+      }
     </>
   )
 }
