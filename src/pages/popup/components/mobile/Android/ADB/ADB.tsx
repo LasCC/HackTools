@@ -8,6 +8,7 @@ import adbCommands from '../../../../assets/data/Mobile/ADB.json'
 const { Title, Paragraph, Text } = Typography;
 
 
+
 const ADB = () => {
   const { mode,
     handleModeChange,
@@ -15,7 +16,9 @@ const ADB = () => {
     handleIPChange,
     adb_port,
     handlePortChange } = useADBStore()
-
+    
+    
+    
     const handleCommand = (command) => {
       if (adb_ip && command.command.includes("${device}")) {
         if (mode === ADB_MODE.REMOTE) {
@@ -28,18 +31,20 @@ const ADB = () => {
       }
     }
 
-  return (
+    const ADB_OPTIONS = [
+      { value: 'USB', label: <><FaUsb />{" USB"}</> },
+      { value: 'Remote', label: <><WifiOutlined />{" Remote"}</> },
+    ];
+    const defaultValue = mode === ADB_MODE.LOCAL ? ADB_OPTIONS[0].value : ADB_OPTIONS[1].value;
+    return (
     <>
       <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
         <Col span={8}>
-          <Select
-            defaultValue={'USB'}
+        <Select
+            defaultValue={defaultValue}
             style={{ width: "100%" }}
             onChange={handleModeChange}
-            options={[
-              { value: 'USB', label: <><FaUsb />{" USB"}</> },
-              { value: 'Remote', label: <><WifiOutlined />{" Remote"}</> },
-            ]}
+            options={ADB_OPTIONS}
           />
         </Col>
 
