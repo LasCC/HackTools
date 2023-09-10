@@ -71,30 +71,35 @@
     },
     {
         "id": 10,
+        "category": "app",
         "name": "Start an activity with data URI",
         "description": "Start an activity with data URI specified by intent.",
         "command": "adb ${device} shell am start -n com.example/.MainActivity -d \"http://example.com\""
     },
     {
         "id": 11,
+        "category": "app",
         "name": "Start an activity with MIME type",
         "description": "Start an activity with MIME type specified by intent.",
         "command": "adb ${device} shell am start -n com.example/.MainActivity -t \"text/plain\""
     },
     {
         "id": 12,
+        "category": "app",
         "name": "Start an activity with category",
         "description": "Start an activity with category specified by intent.",
         "command": "adb ${device} shell am start -n com.example/.MainActivity -c \"android.intent.category.LAUNCHER\""
     },
     {
         "id": 13,
+        "category": "app",
         "name": "Start an activity with extras",
         "description": "Start an activity with extras specified by intent.",
         "command": "adb ${device} shell am start -n com.example/.MainActivity --es \"key\" \"value\""
     },
     {
         "id": 14,
+        "category": "app",
         "name": "Start an activity with flags, data URI, MIME type, category and extras",
         "description": "Start an activity with flags, data URI, MIME type, category and extras specified by intent.",
         "command": "adb ${device} shell am start -n com.example/.MainActivity -f 0x20000000 -d \"http://example.com\" -t \"text/plain\" -c \"android.intent.category.LAUNCHER\" --es \"key\" \"value\""

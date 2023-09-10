@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "category": "patching",
+        "name": "Decompiling an APK file",
+        "description": "Decompile an APK file with apktool.",
+        "command": "apktool d com.example.apk"
+    },
+    {
+        "id": 2,
+        "category": "patching",
+        "name": "Recompiling an APK file",
+        "description": "Recompile an APK file with apktool.",
+        "command": "apktool b com.example"
+    },
+    {
+        "id": 3,
+        "category": "patching",
+        "name": "Signing an APK file",
+        "description": "Sign an APK file with Uber's apksigner.",
+        "command": "uber-apk-signer.jar --apks com.example.apk"
+    }
+]
