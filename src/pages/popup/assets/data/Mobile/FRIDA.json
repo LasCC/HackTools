@@ -1,0 +1,16 @@
+[
+    {
+        "id": 1,
+        "category": "instrumentation",
+        "name": "List all processes",
+        "description": "List all processes running on the device",
+        "command": "frida-ps ${device} -ai"
+    },
+    {
+        "id": 2,
+        "category": "tracing",
+        "name": "Trace function calls",
+        "description": "Trace function calls in a process",
+        "command": "frida-trace ${device} -i \"recv*\" -i \"read*\"  appname"
+    }
+]

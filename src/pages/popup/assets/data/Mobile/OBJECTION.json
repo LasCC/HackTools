@@ -1,0 +1,16 @@
+[
+    {
+        "id": 1,
+        "category": "instrumentation",
+        "name": "Attach to the process",
+        "description": "Attach to a running process on the device by its package name",
+        "command": "objection -g com.example.app explore"
+    },
+    {
+        "id": 2,
+        "category": "instrumentation",
+        "name": "Inject into the process",
+        "description": "List all processes running on the device",
+        "command": "objection -g com.example.app explore"
+    },
+]

@@ -77,6 +77,18 @@ export default defineConfig({
       },
       output: {
         entryFileNames: "src/pages/[name]/index.js",
+  
+        manualChunks: (id) => {
+          const modules_to_bundle = [
+            "node-sql-parser",
+            "antd",
+          ]
+
+          if (id.includes('node_modules') && !modules_to_bundle.some(module => id.includes(module))) {
+            return 'vendor'
+          }
+        },
+
         chunkFileNames: isDev
           ? "assets/js/[name].js"
           : "assets/js/[name].[hash].js",
