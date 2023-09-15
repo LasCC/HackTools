@@ -7,11 +7,13 @@
             "python"
         ],
         "required_charsets": [
-            "NUMERIC"
+            "NUMERIC",
+            "%",
+            "{"
         ],
         "primitive": "PROBING",
-        "description": "Jinja SSTI probing",
-        "payload": "{{ 7*7 }}"
+        "description": "Jinja SSTI payload identification | return '7777777'",
+        "payload": "{{ 7*'7' }}"
     },
     {
         "id": 2,
@@ -23,6 +25,8 @@
         "primitive": "EXECUTE",
         "required_charsets": [
             "ALPHANUMERIC",
+            "%",
+            "{",
             "|",
             "\\x",
             "(",

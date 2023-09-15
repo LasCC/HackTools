@@ -1,19 +1,37 @@
 import React, { useState } from 'react';
 // import { Table, Input, Button, Space, Typography, Tag } from 'antd';
 import { message, Typography, Row, Col, Input, Table, Tag, Select, Form, InputRef, Button, Space, Dropdown } from 'antd';
-import Highlighter from 'react-highlight-words';
 import { SearchOutlined } from '@ant-design/icons';
 import { useTemplateStore } from './store'
+import { Modal, Checkbox, Divider } from 'antd';
+import { QuestionCircleOutlined } from '@ant-design/icons';
 import type { ColumnsType, TableProps } from 'antd/es/table';
 import payloadsData from '../../../assets/data/Web/SSTI/SSTI.json';
-import { DataType } from './store'
+import { DataType, Language } from './store'
 
 const TemplateDetector = () => {
 
-  const { templateType, detectTemplate, setTemplateType, setGuessing: setTemplateGuessing } = useTemplateStore();
+  const { detectTemplate, setGuessing: setTemplateGuessing, potentialTemplateEngine } = useTemplateStore();
   const [searchText, setSearchText] = useState('');
   const [searchedColumn, setSearchedColumn] = useState('');
   const [messageApi, contextHolder] = message.useMessage();
+
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [payload, setPayload] = useState('');
+  const [selectedLanguages, setSelectedLanguages] = useState([]);
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+
+  const onCheckboxChange = checkedValues => {
+    setSelectedLanguages(checkedValues);
+  };
+
   const info = () => {
     messageApi.success('Your reverse shell has been copied to the clipboard!');
   };
@@ -186,12 +204,44 @@ const TemplateDetector = () => {
   ];
   const { Title, Paragraph, Text } = Typography;
 
+  const handleOk = () => {
+    detectTemplate(payload, selectedLanguages);
+    console.log(potentialTemplateEngine);
+    // setIsModalVisible(false);
+  };
+
   return (
     <div>
+
+      <Title level={3}>Server Side Template Injection</Title>
+      <Paragraph>
+        Server-side template injection (SSTI) is a vulnerability that occurs when an application allows user input, such as a template file or parameter, to be evaluated by the server. This can result in remote code execution on the server.
+      </Paragraph>
+      <Divider />
+      <Button type="primary" onClick={showModal}>Template Detector <SearchOutlined /></Button>
+      <Divider />
+      <Modal title="Template Detector" open={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+        <p>This analyze a given payload and suggest possible template engines used. It allows you to input your payload and select suspected languages. Note that this tool is not 100% accurate and may produce false positives.</p>
+        <Divider />
+        <p>Paste your template payload to detect:</p>
+        <Input.TextArea value={payload} onChange={e => setPayload(e.target.value)} />
+        <Divider />
+        <p>Select languages:</p>
+        <Checkbox.Group options={Object.values(Language)} onChange={onCheckboxChange} />
+        {potentialTemplateEngine && Object.entries(potentialTemplateEngine).map
+          // @ts-ignore
+          (([engine, { confidence, languages }]) => (
+            <p key={engine}><Tag>{`${engine} - ${(languages.join(', '))}`}</Tag> Confidence: {confidence}%</p>
+          ))}
+        {payload.length > 0 && potentialTemplateEngine && Object.entries(potentialTemplateEngine).length === 0 && (
+          <p>No template engine detected.</p>
+        )}
+      </Modal>
+
       <Table columns={columns}
         expandable={{
           expandedRowRender: record =>
-          (<Paragraph>
+          (<Paragraph copyable={{ text: record.payload }}>
             <pre>
               <Text code>{record.payload}</Text>
             </pre>
