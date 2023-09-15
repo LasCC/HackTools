@@ -56,7 +56,7 @@ const TemplateDetector = () => {
       language: payload.language,
       primitive: payload.primitive,
       description: payload.description,
-      required_charsets: payload.required_charsets,
+      required_sp_chars: payload.required_sp_chars,
     };
   });
 
@@ -150,15 +150,15 @@ const TemplateDetector = () => {
     },
     {
       title: 'Character Set',
-      dataIndex: 'required_charsets',
-      key: 'required_charsets',
-      filters: Array.from(new Set(payloadsData.flatMap(item => item.required_charsets))).map(charset => ({ text: charset, value: charset })),
-      sorter: (a, b) => a.required_charsets.length - b.required_charsets.length,
+      dataIndex: 'required_sp_chars',
+      key: 'required_sp_chars',
+      filters: Array.from(new Set(payloadsData.flatMap(item => item.required_sp_chars))).map(charset => ({ text: charset, value: charset })),
+      sorter: (a, b) => a.required_sp_chars.length - b.required_sp_chars.length,
       sortDirections: ['ascend', 'descend'],
-      onFilter: (value, record) => record.required_charsets.indexOf(String(value)) === 0,
-      render: (required_charsets) => (
+      onFilter: (value, record) => record.required_sp_chars.includes(String(value)),
+      render: (required_sp_chars) => (
         <>
-          {required_charsets.map((charset, _) => renderTag(charset))}
+          {required_sp_chars.map((charset, _) => renderTag(charset))}
         </>
       )
     }
@@ -241,7 +241,7 @@ const TemplateDetector = () => {
       <Table columns={columns}
         expandable={{
           expandedRowRender: record =>
-          (<Paragraph copyable={{ text: record.payload }}>
+          (<Paragraph>
             <pre>
               <Text code>{record.payload}</Text>
             </pre>

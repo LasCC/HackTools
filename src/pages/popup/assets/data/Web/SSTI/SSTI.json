@@ -6,10 +6,12 @@
         "language": [
             "python"
         ],
-        "required_charsets": [
+        "required_sp_chars": [
             "NUMERIC",
+            "{",
             "%",
-            "{"
+            "'",
+            "}"
         ],
         "primitive": "PROBING",
         "description": "Jinja SSTI payload identification | return '7777777'",
@@ -23,10 +25,11 @@
             "python"
         ],
         "primitive": "EXECUTE",
-        "required_charsets": [
+        "required_sp_chars": [
             "ALPHANUMERIC",
             "%",
             "{",
+            "}",
             "|",
             "\\x",
             "(",

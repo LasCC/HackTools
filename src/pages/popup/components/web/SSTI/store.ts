@@ -9,7 +9,7 @@ export interface DataType {
   name: string;
   engine: string;
   language: string[];
-  required_charsets: string[];
+  required_sp_chars: string[];
   primitive: string;
   description?: string;
   payload: string;
