@@ -1,6 +1,45 @@
 import typescript from "@rollup/plugin-typescript";
 
-const plugins = [typescript()];
+
+import alias from '@rollup/plugin-alias';
+import path from 'path';
+
+
+// TODO: Fix aliasing during build
+const aliases = {
+  entries: [
+    {
+      find: "@src/",
+      replacement: path.resolve('./src/'),
+    },
+    {
+      find: "@assets/",
+      replacement: path.resolve('./src/assets/'),
+    },
+    {
+      find: "@pages/",
+      replacement: path.resolve('./src/pages/'),
+    },
+    {
+      find: "@data/",
+      replacement: path.resolve('./src/pages/popup/assets/data/'),
+    },
+    {
+      find: "@types/",
+      replacement: path.resolve('./src/pages/popup/components/types/'),
+    },
+    {
+      find: "virtual:reload-on-update-in-background-script",
+      replacement: path.resolve('./src/global.d.ts'),
+    },
+    {
+      find: "virtual:reload-on-update-in-view",
+      replacement: path.resolve('./src/global.d.ts'),
+    },
+  ],
+};
+
+const plugins = [typescript(), alias(aliases)];
 
 export default [
   {

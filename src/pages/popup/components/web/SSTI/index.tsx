@@ -1,5 +1,6 @@
 import type { TabsProps } from 'antd';
 import { Tabs } from 'antd';
+import TemplateDetector from './TemplateDetector';
 
 
 const SQLMainPage = () => {
@@ -8,7 +9,7 @@ const SQLMainPage = () => {
         {
             key: '1',
             label: `Template detector`,
-            children: <div>Template detection</div>,
+            children: TemplateDetector(),
         },
     ];
 

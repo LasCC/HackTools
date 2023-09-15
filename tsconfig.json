@@ -20,6 +20,7 @@
             "@src/*": ["src/*"],
             "@assets/*": ["src/assets/*"],
             "@pages/*": ["src/pages/*"],
+            "@data/*": ["src/pages/popup/assets/data/*"],
             "@types/*": ["src/pages/popup/components/types/*"],
             "virtual:reload-on-update-in-background-script": ["./src/global.d.ts"],
             "virtual:reload-on-update-in-view": ["./src/global.d.ts"]
