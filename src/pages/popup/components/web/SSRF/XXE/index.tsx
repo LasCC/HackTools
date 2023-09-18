@@ -175,12 +175,14 @@ const index = () => {
       title: 'XML Type',
       dataIndex: 'document_type',
       key: 'document_type',
+      filters: Array.from(new Set(payloadsData.map(item => item.document_type.join(', ')))).map(document_type => ({ text: document_type, value: document_type })),
+      onFilter: (value, record) => record.document_type.indexOf(String(value)) === 0,
       render: (text, doc) => (
         renderTag(text)
       ),
     },
     {
-      title: 'Oracle',
+      title: 'Transmission',
       dataIndex: 'oracle',
       key: 'oracle',
       render: (text, primitive) => (
@@ -188,8 +190,6 @@ const index = () => {
           {renderTag(primitive.oracle)}
         </>
       ),
-      filters: Array.from(new Set(payloadsData.map(item => item.oracle))).map(oracle => ({ text: oracle, value: oracle })),
-      onFilter: (value, record) => record.oracle.indexOf(String(value)) === 0,
     },
     {
       title: 'Primitive',
@@ -307,7 +307,7 @@ const index = () => {
     XXEtype === XXETypes.INBAND ? item.oracle.includes('INBAND') : item.oracle.includes('OOB')
   );
 
-    const formatPayload = payload => payload.replace(/\{RESSOURCE\}/g, XXEfilename).replace(/\{DTD_PATH\}/g, XXEDTDPATH).replace(/\{REMOTE_SERVER\}/g, REMOTEXXEServer)
+  const formatPayload = payload => payload.replace(/\{RESSOURCE\}/g, XXEfilename).replace(/\{DTD_PATH\}/g, XXEDTDPATH).replace(/\{REMOTE_SERVER\}/g, REMOTEXXEServer)
 
   return (
     <>
@@ -329,6 +329,7 @@ const index = () => {
       <Row gutter={[16, 16]}>
         <Col span={24}>
           <Table columns={columns}
+            locale={{ emptyText: `No payloads found for "${XXEtype}" XXE type. Try adjusting your search criteria or select a different type.` }}
             expandable={{
               expandedRowRender: record =>
               (<>
@@ -336,7 +337,7 @@ const index = () => {
                 (
                   <>
                     <Paragraph key={id}>{formatPayload(pld.description)}</Paragraph>
-                    <Text code copyable key={id}>{formatPayload(pld.main)}</Text>
+                    <Text code copyable editable key={id}>{formatPayload(pld.main)}</Text>
                     <Divider />
                   </>
                 )
