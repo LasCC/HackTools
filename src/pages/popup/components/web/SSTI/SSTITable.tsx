@@ -109,6 +109,11 @@ const TemplateDetector = () => {
 
   const columns: ColumnsType<DataType> = [
     {
+      title: 'ID',
+      dataIndex: 'id',
+      key: 'id',
+    },
+    {
       title: 'Template Engine',
       dataIndex: 'engine',
       key: 'engine',

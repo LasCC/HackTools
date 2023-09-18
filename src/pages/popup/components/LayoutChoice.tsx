@@ -3,7 +3,7 @@ import { SettingOutlined } from "@ant-design/icons";
 import { Card, Col, Row } from "antd";
 import { goTo } from "react-chrome-extension-router";
 import PersistedState from 'use-persisted-state';
-import Tabs from "./LayoutAppSideItems";
+import Tabs from "./SideItemMenuRouting";
 
 enum HackToolsMode {
   web = "web",

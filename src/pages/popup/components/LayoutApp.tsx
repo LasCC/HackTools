@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { goTo } from 'react-chrome-extension-router';
 import { useHotkeys } from 'react-hotkeys-hook';
 import PersistedState from 'use-persisted-state';
-import Tabs, { IRouterComponent } from "./LayoutAppSideItems";
+import Tabs, { IRouterComponent } from "./SideItemMenuRouting";
 import LayoutChoice from './LayoutChoice';
 const { Paragraph } = Typography;
 const { Sider, Content, Footer } = Layout;

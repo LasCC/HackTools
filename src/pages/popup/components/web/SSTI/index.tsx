@@ -1,6 +1,6 @@
 import type { TabsProps } from 'antd';
 import { Tabs } from 'antd';
-import TemplateDetector from './TemplateDetector';
+import TemplateDetector from './SSTITable';
 
 
 const SQLMainPage = () => {
