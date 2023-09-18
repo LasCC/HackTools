@@ -13,7 +13,7 @@
             "'",
             "}"
         ],
-        "primitive": "PROBING",
+        "primitive": "DETECTION",
         "description": "Jinja SSTI payload identification | return '7777777'",
         "payload": "{{ 7*'7' }}"
     },

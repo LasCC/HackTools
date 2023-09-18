@@ -1,13 +1,9 @@
-import React, { useState } from 'react';
-// import { Table, Input, Button, Space, Typography, Tag } from 'antd';
-import { message, Typography, Row, Col, Input, Table, Tag, Select, Form, InputRef, Button, Space, Dropdown } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
-import { useTemplateStore } from './store'
-import { Modal, Checkbox, Divider } from 'antd';
-import { QuestionCircleOutlined } from '@ant-design/icons';
-import type { ColumnsType, TableProps } from 'antd/es/table';
+import { Button, Checkbox, Divider, Dropdown, Input, Modal, Table, Tag, Typography, message } from 'antd';
+import type { ColumnsType } from 'antd/es/table';
+import { useState } from 'react';
 import payloadsData from '../../../assets/data/Web/SSTI/SSTI.json';
-import { DataType, Language } from './store'
+import { DataType, Language, useTemplateStore } from './store';
 
 const TemplateDetector = () => {
 
@@ -149,13 +145,13 @@ const TemplateDetector = () => {
       )
     },
     {
-      title: 'Character Set',
+      title: 'Required Characters',
       dataIndex: 'required_sp_chars',
       key: 'required_sp_chars',
       filters: Array.from(new Set(payloadsData.flatMap(item => item.required_sp_chars))).map(charset => ({ text: charset, value: charset })),
       sorter: (a, b) => a.required_sp_chars.length - b.required_sp_chars.length,
       sortDirections: ['ascend', 'descend'],
-      onFilter: (value, record) => record.required_sp_chars.includes(String(value)),
+      onFilter: (value, record) => !record.required_sp_chars.includes(String(value)),
       render: (required_sp_chars) => (
         <>
           {required_sp_chars.map((charset, _) => renderTag(charset))}
@@ -206,8 +202,6 @@ const TemplateDetector = () => {
 
   const handleOk = () => {
     detectTemplate(payload, selectedLanguages);
-    console.log(potentialTemplateEngine);
-    // setIsModalVisible(false);
   };
 
   return (
@@ -239,13 +233,13 @@ const TemplateDetector = () => {
       </Modal>
 
       <Table columns={columns}
+        rowKey={(record,id) => record.id || id}
         expandable={{
           expandedRowRender: record =>
-          (<Paragraph>
-            <pre>
-              <Text code>{record.payload}</Text>
-            </pre>
-          </Paragraph>),
+          (<>
+              <Paragraph>{record.description}</Paragraph>
+              <Text copyable code>{record.payload}</Text>
+          </>),
           rowExpandable: record => record.engine !== 'Not Expandable',
         }}
 

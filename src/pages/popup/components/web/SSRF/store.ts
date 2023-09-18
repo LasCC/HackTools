@@ -7,9 +7,15 @@ export enum GopherPayload {
   // Custom = "Custom Raw TCP",
 }
 
+export enum XXETypes {
+  OOB = "Out of Band",
+  INBAND = "In Band",
+}
+
 type State = {
   payload: GopherPayload,
   XXEfilename: string,
+  XXEtype: XXETypes,
   username: string,
   db: string,  
   query: string,
@@ -17,6 +23,11 @@ type State = {
   ipv4forObfuscation: string,
   obfuscatedIPv4: string[],
   setXXEfileName: (XXEfilename) => void, 
+  setXXEtype: (XXEtype) => void,
+  XXEDTDPATH: string,
+  setXXEDTDPath: (XXEDTDPATH) => void,
+  REMOTEXXEServer: string,
+  setREMOTEXXEServer: (REMOTEXXEServer) => void,
   setPayload: (payload: GopherPayload) => void,
   setUsername: (username: string) => void,
   setDb: (db: string) => void,  // added new setDb state function
@@ -31,11 +42,13 @@ type State = {
 export const useStore = create<State>((set) => ({
   payload: GopherPayload.MySQL,
   username: "", 
-  XXEfilename: "",
+  XXEfilename: "" || "file:///etc/hostname",
+  XXEtype: XXETypes.INBAND,
   db: "",  // set initial value of db to empty string
   query: "",
   gopherLink: "",
   ipv4forObfuscation : "" || "127.0.0.1", 
+  REMOTEXXEServer: "" || "http://attacker.com",
   setIPv4forObfuscation : (ipv4forObfuscation) => {
     set({ ipv4forObfuscation });
     set({ obfuscatedIPv4: obfuscateIPv4(ipv4forObfuscation) });
@@ -43,6 +56,10 @@ export const useStore = create<State>((set) => ({
   setPayload: (payload) => set({ payload }),
   setUsername: (username) => set({ username }),
   setXXEfileName: (evt) => set({ XXEfilename : evt?.target.value}),
+  setXXEtype: (XXEtype) => set({ XXEtype }),
+  XXEDTDPATH: "" || "http://attacker.com/xxe.dtd",
+  setXXEDTDPath: (evt) => set({ XXEDTDPATH : evt?.target.value}),
+  setREMOTEXXEServer: (evt) => set({ REMOTEXXEServer: evt?.target.value }),
   setDb: (db) => set({ db }),  // added new setDb state function
   setQuery: (query) => set({ query }),
   obfuscatedIPv4: [],

