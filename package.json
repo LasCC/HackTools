@@ -40,6 +40,7 @@
         "dracula.css": "link:codemirror/theme/dracula.css",
         "escape-quotes": "^1.0.2",
         "file-saver": "^2.0.5",
+        "fuse.js": "^6.6.2",
         "jose": "^4.14.4",
         "js-yaml": "^4.1.0",
         "json2csv": "6.0.0-alpha.2",

