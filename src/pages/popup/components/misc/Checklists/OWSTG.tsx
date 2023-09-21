@@ -1,100 +1,124 @@
-import { Button, Card, Checkbox, Col, Divider, Form, Input, Layout, Modal, Popconfirm, Progress, Radio, Row, Table, Tooltip, message } from 'antd';
-import jsyaml from 'js-yaml';
-import { useEffect, useRef, useState } from 'react';
-import createOWSTGStore, { Category, Substep } from './stores/MethodologyStore';
+import { useEffect } from 'react';
+import { Button, Card, Checkbox, Col, Divider, Form, Input, Layout, Modal, Popconfirm, Progress, Radio, Row, Select, Space, Statistic, Table, Tag, Tooltip, Typography, message } from 'antd';
+import createOWSTGStore, { initializeChecklist } from './stores/MethodologyStore';
+import { AtomicTest, Pentest, Substep, TestCaseStatus, Quote } from "./ChecklistInterfaces"
 import tabStateStore from './stores/TabStateStore';
 const { TextArea } = Input;
 import { useHotkeys } from 'react-hotkeys-hook';
+import { UserOutlined, BugOutlined, HourglassOutlined, SearchOutlined } from '@ant-design/icons';
+import { FloatButton } from 'antd';
+import { Dropdown } from 'antd';
+import { BsFiletypeJson } from 'react-icons/bs';
+import { TbCsv } from 'react-icons/tb';
+import { MdHttp } from 'react-icons/md';
+import type { MenuProps } from 'antd';
+import { Record, String, Array, Number, Union, Literal, Static } from 'runtypes';
+import quotes from '../../../assets/data/Quotes/Quotes.json';
 const { Header, Content } = Layout;
 
 
 const OWSTG = ({ id }: { id: string }) => {
+  const QOTD: Quote = quotes[Math.floor(Math.random() * quotes.length)];
 
 
 
-
-  // id to create a new store for each tab 
+  // Handler for this Tab's state
   const useStore = createOWSTGStore(id);
-  const setCategories = useStore((state) => state.setCategories);
-  const categories = useStore((state) => state.categories);
-  const toggleTested = useStore(state => state.toggleTested);
-  const setVulnerable = useStore(state => state.setHasConcern);
-  const setNote = useStore(state => state.setNote);
-  const downloadCSV = useStore((state) => state.downloadCSV);
-  const reset = useStore((state) => state.reset);
-  const typeOfChecklist = useStore((state) => state.typeOfChecklist);
-  const setTypeOfChecklist = useStore((state) => state.setTypeOfChecklist);
+  const { stateFlattenedChecklists, handleStatusChange, handleObservationsChange, handleFileUpload } = useStore();
 
 
-  const fetchMethodology = useStore((state) => state.fetchMethodology);
-  const [methodologyURL, setMethodologyURL] = useState('');
+  const currentTabStateExportAsJSON = () => {
+    const dataStr = JSON.stringify(stateFlattenedChecklists);
+    const dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr);
 
-  const methodologyOption = useStore((state) => state.methodologyOption);
-  const setMethodologyOption = useStore((state) => state.setMethodologyOption);
+    let exportFileDefaultName = `htool_state_methodology_${new Date().getTime()}_${new Date().toLocaleDateString()}.json`;
 
+    let linkElement = document.createElement('a');
+    linkElement.setAttribute('href', dataUri);
+    linkElement.setAttribute('download', exportFileDefaultName);
+    linkElement.click();
+    linkElement.remove();
+  };
 
-  const totalTests = categories.reduce((total, category) => total + category.atomic_tests.length, 0);
-  const completedTests = categories.reduce((total, category) => total + category.atomic_tests.filter(test => test.wasTested).length, 0);
-  const vulnerableTests = categories.reduce((total, category) => total + category.atomic_tests.filter(test => test.hasConcern).length, 0);
-  const notVulnerableTests = categories.reduce((total, category) => total + category.atomic_tests.filter(test => !test.hasConcern && test.wasTested).length, 0);
-
-  const fileInputRef = useRef<HTMLInputElement>(null);
-
-  // Function to export state
-  const exportState = () => {
-    const tabName = tabStateStore.getState().items.find(item => item.key === id)?.label;
-    const currentState = useStore.getState();
-    const blob = new Blob([JSON.stringify(currentState)], { type: "application/json" });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = data[0]?.reference
-    link.download = `methodology_state_${tabName}_${new Date().toISOString()}.json`;
-    link.click();
-    URL.revokeObjectURL(url);
+  enum Actions {
+    ImportLocalFile = "1",
+    ExportJSON = "2",
+    ImportURI = "3"
   };
 
 
-  const importState = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (!file) {
-      console.warn("No file selected!");
-      return;
+
+  const handleCSVExport = () => {
+    console.log("Exporting as CSV");
+  }
+
+const handleMenuClick: MenuProps['onClick'] = (e) => {
+  switch (e.key) {
+    case Actions.ImportLocalFile:
+      handleFileUpload();
+      break;
+    case Actions.ExportJSON:
+      currentTabStateExportAsJSON()
+      break;
+    case Actions.ImportURI:
+      message.info('Not implemented yet');
+      break;
+    default:
+      break;
+  }
+};
+
+  const items: MenuProps['items'] = [
+    {
+      label: 'Import methodology from local file',
+      key: '1',
+      icon: <BsFiletypeJson />,
+    },
+    {
+      label: 'Export current state as JSON',
+      key: '2',
+      icon: <UserOutlined />,
+    },
+    {
+      label: 'Import methodology from URI',
+      key: '3',
+      icon: <MdHttp />,
     }
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      const result = event.target?.result as string;
-      const newState = JSON.parse(result);
-      useStore.setState(newState);
-    };
-    reader.readAsText(file);
-  };
+  ];
 
-  // Fetch OWSTG checklist
-  useEffect(() => {
-    const fetchChecklist = async () => {
-      if (categories.length === 0) {
-        try {
-          const response = await fetch('https://raw.githubusercontent.com/rb-x/ht-methodology-test/master/owstg.yaml');
-          let data = jsyaml.load(await response.text())
-          setCategories(data.map(item => item.category).filter(item => item) as Category[]);
-          setTypeOfChecklist(data[0]?.type)
-        } catch (error) {
-          console.error('Failed to fetch OWSTG checklist:', error);
-        }
-      }
-    };
 
-    fetchChecklist();
-  }, [setCategories, categories]);
-
-  // Popconfirm functions
-  const confirm = () => {
-    reset();
-    message.success('Resetted');
-  };
-  const cancel = () => {
-    message.error('Cancelled');
-  };
+  const getColumnSearchProps = dataIndex => ({
+    filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters = () => { } }) => (
+      <div style={{ padding: 8 }}>
+        <Input
+          placeholder={`Search ${dataIndex}`}
+          value={selectedKeys[0]}
+          onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+          onPressEnter={() => confirm()}
+          style={{ width: 188, marginBottom: 8, display: 'block' }}
+        />
+        <Space>
+          <Button
+            type="primary"
+            onClick={() => confirm()}
+            icon={<SearchOutlined />}
+            size="small"
+            style={{ width: 90 }}
+          >
+            Search
+          </Button>
+          <Button onClick={() => clearFilters()} size="small" style={{ width: 90 }}>
+            Reset
+          </Button>
+        </Space>
+      </div>
+    ),
+    filterIcon: filtered => <SearchOutlined style={{ color: filtered ? '#1890ff' : undefined }} />,
+    onFilter: (value, record) =>
+      record[dataIndex]
+        ? record[dataIndex].toString().toLowerCase().includes(value.toLowerCase())
+        : '',
+  });
 
 
   const columns = [
@@ -102,6 +126,7 @@ const OWSTG = ({ id }: { id: string }) => {
       title: 'Test ID',
       dataIndex: 'id',
       key: 'id',
+      ...getColumnSearchProps('id'),
       render: (text, record) => (
         <a href={`${record.reference}`} target="_blank" rel="noreferrer">{text}</a>
       ),
@@ -110,254 +135,129 @@ const OWSTG = ({ id }: { id: string }) => {
       title: 'Description',
       dataIndex: 'description',
       key: 'description',
-      filters: categories.flatMap((category) =>
-        category.atomic_tests.map((test) => ({ text: test.description, value: test.description }))
-      ),
-
-      onFilter: (value, record) => record.description.indexOf(value) === 0,
-      render: (text, record) => (
-        <a onClick={() => openModal(record)}>{text}</a>
-      ),
     },
     {
-      title: 'Tested',
-      dataIndex: 'wasTested',
-      key: 'wasTested',
-      filters: [
-        { text: 'Yes', value: true },
-        { text: 'No', value: false },
-      ],
-      onFilter: (value, record) => record.wasTested === value,
+      title: 'State',
+      dataIndex: 'testCaseStatus',
+      key: 'testCaseStatus',
+      filters: Object.values(TestCaseStatus).map(status => ({ text: status, value: status })),
+      onFilter: (value, record) => record.testCaseStatus.indexOf(value) === 0,
+      render: (testCaseStatus, record) => {
+        console.log(testCaseStatus, record);
+        return (
+          <Select
+            defaultValue={record.testCaseStatus || TestCaseStatus.NOT_TESTED}
+            style={{ width: "100%" }}
+            onChange={(value) => handleStatusChange(record.id, value)}
+            options={
+              Object.values(TestCaseStatus).map(status => ({ label: status, value: status }))
+            }
+          />
+        );
+      },
 
-      render: (text, record) => (
-        <Checkbox
-          checked={record.wasTested}
-          onClick={(e) => {
-            e.stopPropagation();
-            toggleTested(record.categoryId, record.id);
-          }}
-        >
-          Was Tested
-        </Checkbox>
-      ),
-    },
-    {
-      title: typeOfChecklist === 'pentest' ? 'Vulnerable' : 'Has Concern',
-      dataIndex: 'hasConcern',
-      key: 'hasConcern',
-
-      filters: [
-        { text: 'Vulnerable', value: true },
-        { text: 'Not Vulnerable', value: false },
-      ],
-      onFilter: (value, record) => record.hasConcern === value,
-      render: (text, record) => (
-        <Radio.Group
-          value={record.hasConcern}
-          onChange={(e) => {
-            e.stopPropagation();
-            setVulnerable(record.categoryId, record.id, e.target.value);
-          }}
-        >
-          <Radio value={true}>Vulnerable</Radio>
-          <Radio value={false}>Not Vulnerable</Radio>
-        </Radio.Group>
-      ),
-    },
-    {
-      title: 'Notes',
-      dataIndex: 'note',
-      key: 'note',
-      render: (text, record) => (
-        <TextArea
-          rows={4}
-          value={record.note}
-          placeholder="Notes"
-          onChange={(e) => setNote(record.categoryId, record.id, e.target.value)}
-        />
-      ),
     },
   ];
 
+  const { Text, Link } = Typography;
 
-  // Table data
-  const data = categories.flatMap((category) =>
-    category.atomic_tests.map((test) => ({ ...test, categoryId: category.id }))
-  );
-
-  // Modal states
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const [currentTest, setCurrentTest] = useState(null);
-  const [exportOption, setExportOption] = useState('all');
-  const [isExportModalVisible, setIsExportModalVisible] = useState(false);
-  const [isMethodologyModalVisible, setIsMethodologyModalVisible] = useState(false);
-
-
-  const openMethodologyModal = () => {
-    setIsMethodologyModalVisible(true);
+  const menuProps = {
+    items,
+    onClick: handleMenuClick,
   };
 
-  const closeMethodologyModal = () => {
-    setIsMethodologyModalVisible(false);
-  };
-  const loadMethodology = async () => {
-    await fetchMethodology(methodologyURL);
-    closeMethodologyModal();
-  };
-
-  // Modal functions
-  const openExportModal = () => {
-    setIsExportModalVisible(true);
-  };
-  const closeExportModal = () => {
-    setIsExportModalVisible(false);
-  };
-  const openModal = (record) => {
-    setCurrentTest(record);
-    setIsModalVisible(true);
-  };
-  const closeModal = () => {
-    setCurrentTest(null);
-    setIsModalVisible(false);
-  };
-
-  const onChangeMethodologyOption = (e) => {
-    // @ts-ignore
-    setMethodologyOption(e.target.value);
-  };
-
-
-  const loadMethodologyModal = (
-    <Modal
-      title="Load Methodology"
-      open={isMethodologyModalVisible}
-      onOk={loadMethodology}
-      onCancel={closeMethodologyModal}
-    >
-      <Radio.Group onChange={onChangeMethodologyOption} value={methodologyOption}>
-        <Radio value="default">Load Default OWSTG</Radio>
-        <Radio value="custom">Load Custom Methodology</Radio>
-      </Radio.Group>
-
-      {methodologyOption === 'custom' && (
-        <Form.Item label="Methodology URL">
-          <Input value={methodologyURL} onChange={(e) => setMethodologyURL(e.target.value)} />
-        </Form.Item>
-      )}
-    </Modal>
-  );
-
-
-  /*----- Hotkeys -----*/
-  useHotkeys('e', () => {
-    // open the export modal
-    openExportModal();
-  }
-  );
-  useHotkeys('l', () => {
-    // open the load methodology modal
-    openMethodologyModal();
-  }
-  );
-
-  /*----------------*/
-
-  // Modal components
-  const exportCSVModal = (
-    <Modal
-      title="Export as CSV"
-      open={isExportModalVisible}
-      onOk={() => {
-        downloadCSV(exportOption);
-        closeExportModal();
-      }}
-      onCancel={closeExportModal}
-    >
-      <p>Please select which tests you want to export:</p>
-      <Radio.Group onChange={(e) => setExportOption(e.target.value)} value={exportOption}>
-        <Radio value='all'>All Tests</Radio>
-        <Radio value='vulnerable'>Vulnerable Tests</Radio>
-        <Radio value='not_vulnerable'>Not Vulnerable Tests</Radio>
-      </Radio.Group>
-    </Modal>
-  )
-
-  const onDescriptionCaseClickModal = (
-    <Modal open={isModalVisible} onCancel={closeModal}
-    onOk={closeModal}
-    >
-      <h2>{currentTest?.description}</h2>
-      <TextArea
-        rows={4}
-        value={currentTest?.note}
-        placeholder="Notes"
-        onChange={(e) => setNote(currentTest?.categoryId, currentTest?.id, e.target.value)}
-      />
-      <Divider />
-
-      {currentTest?.substeps.map((substep: Substep) => (
-        <>
-          <p>{`${substep}`}</p>
-        </>
-      ))}
-    </Modal>)
 
   return (
     <>
-      <Row gutter={[16, 16]}>
-        <Col span={24} >
-          <Card title="Total progress" style={{ width: "100%" }}>
-            <Tooltip title={`${completedTests} / ${totalTests} completed`}>
-              <Progress
-                type="circle"
-                percent={parseFloat(((completedTests / totalTests) * 100).toFixed(2))}
-                strokeColor={{
-                  '0%': '#108ee9',
-                  '100%': '#87d068',
-                }}
-                style={{ marginRight: '10px' }}
-                size='small'
-              />
-            </Tooltip>
-            <Tooltip title={`${vulnerableTests} / ${totalTests} issue(s) identified`}>
-              <Progress
-                type="circle"
-                percent={parseFloat(((vulnerableTests / totalTests) * 100).toFixed(2))}
-                strokeColor="red"
-                style={{ marginTop: '10px' }}
-                size='small'
-              />
-            </Tooltip>
-            <Button type="primary" onClick={openExportModal} style={{ marginLeft: '10px' }}>Export as CSV</Button>
-            <Popconfirm
-              title="Are you sure to reset all your progress?"
-              onConfirm={confirm}
-              onCancel={cancel}
-              okText="Yes"
-              cancelText="No"
-              placement="bottom"
-
-            >
-              <Button type="primary" danger style={{ marginLeft: '10px' }} >Reset</Button>
-            </Popconfirm>
-            <Button type="primary" onClick={exportState} style={{ marginLeft: '10px' }}>Export State</Button>
-            <input ref={fileInputRef} type="file" hidden onChange={importState} />
-            <Button type="primary" onClick={() => fileInputRef.current?.click()} style={{ marginLeft: '10px' }}>Import State</Button>
-            <Button type="primary" onClick={openMethodologyModal} style={{ marginLeft: '10px' }}>
-              Load Methodology
-            </Button>
-          </Card>
-        </Col>
-      </Row>
+      <Card>
+        <Row gutter={[16, 16]}>
+          <Col span={6}>
+            <Progress
+              size={75}
+              type="circle"
+              percent={
+                Math.round(
+                  stateFlattenedChecklists.filter(test =>
+                    test.testCaseStatus !== TestCaseStatus.NOT_TESTED &&
+                    test.testCaseStatus !== TestCaseStatus.IN_PROGRESS
+                  ).length / stateFlattenedChecklists.length * 100
+                )
+              }
+              strokeColor={{ '0%': '#108ee9', '100%': '#87d068' }} />
+          </Col>
+          <Col span={6}>
+            <Statistic
+              title="Issues found"
+              value={
+                stateFlattenedChecklists.filter(test => test.testCaseStatus === TestCaseStatus.FAILED).length
+              }
+              valueStyle={{ color: '#B22222' }}
+              prefix={<BugOutlined />}
+            />
+          </Col>
+          <Col span={6}>
+            <Statistic
+              title="Pending tests"
+              value={
+                stateFlattenedChecklists.filter(test => test.testCaseStatus === TestCaseStatus.NOT_TESTED).length
+              }
+              valueStyle={{ color: '#FFA500' }}
+              prefix={<HourglassOutlined />}
+            />
+          </Col>
+          <Col span={6}
+            style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+          >
+            <Dropdown.Button menu={menuProps} onClick={handleCSVExport}>
+              Export as CSV
+            </Dropdown.Button>
+          </Col>
+        </Row>
+      </Card>
 
       <Divider />
 
-      <Table columns={columns} dataSource={data} rowKey="id" />
 
-      {onDescriptionCaseClickModal}
-      {exportCSVModal}
-      {loadMethodologyModal}
-
+      <Table
+        columns={columns}
+        dataSource={stateFlattenedChecklists}
+        rowKey="id"
+        expandable={{
+          expandedRowRender: (record: AtomicTest) => (
+            <Row gutter={[16, 16]}>
+              <Col span={24} >
+                <Text strong>Objectives :</Text>
+                <ul>
+                  {record.objectives.map((objective, index) => (
+                    <li key={index}>{objective}</li>
+                  ))}
+                </ul>
+              </Col>
+              <Col span={24} >
+                <Text strong>Observations :</Text>
+              </Col>
+              <Col span={24} >
+                <TextArea value={record.observations}
+                  onChange={(e) => handleObservationsChange(record.id, e.target.value)} />
+              </Col>
+              <Divider />
+              <Col span={24} >
+                <Text strong>Custom testing methodology :</Text>
+              </Col>
+              <Col span={24} >
+                {record.substeps.map((substep, index) => (
+                  <>
+                    <Text key={index}>{substep.step}</Text>
+                    <li key={index}>{substep.description}</li>
+                    <Divider />
+                  </>
+                ))}
+              </Col>
+            </Row>
+          ),
+        }}
+      />
+      <FloatButton />
     </>
   );
 };

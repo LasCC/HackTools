@@ -1,0 +1,1896 @@
+[
+    {
+        "description": "Conduct Search Engine Discovery Reconnaissance for Information Leakage",
+        "id": "WSTG-INFO-01",
+        "objectives": [
+            "Identify what sensitive design and configuration information of the application, system, or organization is exposed directly (on the organization's site) or indirectly (via third-party services)."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/01-Information_Gathering/01-Conduct_Search_Engine_Discovery_Reconnaissance_for_Information_Leakage",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-INFO"
+    },
+    {
+        "description": "Fingerprint Web Server",
+        "id": "WSTG-INFO-02",
+        "objectives": [
+            "Determine the version and type of a running web server to enable further discovery of any known vulnerabilities."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/01-Information_Gathering/02-Fingerprint_Web_Server",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-INFO"
+    },
+    {
+        "description": "Review Webserver Metafiles for Information Leakage",
+        "id": "WSTG-INFO-03",
+        "objectives": [
+            "Identify hidden or obfuscated paths and functionality through the analysis of metadata files.",
+            "Extract and map other information that could lead to a better understanding of the systems at hand."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/01-Information_Gathering/03-Review_Webserver_Metafiles_for_Information_Leakage",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-INFO"
+    },
+    {
+        "description": "Enumerate Applications on Webserver",
+        "id": "WSTG-INFO-04",
+        "objectives": [
+            "Enumerate the applications within the scope that exist on a web server."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/01-Information_Gathering/04-Enumerate_Applications_on_Webserver",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-INFO"
+    },
+    {
+        "description": "Review Webpage Content for Information Leakage",
+        "id": "WSTG-INFO-05",
+        "objectives": [
+            "Review webpage comments, metadata, and redirect bodies to find any information leakage.",
+            "Gather JavaScript files and review the JS code to better understand the application and to find any information leakage.",
+            "Identify if source map files or other front-end debug files exist."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/01-Information_Gathering/05-Review_Webpage_Content_for_Information_Leakage",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-INFO"
+    },
+    {
+        "description": "Identify Application Entry Points",
+        "id": "WSTG-INFO-06",
+        "objectives": [
+            "Identify possible entry and injection points through request and response analysis."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/01-Information_Gathering/06-Identify_Application_Entry_Points",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-INFO"
+    },
+    {
+        "description": "Map Execution Paths Through Application",
+        "id": "WSTG-INFO-07",
+        "objectives": [
+            "Map the target application and understand the principal workflows."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/01-Information_Gathering/07-Map_Execution_Paths_Through_Application",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-INFO"
+    },
+    {
+        "description": "Fingerprint Web Application Framework",
+        "id": "WSTG-INFO-08",
+        "objectives": [
+            "Fingerprint the components being used by the web applications."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/01-Information_Gathering/08-Fingerprint_Web_Application_Framework",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-INFO"
+    },
+    {
+        "description": "Fingerprint Web Application",
+        "id": "WSTG-INFO-09",
+        "objectives": [
+            ""
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/01-Information_Gathering/09-Fingerprint_Web_Application",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-INFO"
+    },
+    {
+        "description": "Map Application Architecture",
+        "id": "WSTG-INFO-10",
+        "objectives": [
+            "Understand the architecture of the application and the technologies in use."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/01-Information_Gathering/10-Map_Application_Architecture",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-INFO"
+    },
+    {
+        "description": "Test Network Infrastructure Configuration",
+        "id": "WSTG-CONF-01",
+        "objectives": [
+            "Review the applications' configurations set across the network and validate that they are not vulnerable.",
+            "Validate that used frameworks and systems are secure and not susceptible to known vulnerabilities due to unmaintained software or default settings and credentials."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/02-Configuration_and_Deployment_Management_Testing/01-Test_Network_Infrastructure_Configuration",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-CONF"
+    },
+    {
+        "description": "Test Application Platform Configuration",
+        "id": "WSTG-CONF-02",
+        "objectives": [
+            "Ensure that defaults and known files have been removed.",
+            "Validate that no debugging code or extensions are left in the production environments.",
+            "Review the logging mechanisms set in place for the application."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/02-Configuration_and_Deployment_Management_Testing/02-Test_Application_Platform_Configuration",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-CONF"
+    },
+    {
+        "description": "Test File Extensions Handling for Sensitive Information",
+        "id": "WSTG-CONF-03",
+        "objectives": [
+            "Dirbust sensitive file extensions, or extensions that might contain raw data (*e.g.* scripts, raw data, credentials, etc.).",
+            "Validate that no system framework bypasses exist on the rules set."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/02-Configuration_and_Deployment_Management_Testing/03-Test_File_Extensions_Handling_for_Sensitive_Information",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-CONF"
+    },
+    {
+        "description": "Review Old Backup and Unreferenced Files for Sensitive Information",
+        "id": "WSTG-CONF-04",
+        "objectives": [
+            "Find and analyse unreferenced files that might contain sensitive information."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/02-Configuration_and_Deployment_Management_Testing/04-Review_Old_Backup_and_Unreferenced_Files_for_Sensitive_Information",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-CONF"
+    },
+    {
+        "description": "Enumerate Infrastructure and Application Admin Interfaces",
+        "id": "WSTG-CONF-05",
+        "objectives": [
+            "Identify hidden administrator interfaces and functionality."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/02-Configuration_and_Deployment_Management_Testing/05-Enumerate_Infrastructure_and_Application_Admin_Interfaces",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-CONF"
+    },
+    {
+        "description": "Test HTTP Methods",
+        "id": "WSTG-CONF-06",
+        "objectives": [
+            "Enumerate supported HTTP methods.",
+            "Test for access control bypass.",
+            "Test HTTP method overriding techniques."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/02-Configuration_and_Deployment_Management_Testing/06-Test_HTTP_Methods",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-CONF"
+    },
+    {
+        "description": "Test HTTP Strict Transport Security",
+        "id": "WSTG-CONF-07",
+        "objectives": [
+            "Review the HSTS header and its validity."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/02-Configuration_and_Deployment_Management_Testing/07-Test_HTTP_Strict_Transport_Security",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-CONF"
+    },
+    {
+        "description": "Test RIA Cross Domain Policy",
+        "id": "WSTG-CONF-08",
+        "objectives": [
+            ""
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/02-Configuration_and_Deployment_Management_Testing/08-Test_RIA_Cross_Domain_Policy",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-CONF"
+    },
+    {
+        "description": "Test File Permission",
+        "id": "WSTG-CONF-09",
+        "objectives": [
+            "Review and identify any rogue file permissions."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/02-Configuration_and_Deployment_Management_Testing/09-Test_File_Permission",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-CONF"
+    },
+    {
+        "description": "Test for Subdomain Takeover",
+        "id": "WSTG-CONF-10",
+        "objectives": [
+            "Enumerate all possible domains (previous and current).",
+            "Identify forgotten or misconfigured domains."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/02-Configuration_and_Deployment_Management_Testing/10-Test_for_Subdomain_Takeover",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-CONF"
+    },
+    {
+        "description": "Test Cloud Storage",
+        "id": "WSTG-CONF-11",
+        "objectives": [
+            "Assess that the access control configuration for the storage services is properly in place."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/02-Configuration_and_Deployment_Management_Testing/11-Test_Cloud_Storage",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-CONF"
+    },
+    {
+        "description": "Testing for Content Security Policy",
+        "id": "WSTG-CONF-12",
+        "objectives": [
+            "Review the Content-Security-Policy header or meta element to identify misconfigurations."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/02-Configuration_and_Deployment_Management_Testing/12-Test_for_Content_Security_Policy",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-CONF"
+    },
+    {
+        "description": "Test Path Confusion",
+        "id": "WSTG-CONF-13",
+        "objectives": [
+            "Make sure application paths are configured correctly."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/02-Configuration_and_Deployment_Management_Testing/13-Test_for_Path_Confusion",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-CONF"
+    },
+    {
+        "description": "Test Role Definitions",
+        "id": "WSTG-IDNT-01",
+        "objectives": [
+            "Identify and document roles used by the application.",
+            "Attempt to switch, change, or access another role.",
+            "Review the granularity of the roles and the needs behind the permissions given."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/03-Identity_Management_Testing/01-Test_Role_Definitions",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-IDNT"
+    },
+    {
+        "description": "Test User Registration Process",
+        "id": "WSTG-IDNT-02",
+        "objectives": [
+            "Verify that the identity requirements for user registration are aligned with business and security requirements.",
+            "Validate the registration process."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/03-Identity_Management_Testing/02-Test_User_Registration_Process",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-IDNT"
+    },
+    {
+        "description": "Test Account Provisioning Process",
+        "id": "WSTG-IDNT-03",
+        "objectives": [
+            "Verify which accounts may provision other accounts and of what type."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/03-Identity_Management_Testing/03-Test_Account_Provisioning_Process",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-IDNT"
+    },
+    {
+        "description": "Testing for Account Enumeration and Guessable User Account",
+        "id": "WSTG-IDNT-04",
+        "objectives": [
+            "Review processes that pertain to user identification (*e.g.* registration, login, etc.).",
+            "Enumerate users where possible through response analysis."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/03-Identity_Management_Testing/04-Testing_for_Account_Enumeration_and_Guessable_User_Account",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-IDNT"
+    },
+    {
+        "description": "Testing for Weak or Unenforced Username Policy",
+        "id": "WSTG-IDNT-05",
+        "objectives": [
+            "Determine whether a consistent account name structure renders the application vulnerable to account enumeration.",
+            "Determine whether the application's error messages permit account enumeration."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/03-Identity_Management_Testing/05-Testing_for_Weak_or_Unenforced_Username_Policy",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-IDNT"
+    },
+    {
+        "description": "Testing for Credentials Transported over an Encrypted Channel",
+        "id": "WSTG-ATHN-01",
+        "objectives": [
+            ""
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/01-Testing_for_Credentials_Transported_over_an_Encrypted_Channel",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-ATHN"
+    },
+    {
+        "description": "Testing for Default Credentials",
+        "id": "WSTG-ATHN-02",
+        "objectives": [
+            "Determine whether the application has any user accounts with default passwords.",
+            "Review whether new user accounts are created with weak or predictable passwords."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/02-Testing_for_Default_Credentials",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-ATHN"
+    },
+    {
+        "description": "Testing for Weak Lock Out Mechanism",
+        "id": "WSTG-ATHN-03",
+        "objectives": [
+            "Evaluate the account lockout mechanism's ability to mitigate brute force password guessing.",
+            "Evaluate the unlock mechanism's resistance to unauthorized account unlocking."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/03-Testing_for_Weak_Lock_Out_Mechanism",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-ATHN"
+    },
+    {
+        "description": "Testing for Bypassing Authentication Schema",
+        "id": "WSTG-ATHN-04",
+        "objectives": [
+            "Ensure that authentication is applied across all services that require it."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/04-Testing_for_Bypassing_Authentication_Schema",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-ATHN"
+    },
+    {
+        "description": "Testing for Vulnerable Remember Password",
+        "id": "WSTG-ATHN-05",
+        "objectives": [
+            "Validate that the generated session is managed securely and do not put the user's credentials in danger."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/05-Testing_for_Vulnerable_Remember_Password",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-ATHN"
+    },
+    {
+        "description": "Testing for Browser Cache Weaknesses",
+        "id": "WSTG-ATHN-06",
+        "objectives": [
+            "Review if the application stores sensitive information on the client-side.",
+            "Review if access can occur without authorization."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/06-Testing_for_Browser_Cache_Weaknesses",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-ATHN"
+    },
+    {
+        "description": "Testing for Weak Password Policy",
+        "id": "WSTG-ATHN-07",
+        "objectives": [
+            "Determine the resistance of the application against brute force password guessing using available password dictionaries by evaluating the length, complexity, reuse, and aging requirements of passwords."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/07-Testing_for_Weak_Password_Policy",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-ATHN"
+    },
+    {
+        "description": "Testing for Weak Security Question Answer",
+        "id": "WSTG-ATHN-08",
+        "objectives": [
+            "Determine the complexity and how straight-forward the questions are.",
+            "Assess possible user answers and brute force capabilities."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/08-Testing_for_Weak_Security_Question_Answer",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-ATHN"
+    },
+    {
+        "description": "Testing for Weak Password Change or Reset Functionalities",
+        "id": "WSTG-ATHN-09",
+        "objectives": [
+            "Determine whether the password change and reset functionality allows accounts to be compromised."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/09-Testing_for_Weak_Password_Change_or_Reset_Functionalities",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-ATHN"
+    },
+    {
+        "description": "Testing for Weaker Authentication in Alternative Channel",
+        "id": "WSTG-ATHN-10",
+        "objectives": [
+            "Identify alternative authentication channels.",
+            "Assess the security measures used and if any bypasses exists on the alternative channels."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/10-Testing_for_Weaker_Authentication_in_Alternative_Channel",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-ATHN"
+    },
+    {
+        "description": "Testing Multi-Factor Authentication (MFA)",
+        "id": "WSTG-ATHN-11",
+        "objectives": [
+            "Identify the type of MFA used by the application.",
+            "Determine whether the MFA implementation is robust and secure.",
+            "Attempt to bypass the MFA."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/11-Testing_Multi-Factor_Authentication",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-ATHN"
+    },
+    {
+        "description": "Testing Directory Traversal File Include",
+        "id": "WSTG-ATHZ-01",
+        "objectives": [
+            "Identify injection points that pertain to path traversal.",
+            "Assess bypassing techniques and identify the extent of path traversal."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/05-Authorization_Testing/01-Testing_Directory_Traversal_File_Include",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-ATHZ"
+    },
+    {
+        "description": "Testing for Bypassing Authorization Schema",
+        "id": "WSTG-ATHZ-02",
+        "objectives": [
+            "Assess if horizontal or vertical access is possible."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/05-Authorization_Testing/02-Testing_for_Bypassing_Authorization_Schema",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-ATHZ"
+    },
+    {
+        "description": "Testing for Privilege Escalation",
+        "id": "WSTG-ATHZ-03",
+        "objectives": [
+            "Identify injection points related to privilege manipulation.",
+            "Fuzz or otherwise attempt to bypass security measures."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/05-Authorization_Testing/03-Testing_for_Privilege_Escalation",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-ATHZ"
+    },
+    {
+        "description": "Testing for Insecure Direct Object References",
+        "id": "WSTG-ATHZ-04",
+        "objectives": [
+            "Identify points where object references may occur.",
+            "Assess the access control measures and if they're vulnerable to IDOR."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/05-Authorization_Testing/04-Testing_for_Insecure_Direct_Object_References",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-ATHZ"
+    },
+    {
+        "description": "Testing for OAuth Weaknesses",
+        "id": "WSTG-ATHZ-05",
+        "objectives": [
+            "Determine if OAuth2 implementation is vulnerable or using a deprecated or custom implementation."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/05-Authorization_Testing/05-Testing_for_OAuth_Weaknesses",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-ATHZ"
+    },
+    {
+        "description": "Testing for Session Management Schema",
+        "id": "WSTG-SESS-01",
+        "objectives": [
+            "Gather session tokens, for the same user and for different users where possible.",
+            "Analyze and ensure that enough randomness exists to stop session forging attacks.",
+            "Modify cookies that are not signed and contain information that can be manipulated."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/06-Session_Management_Testing/01-Testing_for_Session_Management_Schema",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-SESS"
+    },
+    {
+        "description": "Testing for Cookies Attributes",
+        "id": "WSTG-SESS-02",
+        "objectives": [
+            "Ensure that the proper security configuration is set for cookies."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/06-Session_Management_Testing/02-Testing_for_Cookies_Attributes",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-SESS"
+    },
+    {
+        "description": "Testing for Session Fixation",
+        "id": "WSTG-SESS-03",
+        "objectives": [
+            "Analyze the authentication mechanism and its flow.",
+            "Force cookies and assess the impact."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/06-Session_Management_Testing/03-Testing_for_Session_Fixation",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-SESS"
+    },
+    {
+        "description": "Testing for Exposed Session Variables",
+        "id": "WSTG-SESS-04",
+        "objectives": [
+            "Ensure that proper encryption is implemented.",
+            "Review the caching configuration.",
+            "Assess the channel and methods' security."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/06-Session_Management_Testing/04-Testing_for_Exposed_Session_Variables",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-SESS"
+    },
+    {
+        "description": "Testing for Cross Site Request Forgery",
+        "id": "WSTG-SESS-05",
+        "objectives": [
+            "Determine whether it is possible to initiate requests on a user's behalf that are not initiated by the user."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/06-Session_Management_Testing/05-Testing_for_Cross_Site_Request_Forgery",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-SESS"
+    },
+    {
+        "description": "Testing for Logout Functionality",
+        "id": "WSTG-SESS-06",
+        "objectives": [
+            "Assess the logout UI.",
+            "Analyze the session timeout and if the session is properly killed after logout."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/06-Session_Management_Testing/06-Testing_for_Logout_Functionality",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-SESS"
+    },
+    {
+        "description": "Testing Session Timeout",
+        "id": "WSTG-SESS-07",
+        "objectives": [
+            "Validate that a hard session timeout exists."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/06-Session_Management_Testing/07-Testing_Session_Timeout",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-SESS"
+    },
+    {
+        "description": "Testing for Session Puzzling",
+        "id": "WSTG-SESS-08",
+        "objectives": [
+            "Identify all session variables.",
+            "Break the logical flow of session generation."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/06-Session_Management_Testing/08-Testing_for_Session_Puzzling",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-SESS"
+    },
+    {
+        "description": "Testing for Session Hijacking",
+        "id": "WSTG-SESS-09",
+        "objectives": [
+            "Identify vulnerable session cookies.",
+            "Hijack vulnerable cookies and assess the risk level."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/06-Session_Management_Testing/09-Testing_for_Session_Hijacking",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-SESS"
+    },
+    {
+        "description": "Testing JSON Web Tokens",
+        "id": "WSTG-SESS-10",
+        "objectives": [
+            "Determine whether the JWTs expose sensitive information.",
+            "Determine whether the JWTs can be tampered with or modified."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/06-Session_Management_Testing/10-Testing_JSON_Web_Tokens",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-SESS"
+    },
+    {
+        "description": "Testing for Reflected Cross Site Scripting",
+        "id": "WSTG-INPV-01",
+        "objectives": [
+            "Identify variables that are reflected in responses.",
+            "Assess the input they accept and the encoding that gets applied on return (if any)."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/07-Input_Validation_Testing/01-Testing_for_Reflected_Cross_Site_Scripting",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-INPV"
+    },
+    {
+        "description": "Testing for Stored Cross Site Scripting",
+        "id": "WSTG-INPV-02",
+        "objectives": [
+            "Identify stored input that is reflected on the client-side.",
+            "Assess the input they accept and the encoding that gets applied on return (if any)."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/07-Input_Validation_Testing/02-Testing_for_Stored_Cross_Site_Scripting",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-INPV"
+    },
+    {
+        "description": "Testing for HTTP Verb Tampering",
+        "id": "WSTG-INPV-03",
+        "objectives": [
+            ""
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/07-Input_Validation_Testing/03-Testing_for_HTTP_Verb_Tampering",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-INPV"
+    },
+    {
+        "description": "Testing for HTTP Parameter Pollution",
+        "id": "WSTG-INPV-04",
+        "objectives": [
+            "Identify the backend and the parsing method used.",
+            "Assess injection points and try bypassing input filters using HPP."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/07-Input_Validation_Testing/04-Testing_for_HTTP_Parameter_Pollution",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-INPV"
+    },
+    {
+        "description": "Testing for SQL Injection",
+        "id": "WSTG-INPV-05",
+        "objectives": [
+            "Identify SQL injection points.",
+            "Assess the severity of the injection and the level of access that can be achieved through it."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/07-Input_Validation_Testing/05-Testing_for_SQL_Injection",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-INPV"
+    },
+    {
+        "description": "Testing for LDAP Injection",
+        "id": "WSTG-INPV-06",
+        "objectives": [
+            "Identify LDAP injection points.",
+            "Assess the severity of the injection."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/07-Input_Validation_Testing/06-Testing_for_LDAP_Injection",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-INPV"
+    },
+    {
+        "description": "Testing for XML Injection",
+        "id": "WSTG-INPV-07",
+        "objectives": [
+            "Identify XML injection points.",
+            "Assess the types of exploits that can be attained and their severities."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/07-Input_Validation_Testing/07-Testing_for_XML_Injection",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-INPV"
+    },
+    {
+        "description": "Testing for SSI Injection",
+        "id": "WSTG-INPV-08",
+        "objectives": [
+            "Identify SSI injection points.",
+            "Assess the severity of the injection."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/07-Input_Validation_Testing/08-Testing_for_SSI_Injection",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-INPV"
+    },
+    {
+        "description": "Testing for XPath Injection",
+        "id": "WSTG-INPV-09",
+        "objectives": [
+            "Identify XPATH injection points."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/07-Input_Validation_Testing/09-Testing_for_XPath_Injection",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-INPV"
+    },
+    {
+        "description": "Testing for IMAP SMTP Injection",
+        "id": "WSTG-INPV-10",
+        "objectives": [
+            "Identify IMAP/SMTP injection points.",
+            "Understand the data flow and deployment structure of the system.",
+            "Assess the injection impacts."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/07-Input_Validation_Testing/10-Testing_for_IMAP_SMTP_Injection",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-INPV"
+    },
+    {
+        "description": "Testing for Code Injection",
+        "id": "WSTG-INPV-11",
+        "objectives": [
+            "Identify injection points where you can inject code into the application.",
+            "Assess the injection severity."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/07-Input_Validation_Testing/11-Testing_for_Code_Injection",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-INPV"
+    },
+    {
+        "description": "Testing for Command Injection",
+        "id": "WSTG-INPV-12",
+        "objectives": [
+            "Identify and assess the command injection points."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/07-Input_Validation_Testing/12-Testing_for_Command_Injection",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-INPV"
+    },
+    {
+        "description": "Testing for Buffer Overflow",
+        "id": "WSTG-INPV-13",
+        "objectives": [
+            ""
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/07-Input_Validation_Testing/13-Testing_for_Buffer_Overflow",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-INPV"
+    },
+    {
+        "description": "Testing for Format String Injection",
+        "id": "WSTG-INPV-13-bis",
+        "objectives": [
+            "Assess whether injecting format string conversion specifiers into user-controlled fields causes undesired behavior from the application."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/07-Input_Validation_Testing/13-Testing_for_Format_String_Injection",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-INPV"
+    },
+    {
+        "description": "Testing for Incubated Vulnerability",
+        "id": "WSTG-INPV-14",
+        "objectives": [
+            "Identify injections that are stored and require a recall step to the stored injection.",
+            "Understand how a recall step could occur.",
+            "Set listeners or activate the recall step if possible."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/07-Input_Validation_Testing/14-Testing_for_Incubated_Vulnerability",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-INPV"
+    },
+    {
+        "description": "Testing for HTTP Splitting Smuggling",
+        "id": "WSTG-INPV-15",
+        "objectives": [
+            "Assess if the application is vulnerable to splitting, identifying what possible attacks are achievable.",
+            "Assess if the chain of communication is vulnerable to smuggling, identifying what possible attacks are achievable."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/07-Input_Validation_Testing/15-Testing_for_HTTP_Splitting_Smuggling",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-INPV"
+    },
+    {
+        "description": "Testing for HTTP Incoming Requests",
+        "id": "WSTG-INPV-16",
+        "objectives": [
+            "Monitor all incoming and outgoing HTTP requests to the Web Server to inspect any suspicious requests.",
+            "Monitor HTTP traffic without changes of end user Browser proxy or client-side application."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/07-Input_Validation_Testing/16-Testing_for_HTTP_Incoming_Requests",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-INPV"
+    },
+    {
+        "description": "Testing for Host Header Injection",
+        "id": "WSTG-INPV-17",
+        "objectives": [
+            "Assess if the Host header is being parsed dynamically in the application.",
+            "Bypass security controls that rely on the header."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/07-Input_Validation_Testing/17-Testing_for_Host_Header_Injection",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-INPV"
+    },
+    {
+        "description": "Testing for Server-side Template Injection",
+        "id": "WSTG-INPV-18",
+        "objectives": [
+            "Detect template injection vulnerability points.",
+            "Identify the templating engine.",
+            "Build the exploit."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/07-Input_Validation_Testing/18-Testing_for_Server-side_Template_Injection",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-INPV"
+    },
+    {
+        "description": "Testing for Server-Side Request Forgery",
+        "id": "WSTG-INPV-19",
+        "objectives": [
+            "Identify SSRF injection points.",
+            "Test if the injection points are exploitable.",
+            "Asses the severity of the vulnerability."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/07-Input_Validation_Testing/19-Testing_for_Server-Side_Request_Forgery",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-INPV"
+    },
+    {
+        "description": "Testing for Mass Assignment",
+        "id": "WSTG-INPV-20",
+        "objectives": [
+            "Identify requests that modify objects",
+            "Assess if it is possible to modify fields never intended to be modified from outside"
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/07-Input_Validation_Testing/20-Testing_for_Mass_Assignment",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-INPV"
+    },
+    {
+        "description": "Testing for Improper Error Handling",
+        "id": "WSTG-ERRH-01",
+        "objectives": [
+            "Identify existing error output.",
+            "Analyze the different output returned."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/08-Testing_for_Error_Handling/01-Testing_For_Improper_Error_Handling",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-ERRH"
+    },
+    {
+        "description": "Testing for Stack Traces",
+        "id": "WSTG-ERRH-02",
+        "objectives": [
+            ""
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/08-Testing_for_Error_Handling/02-Testing_for_Stack_Traces",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-ERRH"
+    },
+    {
+        "description": "Testing for Weak Transport Layer Security",
+        "id": "WSTG-CRYP-01",
+        "objectives": [
+            "Validate the service configuration.",
+            "Review the digital certificate's cryptographic strength and validity.",
+            "Ensure that the TLS security is not bypassable and is properly implemented across the application."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/09-Testing_for_Weak_Cryptography/01-Testing_for_Weak_Transport_Layer_Security",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-CRYP"
+    },
+    {
+        "description": "Testing for Padding Oracle",
+        "id": "WSTG-CRYP-02",
+        "objectives": [
+            "Identify encrypted messages that rely on padding.",
+            "Attempt to break the padding of the encrypted messages and analyze the returned error messages for further analysis."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/09-Testing_for_Weak_Cryptography/02-Testing_for_Padding_Oracle",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-CRYP"
+    },
+    {
+        "description": "Testing for Sensitive Information Sent via Unencrypted Channels",
+        "id": "WSTG-CRYP-03",
+        "objectives": [
+            "Identify sensitive information transmitted through the various channels.",
+            "Assess the privacy and security of the channels used."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/09-Testing_for_Weak_Cryptography/03-Testing_for_Sensitive_Information_Sent_via_Unencrypted_Channels",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-CRYP"
+    },
+    {
+        "description": "Testing for Weak Encryption",
+        "id": "WSTG-CRYP-04",
+        "objectives": [
+            "Provide a guideline for the identification weak encryption or hashing uses and implementations."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/09-Testing_for_Weak_Cryptography/04-Testing_for_Weak_Encryption",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-CRYP"
+    },
+    {
+        "description": "Test Business Logic Data Validation",
+        "id": "WSTG-BUSL-01",
+        "objectives": [
+            "Identify data injection points.",
+            "Validate that all checks are occurring on the backend and can't be bypassed.",
+            "Attempt to break the format of the expected data and analyze how the application is handling it."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/10-Business_Logic_Testing/01-Test_Business_Logic_Data_Validation",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-BUSL"
+    },
+    {
+        "description": "Test Ability to Forge Requests",
+        "id": "WSTG-BUSL-02",
+        "objectives": [
+            "Review the project documentation looking for guessable, predictable, or hidden functionality of fields.",
+            "Insert logically valid data in order to bypass normal business logic workflow."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/10-Business_Logic_Testing/02-Test_Ability_to_Forge_Requests",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-BUSL"
+    },
+    {
+        "description": "Test Integrity Checks",
+        "id": "WSTG-BUSL-03",
+        "objectives": [
+            "Review the project documentation for components of the system that move, store, or handle data.",
+            "Determine what type of data is logically acceptable by the component and what types the system should guard against.",
+            "Determine who should be allowed to modify or read that data in each component.",
+            "Attempt to insert, update, or delete data values used by each component that should not be allowed per the business logic workflow."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/10-Business_Logic_Testing/03-Test_Integrity_Checks",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-BUSL"
+    },
+    {
+        "description": "Test for Process Timing",
+        "id": "WSTG-BUSL-04",
+        "objectives": [
+            "Review the project documentation for system functionality that may be impacted by time.",
+            "Develop and execute misuse cases."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/10-Business_Logic_Testing/04-Test_for_Process_Timing",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-BUSL"
+    },
+    {
+        "description": "Test Number of Times a Function Can Be Used Limits",
+        "id": "WSTG-BUSL-05",
+        "objectives": [
+            "Identify functions that must set limits to the times they can be called.",
+            "Assess if there is a logical limit set on the functions and if it is properly validated."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/10-Business_Logic_Testing/05-Test_Number_of_Times_a_Function_Can_Be_Used_Limits",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-BUSL"
+    },
+    {
+        "description": "Testing for the Circumvention of Work Flows",
+        "id": "WSTG-BUSL-06",
+        "objectives": [
+            "Review the project documentation for methods to skip or go through steps in the application process in a different order from the intended business logic flow.",
+            "Develop a misuse case and try to circumvent every logic flow identified."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/10-Business_Logic_Testing/06-Testing_for_the_Circumvention_of_Work_Flows",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-BUSL"
+    },
+    {
+        "description": "Test Defenses Against Application Misuse",
+        "id": "WSTG-BUSL-07",
+        "objectives": [
+            "Generate notes from all tests conducted against the system.",
+            "Review which tests had a different functionality based on aggressive input.",
+            "Understand the defenses in place and verify if they are enough to protect the system against bypassing techniques."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/10-Business_Logic_Testing/07-Test_Defenses_Against_Application_Misuse",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-BUSL"
+    },
+    {
+        "description": "Test Upload of Unexpected File Types",
+        "id": "WSTG-BUSL-08",
+        "objectives": [
+            "Review the project documentation for file types that are rejected by the system.",
+            "Verify that the unwelcomed file types are rejected and handled safely.",
+            "Verify that file batch uploads are secure and do not allow any bypass against the set security measures."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/10-Business_Logic_Testing/08-Test_Upload_of_Unexpected_File_Types",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-BUSL"
+    },
+    {
+        "description": "Test Upload of Malicious Files",
+        "id": "WSTG-BUSL-09",
+        "objectives": [
+            "Identify the file upload functionality.",
+            "Review the project documentation to identify what file types are considered acceptable, and what types would be considered dangerous or malicious.",
+            "If documentation is not available then consider what would be appropriate based on the purpose of the application.",
+            "Determine how the uploaded files are processed.",
+            "Obtain or create a set of malicious files for testing.",
+            "Try to upload the malicious files to the application and determine whether it is accepted and processed."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/10-Business_Logic_Testing/09-Test_Upload_of_Malicious_Files",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-BUSL"
+    },
+    {
+        "description": "Test Payment Functionality",
+        "id": "WSTG-BUSL-10",
+        "objectives": [
+            "Determine whether the business logic for the e-commerce functionality is robust.",
+            "Understand how the payment functionality works.",
+            "Determine whether the payment functionality is secure."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/10-Business_Logic_Testing/10-Test-Payment-Functionality",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-BUSL"
+    },
+    {
+        "description": "Testing for DOM-Based Cross Site Scripting",
+        "id": "WSTG-CLNT-01",
+        "objectives": [
+            "Identify DOM sinks.",
+            "Build payloads that pertain to every sink type."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/11-Client-side_Testing/01-Testing_for_DOM-based_Cross_Site_Scripting",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-CLNT"
+    },
+    {
+        "description": "Testing for JavaScript Execution",
+        "id": "WSTG-CLNT-02",
+        "objectives": [
+            "Identify sinks and possible JavaScript injection points."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/11-Client-side_Testing/02-Testing_for_JavaScript_Execution",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-CLNT"
+    },
+    {
+        "description": "Testing for HTML Injection",
+        "id": "WSTG-CLNT-03",
+        "objectives": [
+            "Identify HTML injection points and assess the severity of the injected content."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/11-Client-side_Testing/03-Testing_for_HTML_Injection",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-CLNT"
+    },
+    {
+        "description": "Testing for Client-side URL Redirect",
+        "id": "WSTG-CLNT-04",
+        "objectives": [
+            "Identify injection points that handle URLs or paths.",
+            "Assess the locations that the system could redirect to."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/11-Client-side_Testing/04-Testing_for_Client-side_URL_Redirect",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-CLNT"
+    },
+    {
+        "description": "Testing for CSS Injection",
+        "id": "WSTG-CLNT-05",
+        "objectives": [
+            "Identify CSS injection points.",
+            "Assess the impact of the injection."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/11-Client-side_Testing/05-Testing_for_CSS_Injection",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-CLNT"
+    },
+    {
+        "description": "Testing for Client-side Resource Manipulation",
+        "id": "WSTG-CLNT-06",
+        "objectives": [
+            "Identify sinks with weak input validation.",
+            "Assess the impact of the resource manipulation."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/11-Client-side_Testing/06-Testing_for_Client-side_Resource_Manipulation",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-CLNT"
+    },
+    {
+        "description": "Testing Cross Origin Resource Sharing",
+        "id": "WSTG-CLNT-07",
+        "objectives": [
+            "Identify endpoints that implement CORS.",
+            "Ensure that the CORS configuration is secure or harmless."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/11-Client-side_Testing/07-Testing_Cross_Origin_Resource_Sharing",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-CLNT"
+    },
+    {
+        "description": "Testing for Cross Site Flashing",
+        "id": "WSTG-CLNT-08",
+        "objectives": [
+            "Decompile and analyze the application's code.",
+            "Assess sinks inputs and unsafe method usages."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/11-Client-side_Testing/08-Testing_for_Cross_Site_Flashing",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-CLNT"
+    },
+    {
+        "description": "Testing for Clickjacking",
+        "id": "WSTG-CLNT-09",
+        "objectives": [
+            "Understand security measures in place.",
+            "Assess how strict the security measures are and if they are bypassable."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/11-Client-side_Testing/09-Testing_for_Clickjacking",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-CLNT"
+    },
+    {
+        "description": "Testing WebSockets",
+        "id": "WSTG-CLNT-10",
+        "objectives": [
+            "Identify the usage of WebSockets.",
+            "Assess its implementation by using the same tests on normal HTTP channels."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/11-Client-side_Testing/10-Testing_WebSockets",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-CLNT"
+    },
+    {
+        "description": "Testing Web Messaging",
+        "id": "WSTG-CLNT-11",
+        "objectives": [
+            "Assess the security of the message's origin.",
+            "Validate that it's using safe methods and validating its input."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/11-Client-side_Testing/11-Testing_Web_Messaging",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-CLNT"
+    },
+    {
+        "description": "Testing Browser Storage",
+        "id": "WSTG-CLNT-12",
+        "objectives": [
+            "Determine whether the website is storing sensitive data in client-side storage.",
+            "The code handling of the storage objects should be examined for possibilities of injection attacks, such as utilizing unvalidated input or vulnerable libraries."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/11-Client-side_Testing/12-Testing_Browser_Storage",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-CLNT"
+    },
+    {
+        "description": "Testing for Cross Site Script Inclusion",
+        "id": "WSTG-CLNT-13",
+        "objectives": [
+            "Locate sensitive data across the system.",
+            "Assess the leakage of sensitive data through various techniques."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/11-Client-side_Testing/13-Testing_for_Cross_Site_Script_Inclusion",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-CLNT"
+    },
+    {
+        "description": "Testing for Reverse Tabnabbing",
+        "id": "WSTG-CLNT-14",
+        "objectives": [
+            ""
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/11-Client-side_Testing/14-Testing_for_Reverse_Tabnabbing",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-CLNT"
+    },
+    {
+        "description": "Testing GraphQL",
+        "id": "WSTG-APIT-01",
+        "objectives": [
+            "Assess that a secure and production-ready configuration is deployed.",
+            "Validate all input fields against generic attacks.",
+            "Ensure that proper access controls are applied."
+        ],
+        "observations": "Your observation",
+        "reference": "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/12-API_Testing/01-Testing_GraphQL",
+        "substeps": [
+            {
+                "step": "Step 1",
+                "description": "Your note 1"
+            }
+        ],
+        "testCaseStatus": "NOT_TESTED",
+        "category": "WSTG-APIT"
+    }
+]
