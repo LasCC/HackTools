@@ -216,10 +216,10 @@ devDependencies:
     version: 3.22.0(@types/react@18.0.21)(react-dom@18.2.0)(react@18.2.0)
   '@vitejs/plugin-legacy':
     specifier: ^4.0.3
-    version: 4.0.3(terser@5.17.4)(vite@3.1.3)
+    version: 4.0.3(terser@5.17.4)(vite@3.2.7)
   '@vitejs/plugin-react':
     specifier: 2.1.0
-    version: 2.1.0(vite@3.1.3)
+    version: 2.1.0(vite@3.2.7)
   chokidar:
     specifier: ^3.5.3
     version: 3.5.3
@@ -272,11 +272,11 @@ devDependencies:
     specifier: 4.8.3
     version: 4.8.3
   vite:
-    specifier: 3.1.3
-    version: 3.1.3(less@4.1.3)(sass@1.55.0)(terser@5.17.4)
+    specifier: 3.2.7
+    version: 3.2.7(@types/node@18.7.23)(less@4.1.3)(sass@1.55.0)(terser@5.17.4)
   vite-plugin-static-copy:
     specifier: ^0.13.1
-    version: 0.13.1(vite@3.1.3)
+    version: 0.13.1(vite@3.2.7)
   ws:
     specifier: 8.9.0
     version: 8.9.0
@@ -3093,7 +3093,7 @@ packages:
       react: 18.2.0
     dev: false
 
-  /@vitejs/plugin-legacy@4.0.3(terser@5.17.4)(vite@3.1.3):
+  /@vitejs/plugin-legacy@4.0.3(terser@5.17.4)(vite@3.2.7):
     resolution: {integrity: sha512-RqDQOSEmFSNL42vITkNp8HE8Ak1yjGgaav4B6BGcZ8/URK0wikzwSyhNRirHDkp+snflEEk7iPZXTXUYA9exbg==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
@@ -3108,12 +3108,12 @@ packages:
       regenerator-runtime: 0.13.11
       systemjs: 6.14.1
       terser: 5.17.4
-      vite: 3.1.3(less@4.1.3)(sass@1.55.0)(terser@5.17.4)
+      vite: 3.2.7(@types/node@18.7.23)(less@4.1.3)(sass@1.55.0)(terser@5.17.4)
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /@vitejs/plugin-react@2.1.0(vite@3.1.3):
+  /@vitejs/plugin-react@2.1.0(vite@3.2.7):
     resolution: {integrity: sha512-am6rPyyU3LzUYne3Gd9oj9c4Rzbq5hQnuGXSMT6Gujq45Il/+bunwq3lrB7wghLkiF45ygMwft37vgJ/NE8IAA==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
@@ -3126,7 +3126,7 @@ packages:
       '@babel/plugin-transform-react-jsx-source': 7.19.6(@babel/core@7.21.8)
       magic-string: 0.26.7
       react-refresh: 0.14.0
-      vite: 3.1.3(less@4.1.3)(sass@1.55.0)(terser@5.17.4)
+      vite: 3.2.7(@types/node@18.7.23)(less@4.1.3)(sass@1.55.0)(terser@5.17.4)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -9591,14 +9591,6 @@ packages:
       rollup: 2.79.1
     dev: true
 
-  /rollup@2.78.1:
-    resolution: {integrity: sha512-VeeCgtGi4P+o9hIg+xz4qQpRl6R401LWEXBmxYKOV4zlF82lyhgh2hTZnheFUbANE8l2A41F458iwj2vEYaXJg==}
-    engines: {node: '>=10.0.0'}
-    hasBin: true
-    optionalDependencies:
-      fsevents: 2.3.2
-    dev: true
-
   /rollup@2.79.1:
     resolution: {integrity: sha512-uKxbd0IhMZOhjAiD5oAFp7BqvkA4Dv47qpOCtaNvng4HBwdbWtdOh8f5nZNuk2rp51PMGk3bzfWu5oayNEuYnw==}
     engines: {node: '>=10.0.0'}
@@ -10564,7 +10556,7 @@ packages:
       util-deprecate: 1.0.2
     dev: false
 
-  /vite-plugin-static-copy@0.13.1(vite@3.1.3):
+  /vite-plugin-static-copy@0.13.1(vite@3.2.7):
     resolution: {integrity: sha512-KwIcGBT1aOxSq+laK3VmSngoEa3HXWj/6ZEXdv+y59eZ7p/XSuPahoDo+CfYW22JjTdnstgeKWiX+78KNgDu6g==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
@@ -10574,33 +10566,40 @@ packages:
       fast-glob: 3.2.12
       fs-extra: 11.1.1
       picocolors: 1.0.0
-      vite: 3.1.3(less@4.1.3)(sass@1.55.0)(terser@5.17.4)
+      vite: 3.2.7(@types/node@18.7.23)(less@4.1.3)(sass@1.55.0)(terser@5.17.4)
     dev: true
 
-  /vite@3.1.3(less@4.1.3)(sass@1.55.0)(terser@5.17.4):
-    resolution: {integrity: sha512-/3XWiktaopByM5bd8dqvHxRt5EEgRikevnnrpND0gRfNkrMrPaGGexhtLCzv15RcCMtV2CLw+BPas8YFeSG0KA==}
+  /vite@3.2.7(@types/node@18.7.23)(less@4.1.3)(sass@1.55.0)(terser@5.17.4):
+    resolution: {integrity: sha512-29pdXjk49xAP0QBr0xXqu2s5jiQIXNvE/xwd0vUizYT2Hzqe4BksNNoWllFVXJf4eLZ+UlVQmXfB4lWrc+t18g==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
     peerDependencies:
+      '@types/node': '>= 14'
       less: '*'
       sass: '*'
       stylus: '*'
+      sugarss: '*'
       terser: ^5.4.0
     peerDependenciesMeta:
+      '@types/node':
+        optional: true
       less:
         optional: true
       sass:
         optional: true
       stylus:
         optional: true
+      sugarss:
+        optional: true
       terser:
         optional: true
     dependencies:
+      '@types/node': 18.7.23
       esbuild: 0.15.18
       less: 4.1.3
       postcss: 8.4.23
       resolve: 1.22.2
-      rollup: 2.78.1
+      rollup: 2.79.1
       sass: 1.55.0
       terser: 5.17.4
     optionalDependencies:
