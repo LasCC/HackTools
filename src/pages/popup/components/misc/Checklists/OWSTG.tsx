@@ -1,6 +1,7 @@
+import { useState } from 'react';
 import { BugOutlined, HourglassOutlined, SearchOutlined, UserOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
-import { Button, Card, Col, Divider, Dropdown, FloatButton, Input, Layout, Progress, Row, Select, Space, Statistic, Table, Typography, message } from 'antd';
+import { Button, Card, Col, Divider, Dropdown, FloatButton, Input, Layout, Progress, Row, Select, Space, Statistic, Table, Typography, message, Modal } from 'antd';
 import { BsFiletypeJson } from 'react-icons/bs';
 import { MdHttp } from 'react-icons/md';
 import quotes from '../../../assets/data/Quotes/Quotes.json';
@@ -17,11 +18,12 @@ const OWSTG = ({ id }: { id: string }) => {
 
   // Handler for this Tab's state
   const useStore = createOWSTGStore(id);
-  const { stateFlattenedChecklists, handleStatusChange, handleObservationsChange, handleFileUpload, handleCSVExport } = useStore();
+  const [remoteURIMethodology, setRemoteURIMethodology] = useState("");
+  const { stateFlattenedChecklists, handleStatusChange, handleObservationsChange, handleFileUpload, handleCSVExport, handleRemoteMethodologyImportFromURI } = useStore();
 
 
   const currentTabStateExportAsJSON = () => {
-    const dataStr = JSON.stringify(stateFlattenedChecklists);
+    const dataStr = JSON.stringify(stateFlattenedChecklists, null, 2);
     const dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr);
 
     let exportFileDefaultName = `htool_state_methodology_${new Date().getTime()}_${new Date().toLocaleDateString()}.json`;
@@ -39,21 +41,40 @@ const OWSTG = ({ id }: { id: string }) => {
     ImportURI = "3"
   };
 
-const handleMenuClick: MenuProps['onClick'] = (e) => {
-  switch (e.key) {
-    case Actions.ImportLocalFile:
-      handleFileUpload();
-      break;
-    case Actions.ExportJSON:
-      currentTabStateExportAsJSON()
-      break;
-    case Actions.ImportURI:
-      message.info('Not implemented yet');
-      break;
-    default:
-      break;
-  }
-};
+
+  const handleMenuClick: MenuProps['onClick'] = (e) => {
+    switch (e.key) {
+      case Actions.ImportLocalFile:
+        handleFileUpload();
+        break;
+      case Actions.ExportJSON:
+        currentTabStateExportAsJSON()
+        break;
+      case Actions.ImportURI:
+        let inputURI = remoteURIMethodology;
+        Modal.confirm({
+          width: 600,
+          title: 'Enter the URI of the methodology',
+          content: (
+            <Input placeholder="Enter URI"
+              onChange={(e) => inputURI = e.target.value}
+              onPressEnter={async () => {
+                await handleRemoteMethodologyImportFromURI(inputURI);
+                setRemoteURIMethodology(inputURI);
+              }}
+            />
+          ),
+          onOk: async () => {
+            await handleRemoteMethodologyImportFromURI(inputURI);
+            setRemoteURIMethodology(inputURI);
+          }
+        });
+        break;
+        break;
+      default:
+        break;
+    }
+  };
 
   const items: MenuProps['items'] = [
     {

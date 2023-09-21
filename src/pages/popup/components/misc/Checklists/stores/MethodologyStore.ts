@@ -2,23 +2,17 @@ import { saveAs } from 'file-saver';
 import Papa from 'papaparse';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { message } from 'antd';
-import { AtomicTest, Substep, Pentest, TestCaseStatus as ImportedTestCaseStatus } from './../ChecklistInterfaces';
+import { message, Modal } from 'antd';
+import { AtomicTest, Substep, Pentest, TestCaseStatus } from './../ChecklistInterfaces';
 import checklists from "../../../../assets/data/Methodology/OWSTG.json"
 import { Record, String, Array, Union, Literal } from 'runtypes';
 
-const TestCaseStatus = Union(
-  Literal('NOT_TESTED'),
-  Literal('IN_PROGRESS'),
-  Literal('PASSED'),
-  Literal('FAILED')
-);
 
 const AtomicTest = (Record({
   id: String,
   description: String,
   objectives: Array(String),
-  testCaseStatus: TestCaseStatus,
+  testCaseStatus: String,
   observations: String,
   reference: String,
   substeps: Array(
@@ -29,11 +23,13 @@ const AtomicTest = (Record({
   )
 }));
 
-const Methodology = Array(AtomicTest);
+export const Methodology = Array(AtomicTest);
 
 export type State = {
   stateFlattenedChecklists: AtomicTest[];
-  handleStatusChange: (id: string, newStatus: ImportedTestCaseStatus) => void;
+  setStateFlattenedChecklists: (newState: AtomicTest[]) => void;
+  handleRemoteMethodologyImportFromURI: (uri) => void;
+  handleStatusChange: (id: string, newStatus: TestCaseStatus) => void;
   handleObservationsChange: (id: string, newObservations: string) => void;
   handleFileUpload: () => void;
   handleCSVExport: () => void;
@@ -42,8 +38,8 @@ export type State = {
 export const initializeChecklist = (checklists: any) => {
   return checklists.map(test => ({
     ...test,
-    testCaseStatus: Object.values(TestCaseStatus).includes(test.testCaseStatus as ImportedTestCaseStatus)
-      ? test.testCaseStatus as ImportedTestCaseStatus
+    testCaseStatus: Object.values(TestCaseStatus).includes(test.testCaseStatus as TestCaseStatus)
+      ? test.testCaseStatus as TestCaseStatus
       : 'NOT_TESTED'
   }));
 };
@@ -53,7 +49,10 @@ const createOWSTGStore = (id: string) =>
     persist(
       (set, get) => ({
         stateFlattenedChecklists: initializeChecklist(checklists),
-        handleStatusChange: (id: string, newStatus: ImportedTestCaseStatus) => {
+        setStateFlattenedChecklists: (newState: AtomicTest[]) => {
+          set({ stateFlattenedChecklists: newState });
+        },
+        handleStatusChange: (id: string, newStatus: TestCaseStatus) => {
           const updatedChecklists = get().stateFlattenedChecklists.map(test =>
             test.id === id ? { ...test, testCaseStatus: newStatus } : test
           );
@@ -108,6 +107,20 @@ const createOWSTGStore = (id: string) =>
           const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
           saveAs(blob, `htool_${new Date().toISOString()}_${new Date().getTime()}.csv`);
         },
+        handleRemoteMethodologyImportFromURI: async (uri) => {
+          try {
+            const response = await fetch(uri);
+            const methodology = await response.json();
+            const validatedMethodology = Methodology.check(methodology);
+            set({ stateFlattenedChecklists: validatedMethodology });
+            message.success('Methodology imported successfully');
+          } catch (error) {
+            message.error('Error fetching methodology: ' + error.message);
+            console.error(error);
+          }
+        },
+
+
       }),
       {
         name: `methodology-tab-state-${id}`, // unique name
