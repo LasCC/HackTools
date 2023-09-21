@@ -21,17 +21,18 @@ const Index = () => {
     }
   };
 
-  useHotkeys('n', () => {
+  useHotkeys('N', () => {
     // create a new tab of methodology
     add();
   }
   );
 
-  useHotkeys('r', () => {
-    // rename current tab by opening the modal
-    setIsModalVisible(true);
-  }
-  );
+  // FIXME: State is not updating when renaming a tab / id conflict
+  // useHotkeys('r', () => {
+  //   // rename current tab by opening the modal
+  //   setIsModalVisible(true);
+  // }
+  // );
 
   const handleRename = () => {
     rename(currentTab, newLabel);
@@ -90,8 +91,11 @@ const Index = () => {
           </TabPane>
         ))}
       </Tabs>
-      <Modal title="Edit Tab Name" open={isModelOpen} onOk={handleRename} onCancel={handleCancel}>
-        <Input placeholder="Enter new name" onChange={(e) => setNewLabel(e.target.value)} />
+      <Modal title="Edit Tab Name" open={isModelOpen} onOk={handleRename} 
+      onCancel={handleCancel}>
+        <Input placeholder="Enter new name" onChange={(e) => setNewLabel(e.target.value)}   
+        onPressEnter={handleRename}
+        />
       </Modal>
     </div>
   );

@@ -11,16 +11,15 @@ const { TextArea } = Input;
 const { Header, Content } = Layout;
 
 
+
 const OWSTG = ({ id }: { id: string }) => {
   const QOTD: Quote = quotes[Math.floor(Math.random() * quotes.length)];
-
 
 
   // Handler for this Tab's state
   const useStore = createOWSTGStore(id);
   const [remoteURIMethodology, setRemoteURIMethodology] = useState("");
   const { stateFlattenedChecklists, handleStatusChange, handleObservationsChange, handleFileUpload, handleCSVExport, handleRemoteMethodologyImportFromURI } = useStore();
-
 
   const currentTabStateExportAsJSON = () => {
     const dataStr = JSON.stringify(stateFlattenedChecklists, null, 2);
@@ -94,12 +93,11 @@ const OWSTG = ({ id }: { id: string }) => {
     }
   ];
 
-
   const getColumnSearchProps = dataIndex => ({
     filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters = () => { } }) => (
       <div style={{ padding: 8 }}>
         <Input
-          placeholder={`Search ${dataIndex}`}
+          placeholder={`Search ${dataIndex.join('')}`}
           value={selectedKeys[0]}
           onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
           onPressEnter={() => confirm()}
@@ -122,19 +120,17 @@ const OWSTG = ({ id }: { id: string }) => {
       </div>
     ),
     filterIcon: filtered => <SearchOutlined style={{ color: filtered ? '#1890ff' : undefined }} />,
-    onFilter: (value, record) =>
-      record[dataIndex]
-        ? record[dataIndex].toString().toLowerCase().includes(value.toLowerCase())
-        : '',
+    onFilter: (value, record) => {
+      return dataIndex.some(index => String(record[index]).toLowerCase().includes(value.toLowerCase()));
+    },
   });
-
 
   const columns = [
     {
       title: 'Test ID',
       dataIndex: 'id',
       key: 'id',
-      ...getColumnSearchProps('id'),
+      ...getColumnSearchProps(['id']),
       render: (text, record) => (
         <a href={`${record.reference}`} target="_blank" rel="noreferrer">{text}</a>
       ),
@@ -143,6 +139,7 @@ const OWSTG = ({ id }: { id: string }) => {
       title: 'Description',
       dataIndex: 'description',
       key: 'description',
+      ...getColumnSearchProps(['description', 'observations']),
     },
     {
       title: 'State',
@@ -168,6 +165,8 @@ const OWSTG = ({ id }: { id: string }) => {
   ];
 
   const { Text, Link } = Typography;
+
+
 
   const menuProps = {
     items,
@@ -246,6 +245,8 @@ const OWSTG = ({ id }: { id: string }) => {
               </Col>
               <Col span={24} >
                 <TextArea value={record.observations}
+                  rows={5}
+                  placeholder="Any observations ?"
                   onChange={(e) => handleObservationsChange(record.id, e.target.value)} />
               </Col>
               <Divider />
