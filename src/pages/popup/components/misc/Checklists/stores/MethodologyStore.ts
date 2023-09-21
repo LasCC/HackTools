@@ -36,6 +36,7 @@ export type State = {
   handleStatusChange: (id: string, newStatus: ImportedTestCaseStatus) => void;
   handleObservationsChange: (id: string, newObservations: string) => void;
   handleFileUpload: () => void;
+  handleCSVExport: () => void;
 };
 
 export const initializeChecklist = (checklists: any) => {
@@ -93,6 +94,19 @@ const createOWSTGStore = (id: string) =>
             input.remove();
           };
           input.click();
+        },
+        handleCSVExport: () => {
+          const data = get().stateFlattenedChecklists.map(({ id, description, reference, testCaseStatus, observations }) => ({
+            id,
+            description,
+            reference,
+            testCaseStatus,
+            observations
+          }));
+
+          const csv = Papa.unparse(data);
+          const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+          saveAs(blob, `htool_${new Date().toISOString()}_${new Date().getTime()}.csv`);
         },
       }),
       {

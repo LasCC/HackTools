@@ -1,19 +1,12 @@
-import { useEffect } from 'react';
-import { Button, Card, Checkbox, Col, Divider, Form, Input, Layout, Modal, Popconfirm, Progress, Radio, Row, Select, Space, Statistic, Table, Tag, Tooltip, Typography, message } from 'antd';
-import createOWSTGStore, { initializeChecklist } from './stores/MethodologyStore';
-import { AtomicTest, Pentest, Substep, TestCaseStatus, Quote } from "./ChecklistInterfaces"
-import tabStateStore from './stores/TabStateStore';
-const { TextArea } = Input;
-import { useHotkeys } from 'react-hotkeys-hook';
-import { UserOutlined, BugOutlined, HourglassOutlined, SearchOutlined } from '@ant-design/icons';
-import { FloatButton } from 'antd';
-import { Dropdown } from 'antd';
-import { BsFiletypeJson } from 'react-icons/bs';
-import { TbCsv } from 'react-icons/tb';
-import { MdHttp } from 'react-icons/md';
+import { BugOutlined, HourglassOutlined, SearchOutlined, UserOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
-import { Record, String, Array, Number, Union, Literal, Static } from 'runtypes';
+import { Button, Card, Col, Divider, Dropdown, FloatButton, Input, Layout, Progress, Row, Select, Space, Statistic, Table, Typography, message } from 'antd';
+import { BsFiletypeJson } from 'react-icons/bs';
+import { MdHttp } from 'react-icons/md';
 import quotes from '../../../assets/data/Quotes/Quotes.json';
+import { AtomicTest, Quote, TestCaseStatus } from "./ChecklistInterfaces";
+import createOWSTGStore from './stores/MethodologyStore';
+const { TextArea } = Input;
 const { Header, Content } = Layout;
 
 
@@ -24,7 +17,7 @@ const OWSTG = ({ id }: { id: string }) => {
 
   // Handler for this Tab's state
   const useStore = createOWSTGStore(id);
-  const { stateFlattenedChecklists, handleStatusChange, handleObservationsChange, handleFileUpload } = useStore();
+  const { stateFlattenedChecklists, handleStatusChange, handleObservationsChange, handleFileUpload, handleCSVExport } = useStore();
 
 
   const currentTabStateExportAsJSON = () => {
@@ -45,12 +38,6 @@ const OWSTG = ({ id }: { id: string }) => {
     ExportJSON = "2",
     ImportURI = "3"
   };
-
-
-
-  const handleCSVExport = () => {
-    console.log("Exporting as CSV");
-  }
 
 const handleMenuClick: MenuProps['onClick'] = (e) => {
   switch (e.key) {
