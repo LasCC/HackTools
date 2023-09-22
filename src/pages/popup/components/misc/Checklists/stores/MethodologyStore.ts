@@ -1,11 +1,11 @@
+import { message } from 'antd';
 import { saveAs } from 'file-saver';
 import Papa from 'papaparse';
+import { Array, Record, String } from 'runtypes';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { message, Modal } from 'antd';
-import { AtomicTest, Substep, Pentest, TestCaseStatus } from './../ChecklistInterfaces';
-import checklists from "../../../../assets/data/Methodology/OWSTG.json"
-import { Record, String, Array, Union, Literal } from 'runtypes';
+import checklists from "../../../../assets/data/Methodology/OWSTG.json";
+import { AtomicTest, TestCaseStatus } from './../ChecklistInterfaces';
 
 
 const AtomicTest = (Record({

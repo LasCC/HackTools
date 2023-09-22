@@ -2,7 +2,7 @@ const manifest: chrome.runtime.ManifestV3 = {
     manifest_version: 3,
     name: "Hack-Tools",
     version: "0.5.0",
-    description: "The all in one Red team extension for web pentester",
+    description: "The all in one browser extension for offensive security professionals",
     action: {
         default_title: "Hack-Tools",
         default_popup: "src/pages/popup/index.html",

@@ -15,7 +15,6 @@ const index = () => {
         'tags',
         'substeps.description',
         'substeps.payload',
-        
       ]
   }
 

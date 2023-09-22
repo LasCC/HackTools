@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { BugOutlined, HourglassOutlined, SearchOutlined, UserOutlined } from '@ant-design/icons';
+import { BugOutlined, HourglassOutlined, QuestionCircleOutlined, SearchOutlined, UserOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Button, Card, Col, Divider, Dropdown, FloatButton, Input, Layout, Progress, Row, Select, Space, Statistic, Table, Typography, message, Modal } from 'antd';
 import { BsFiletypeJson } from 'react-icons/bs';
@@ -7,13 +7,43 @@ import { MdHttp } from 'react-icons/md';
 import quotes from '../../../assets/data/Quotes/Quotes.json';
 import { AtomicTest, Quote, TestCaseStatus } from "./ChecklistInterfaces";
 import createOWSTGStore from './stores/MethodologyStore';
+const { Paragraph } = Typography;
 const { TextArea } = Input;
 const { Header, Content } = Layout;
 
-
+const structureForHelpModal = `[
+  {
+    "id": "UNIQUE-TEST-ID-001",
+    "description": "Test description",
+    "objectives": ["Objective 1", "Objective 2"], 
+    "substeps": [
+      {
+        "step": "Step 1", 
+        "description": "Step 1 description" 
+      }
+    ],
+    "reference": "https://example.com/ref",
+    "status": "(NOT_TESTED|NOT_TESTED|IN_PROGRESS|PASSED|FAILED)",
+    "observations": "Observations..."
+  }
+]`;
 
 const OWSTG = ({ id }: { id: string }) => {
   const QOTD: Quote = quotes[Math.floor(Math.random() * quotes.length)];
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
 
 
   // Handler for this Tab's state
@@ -177,8 +207,8 @@ const OWSTG = ({ id }: { id: string }) => {
   return (
     <>
       <Card>
-        <Row gutter={[16, 16]}>
-          <Col span={6}>
+        <Row gutter={[8, 8]}>
+          <Col span={6} >
             <Progress
               size={75}
               type="circle"
@@ -266,7 +296,30 @@ const OWSTG = ({ id }: { id: string }) => {
           ),
         }}
       />
-      <FloatButton />
+      <FloatButton icon={<QuestionCircleOutlined />} onClick={showModal} />
+
+      <Modal title="How it works ?" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}
+      width={window.innerWidth > 800 ? 800 : window.innerWidth - 75}>
+      
+        <Typography style={{ textAlign: "justify" }}>
+          Methodology checklist is a tool that allows you to import a methodology and use it as a checklist. The checklist is then used to track progress and take notes.
+        </Typography>
+        <Divider />
+        <Paragraph>
+          You can define your own methodology by extending either the default OWASP Testing Guide in assets/ or by creating a JSON file having the following structure that represents a single test case :
+        </Paragraph>
+        <Paragraph code copyable={{ text: structureForHelpModal }}>
+        <pre> 
+          {structureForHelpModal}
+        </pre>
+        </Paragraph>
+        <Divider />
+        <p>
+          You can export the current state of the checklist as a JSON file. This can be useful for saving progress or sharing methodologies or results with others.
+          Or even a CSV file that can be used in a spreadsheet software.
+        </p>
+
+      </Modal>
     </>
   );
 };

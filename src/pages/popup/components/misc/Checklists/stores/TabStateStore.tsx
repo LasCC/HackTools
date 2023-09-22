@@ -42,6 +42,7 @@ const tabStateStore = create<State>(
       },
       remove: (targetKey: string) => {
         let newActiveKey = get().activeKey;
+        localStorage.removeItem(`methodology-tab-state-${targetKey}`);
         let lastIndex = -1;
         get().items.forEach((item, i) => {
           if (item.key === targetKey) {

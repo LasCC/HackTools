@@ -30,7 +30,7 @@
   </p>
 </div>
 
-### The all-in-one Red Team browser extension for **Web Pentesters**
+### The all-in-one  browser extension for **offensive security professionals**
 
 HackTools, is a web extension facilitating your **web application penetration tests**, it includes **cheat sheets** as well as all the **tools** used during a test such as XSS payloads, Reverse shells and much more.
 
