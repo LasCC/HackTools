@@ -2,7 +2,7 @@ import { ExportOutlined, FileSyncOutlined, ImportOutlined, QuestionCircleOutline
 import { Button, Col, Divider, Dropdown, FloatButton, Input, Modal, Row, Table, Tag, Typography, message } from 'antd';
 import Fuse from 'fuse.js';
 import { useState } from 'react';
-import usePayloadStore, { DataType, exampleData } from './store';
+import usePayloadStore, { DataType } from './store';
 const { Title, Paragraph } = Typography;
 
 
@@ -11,8 +11,7 @@ const index = () => {
   const { exportPayloadsAsJSON, importPayloadFromURL, importPayloadsFromLocalFile, payloads, setPayloads, remotePayloadURL, setRemotePayloadURL } = usePayloadStore();
 
   const [messageApi, contextHolder] = message.useMessage();
-  const [data, setData] = useState([]);
-
+  const [searchResults, setSearchResults] = useState<DataType[]>(payloads);
   const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
   const [isSyncModalOpen, setIsSyncModalOpen] = useState(false);
 
@@ -86,7 +85,7 @@ const index = () => {
   }
 
 
-  const fuse = new Fuse(exampleData, fuseOptions);
+  const fuse = new Fuse(payloads, fuseOptions);
 
   const items = [
     {
@@ -109,13 +108,11 @@ const index = () => {
   };
 
   const handleSearch = (value: string) => {
-    console.log(value);
     if (value) {
       const results = fuse.search(value);
-      console.log({ results })
-      setPayloads(results.map(result => result.item));
+      setSearchResults(results.map(result => result.item));
     } else {
-      setPayloads(exampleData);
+      setSearchResults(payloads);
     }
   };
 
@@ -139,7 +136,7 @@ const index = () => {
       title: 'Tags',
       dataIndex: 'tags',
       key: 'tags',
-      filters: Array.from(new Set(exampleData.flatMap(item => item.tags))).map(tag => ({ text: tag, value: tag })),
+      filters: Array.from(new Set(payloads.flatMap(item => item.tags))).map(tag => ({ text: tag, value: tag })),
       onFilter: (value, record) =>
         record.tags.toString().toLowerCase().includes(value.toString().toLowerCase()),
       render: (tags: string[]) => (
@@ -270,7 +267,7 @@ const index = () => {
 
       <Divider />
 
-      <Table columns={columns} dataSource={payloads} rowKey="id"
+      <Table columns={columns} dataSource={searchResults} rowKey="id"
         expandable={{
           expandedRowRender: (record: DataType) =>
             <>

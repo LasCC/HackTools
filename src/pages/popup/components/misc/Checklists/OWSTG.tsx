@@ -178,7 +178,6 @@ const OWSTG = ({ id }: { id: string }) => {
       filters: Object.values(TestCaseStatus).map(status => ({ text: status, value: status })),
       onFilter: (value, record) => record.testCaseStatus.indexOf(value) === 0,
       render: (testCaseStatus, record) => {
-        console.log(testCaseStatus, record);
         return (
           <Select
             defaultValue={record.testCaseStatus || TestCaseStatus.NOT_TESTED}

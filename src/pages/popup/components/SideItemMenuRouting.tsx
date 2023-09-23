@@ -219,5 +219,4 @@ const MiscTab: Array<IRouterComponent> = [
 
 // Make a single list of all tabs
 const Tabs = [...WebTab, ...SystemTab, ...MobileTab, ...MiscTab];
-console.log(Tabs);
 export default Tabs;

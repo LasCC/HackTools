@@ -121,8 +121,8 @@ const usePayloadStore = create<PayloadStoreState>(
                 const response = await fetch(get().remotePayloadURL);
                 const data = await response.json();
                 try {
-                    Payloads.check(data.payloads);
-                    set({ payloads: data.payloads });
+                    Payloads.check(data);
+                    set({ payloads: data });
                     message.success('Payloads imported successfully');
                 } catch (error) {
                     message.error(`Invalid structure ${error}`);
@@ -133,7 +133,7 @@ const usePayloadStore = create<PayloadStoreState>(
             exportPayloadsAsJSON: () => {
                 const data = JSON.stringify(get().payloads);
                 const blob = new Blob([data], { type: 'text/plain;charset=utf-8' });
-                saveAs(blob, `payloads_${new Date().toISOString()}_${new Date().getTime()}.json`);
+                saveAs(blob, `htools_payloads_${new Date().toISOString()}_${new Date().getTime()}.json`);
             }
         }),
         {

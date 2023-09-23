@@ -26,27 +26,27 @@ const { TabPane } = Tabs;
 const { TextArea } = Input;
 const { Option } = Select;
 
-export default function LinuxCommands () {
-    const http_url = PersistedState<IHTTP_UtilsProps>( 'http_url_repeater' );
-    const [ isModalVisible, setIsModalVisible ] = useState( false );
+export default function LinuxCommands() {
+    const http_url = PersistedState<IHTTP_UtilsProps>('http_url_repeater');
+    const [isModalVisible, setIsModalVisible] = useState(false);
 
     const windowMode = () => {
         const width = 1100;
         const height = 800;
 
-        chrome.windows.create( {
-            url: chrome.runtime.getURL( 'index.html' ),
+        chrome.windows.create({
+            url: chrome.runtime.getURL('index.html'),
             width: width,
             height: height,
             type: 'popup'
-        } );
+        });
     };
     const target = window.location.href;
     const showModal = () => {
-        setIsModalVisible( true );
+        setIsModalVisible(true);
     };
     const handleClose = () => {
-        setIsModalVisible( false );
+        setIsModalVisible(false);
     };
 
     interface IHTTP_UtilsProps {
@@ -55,65 +55,64 @@ export default function LinuxCommands () {
         type: string;
     }
 
-    const [ values, setValues ] = http_url( {
+    const [values, setValues] = http_url({
         url: '',
         protocol: 'http://',
         type: 'GET'
-    } );
-    const handleChange = ( name: string ) => ( event: { target: { value: string } } ) => {
-        setValues( { ...values, [ name ]: event.target.value } );
+    });
+    const handleChange = (name: string) => (event: { target: { value: string } }) => {
+        setValues({ ...values, [name]: event.target.value });
     };
-    const handleChangeSelect = ( name: string ) => ( event: string ) => {
-        setValues( { ...values, [ name ]: event } );
+    const handleChangeSelect = (name: string) => (event: string) => {
+        setValues({ ...values, [name]: event });
     };
 
     interface ContentProps {
         status: string | number;
         statusText: string;
         headers: {
-            [ key: string ]: string;
+            [key: string]: string;
         };
         data: string;
     }
     // Axios fetch
     const key = 'updatable';
-    const [ content, setContent ] = useState<ContentProps>();
-    const [ headerContent, setHeaderContent ] = useState( [] );
-    const [ commentResponse, setCommentResponse ] = useState( [] );
-    const [ inputResponse, setInputResponse ] = useState( [] );
-    const [ _, setLoading ] = useState<Boolean>();
+    const [content, setContent] = useState<ContentProps>();
+    const [headerContent, setHeaderContent] = useState([]);
+    const [commentResponse, setCommentResponse] = useState([]);
+    const [inputResponse, setInputResponse] = useState([]);
+    const [_, setLoading] = useState<Boolean>();
     const handleDelete = () => {
-        setContent( undefined );
-        setHeaderContent( [] );
-        setCommentResponse( [] );
-        setInputResponse( [] );
+        setContent(undefined);
+        setHeaderContent([]);
+        setCommentResponse([]);
+        setInputResponse([]);
         values.url = '';
     };
 
     const fetchData = async () => {
-        message.loading( { content: 'Loading...', key } );
-        await axios( {
+        message.loading({ content: 'Loading...', key });
+        await axios({
             method: values.type as Method,
-            url: values.protocol + values.url.replace( /https?:\/\//, '' ),
+            url: values.protocol + values.url.replace(/https?:\/\//, ''),
             headers: {}
-        } )
-            .then( ( res: React.ComponentState ) => {
-                setLoading( false ); // Set the loading to false
-                setContent( res ); // Axios response
-                message.success( { content: 'Loaded!', key } );
-                setHeaderContent( res.headers[ 'content-type' ] ); // Header content
-                console.log( res );
+        })
+            .then((res: React.ComponentState) => {
+                setLoading(false); // Set the loading to false
+                setContent(res); // Axios response
+                message.success({ content: 'Loaded!', key });
+                setHeaderContent(res.headers['content-type']); // Header content
                 const commentOnlyRegex = res.data.match(
-                    RegExp( /(\/\*[\w\'\s\r\n\*]*\*\/)|(\/\/[\w\s\']*)|(\<![\-\-\s\w\>\/]*\>)/, 'g' )
+                    RegExp(/(\/\*[\w\'\s\r\n\*]*\*\/)|(\/\/[\w\s\']*)|(\<![\-\-\s\w\>\/]*\>)/, 'g')
                 );
-                if ( commentOnlyRegex != null ) setCommentResponse( commentOnlyRegex );
-                const inputOnlyRegex = res.data.match( RegExp( /<form(.*?)<\/form>/, 'g' ) );
-                if ( inputOnlyRegex != null ) setInputResponse( inputOnlyRegex );
-            } )
-            .catch( ( err ) => {
-                console.log( err );
-                message.error( { content: err.message, key } );
-            } );
+                if (commentOnlyRegex != null) setCommentResponse(commentOnlyRegex);
+                const inputOnlyRegex = res.data.match(RegExp(/<form(.*?)<\/form>/, 'g'));
+                if (inputOnlyRegex != null) setInputResponse(inputOnlyRegex);
+            })
+            .catch((err) => {
+                console.error(err);
+                message.error({ content: err.message, key });
+            });
     };
 
     return (
@@ -128,14 +127,14 @@ export default function LinuxCommands () {
                 specific sequence to test for logic flaws.
             </Paragraph>
             <Divider dashed />
-            <Row gutter={[ 16, 16 ]} style={{ padding: 15 }}>
+            <Row gutter={[16, 16]} style={{ padding: 15 }}>
                 <Col>
                     <Select
                         defaultValue='GET'
                         style={{ width: '100%' }}
                         value={values.type}
                         placeholder='GET'
-                        onChange={handleChangeSelect( 'type' )}
+                        onChange={handleChangeSelect('type')}
                     >
                         <Option value='GET'>GET</Option>
                         <Option value='POST'>POST</Option>
@@ -152,7 +151,7 @@ export default function LinuxCommands () {
                         style={{ width: '100%' }}
                         value={values.protocol}
                         placeholder='http://'
-                        onChange={handleChangeSelect( 'protocol' )}
+                        onChange={handleChangeSelect('protocol')}
                     >
                         <Option value='http://'>HTTP</Option>
                         <Option value='https://'>HTTPS</Option>
@@ -161,10 +160,10 @@ export default function LinuxCommands () {
                 <Col span={9}>
                     <Input
                         style={{ borderColor: '#434343' }}
-                        onChange={handleChange( 'url' )}
+                        onChange={handleChange('url')}
                         onSubmit={() => fetchData()}
                         allowClear
-                        value={values.url.replace( /https?:\/\//, '' )}
+                        value={values.url.replace(/https?:\/\//, '')}
                         placeholder='http://10.10.14.15:1337/home?a=1 OR example.com'
                     />
                 </Col>
@@ -197,19 +196,19 @@ export default function LinuxCommands () {
                             </a>
                         </Descriptions.Item>
                     </Descriptions>
-                    <Row gutter={[ 16, 16 ]} style={{ marginBottom: 15 }}>
+                    <Row gutter={[16, 16]} style={{ marginBottom: 15 }}>
                         <Col span={12}>
                             <TextArea
                                 autoSize={{ minRows: 5 }}
                                 disabled
-                                value={JSON.stringify( content.headers, undefined, 2 )}
+                                value={JSON.stringify(content.headers, undefined, 2)}
                                 rows={4}
                             />
                         </Col>
                         <Col span={12}>
                             <TextArea
                                 autoSize={{ minRows: 5 }}
-                                value={JSON.stringify( content.headers, undefined, 2 )}
+                                value={JSON.stringify(content.headers, undefined, 2)}
                                 rows={4}
                             />
                         </Col>
@@ -261,13 +260,13 @@ export default function LinuxCommands () {
                         )}
                         {!inputResponse && (
                             <TabPane tab='Form / Input Only' key='3'>
-                                {inputResponse.map( ( matches: string ) => {
+                                {inputResponse.map((matches: string) => {
                                     return (
                                         <SyntaxHighlighter language='htmlbars' style={vs2015} showLineNumbers={true}>
-                                            {pretty( matches )};
+                                            {pretty(matches)};
                                         </SyntaxHighlighter>
                                     );
-                                } )}
+                                })}
                             </TabPane>
                         )}
                     </Tabs>
