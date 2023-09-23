@@ -18,3 +18,7 @@ bundle*.zip
 utils/reload/*.js
 utils/reload/injections/*.js
 public/manifest.json
+
+# misc
+pnpm-lock.yaml
+yarn.lock
