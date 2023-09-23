@@ -28,7 +28,7 @@ const CommandNavigation = ( { darkMode } ) => {
 
     useEffect( () => {
         function handleKeyDown ( e: KeyboardEvent ) {
-            if ( e.metaKey && e.key === "k" ) {
+            if ( e.ctrlKey && e.key === "k" ) {
                 e.preventDefault();
                 e.stopPropagation();
 
