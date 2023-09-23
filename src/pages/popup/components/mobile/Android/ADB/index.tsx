@@ -8,7 +8,7 @@ import ActivityManager from './ActivityManager';
 
 const index = () => {
 
-    const items: TabsProps['items'] = [
+    const items: TabsProps[ 'items' ] = [
         {
             key: '1',
             label: `ADB`,
@@ -31,7 +31,7 @@ const index = () => {
         }
     ];
 
-    
+
     return (
         <>
             <Tabs defaultActiveKey="1" items={items} />

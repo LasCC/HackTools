@@ -7,56 +7,56 @@ const { Title } = Typography;
 const { Option } = Select;
 
 const XSSObfuscation = () => {
-    const [js, setJS] = useState('');
-    const [obfuscated, setObfuscated] = useState('');
-    const [obfuscationMethod, setObfuscationMethod] = useState('base64');
+    const [ js, setJS ] = useState( '' );
+    const [ obfuscated, setObfuscated ] = useState( '' );
+    const [ obfuscationMethod, setObfuscationMethod ] = useState( 'base64' );
 
-    useEffect(() => {
-        switch (obfuscationMethod) {
+    useEffect( () => {
+        switch ( obfuscationMethod ) {
             case 'base64':
                 try {
-                    if (js) {
-                        const obf = btoa(js);
-                        setObfuscated(`eval(atob('${obf}'))`);
+                    if ( js ) {
+                        const obf = btoa( js );
+                        setObfuscated( `eval(atob('${ obf }'))` );
                     } else {
-                        setObfuscated('');
+                        setObfuscated( '' );
                     }
-                } catch (e) {
-                    console.error(e);
+                } catch ( e ) {
+                    console.error( e );
                 }
                 break;
             case 'charcode':
                 try {
-                    if (js) {
-                        const charObf = js.split('').map(c => c.charCodeAt(0)).join(',');
-                        setObfuscated(`eval(String.fromCharCode(${charObf}))`);
+                    if ( js ) {
+                        const charObf = js.split( '' ).map( c => c.charCodeAt( 0 ) ).join( ',' );
+                        setObfuscated( `eval(String.fromCharCode(${ charObf }))` );
                     } else {
-                        setObfuscated('');
+                        setObfuscated( '' );
                     }
-                } catch (e) {
-                    console.error(e);
+                } catch ( e ) {
+                    console.error( e );
                 }
                 break;
             default:
                 break;
         }
-    }, [js, obfuscationMethod]);
+    }, [ js, obfuscationMethod ] );
 
 
-    const handleOnChange = (e) => {
-        setJS(e.target.value);
+    const handleOnChange = ( e ) => {
+        setJS( e.target.value );
     }
 
-    const handleObfuscatedChange = (e) => {
-        setObfuscated(e.target.value);
+    const handleObfuscatedChange = ( e ) => {
+        setObfuscated( e.target.value );
     }
 
-    const handleObfuscationMethodChange = (value) => {
-        setObfuscationMethod(value);
+    const handleObfuscationMethodChange = ( value ) => {
+        setObfuscationMethod( value );
     }
 
     return (
-        <Row gutter={[16, 16]}>
+        <Row gutter={[ 16, 16 ]}>
             <Col xs={24}>
                 <Title level={2} style={{ fontWeight: 'bold', margin: 15 }}>JS Obfuscation</Title>
             </Col>

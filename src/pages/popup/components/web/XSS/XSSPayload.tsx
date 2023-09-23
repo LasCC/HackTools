@@ -71,7 +71,7 @@ const XSSPayload = () => {
     ];
 
 
-    return (<>
+    return ( <>
         <Title level={2} style={{ fontWeight: 'bold', margin: 15 }}>
             Cross Site Scripting (XSS)
         </Title>
@@ -95,13 +95,13 @@ const XSSPayload = () => {
                 Obtains the administrator cookie or sensitive access token, the following payload will send it to a
                 controlled page.
             </Paragraph>
-            {DataGrabber.map((k, i) => {
+            {DataGrabber.map( ( k, i ) => {
                 return (
                     <Paragraph key={i}>
                         <pre><Text copyable>{k.title}</Text></pre>
                     </Paragraph>
                 );
-            })}
+            } )}
         </div>
         <Divider orientation='center'>XSS in HTML/Applications</Divider>
         <div
@@ -110,20 +110,20 @@ const XSSPayload = () => {
                 padding: 15
             }}
         >
-            {BasicXSS.map((k, i) => {
+            {BasicXSS.map( ( k, i ) => {
                 return (
                     <Paragraph key={i}>
                         <pre><Text copyable>{k.title}</Text></pre>
                     </Paragraph>
                 );
-            })}
-            {ImgPayload.map((k, i) => {
+            } )}
+            {ImgPayload.map( ( k, i ) => {
                 return (
                     <Paragraph key={i}>
                         <pre><Text copyable>{k.title}</Text></pre>
                     </Paragraph>
                 );
-            })}
+            } )}
         </div>
         <Divider orientation='center'>XSS in Markdown</Divider>
         <div
@@ -132,13 +132,13 @@ const XSSPayload = () => {
                 padding: 15
             }}
         >
-            {XSSMarkdown.map((k, i) => {
+            {XSSMarkdown.map( ( k, i ) => {
                 return (
                     <Paragraph key={i}>
                         <pre><Text copyable>{k.title}</Text></pre>
                     </Paragraph>
                 );
-            })}
+            } )}
         </div>
         <Divider orientation='center'>XSS in SVG (short)</Divider>
         <div
@@ -147,13 +147,13 @@ const XSSPayload = () => {
                 padding: 15
             }}
         >
-            {XSSSvg.map((k, i) => {
+            {XSSSvg.map( ( k, i ) => {
                 return (
                     <Paragraph key={i}>
                         <pre><Text copyable>{k.title}</Text></pre>
                     </Paragraph>
                 );
-            })}
+            } )}
         </div>
         <Divider orientation='center'>Bypass word blacklist with code evaluation</Divider>
         <div
@@ -162,14 +162,14 @@ const XSSPayload = () => {
                 padding: 15
             }}
         >
-            {BypassWord.map((k, i) => {
+            {BypassWord.map( ( k, i ) => {
                 return (
                     <Paragraph key={i}>
                         <pre><Text copyable>{k.title}</Text></pre>
                     </Paragraph>
                 );
-            })}
+            } )}
         </div>
-    </>)
+    </> )
 }
 export default XSSPayload;

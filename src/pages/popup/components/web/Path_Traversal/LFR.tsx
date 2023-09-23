@@ -77,7 +77,7 @@ export default function LFI () {
         { title: '/windows/system32/license.rtf' },
         { title: '/windows/system32/eula.txt' }
     ];
-// TODO: Reorganize LFI/LFR into multiple tabs
+    // TODO: Reorganize LFI/LFR into multiple tabs
     return (
         <div style={{ margin: 15 }}>
             <Title level={2} style={{ fontWeight: 'bold' }}>
@@ -95,7 +95,7 @@ export default function LFI () {
                 <Paragraph ellipsis={true}>
                     <pre><Text copyable>{directoryTraversal}</Text></pre>
                 </Paragraph>
-                {copyButton(directoryTraversal)}
+                {copyButton( directoryTraversal )}
             </div>
             <Divider dashed />
             <div key='b'>
@@ -106,7 +106,7 @@ export default function LFI () {
                 <Paragraph ellipsis={true}>
                     <pre><Text copyable>{phpWrapperExpect}</Text></pre>
                 </Paragraph>
-                {copyButton(phpWrapperExpect)}
+                {copyButton( phpWrapperExpect )}
             </div>
             <Divider dashed />
             <div key='c'>
@@ -115,16 +115,16 @@ export default function LFI () {
                     You can find other filters in PHP manual:
                 </Paragraph>
                 <ul>
-                    {phpWrapperFiltersManual.map((k, i) => {
+                    {phpWrapperFiltersManual.map( ( k, i ) => {
                         return <li key={i}>
                             <a href={k.url} target="_blank">{k.name}</a>
                         </li>
-                    })}
+                    } )}
                 </ul>
                 <Paragraph ellipsis={true}>
                     <pre><Text copyable>{phpWrapperFilter}</Text></pre>
                 </Paragraph>
-                {copyButton(phpWrapperFilter)}
+                {copyButton( phpWrapperFilter )}
             </div>
             <Divider dashed />
             <div key='d'>
@@ -137,48 +137,48 @@ export default function LFI () {
                 <Paragraph ellipsis={true}>
                     <pre><Text copyable>{phpRfi}</Text></pre>
                 </Paragraph>
-                {copyButton(phpRfi)}
+                {copyButton( phpRfi )}
             </div>
             <Divider dashed />
             <div key='e'>
                 <Title level={3}>Useful LFI files</Title>
                 <Title level={4}>Linux</Title>
-                {mapFileEntries(linux)}
+                {mapFileEntries( linux )}
                 <Divider dashed />
                 <Title level={4}>Apache</Title>
-                {mapFileEntries(apache)}
+                {mapFileEntries( apache )}
                 <Divider dashed />
                 <Title level={4}>Nginx</Title>
-                {mapFileEntries(nginx)}
+                {mapFileEntries( nginx )}
                 <Divider dashed />
                 <Title level={4}>MySQL</Title>
-                {mapFileEntries(mysql)}
+                {mapFileEntries( mysql )}
                 <Divider dashed />
                 <Title level={4}>Windows</Title>
-                {mapFileEntries(windows)}
+                {mapFileEntries( windows )}
             </div>
         </div>
     );
 };
 
-function mapFileEntries(arr: {title: string}[]): ReactElement<typeof Paragraph>[]  {
-    return arr.map((k, i) => {
+function mapFileEntries ( arr: { title: string }[] ): ReactElement<typeof Paragraph>[] {
+    return arr.map( ( k, i ) => {
         return (
             <Paragraph key={i}>
                 <pre><Text copyable>{k.title}</Text></pre>
             </Paragraph>
         );
-    })
+    } )
 }
 
-function copyButton(clipboardData: string): ReactElement {
+function copyButton ( clipboardData: string ): ReactElement {
     return <>
         <Clipboard component='a' data-clipboard-text={clipboardData}>
             <Button type='primary' onClick={successInfoCopy} style={{ marginRight: 15 }}>
                 <CopyOutlined /> Copy the payload
             </Button>
         </Clipboard>
-        <Clipboard component='a' data-clipboard-text={encodeURI(clipboardData)}>
+        <Clipboard component='a' data-clipboard-text={encodeURI( clipboardData )}>
             <Button type='dashed' onClick={successInfoEncodeURL}>
                 <LinkOutlined /> URL encoded
             </Button>

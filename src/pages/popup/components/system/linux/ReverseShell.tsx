@@ -82,6 +82,7 @@ export default function ReverseShell () {
     const handleReset = ( clearFilters: () => void ) => {
         clearFilters();
         setSearchText( '' );
+        setSearchedColumn( '' );
     };
 
     const getColumnSearchProps = ( dataIndex: DataIndex ): ColumnType<DataType> => ( {
@@ -161,7 +162,7 @@ export default function ReverseShell () {
                     textToHighlight={text ? text.toString() : ''}
                 />
             ) : (
-                text
+                `${ text }`
             ),
     } );
 
@@ -341,7 +342,7 @@ export default function ReverseShell () {
                         rowExpandable: ( record ) => record.name !== 'Not Expandable',
                     }}
                     dataSource={data}
-                    rowKey={(record,id) => id}
+                    rowKey={( record, id ) => id}
                     onChange={values.ip && values.port && values.shell ? handleChangeFilter : undefined}
                 />
             </div>

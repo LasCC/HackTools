@@ -5,18 +5,18 @@ import POCOutput from './POCOutput';
 import SaveButton from './SaveButton';
 
 const CSRF: React.FC = () => (
-  <Row gutter={[24, 24]}>
-    <Col span={24}>
-      <Row gutter={[24, 24]}>
+    <Row gutter={[ 24, 24 ]}>
         <Col span={24}>
-          <RequestInput />
+            <Row gutter={[ 24, 24 ]}>
+                <Col span={24}>
+                    <RequestInput />
+                </Col>
+                <Col span={24}>
+                    <POCOutput />
+                </Col>
+            </Row>
         </Col>
-        <Col span={24}>
-          <POCOutput />
-        </Col>
-      </Row>
-    </Col>
-  </Row>
+    </Row>
 );
 
 export default CSRF;

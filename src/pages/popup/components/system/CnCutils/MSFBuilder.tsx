@@ -7,8 +7,6 @@ import encoder from '../../../assets/data/Encoder.json';
 import platform from '../../../assets/data/Platform.json';
 import format from '../../../assets/data/Format.json';
 
-
-
 const { Title, Paragraph } = Typography;
 
 const MSFBuilder = () => {

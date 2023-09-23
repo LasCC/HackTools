@@ -6,7 +6,7 @@ import General from './General';
 
 const index = () => {
 
-    const items: TabsProps['items'] = [
+    const items: TabsProps[ 'items' ] = [
         {
             key: '1',
             label: `General`,
@@ -19,7 +19,7 @@ const index = () => {
         },
     ];
 
-    
+
     return (
         <>
             <Tabs items={items} />

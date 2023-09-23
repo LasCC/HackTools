@@ -15,31 +15,31 @@ export type Category = {
 };
 
 export type Checklist = {
-    [categoryName: string]: Test[];
+    [ categoryName: string ]: Test[];
 };
 
 type Props = {
     category: Category;
-    onAddTest: (categoryName: string, test: Test) => void;
+    onAddTest: ( categoryName: string, test: Test ) => void;
 };
 
-const TestForm: React.FC<Props> = ({ category, onAddTest }) => {
-    const [testName, setTestName] = useState('');
+const TestForm: React.FC<Props> = ( { category, onAddTest } ) => {
+    const [ testName, setTestName ] = useState( '' );
 
     const handleAddTest = () => {
         const test: Test = {
-            id: String(category.tests.length + 1),
+            id: String( category.tests.length + 1 ),
             name: testName,
             description: '',
             completed: false,
         };
-        onAddTest(category.name, test);
-        setTestName('');
+        onAddTest( category.name, test );
+        setTestName( '' );
     };
 
     return (
         <Space>
-            <Input value={testName} onChange={(e) => setTestName(e.target.value)} placeholder="Test name" />
+            <Input value={testName} onChange={( e ) => setTestName( e.target.value )} placeholder="Test name" />
             <Button type="primary" onClick={handleAddTest} disabled={!testName}>
                 Add Test
             </Button>

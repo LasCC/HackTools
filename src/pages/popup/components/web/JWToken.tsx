@@ -9,62 +9,62 @@ import jwtdecode from 'jwt-decode'
 const { Title, Paragraph } = Typography;
 
 const JWToken = () => {
-    const [rawToken, setRawToken] = useState("");
-    const [header, setHeader] = useState("");
-    const [payload, setPayload] = useState("");
-    const [secretKey, setSecretKey] = useState("");
-    const [signatureValid, setSignatureValid] = useState(false);
-    const [alg, setAlg] = useState('HS256');
-    const [noneAlgToken, setNoneAlgToken] = useState("");
+    const [ rawToken, setRawToken ] = useState( "" );
+    const [ header, setHeader ] = useState( "" );
+    const [ payload, setPayload ] = useState( "" );
+    const [ secretKey, setSecretKey ] = useState( "" );
+    const [ signatureValid, setSignatureValid ] = useState( false );
+    const [ alg, setAlg ] = useState( 'HS256' );
+    const [ noneAlgToken, setNoneAlgToken ] = useState( "" );
 
-    useEffect(() => {
-        if (alg === 'None') {
-            const splitToken = rawToken.split('.');
-            if (splitToken.length === 3) {
-                const noneToken = `${splitToken[0]}.${splitToken[1]}.`;
-                setNoneAlgToken(noneToken);
-                const decodedHeader = JSON.parse(Buffer.from(splitToken[0], 'base64').toString());
+    useEffect( () => {
+        if ( alg === 'None' ) {
+            const splitToken = rawToken.split( '.' );
+            if ( splitToken.length === 3 ) {
+                const noneToken = `${ splitToken[ 0 ] }.${ splitToken[ 1 ] }.`;
+                setNoneAlgToken( noneToken );
+                const decodedHeader = JSON.parse( Buffer.from( splitToken[ 0 ], 'base64' ).toString() );
                 decodedHeader.alg = 'none';
-                setHeader(JSON.stringify(decodedHeader, null, 2));
+                setHeader( JSON.stringify( decodedHeader, null, 2 ) );
             }
         }
-    }, [alg, rawToken]);
+    }, [ alg, rawToken ] );
 
     const handleAlgChange = value => {
-        setAlg(value);
+        setAlg( value );
     };
 
     const handleRawTokenChange = async e => {
         const { value } = e.target;
-        setRawToken(value);
+        setRawToken( value );
 
         try {
-            const decodedHeader = decodeProtectedHeader(value);
-            setHeader(JSON.stringify(decodedHeader, null, 2));
+            const decodedHeader = decodeProtectedHeader( value );
+            setHeader( JSON.stringify( decodedHeader, null, 2 ) );
 
-            const decodedPayload = jwtdecode(value);
-            setPayload(JSON.stringify(decodedPayload, null, 2));
+            const decodedPayload = jwtdecode( value );
+            setPayload( JSON.stringify( decodedPayload, null, 2 ) );
 
-        } catch (err) {
-            setHeader("Invalid JWT");
+        } catch ( err ) {
+            setHeader( "Invalid JWT" );
         }
 
-        if (alg === 'HS256') {
+        if ( alg === 'HS256' ) {
             try {
-                const key = new TextEncoder().encode(secretKey);
-                const result = await jwtVerify(value, key);
-                setPayload(JSON.stringify(result.payload, null, 2));
-                setSignatureValid(true);
-            } catch (err) {
-                setSignatureValid(false);
+                const key = new TextEncoder().encode( secretKey );
+                const result = await jwtVerify( value, key );
+                setPayload( JSON.stringify( result.payload, null, 2 ) );
+                setSignatureValid( true );
+            } catch ( err ) {
+                setSignatureValid( false );
             }
         } else {
-            setSignatureValid(true);
+            setSignatureValid( true );
         }
     };
 
     const handleSecretKeyChange = e => {
-        setSecretKey(e.target.value);
+        setSecretKey( e.target.value );
     };
 
     return (

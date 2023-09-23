@@ -5,26 +5,26 @@ import apkPatchingCommands from '../../../../assets/data/Mobile/APK_PATCHING.jso
 const { Title, Paragraph, Text } = Typography;
 
 const APKPatching = () => {
-  const handleCommand = (command) => {
-    return command.command;
-  }
+    const handleCommand = ( command ) => {
+        return command.command;
+    }
 
-  return (
-    <>
-      {apkPatchingCommands.map((command, index) => (
-        <div key={index}>
-          <Title level={4}>{command.name}</Title>
-          <Paragraph>{command.description}</Paragraph>
-          <Paragraph>
-            <pre><Text copyable>
-              {handleCommand(command)}
-            </Text></pre>
-          </Paragraph>
+    return (
+        <div style={{ padding: 15 }}>
+            {apkPatchingCommands.map( ( command, index ) => (
+                <div key={index}>
+                    <Title level={4}>{command.name}</Title>
+                    <Paragraph>{command.description}</Paragraph>
+                    <Paragraph>
+                        <pre><Text copyable>
+                            {handleCommand( command )}
+                        </Text></pre>
+                    </Paragraph>
+                </div>
+            ) )}
+            <Divider />
         </div>
-      ))}
-      <Divider />
-    </>
-  )
+    )
 }
 
 export default APKPatching;

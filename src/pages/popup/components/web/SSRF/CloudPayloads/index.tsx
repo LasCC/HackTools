@@ -6,14 +6,14 @@ const { Title, Paragraph } = Typography;
 const index = () => {
     return (
         <>
-            {payloadsData.map((payload) =>
+            {payloadsData.map( ( payload ) =>
                 <>
                     <Title level={5}>{payload.name}</Title>
                     <Paragraph>
                         {payload.description}
                     </Paragraph>
                     <>
-                        {payload.steps.map((line) =>
+                        {payload.steps.map( ( line ) =>
                             <Paragraph>
                                 <pre>
                                     {line}

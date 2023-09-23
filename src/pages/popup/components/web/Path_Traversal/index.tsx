@@ -6,8 +6,7 @@ import PHPfilerBuilder from './phpFilterBuilder';
 import ZipSlip from './ZipSlip';
 
 const SQLMainPage = () => {
-
-    const items: TabsProps['items'] = [
+    const items: TabsProps[ 'items' ] = [
         {
             key: '1',
             label: `File read`,
@@ -15,7 +14,7 @@ const SQLMainPage = () => {
         },
         {
             key: '2',
-            label: `PHP filter generator`,
+            label: `PHP Filter Generator`,
             children: PHPfilerBuilder()
         },
         {
@@ -25,7 +24,6 @@ const SQLMainPage = () => {
         }
     ];
 
-    
     return (
         <>
             <Tabs defaultActiveKey="1" items={items} />

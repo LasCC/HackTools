@@ -5,7 +5,7 @@ const { Title, Paragraph, Text, Link } = Typography;
 
 /*************************************** */
 
-export default function SQLInjection() {
+export default function SQLInjection () {
 
     const DbColumnNumber = [
         {
@@ -151,11 +151,11 @@ export default function SQLInjection() {
                 <Divider dashed />
                 <div style={{ padding: 10, marginTop: 15 }} key='a'>
                     <Title level={3}>Number of column</Title>
-                    {DbColumnNumber.map((k, i) => {
+                    {DbColumnNumber.map( ( k, i ) => {
                         return (
                             <>
                                 <Paragraph key={i}>
-                                    <Link href={`#${k.db_type}`}>{k.db_type}</Link>
+                                    <Link href={`#${ k.db_type }`}>{k.db_type}</Link>
                                 </Paragraph>
 
                                 <Paragraph key={i}>
@@ -163,87 +163,87 @@ export default function SQLInjection() {
                                 </Paragraph>
                             </>
                         );
-                    })}
+                    } )}
                 </div>
                 <Divider dashed />
                 <div style={{ padding: 10, marginTop: 15 }} key='a'>
                     <Title level={3}>Database enumeration</Title>
-                    {DbVersionEnumeration.map((k, i) => {
+                    {DbVersionEnumeration.map( ( k, i ) => {
                         return (
                             <>
                                 <Paragraph key={i}>
-                                    <Link href={`#${k.db_type}`}>{k.db_type}</Link>
+                                    <Link href={`#${ k.db_type }`}>{k.db_type}</Link>
                                 </Paragraph>
                                 <Paragraph key={i}>
                                     <pre><Text copyable>{k.title}</Text></pre>
                                 </Paragraph>
                             </>
                         );
-                    })}
+                    } )}
                 </div>
                 <Divider dashed />
                 <div style={{ padding: 10, marginTop: 15 }} key='a'>
                     <Title level={3}>Tablename enumeration</Title>
-                    {DbTableEnumeration.map((k, i) => {
+                    {DbTableEnumeration.map( ( k, i ) => {
                         return (
                             <>
                                 <Paragraph key={i}>
-                                    <Link href={`#${k.db_type}`}>{k.db_type}</Link>
+                                    <Link href={`#${ k.db_type }`}>{k.db_type}</Link>
                                 </Paragraph>
                                 <Paragraph key={i}>
                                     <pre><Text copyable>{k.title}</Text></pre>
                                 </Paragraph>
                             </>
                         );
-                    })}
+                    } )}
                 </div>
                 <Divider dashed />
                 <div style={{ padding: 10, marginTop: 15 }} key='a'>
                     <Title level={3}>Column name enumeration</Title>
-                    {DbColumnEnumeration.map((k, i) => {
+                    {DbColumnEnumeration.map( ( k, i ) => {
                         return (
                             <>
                                 <Paragraph key={i}>
-                                    <Link href={`#${k.db_type}`}>{k.db_type}</Link>
+                                    <Link href={`#${ k.db_type }`}>{k.db_type}</Link>
                                 </Paragraph>
                                 <Paragraph key={i}>
                                     <pre><Text copyable>{k.title}</Text></pre>
                                 </Paragraph>
                             </>
                         );
-                    })}
+                    } )}
                 </div>
                 <Divider dashed />
                 <div style={{ padding: 10, marginTop: 15 }} key='a'>
                     <Title level={3}>Column values concatenation</Title>
-                    {DbColValueConcatenation.map((k, i) => {
+                    {DbColValueConcatenation.map( ( k, i ) => {
                         return (
                             <>
                                 <Paragraph key={i}>
-                                    <Link href={`#${k.db_type}`}>{k.db_type}</Link>
+                                    <Link href={`#${ k.db_type }`}>{k.db_type}</Link>
                                 </Paragraph>
                                 <Paragraph key={i}>
                                     <pre><Text copyable>{k.title}</Text></pre>
                                 </Paragraph>
                             </>
                         );
-                    })}
+                    } )}
                 </div>
                 <Divider dashed />
                 <div style={{ padding: 10, marginTop: 15 }} key='a'>
                     <Title level={3}>Conditional ( Error Based ) </Title>
-                    {DbConditionalErrors.map((k, i) => {
+                    {DbConditionalErrors.map( ( k, i ) => {
                         return (
                             <>
                                 <Paragraph key={i}>
-                                    <Link href={`#${k.db_type}`}>{k.db_type}</Link>
+                                    <Link href={`#${ k.db_type }`}>{k.db_type}</Link>
                                 </Paragraph>
                                 <Paragraph key={i}>
                                     <pre><Text copyable>{k.title}</Text></pre>
                                 </Paragraph>
                             </>
                         );
-                    })}
+                    } )}
                 </div>
                 <Divider dashed />
                 <div
@@ -254,13 +254,13 @@ export default function SQLInjection() {
                     }}
                 >
                     <Title level={3}>Time-Based</Title>
-                    {TimeBased.map((k, i) => {
+                    {TimeBased.map( ( k, i ) => {
                         return (
                             <Paragraph key={i}>
                                 <pre><Text copyable>{k.title}</Text></pre>
                             </Paragraph>
                         );
-                    })}
+                    } )}
                 </div>
                 <Divider dashed />
                 <div
@@ -271,14 +271,14 @@ export default function SQLInjection() {
                     }}
                 >
                     <Title level={3}>Generic Error Based Payloads</Title>
-                    {DbConditionalErrors.map((k, i) => {
+                    {DbConditionalErrors.map( ( k, i ) => {
                         return (
                             <Paragraph key={i}>
                                 <Link>{k.db_type}</Link>
                                 <pre><Text copyable>{k.title}</Text></pre>
                             </Paragraph>
                         );
-                    })}
+                    } )}
                 </div>
                 <Divider dashed />
                 <div
@@ -289,13 +289,13 @@ export default function SQLInjection() {
                     }}
                 >
                     <Title level={3}>Authentication Based Payloads</Title>
-                    {AuthBased.map((k, i) => {
+                    {AuthBased.map( ( k, i ) => {
                         return (
                             <Paragraph key={i}>
                                 <pre><Text copyable>{k.title}</Text></pre>
                             </Paragraph>
                         );
-                    })}
+                    } )}
                 </div>
                 <Divider dashed />
                 <div
@@ -306,15 +306,15 @@ export default function SQLInjection() {
                     }}
                 >
                     <Title level={3}>Order by and UNION Based Payloads</Title>
-                    {OrderUnion.map((k, i) => {
+                    {OrderUnion.map( ( k, i ) => {
                         return (
                             <Paragraph key={i}>
                                 <pre><Text copyable>{k.title}</Text></pre>
                             </Paragraph>
                         );
-                    })}
+                    } )}
                 </div>
-            </div>)
+            </div>
         </>
     )
 }

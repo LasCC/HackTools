@@ -5,7 +5,7 @@ import TemplateDetector from './SSTITable';
 
 const SQLMainPage = () => {
 
-    const items: TabsProps['items'] = [
+    const items: TabsProps[ 'items' ] = [
         {
             key: '1',
             label: `Template detector`,

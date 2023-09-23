@@ -14,7 +14,7 @@ interface Directory {
 
 interface Archive {
     name: string;
-    content: (File | Directory)[];
+    content: ( File | Directory )[];
 }
 
 
@@ -26,9 +26,9 @@ interface State {
 const tabStateStore = create<State>(
     // @ts-ignore
     persist(
-        (set, get) => ({
+        ( set, get ) => ( {
 
-        })
+        } )
     )
 );
 

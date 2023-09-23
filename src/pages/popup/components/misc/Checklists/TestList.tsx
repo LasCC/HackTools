@@ -15,33 +15,33 @@ export type Category = {
 };
 
 export type Checklist = {
-    [categoryName: string]: Test[];
+    [ categoryName: string ]: Test[];
 };
 
 
 type Props = {
-  category: Category;
-  onRemoveTest: (categoryName: string, testId: string) => void;
+    category: Category;
+    onRemoveTest: ( categoryName: string, testId: string ) => void;
 };
 
-const TestList: React.FC<Props> = ({ category, onRemoveTest }) => {
-  const handleRemoveTest = (testId: string) => {
-    onRemoveTest(category.name, testId);
-  };
+const TestList: React.FC<Props> = ( { category, onRemoveTest } ) => {
+    const handleRemoveTest = ( testId: string ) => {
+        onRemoveTest( category.name, testId );
+    };
 
-  return (
-    <List
-      dataSource={category.tests}
-      renderItem={(test: Test) => (
-        <List.Item>
-          <Checkbox checked={test.completed}>{test.name}</Checkbox>
-          <Button type="link" danger onClick={() => handleRemoveTest(test.id)}>
-            Remove
-          </Button>
-        </List.Item>
-      )}
-    />
-  );
+    return (
+        <List
+            dataSource={category.tests}
+            renderItem={( test: Test ) => (
+                <List.Item>
+                    <Checkbox checked={test.completed}>{test.name}</Checkbox>
+                    <Button type="link" danger onClick={() => handleRemoveTest( test.id )}>
+                        Remove
+                    </Button>
+                </List.Item>
+            )}
+        />
+    );
 };
 
 export default TestList;

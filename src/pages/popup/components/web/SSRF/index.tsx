@@ -7,7 +7,7 @@ import CloudPayloads from './CloudPayloads'
 
 const SQLMainPage = () => {
 
-    const items: TabsProps['items'] = [
+    const items: TabsProps[ 'items' ] = [
         {
             key: '1',
             label: `SSRF Payloads`,
@@ -30,7 +30,7 @@ const SQLMainPage = () => {
         }
     ];
 
-    
+
     return (
         <>
             <Tabs defaultActiveKey="1" items={items} />

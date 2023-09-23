@@ -24,7 +24,7 @@ export interface Substep {
     description: string;
 }
 
-export interface Pentest extends AtomicTest {}
+export interface Pentest extends AtomicTest { }
 
 export interface Quote {
     quoteText: string;

@@ -8,7 +8,7 @@ import Hashing from './Hashing';
 
 const DataManipulationMain = () => {
 
-    const items: TabsProps['items'] = [
+    const items: TabsProps[ 'items' ] = [
         {
             key: '1',
             label: 'Encoding',

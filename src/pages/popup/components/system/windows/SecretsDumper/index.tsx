@@ -6,7 +6,7 @@ import LSASS from './LSASS';
 
 const WindowSecretDumper = () => {
 
-    const items: TabsProps['items'] = [
+    const items: TabsProps[ 'items' ] = [
         {
             key: '1',
             label: 'SAM',

@@ -1,9 +1,9 @@
 import React from 'react'
 
 const ContentProvider = () => {
-  return (
-    <div>ContentProvider</div>
-  )
+    return (
+        <div>ContentProvider</div>
+    )
 }
 
 export default ContentProvider

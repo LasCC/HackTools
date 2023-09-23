@@ -6,7 +6,7 @@ import XSSPayloadComponent from './XSSPayload';
 
 const XSSMain = () => {
 
-    const items: TabsProps['items'] = [
+    const items: TabsProps[ 'items' ] = [
         {
             key: '1',
             label: 'XSS Payloads',
