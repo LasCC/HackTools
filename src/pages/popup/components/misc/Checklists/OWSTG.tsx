@@ -48,17 +48,17 @@ const OWSTG = ({ id }: { id: string }) => {
 
   // Handler for this Tab's state
   const useStore = createOWSTGStore(id);
-  const [remoteURIMethodology, setRemoteURIMethodology] = useState("");
-  const { stateFlattenedChecklists, handleStatusChange, handleObservationsChange, handleFileUpload, handleCSVExport, handleRemoteMethodologyImportFromURI } = useStore();
+  const [remoteURLMethodology, setRemoteURLMethodology] = useState("");
+  const { stateFlattenedChecklists, handleStatusChange, handleObservationsChange, handleFileUpload, handleCSVExport, handleRemoteMethodologyImportFromURL } = useStore();
 
   const currentTabStateExportAsJSON = () => {
     const dataStr = JSON.stringify(stateFlattenedChecklists, null, 2);
-    const dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr);
+    const dataURL = 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr);
 
     let exportFileDefaultName = `htool_state_methodology_${new Date().getTime()}_${new Date().toLocaleDateString()}.json`;
 
     let linkElement = document.createElement('a');
-    linkElement.setAttribute('href', dataUri);
+    linkElement.setAttribute('href', dataURL);
     linkElement.setAttribute('download', exportFileDefaultName);
     linkElement.click();
     linkElement.remove();
@@ -67,7 +67,7 @@ const OWSTG = ({ id }: { id: string }) => {
   enum Actions {
     ImportLocalFile = "1",
     ExportJSON = "2",
-    ImportURI = "3"
+    ImportURL = "3"
   };
 
 
@@ -79,23 +79,23 @@ const OWSTG = ({ id }: { id: string }) => {
       case Actions.ExportJSON:
         currentTabStateExportAsJSON()
         break;
-      case Actions.ImportURI:
-        let inputURI = remoteURIMethodology;
+      case Actions.ImportURL:
+        let inputURL = remoteURLMethodology;
         Modal.confirm({
           width: 600,
-          title: 'Enter the URI of the methodology',
+          title: 'Enter the URL of the methodology',
           content: (
-            <Input placeholder="Enter URI"
-              onChange={(e) => inputURI = e.target.value}
+            <Input placeholder="Enter URL"
+              onChange={(e) => inputURL = e.target.value}
               onPressEnter={async () => {
-                await handleRemoteMethodologyImportFromURI(inputURI);
-                setRemoteURIMethodology(inputURI);
+                await handleRemoteMethodologyImportFromURL(inputURL);
+                setRemoteURLMethodology(inputURL);
               }}
             />
           ),
           onOk: async () => {
-            await handleRemoteMethodologyImportFromURI(inputURI);
-            setRemoteURIMethodology(inputURI);
+            await handleRemoteMethodologyImportFromURL(inputURL);
+            setRemoteURLMethodology(inputURL);
           }
         });
         break;
@@ -117,7 +117,7 @@ const OWSTG = ({ id }: { id: string }) => {
       icon: <UserOutlined />,
     },
     {
-      label: 'Import methodology from URI',
+      label: 'Import methodology from URL',
       key: '3',
       icon: <MdHttp />,
     }
