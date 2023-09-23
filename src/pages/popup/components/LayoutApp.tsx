@@ -1,4 +1,4 @@
-import { ArrowsAltOutlined, CopyrightCircleOutlined, FullscreenOutlined, createFromIconfontCN } from '@ant-design/icons';
+import { ArrowsAltOutlined, CopyrightCircleOutlined, FullscreenOutlined } from '@ant-design/icons';
 import { Button, ConfigProvider, Layout, Menu, Select, Typography, theme } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { goTo } from 'react-chrome-extension-router';
@@ -6,13 +6,9 @@ import { useHotkeys } from 'react-hotkeys-hook';
 import PersistedState from 'use-persisted-state';
 import Tabs, { IRouterComponent } from "./SideItemMenuRouting";
 import LayoutChoice from './LayoutChoice';
+import CommandNavigation from './CommandNavigation';
 const { Paragraph } = Typography;
 const { Sider, Content, Footer } = Layout;
-
-const IconFont = createFromIconfontCN( {
-    scriptUrl: [ './iconfont.js' ]
-} );
-
 
 export default function LayoutApp ( props: {
     children: boolean | React.ReactFragment | React.ReactPortal | null | undefined;
@@ -28,13 +24,11 @@ export default function LayoutApp ( props: {
     const { defaultAlgorithm, darkAlgorithm } = theme;
     const setDarkMode = PersistedState<boolean>( 'dark_mode' );
     const [ darkMode, setDarkModeState ] = setDarkMode( false );
-    const [ menuItems, setMenuItems ] = useState<Array<IRouterComponent>>( Tabs );
+    const [ menuItems ] = useState<Array<IRouterComponent>>( Tabs );
     const hackToolsState = PersistedState<string>( "hack_tools_mode" );
     const [ hackTools, setHackToolsState ] = hackToolsState();
 
     const handleSwtichTheme = ( value: string ) => {
-        // Set the dark mode state based on the selected value
-        // We can use the '===' operator because we know the value can only be 'dark' or 'light'.
         const isDarkMode = value === 'dark';
         setDarkModeState( isDarkMode );
     }
@@ -98,8 +92,6 @@ export default function LayoutApp ( props: {
     };
 
     useEffect( () => {
-        // Selection of the right component based on the persisted state
-        // keep the index at 1 to prevent array index overflow when switching between modes that have different lengths of tabs if the Tabs length of the current mode is less than the previous one
         const currentIndexPage = parseInt( localStorage.getItem( "tab_index_cache" ).replace( /"/g, '' ) ) - 1 || ( 0 );
         const currentComponent = Tabs.filter( ( tab ) => tab.type === hackTools )[ currentIndexPage ].componentRoute || ( LayoutChoice );
         goTo( currentComponent );
@@ -214,6 +206,7 @@ export default function LayoutApp ( props: {
                             Pop-up mode
                         </Button>
                     </Footer>
+                    <CommandNavigation darkMode={darkMode} />
                 </Layout>
             </Layout >
         </ConfigProvider >
