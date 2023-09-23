@@ -30,10 +30,10 @@ import SSRF from './web/SSRF';
 import SSTI from './web/SSTI';
 import WebShells from './web/WebShells';
 import XSS from './web/XSS';
-const IconFont = createFromIconfontCN({
-    scriptUrl: ['./iconfont.js']
-});
 
+const IconFont = createFromIconfontCN( {
+    scriptUrl: [ './iconfont.js' ]
+} );
 
 export interface IRouterComponent {
     key: string;
@@ -42,8 +42,6 @@ export interface IRouterComponent {
     componentRoute: React.FunctionComponent;
     type: string;
 }
-
-
 
 const WebTab: Array<IRouterComponent> = [
     {
@@ -55,7 +53,7 @@ const WebTab: Array<IRouterComponent> = [
     },
     {
         key: '2',
-        icon: (<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path d="M13.94 3.045a.75.75 0 0 0-1.38-.59l-4.5 10.5a.75.75 0 1 0 1.38.59l4.5-10.5ZM5 11.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z" fill='white'></path></svg>),
+        icon: ( <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path d="M13.94 3.045a.75.75 0 0 0-1.38-.59l-4.5 10.5a.75.75 0 1 0 1.38.59l4.5-10.5ZM5 11.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z" fill='white'></path></svg> ),
         name: 'Path Traversal',
         componentRoute: Path_traversal,
         type: "web"
@@ -109,9 +107,8 @@ const WebTab: Array<IRouterComponent> = [
         componentRoute: CSRF,
         type: "web"
     },
-
-
 ]
+
 const SystemTab: Array<IRouterComponent> = [
     {
         key: '1',
@@ -177,6 +174,7 @@ const SystemTab: Array<IRouterComponent> = [
         type: "system"
     },
 ]
+
 const MobileTab: Array<IRouterComponent> = [
     {
         key: '1',
@@ -193,6 +191,7 @@ const MobileTab: Array<IRouterComponent> = [
         type: "mobile"
     },
 ]
+
 const MiscTab: Array<IRouterComponent> = [
     {
         key: '1',
@@ -218,5 +217,5 @@ const MiscTab: Array<IRouterComponent> = [
 ]
 
 // Make a single list of all tabs
-const Tabs = [...WebTab, ...SystemTab, ...MobileTab, ...MiscTab];
+const Tabs = [ ...WebTab, ...SystemTab, ...MobileTab, ...MiscTab ];
 export default Tabs;
