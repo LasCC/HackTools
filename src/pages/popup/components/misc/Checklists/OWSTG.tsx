@@ -285,8 +285,15 @@ const OWSTG = ({ id }: { id: string }) => {
               <Col span={24} >
                 {record.substeps.map((substep, index) => (
                   <>
-                    <Text key={index}>{substep.step}</Text>
-                    <li key={index}>{substep.description}</li>
+                    <Card style={{ margin: '10px 0' }}>
+                      <Text key={index}>{substep.step}</Text>
+
+
+                      <Paragraph copyable editable>
+                        {substep.description}
+                      </Paragraph>
+
+                    </Card>
                     <Divider />
                   </>
                 ))}
@@ -298,8 +305,8 @@ const OWSTG = ({ id }: { id: string }) => {
       <FloatButton icon={<QuestionCircleOutlined />} onClick={showModal} />
 
       <Modal title="How it works ?" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}
-      width={window.innerWidth > 800 ? 800 : window.innerWidth - 75}>
-      
+        width={window.innerWidth > 800 ? 800 : window.innerWidth - 75}>
+
         <Typography style={{ textAlign: "justify" }}>
           Methodology checklist is a tool that allows you to import a methodology and use it as a checklist. The checklist is then used to track progress and take notes.
         </Typography>
@@ -308,9 +315,9 @@ const OWSTG = ({ id }: { id: string }) => {
           You can define your own methodology by extending either the default OWASP Testing Guide in assets/ or by creating a JSON file having the following structure that represents a single test case :
         </Paragraph>
         <Paragraph code copyable={{ text: structureForHelpModal }}>
-        <pre> 
-          {structureForHelpModal}
-        </pre>
+          <pre>
+            {structureForHelpModal}
+          </pre>
         </Paragraph>
         <Divider />
         <p>
