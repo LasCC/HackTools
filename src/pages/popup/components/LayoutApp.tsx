@@ -195,7 +195,7 @@ export default function LayoutApp(props: {
                     <Footer style={{ textAlign: 'center' }}>
                         <CopyrightCircleOutlined /> Hack Tools - The all in one browser extension for offensive security professionals -
                         <Paragraph style={{ textAlign: 'center' }}>Ludovic COULON - Riadh BOUCHAHOUA</Paragraph>
-                        <pre style={{ textAlign: 'center' }}>HackTools Version - 0.5.0</pre>
+                        <pre style={{ textAlign: 'center' }}>HackTools Version - 1.0.0</pre>
                         <Button icon={<FullscreenOutlined style={{ margin: 5 }} />} type='link'>
                             <a href={target} rel='noreferrer noopener' target='_blank'>
                                 Fullscreen mode

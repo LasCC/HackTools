@@ -1,6 +1,6 @@
 {
     "name": "hack-tools",
-    "version": "0.5.0",
+    "version": "1.0.0",
     "description": "The all in one  browser extension for offensive security professionals",
     "main": "index.js",
     "scripts": {
