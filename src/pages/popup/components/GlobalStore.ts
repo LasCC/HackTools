@@ -1,18 +1,9 @@
 import create from 'zustand'
 import { persist } from 'zustand/middleware'
-import Tabs, {IRouterComponent} from './SideItemMenuRouting'
+import Tabs, { IRouterComponent } from './SideItemMenuRouting'
 
 
-
-interface CurrentHacktoolsPage {
-    mode: string
-    index: string | number
-}    
 interface GlobalState {
-    hacktoolsRoutingState: CurrentHacktoolsPage
-    hacktoolsColormode: string
-    switchHacktoolsColormode: (mode: string) => void
-    setHacktoolsRoutingState: (mode: string, index: number) => void
     darkMode: boolean
     setDarkModeState: (mode: boolean) => void
     hackTools: string
@@ -23,21 +14,7 @@ interface GlobalState {
 
 // @ts-ignore
 export const useStore = create<GlobalState>(persist(
-    (set,get) => ({
-        hacktoolsRoutingState: {
-            mode: Tabs[0].type,
-            index: Tabs[0].key
-        },
-        hacktoolsColormode: 'light',
-        switchHacktoolsColormode: (mode: string) => set(() => ({
-            hacktoolsColormode: get().hacktoolsColormode === 'light' ? 'dark' : 'light',
-        })),
-        setHacktoolsRoutingState: (mode: string, index: number) => set(() => ({
-            hacktoolsRoutingState: {
-                mode,
-                index,
-            }
-        })),
+    (set, get) => ({
         darkMode: false,
         setDarkModeState: (mode: boolean) => set(() => ({
             darkMode: mode,
@@ -53,6 +30,6 @@ export const useStore = create<GlobalState>(persist(
     }),
     {
         name: 'GlobalState', // unique name
-        getStorage: () => localStorage, 
+        getStorage: () => localStorage,
     }
 ))

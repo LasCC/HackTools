@@ -8,6 +8,7 @@ import mobileBG from "../../../assets/img/mobileBG.jpg";
 import miscBG from "../../../assets/img/miscBG.jpg";
 import webBG from "../../../assets/img/webBG.jpg";
 import Meta from "antd/es/card/Meta";
+import { useStore } from "./GlobalStore";
 
 
 enum HackToolsMode {
@@ -18,9 +19,11 @@ enum HackToolsMode {
 }
 
 const LayoutChoice = () => {
+    const { index, setIndex ,  hackTools , setHackToolsState} = useStore();
+
     const useMenuIndex = PersistedState<string>( 'tab_index_cache' ); // Disabled for now
-    const hackToolsState = PersistedState<string>( "hack_tools_mode" );
-    const [ hackTools, setHackTools ] = hackToolsState( "web" );
+    // const hackToolsState = PersistedState<string>( "hack_tools_mode" );
+    // const [ hackTools, setHackToolsState ] = hackToolsState( "web" );
     const { Text } = Typography;
     const isMac = navigator.platform.toUpperCase().includes( 'MAC' );
     const keySymbol = isMac ? '⌘' : 'CRTL';
@@ -85,7 +88,7 @@ const LayoutChoice = () => {
         ];
 
 
-    const [ index, setIndex ] = useMenuIndex( '1' )
+    // const [ index, setIndex ] = useMenuIndex( '1' )
 
 
     const navigateAndSetMode = ( mode: string ) => {
@@ -93,7 +96,7 @@ const LayoutChoice = () => {
         // Fixing to the first element to 1 to prevent array index overflow when switching between modes that have different lengths of tabs
         // TODO: Implement a caching system ?
         setIndex( '1' );
-        setHackTools( mode );
+        setHackToolsState( mode );
         // Not pretty but it works ...
         goTo( Tabs.filter( ( tab ) => tab.type === mode )[ 0 ].componentRoute );
     }

@@ -1,9 +1,11 @@
 import React from 'react';
 import MDEditor from '@uiw/react-md-editor';
 import PersistedState from 'use-persisted-state';
+import { useStore } from '../GlobalStore';
 
 
 const NOTEPAD = () => {
+    const { darkMode } = useStore();
     const [ value, setValue ] = PersistedState<string | string>( 'notepad' )( '' );
     return (
         <div className='container'>
@@ -14,9 +16,7 @@ const NOTEPAD = () => {
                 value={value || ''}
                 onChange={setValue}
                 height={500}
-                data-color-mode={
-                    localStorage.getItem( 'dark_mode' ) === 'true' ? 'dark' : 'light'
-                }
+                data-color-mode={darkMode ? 'dark' : 'light'}
             />
         </div>
     );

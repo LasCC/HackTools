@@ -17,7 +17,7 @@ export default function LayoutApp ( props: {
 } ) {
 
 
-    const {darkMode, setDarkModeState} = useStore();
+    const {darkMode, setDarkModeState, index, setIndex, hackTools , setHackToolsState} = useStore();
     enum HackToolsMode {
         web = "web",
         system = "system",
@@ -28,8 +28,8 @@ export default function LayoutApp ( props: {
     const { defaultAlgorithm, darkAlgorithm } = theme;
     
     const [ menuItems ] = useState<Array<IRouterComponent>>( Tabs );
-    const hackToolsState = PersistedState<string>( "hack_tools_mode" );
-    const [ hackTools, setHackToolsState ] = hackToolsState();
+    // const hackToolsState = PersistedState<string>( "hack_tools_mode" );
+    // const [ hackTools, setHackToolsState ] = hackToolsState();
     const isMac = navigator.platform.toUpperCase().includes( 'MAC' );
     const keySymbol = isMac ? '⌘' : 'CRTL';
 
@@ -76,8 +76,8 @@ export default function LayoutApp ( props: {
     } );
     /*--------------------------------*/
 
-    const useMenuIndex = PersistedState<string>( 'tab_index_cache' ); // Disabled for now
-    const [ index, setIndex ] = useMenuIndex( '1' );
+    // const useMenuIndex = PersistedState<string>( 'tab_index_cache' ); // Disabled for now
+    // const [ index, setIndex ] = useMenuIndex( '1' )
 
     const navigate = ( { componentRoute, key }: { componentRoute: React.FunctionComponent; key: string } ) => {
         goTo( componentRoute );
@@ -97,8 +97,10 @@ export default function LayoutApp ( props: {
     };
 
     useEffect( () => {
-        const currentIndexPage = parseInt( localStorage.getItem( "tab_index_cache" ).replace( /"/g, '' ) ) - 1 || ( 0 );
-        const currentComponent = Tabs.filter( ( tab ) => tab.type === hackTools )[ currentIndexPage ].componentRoute || ( LayoutChoice );
+        // const currentIndexPage = parseInt( localStorage.getItem( "tab_index_cache" ).replace( /"/g, '' ) ) - 1 || ( 0 );
+        const currentIndexPage = parseInt( index ) - 1 || ( 0 );
+        // const currentComponent = Tabs.filter( ( tab ) => tab.type === hackTools )[ currentIndexPage ].componentRoute || ( LayoutChoice );
+const currentComponent = Tabs.filter( ( tab ) => tab.type === hackTools )[ currentIndexPage ].componentRoute || ( LayoutChoice );
         goTo( currentComponent );
     }, [ index ] );
 
