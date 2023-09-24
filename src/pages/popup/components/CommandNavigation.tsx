@@ -1,20 +1,16 @@
-import { useEffect, useState } from "react";
-import { goTo } from "react-chrome-extension-router";
-import { Space, Tooltip, Typography } from "antd";
-import { DownOutlined, EnterOutlined, UpOutlined, BulbOutlined, BulbFilled } from "@ant-design/icons/lib/icons";
-import CommandPalette, { filterItems, getItemIndex } from "@tmikeladze/react-cmdk";
-import { MdChecklist, MdEmojiPeople, MdOutlineAdb } from 'react-icons/md';
 import { createFromIconfontCN } from '@ant-design/icons';
-import Tabs from './SideItemMenuRouting';
+import { BulbFilled, BulbOutlined, DownOutlined, EnterOutlined, UpOutlined } from "@ant-design/icons/lib/icons";
+import CommandPalette, { filterItems, getItemIndex } from "@tmikeladze/react-cmdk";
 import '@tmikeladze/react-cmdk/dist/cmdk.css';
+import { Space, Tooltip, Typography } from "antd";
+import { useEffect, useState } from "react";
+import { AiOutlineGithub } from "react-icons/ai";
 import { BiMobileVibration } from "react-icons/bi";
 import { BsBrowserChrome, BsMailbox2, BsTools } from "react-icons/bs";
 import { HiOutlineDesktopComputer } from "react-icons/hi";
-import { AiOutlineGithub } from "react-icons/ai";
-import ReverseShell from './system/linux/ReverseShell';
-import ADB from "./mobile/Android/ADB";
-import CustomPayloadTable from "./misc/PrivateCheatSheet";
+import { MdChecklist, MdEmojiPeople, MdOutlineAdb } from 'react-icons/md';
 import { useStore } from "./GlobalStore";
+import Tabs from './SideItemMenuRouting';
 
 const { Text } = Typography;
 
