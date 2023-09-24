@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { goTo } from "react-chrome-extension-router";
-import { Space, Typography } from "antd";
-import { DownOutlined, EnterOutlined, UpOutlined } from "@ant-design/icons/lib/icons";
+import { Space, Tooltip, Typography } from "antd";
+import { DownOutlined, EnterOutlined, UpOutlined, BulbOutlined, BulbFilled } from "@ant-design/icons/lib/icons";
 import CommandPalette, { filterItems, getItemIndex } from "@tmikeladze/react-cmdk";
-import { MdChecklist, MdEmojiPeople, MdOutlineAdb, MdSettings } from 'react-icons/md';
+import { MdChecklist, MdEmojiPeople, MdOutlineAdb } from 'react-icons/md';
 import { createFromIconfontCN } from '@ant-design/icons';
 import Tabs from './SideItemMenuRouting';
 import '@tmikeladze/react-cmdk/dist/cmdk.css';
@@ -11,16 +11,19 @@ import { BiMobileVibration } from "react-icons/bi";
 import { BsBrowserChrome, BsMailbox2, BsTools } from "react-icons/bs";
 import { HiOutlineDesktopComputer } from "react-icons/hi";
 import { AiOutlineGithub } from "react-icons/ai";
-import WebShells from "./web/WebShells";
+import ReverseShell from './system/linux/ReverseShell';
 import ADB from "./mobile/Android/ADB";
 import CustomPayloadTable from "./misc/PrivateCheatSheet";
 
 const { Text } = Typography;
 
-const CommandNavigation = ( { darkMode } ) => {
-    const [ page, setPage ] = useState<"root" | "Web" | "System" | "Mobile" | "Tools" | "Settings">( "root" );
+const CommandNavigation = ( { darkMode, setDarkMode } ) => {
+    const [ page, setPage ] = useState<"root" | "Web" | "System" | "Mobile" | "Tools">( "root" );
     const [ isOpen, setIsOpen ] = useState<boolean>( false );
     const [ search, setSearch ] = useState( "" );
+    const isMac = navigator.platform.toUpperCase().includes( 'MAC' );
+    const keyToCheck = isMac ? 'Meta' : 'Control';
+    const keySymbol = isMac ? '⌘' : 'CRTL';
 
     const IconFont = createFromIconfontCN( {
         scriptUrl: [ './iconfont.js' ]
@@ -28,13 +31,21 @@ const CommandNavigation = ( { darkMode } ) => {
 
     useEffect( () => {
         function handleKeyDown ( e: KeyboardEvent ) {
-            if ( e.ctrlKey && e.key === "k" ) {
+
+            if ( e.key === 'k' && e.getModifierState( keyToCheck ) ) {
                 e.preventDefault();
                 e.stopPropagation();
 
                 setIsOpen( ( currentValue ) => {
                     return !currentValue;
                 } );
+            }
+
+            if ( e.key === 'l' && e.getModifierState( keyToCheck ) ) {
+                e.preventDefault();
+                e.stopPropagation();
+
+                setDarkMode( !darkMode );
             }
         }
 
@@ -43,7 +54,8 @@ const CommandNavigation = ( { darkMode } ) => {
         return () => {
             document.removeEventListener( "keydown", handleKeyDown );
         };
-    }, [] );
+    }, [ darkMode ] );
+
 
     useEffect( () => {
         if ( isOpen ) {
@@ -84,7 +96,7 @@ const CommandNavigation = ( { darkMode } ) => {
                         icon: ( <IconFont type='icon-gnubash' style={{ fontSize: '1.3em', marginTop: 3 }} /> ),
                         closeOnSelect: false,
                         onClick: () => {
-                            goTo( WebShells );
+                            goTo( ReverseShell );
                             setIsOpen( false );
                         },
                     },
@@ -150,15 +162,6 @@ const CommandNavigation = ( { darkMode } ) => {
                             setPage( "Tools" );
                         },
                     },
-                    {
-                        id: "settings",
-                        children: "Settings",
-                        icon: ( <MdSettings style={{ fontSize: '1.3em', marginTop: 3 }} /> ),
-                        closeOnSelect: false,
-                        onClick: () => {
-                            setPage( "Settings" );
-                        },
-                    },
                 ],
             },
             {
@@ -210,10 +213,21 @@ const CommandNavigation = ( { darkMode } ) => {
             isOpen={isOpen}
             page={page}
             footer={
-                <Space style={{ padding: 10 }}>
-                    <Text keyboard><EnterOutlined /></Text> to select
-                    <Text keyboard><UpOutlined /><DownOutlined /></Text> to navigate
-                    <Text keyboard>Esc</Text> to close
+                <Space style={{ padding: 13, display: 'flex', justifyContent: 'space-between' }}>
+                    <div>
+                        <Text>
+                            <Space>
+                                <Text keyboard><EnterOutlined /></Text> to select
+                                <Text keyboard><UpOutlined /><DownOutlined /></Text> to navigate
+                                <Text keyboard>Esc</Text> to close
+                            </Space>
+                        </Text>
+                    </div>
+                    <Tooltip title={`Toggle Dark Mode (${ keySymbol } + L)`}>
+                        <Text keyboard>
+                            {darkMode ? <BulbFilled style={{ color: '#fadb14' }} /> : <BulbOutlined />}
+                        </Text>
+                    </Tooltip>
                 </Space>
             }
         >
@@ -221,12 +235,17 @@ const CommandNavigation = ( { darkMode } ) => {
                 {rootItemsMenu.length ? (
                     rootItemsMenu.map( ( list ) => (
                         <CommandPalette.List key={list.id} heading={list.heading}>
-                            {list.items.map( ( { id, ...rest } ) => (
+                            {list.items.map( ( { id, icon, ...rest } ) => (
                                 <CommandPalette.ListItem
                                     key={id}
                                     index={getItemIndex( rootItemsMenu, id )}
                                     {...rest}
-                                />
+                                >
+                                    <div className='flex items-center w-full'>
+                                        <Text style={{ marginRight: 5 }}>{icon}</Text>
+                                        <Text>{rest.children}</Text>
+                                    </div>
+                                </CommandPalette.ListItem>
                             ) )}
                         </CommandPalette.List>
                     ) )
@@ -330,23 +349,6 @@ const CommandNavigation = ( { darkMode } ) => {
                                 ) )}
                             </CommandPalette.List>
                         ) )
-                ) : (
-                    <CommandPalette.FreeSearchAction />
-                )}
-            </CommandPalette.Page>
-            <CommandPalette.Page id="Settings">
-                {filteredItems.length ? (
-                    filteredItems.map( ( list ) => (
-                        <CommandPalette.List key={list.id} heading={list.heading}>
-                            {list.items.map( ( { id, ...rest } ) => (
-                                <CommandPalette.ListItem
-                                    key={id}
-                                    index={getItemIndex( filteredItems, id )}
-                                    {...rest}
-                                />
-                            ) )}
-                        </CommandPalette.List>
-                    ) )
                 ) : (
                     <CommandPalette.FreeSearchAction />
                 )}
