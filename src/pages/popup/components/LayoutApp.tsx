@@ -7,6 +7,7 @@ import PersistedState from 'use-persisted-state';
 import Tabs, { IRouterComponent } from "./SideItemMenuRouting";
 import LayoutChoice from './LayoutChoice';
 import CommandNavigation from './CommandNavigation';
+import { useStore } from './GlobalStore';
 
 const { Paragraph, Text } = Typography;
 const { Sider, Content, Footer } = Layout;
