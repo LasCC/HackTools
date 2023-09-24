@@ -6,11 +6,11 @@ import customDynamicImport from "./utils/plugins/custom-dynamic-import";
 import addHmr from "./utils/plugins/add-hmr";
 import manifest from "./manifest";
 import { viteStaticCopy } from 'vite-plugin-static-copy'
-const root = resolve( __dirname, "src" );
-const pagesDir = resolve( root, "pages" );
-const assetsDir = resolve( root, "assets" );
-const outDir = resolve( __dirname, "dist" );
-const publicDir = resolve( __dirname, "public" );
+const root = resolve(__dirname, "src");
+const pagesDir = resolve(root, "pages");
+const assetsDir = resolve(root, "assets");
+const outDir = resolve(__dirname, "dist");
+const publicDir = resolve(__dirname, "public");
 
 
 const isDev = process.env.__DEV__ === "true";
@@ -20,7 +20,7 @@ const isProduction = !isDev;
 // ENABLE HMR IN BACKGROUND SCRIPT
 const enableHmrInBackgroundScript = true;
 
-export default defineConfig( {
+export default defineConfig({
     resolve: {
         alias: {
             "@src": root,
@@ -30,24 +30,24 @@ export default defineConfig( {
     },
     plugins: [
         react(),
-        makeManifest( manifest, {
+        makeManifest(manifest, {
             isDev,
             contentScriptCssKey: regenerateCacheInvalidationKey(),
-        } ),
+        }),
         customDynamicImport(),
-        addHmr( { background: enableHmrInBackgroundScript, view: true } ),
-        viteStaticCopy( {
+        addHmr({ background: enableHmrInBackgroundScript, view: true }),
+        viteStaticCopy({
             targets: [
                 {
-                    src: resolve( pagesDir, "popup", "iconfont.js" ),
-                    dest: resolve( publicDir, "src/pages/popup/" ),
+                    src: resolve(pagesDir, "popup", "iconfont.js"),
+                    dest: resolve(publicDir, "src/pages/popup/"),
                 },
                 {
-                    src: resolve( pagesDir, "popup", "iconfont.js" ),
-                    dest: resolve( publicDir ),
+                    src: resolve(pagesDir, "popup", "iconfont.js"),
+                    dest: resolve(publicDir),
                 },
             ],
-        } ),
+        }),
     ],
     optimizeDeps: {
         esbuildOptions: {
@@ -65,11 +65,17 @@ export default defineConfig( {
         minify: isProduction,
         reportCompressedSize: isProduction,
         rollupOptions: {
+            onwarn(warning, warn) {
+                if (warning.code === 'MODULE_LEVEL_DIRECTIVE') {
+                    return
+                }
+                warn(warning)
+            },
             input: {
-                devtools: resolve( pagesDir, "devtools", "index.html" ),
-                popup: resolve( pagesDir, "popup", "index.html" ),
-                background: resolve( pagesDir, "background", "index.ts" ),
-                main: resolve( publicDir, "index.html" ),
+                devtools: resolve(pagesDir, "devtools", "index.html"),
+                popup: resolve(pagesDir, "popup", "index.html"),
+                background: resolve(pagesDir, "background", "index.ts"),
+                main: resolve(publicDir, "index.html"),
                 // panel: resolve(pagesDir, "panel", "index.html"),
                 // content: resolve( pagesDir, "content", "index.ts" ),
                 // contentStyle: resolve(pagesDir, "content", "style.scss"),
@@ -77,19 +83,19 @@ export default defineConfig( {
                 // options: resolve( pagesDir, "options", "index.html" )
             },
             watch: {
-                include: [ "src/**", "vite.config.ts" ],
-                exclude: [ "node_modules/**", "src/**/*.spec.ts" ],
+                include: ["src/**", "vite.config.ts"],
+                exclude: ["node_modules/**", "src/**/*.spec.ts"],
             },
             output: {
                 entryFileNames: "src/pages/[name]/index.js",
 
-                manualChunks: ( id ) => {
+                manualChunks: (id) => {
                     const modules_to_bundle = [
                         "node-sql-parser",
                         "antd",
                     ]
 
-                    if ( id.includes( 'node_modules' ) && !modules_to_bundle.some( module => id.includes( module ) ) ) {
+                    if (id.includes('node_modules') && !modules_to_bundle.some(module => id.includes(module))) {
                         return 'vendor'
                     }
                 },
@@ -97,31 +103,31 @@ export default defineConfig( {
                 chunkFileNames: isDev
                     ? "assets/js/[name].js"
                     : "assets/js/[name].[hash].js",
-                assetFileNames: ( assetInfo ) => {
-                    const { dir, name: _name } = path.parse( assetInfo.name );
-                    const assetFolder = dir.split( "/" ).at( -1 );
-                    const name = assetFolder + firstUpperCase( _name );
-                    if ( name === "contentStyle" ) {
-                        return `assets/css/contentStyle${ cacheInvalidationKey }.chunk.css`;
+                assetFileNames: (assetInfo) => {
+                    const { dir, name: _name } = path.parse(assetInfo.name);
+                    const assetFolder = dir.split("/").at(-1);
+                    const name = assetFolder + firstUpperCase(_name);
+                    if (name === "contentStyle") {
+                        return `assets/css/contentStyle${cacheInvalidationKey}.chunk.css`;
                     }
-                    return `assets/[ext]/${ name }.chunk.[ext]`;
+                    return `assets/[ext]/${name}.chunk.[ext]`;
                 },
             },
         },
     },
-} );
+});
 
-function firstUpperCase ( str: string ) {
-    const firstAlphabet = new RegExp( /( |^)[a-z]/, "g" );
-    return str.toLowerCase().replace( firstAlphabet, ( L ) => L.toUpperCase() );
+function firstUpperCase(str: string) {
+    const firstAlphabet = new RegExp(/( |^)[a-z]/, "g");
+    return str.toLowerCase().replace(firstAlphabet, (L) => L.toUpperCase());
 }
 
 let cacheInvalidationKey: string = generateKey();
-function regenerateCacheInvalidationKey () {
+function regenerateCacheInvalidationKey() {
     cacheInvalidationKey = generateKey();
     return cacheInvalidationKey;
 }
 
-function generateKey (): string {
-    return `${ Date.now() }`;
+function generateKey(): string {
+    return `${Date.now()}`;
 }
