@@ -7,6 +7,7 @@ import PersistedState from 'use-persisted-state';
 import Tabs, { IRouterComponent } from "./SideItemMenuRouting";
 import LayoutChoice from './LayoutChoice';
 import CommandNavigation from './CommandNavigation';
+import  {useStore} from './GlobalStore';
 const { Paragraph } = Typography;
 const { Sider, Content, Footer } = Layout;
 
@@ -14,6 +15,8 @@ export default function LayoutApp ( props: {
     children: boolean | React.ReactFragment | React.ReactPortal | null | undefined;
 } ) {
 
+
+    const {darkMode, setDarkModeState} = useStore();
     enum HackToolsMode {
         web = "web",
         system = "system",
@@ -22,8 +25,7 @@ export default function LayoutApp ( props: {
     }
 
     const { defaultAlgorithm, darkAlgorithm } = theme;
-    const setDarkMode = PersistedState<boolean>( 'dark_mode' );
-    const [ darkMode, setDarkModeState ] = setDarkMode( false );
+    
     const [ menuItems ] = useState<Array<IRouterComponent>>( Tabs );
     const hackToolsState = PersistedState<string>( "hack_tools_mode" );
     const [ hackTools, setHackToolsState ] = hackToolsState();

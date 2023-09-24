@@ -11,7 +11,7 @@ import { BiMobileVibration } from "react-icons/bi";
 import { BsBrowserChrome, BsMailbox2, BsTools } from "react-icons/bs";
 import { HiOutlineDesktopComputer } from "react-icons/hi";
 import { AiOutlineGithub } from "react-icons/ai";
-import WebShells from "./web/WebShells";
+import ReverseShell from "./system/linux/ReverseShell";
 import ADB from "./mobile/Android/ADB";
 import CustomPayloadTable from "./misc/PrivateCheatSheet";
 
@@ -84,8 +84,10 @@ const CommandNavigation = ( { darkMode } ) => {
                         icon: ( <IconFont type='icon-gnubash' style={{ fontSize: '1.3em', marginTop: 3 }} /> ),
                         closeOnSelect: false,
                         onClick: () => {
-                            goTo( WebShells );
+                            goTo( ReverseShell );
                             setIsOpen( false );
+                            localStorage.setItem( 'hack_tools_mode', '"system"' );
+                            localStorage.setItem( 'tab_index_cache', '0' );
                         },
                     },
                     {
@@ -96,6 +98,8 @@ const CommandNavigation = ( { darkMode } ) => {
                         onClick: () => {
                             goTo( ADB );
                             setIsOpen( false );
+                            localStorage.setItem( 'hack_tools_mode', '"mobile"' );
+                            localStorage.setItem( 'tab_index_cache', '0' );
                         },
                     },
                     {
@@ -106,6 +110,8 @@ const CommandNavigation = ( { darkMode } ) => {
                         onClick: () => {
                             goTo( CustomPayloadTable );
                             setIsOpen( false );
+                            localStorage.setItem( 'hack_tools_mode', '"misc"' );
+                            localStorage.setItem( 'tab_index_cache', '1' );
                         },
                     },
                 ],
@@ -224,7 +230,10 @@ const CommandNavigation = ( { darkMode } ) => {
                             {list.items.map( ( { id, ...rest } ) => (
                                 <CommandPalette.ListItem
                                     key={id}
-                                    index={getItemIndex( rootItemsMenu, id )}
+                                    index={getItemIndex( rootItemsMenu, id )
+                                    
+                                    
+                                    }
                                     {...rest}
                                 />
                             ) )}
@@ -244,7 +253,12 @@ const CommandNavigation = ( { darkMode } ) => {
                                     <CommandPalette.ListItem
                                         key={id}
                                         index={getItemIndex( filteredItems, id )}
-                                        onClick={() => { goTo( rest.href ) }}
+                                        onClick={() => { 
+                                            goTo( rest.href ) 
+                                            console.log({rest , id, name, heroIcon})
+                                            localStorage.setItem( 'hack_tools_mode', "web" );
+                                            localStorage.setItem( 'tab_index_cache', String( id-1 ) );
+                                        }}
                                         {...rest}
                                     >
                                         <div className='flex items-center w-full'>
@@ -269,7 +283,10 @@ const CommandNavigation = ( { darkMode } ) => {
                                     <CommandPalette.ListItem
                                         key={id}
                                         index={getItemIndex( filteredItems, id )}
-                                        onClick={() => { goTo( rest.href ) }}
+                                        onClick={() => { goTo( rest.href )
+                                            localStorage.setItem( 'hack_tools_mode', '"system"' );
+                                            localStorage.setItem( 'tab_index_cache', String( id -1 ) );
+                                        }}
                                         {...rest}
                                     >
                                         <div className='flex items-center w-full'>
@@ -294,7 +311,13 @@ const CommandNavigation = ( { darkMode } ) => {
                                     <CommandPalette.ListItem
                                         key={id}
                                         index={getItemIndex( filteredItems, id )}
-                                        onClick={() => { goTo( rest.href ) }}
+                                        onClick={() => { 
+                                            goTo( rest.href )
+                                            localStorage.setItem( 'hack_tools_mode', '"mobile"' );
+                                            localStorage.setItem( 'tab_index_cache', String( id - 1 ) );
+                                        }
+                                            
+                                        }
                                         {...rest}
                                     >
                                         <div className='flex items-center w-full'>
@@ -319,7 +342,11 @@ const CommandNavigation = ( { darkMode } ) => {
                                     <CommandPalette.ListItem
                                         key={id}
                                         index={getItemIndex( filteredItems, id )}
-                                        onClick={() => { goTo( rest.href ) }}
+                                        onClick={() => {
+                                             goTo( rest.href ) 
+                                                localStorage.setItem( 'hack_tools_mode', '"misc"' );
+                                                localStorage.setItem( 'tab_index_cache', String( id - 1 ) );
+                                        }}
                                         {...rest}
                                     >
                                         <div className='flex items-center w-full'>
