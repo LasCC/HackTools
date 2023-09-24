@@ -3,7 +3,6 @@ import { Button, ConfigProvider, Layout, Menu, Select, Typography, theme } from 
 import React, { useEffect, useState } from 'react';
 import { goTo } from 'react-chrome-extension-router';
 import { useHotkeys } from 'react-hotkeys-hook';
-import PersistedState from 'use-persisted-state';
 import Tabs, { IRouterComponent } from "./SideItemMenuRouting";
 import LayoutChoice from './LayoutChoice';
 import CommandNavigation from './CommandNavigation';
@@ -97,12 +96,14 @@ export default function LayoutApp ( props: {
     };
 
     useEffect( () => {
-        // const currentIndexPage = parseInt( localStorage.getItem( "tab_index_cache" ).replace( /"/g, '' ) ) - 1 || ( 0 );
-        const currentIndexPage = parseInt( index ) - 1 || ( 0 );
-        // const currentComponent = Tabs.filter( ( tab ) => tab.type === hackTools )[ currentIndexPage ].componentRoute || ( LayoutChoice );
-const currentComponent = Tabs.filter( ( tab ) => tab.type === hackTools )[ currentIndexPage ].componentRoute || ( LayoutChoice );
+//         // const currentIndexPage = parseInt( localStorage.getItem( "tab_index_cache" ).replace( /"/g, '' ) ) - 1 || ( 0 );
+//         const currentIndexPage = parseInt( index ) - 1 || ( 0 );
+//         // const currentComponent = Tabs.filter( ( tab ) => tab.type === hackTools )[ currentIndexPage ].componentRoute || ( LayoutChoice );
+// const currentComponent = Tabs.filter( ( tab ) => tab.type === hackTools )[ currentIndexPage ].componentRoute || ( LayoutChoice );
+//         goTo( currentComponent );
+        const currentComponent = Tabs.filter( ( tab ) => tab.type === hackTools )[ parseInt(index) - 1 ].componentRoute || ( LayoutChoice );
         goTo( currentComponent );
-    }, [ index ] );
+    }, [ index, hackTools ] );
 
     const target = window.location.href;
 
@@ -170,7 +171,8 @@ const currentComponent = Tabs.filter( ( tab ) => tab.type === hackTools )[ curre
                         {currentLogobasedOnMode()}
                     </div>
 
-                    <Menu theme='dark' defaultSelectedKeys={[ index ]} mode='inline'>
+                
+                <Menu theme='dark' defaultSelectedKeys={[index]} selectedKeys={[index]} mode='inline'>
                         {MenuItemsLists}
                     </Menu>
                 </Sider>
@@ -217,7 +219,7 @@ const currentComponent = Tabs.filter( ( tab ) => tab.type === hackTools )[ curre
                             Pop-up mode
                         </Button>
                     </Footer>
-                    <CommandNavigation darkMode={darkMode} setDarkMode={setDarkModeState} />
+                    <CommandNavigation />
                 </Layout>
             </Layout >
         </ConfigProvider >
