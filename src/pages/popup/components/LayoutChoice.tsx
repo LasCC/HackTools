@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Card, Col, Row, Typography } from "antd";
+import { Alert, Card, Col, Row, Space, Typography } from "antd";
 import { goTo } from "react-chrome-extension-router";
 import PersistedState from 'use-persisted-state';
 import Tabs from "./SideItemMenuRouting";
@@ -22,6 +22,8 @@ const LayoutChoice = () => {
     const hackToolsState = PersistedState<string>( "hack_tools_mode" );
     const [ hackTools, setHackTools ] = hackToolsState( "web" );
     const { Text } = Typography;
+    const isMac = navigator.platform.toUpperCase().includes( 'MAC' );
+    const keySymbol = isMac ? '⌘' : 'CRTL';
 
     const modes
         : Array<{
@@ -71,7 +73,7 @@ const LayoutChoice = () => {
                 name: HackToolsMode.misc,
                 backgroundImage: miscBG,
                 title: "General Purpose Tools",
-                description: "Various tools such as a private cheatsheets, advanced methodology, notes taking, etc.",
+                description: "Various tools such as a private cheatsheets, advanced methodology, etc.",
                 shortcut: (
                     <div style={{ marginTop: 5 }}>
                         <Text keyboard>CRTL</Text>
@@ -139,6 +141,19 @@ const LayoutChoice = () => {
             <Row gutter={[ 24, 16 ]}>
                 {mappedModules}
             </Row>
+            <div style={{ marginTop: 8 }}>
+                <Alert
+                    message="New keyboard shortcuts"
+                    description={
+                        <span>
+                            You can now use the keyboard shortcut to switch between the different modes, or use your <Text keyboard>{keySymbol}</Text> + <Text keyboard>k</Text> to open the command palette.
+                        </span>
+                    }
+                    type="info"
+                    showIcon
+                    closable
+                />
+            </div>
         </>
     );
 };
