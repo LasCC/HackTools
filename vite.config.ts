@@ -40,7 +40,11 @@ export default defineConfig( {
             targets: [
                 {
                     src: resolve( pagesDir, "popup", "iconfont.js" ),
-                    dest: resolve( outDir, "src/pages/popup/" ),
+                    dest: resolve( publicDir, "src/pages/popup/" ),
+                },
+                {
+                    src: resolve( pagesDir, "popup", "iconfont.js" ),
+                    dest: resolve( publicDir ),
                 },
             ],
         } ),
@@ -65,6 +69,7 @@ export default defineConfig( {
                 devtools: resolve( pagesDir, "devtools", "index.html" ),
                 popup: resolve( pagesDir, "popup", "index.html" ),
                 background: resolve( pagesDir, "background", "index.ts" ),
+                main: resolve( publicDir, "index.html" ),
                 // panel: resolve(pagesDir, "panel", "index.html"),
                 // content: resolve( pagesDir, "content", "index.ts" ),
                 // contentStyle: resolve(pagesDir, "content", "style.scss"),
