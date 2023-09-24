@@ -1,7 +1,7 @@
 import { ExportOutlined, FileSyncOutlined, ImportOutlined, QuestionCircleOutlined, ToolOutlined } from '@ant-design/icons';
 import { Button, Col, Divider, Dropdown, FloatButton, Input, Modal, Row, Table, Tag, Typography, message, Space } from 'antd';
 import Fuse from 'fuse.js';
-import { useState } from 'react';
+import { useState , useEffect } from 'react';
 import usePayloadStore, { DataType } from './store';
 const { Title, Paragraph, Text } = Typography;
 
@@ -113,6 +113,10 @@ const index = () => {
             setSearchResults( payloads );
         }
     };
+
+    useEffect(() => {
+        setSearchResults(payloads);
+    }, [payloads]);
 
     const columns = [
         {
