@@ -1,32 +1,24 @@
 .logo:hover {
     cursor: pointer;
-    animation: jelly 0.5s;
+    -webkit-mask-image: linear-gradient(45deg, #808080 25%, rgba(255, 255, 255, 0.2) 50%, #808080 75%);
+    mask-image: linear-gradient(45deg, #808080 25%, rgba(255, 255, 255, 0.2) 50%, #808080 75%);
+    -webkit-mask-size: 800%;
+    mask-size: 800%;
+    -webkit-mask-position: 0;
+    mask-position: 0;
+}
+
+.logo:hover {
+    transition: mask-position 2s ease, -webkit-mask-position 2s ease;
+    -webkit-mask-position: 120%;
+    mask-position: 120%;
+    opacity: 1;
 }
 
 .logo {
     padding-left: 17px;
     padding-top: 14px;
     margin-bottom: 10px;
-}
-
-@keyframes jelly {
-
-    0%,
-    100% {
-        transform: scale(1, 1);
-    }
-
-    25% {
-        transform: scale(0.9, 1.1);
-    }
-
-    50% {
-        transform: scale(1.1, 0.9);
-    }
-
-    75% {
-        transform: scale(0.95, 1.05);
-    }
 }
 
 .ant-badge {
