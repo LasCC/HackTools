@@ -3,7 +3,7 @@ import { Tabs } from 'antd';
 import type { TabsProps } from 'antd';
 import ADB from './ADB';
 import APKPatching from './APKPatching';
-import ContentProvider from './ContentProvider';
+import IntentInjection from './IntentInjection';
 import ActivityManager from './ActivityManager';
 
 const index = () => {
@@ -21,8 +21,8 @@ const index = () => {
         },
         {
             key: '3',
-            label: `Content Provider`,
-            children: ContentProvider()
+            label: `Intent Injection`,
+            children: IntentInjection()
         },
         {
             key: '4',
