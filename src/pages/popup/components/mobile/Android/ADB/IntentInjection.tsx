@@ -1,103 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Input, Button, Row, Col, Form, Space, Typography, Select } from 'antd';
 import { DeleteOutlined, MinusOutlined, PlusOutlined } from '@ant-design/icons';
 import { vs2015 } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import SyntaxHighlighter from 'react-syntax-highlighter';
+import { useIntentInjectionStore } from './store/useIntentInjection';
 
 const { Option } = Select;
 
-interface Extra {
-    key: string;
-    value: string;
-    type: 'string' | 'boolean' | 'integer'; // // TODO: Add more cases here for other intent types
-}
-
 const IntentInjection = () => {
-    const [className, setClassName] = useState<string>('');
-    const [extras, setExtras] = useState<Extra[]>([{ key: '', value: '', type: 'string' }]);
-    const [adbCommand, setAdbCommand] = useState<string>('');
-    const [javaPOC, setJavaPOC] = useState<string>('');
 
-    const addExtra = () => {
-        setExtras([...extras, { key: '', value: '', type: 'string' }]);
-    };
-
-    const clearAll = () => {
-        setExtras([]);
-    };
-
-    const deleteExtra = (index: number) => {
-        const newExtras = [...extras];
-        newExtras.splice(index, 1);
-        setExtras(newExtras);
-    };
-
-
-    const generatePOC = () => {
-        let trimmedClassName = className.trim();
-        let packageName = '';
-        let activityName = '';
-
-        if (trimmedClassName.startsWith('<')) {
-            const match = trimmedClassName.match(/<activity[^>]*android:name="([^"]+)"/i);
-            if (match) {
-                const fullClassName = match[1];
-                const splitName = fullClassName.split('.');
-                packageName = splitName.slice(0, -1).join('.');
-                activityName = splitName[splitName.length - 1];
-            }
-        } else {
-            const splitName = trimmedClassName.split('.');
-            packageName = splitName.slice(0, -1).join('.');
-            activityName = splitName[splitName.length - 1];
-        }
-
-
-        const extrasString = extras.map(extra => {
-            switch (extra.type) {
-                case 'string':
-                    return `--es "${extra.key}" "${extra.value}"`;
-                case 'boolean':
-                    return `--ez "${extra.key}" ${extra.value}`;
-                case 'integer':
-                    return `--ei "${extra.key}" ${extra.value}`;
-                // TODO: Add more cases here for other types
-                default:
-                    return '';
-            }
-        }).join(' ');
-        const command = `adb shell am start -n ${packageName}/.${activityName} ${extrasString}`;
-        setAdbCommand(command);
-
-        const extrasJavaString = extras.map(extra => {
-            switch (extra.type) {
-                case 'string':
-                    return `intent.putExtra("${extra.key}", "${extra.value}");`;
-                case 'boolean':
-                    return `intent.putExtra("${extra.key}", ${extra.value});`;
-                case 'integer':
-                    return `intent.putExtra("${extra.key}", ${extra.value});`;
-                // TODO: Add more cases here for other types
-                default:
-                    return '';
-            }
-        }).join('\n');
-        const javaPOCCode = `
-// Java POC
-Intent intent = new Intent();
-intent.setClassName("${packageName}", "${packageName}.${activityName}");
-${extrasJavaString}
-startActivity(intent);
-`.split('\n').map(line => line.trim()).join('\n');
-
-        setJavaPOC(javaPOCCode);
-    };
+    const { className, setClassName, extras, setExtras, adbCommand, javaPOC, generatePOC, addExtra, deleteExtra, clearAllExtra } = useIntentInjectionStore();
 
     return (
         <Row gutter={16}>
             <Col span={24}>
                 <Form onFinish={generatePOC}>
-                    <Form.Item label="Class">
+                    <Form.Item label="Activity">
                         <Input placeholder={`Provide com.app.RenderWebViewActivity or the whole xml tag : <activity android:name='com.app.RenderWebViewActivity' .../>`}
                             value={className} onChange={e => setClassName(e.target.value)} />
                     </Form.Item>
@@ -106,7 +24,7 @@ startActivity(intent);
                             <Form.Item label={`Extra ${index + 1} Type`}>
                                 <Select value={extra.type} onChange={value => {
                                     const newExtras = [...extras];
-                                    newExtras[index].type = value as 'string' | 'boolean' | 'integer'; 
+                                    newExtras[index].type = value as 'string' | 'boolean' | 'integer';
                                     setExtras(newExtras);
                                 }}>
                                     <Option value="string">String</Option>
@@ -145,7 +63,7 @@ startActivity(intent);
                     </Form.Item>
                     <Form.Item>
                         <Button type="primary"
-                            icon={<DeleteOutlined />} danger onClick={clearAll}>
+                            icon={<DeleteOutlined />} danger onClick={clearAllExtra}>
                             Clear All
                         </Button>
                     </Form.Item>
