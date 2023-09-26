@@ -38,11 +38,11 @@ export const useIntentInjectionStore = create<IntentInjectionState>(
             setJavaPOC: (javaPOC) => set({ javaPOC }),
             generatePOC: () => {
                 let trimmedClassName = get().className.trim();
-                let packageName = '';
-                let activityName = '';
+                let packageName = '' || 'com.example';
+                let activityName = '' || 'MainActivity';
 
                 if (trimmedClassName.startsWith('<')) {
-                    const match = trimmedClassName.match(/<activity[^>]*android:name="([^"]+)"/i);
+                    const match = trimmedClassName.match(/<activity[^>]*android:name="([^"]+)"/is);
                     if (match) {
                         const fullClassName = match[1];
                         const splitName = fullClassName.split('.');
@@ -55,6 +55,8 @@ export const useIntentInjectionStore = create<IntentInjectionState>(
                     activityName = splitName[splitName.length - 1];
                 }
 
+                if (!packageName) packageName = '<com.pkgname missing>'; 
+                if (!activityName) activityName = '<Activity name missing>';
 
                 const extrasString = get().extras.map(extra => {
                     switch (extra.type) {
