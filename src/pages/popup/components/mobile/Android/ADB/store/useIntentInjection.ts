@@ -55,8 +55,13 @@ export const useIntentInjectionStore = create<IntentInjectionState>(
                     activityName = splitName[splitName.length - 1];
                 }
 
-                if (!packageName) packageName = '<com.pkgname missing>'; 
-                if (!activityName) activityName = '<Activity name missing>';
+                
+                if (!packageName && !activityName) {
+                    packageName = '<com.pkgname missing>';
+                    activityName = '<Activity name missing>';
+                }
+                else if (!packageName) packageName = '<com.pkgname missing>';
+                else if (!activityName) activityName = '<Activity name missing>';
 
                 const extrasString = get().extras.map(extra => {
                     switch (extra.type) {
