@@ -3,8 +3,6 @@ import { Badge, Button, Card, Col, Divider, FloatButton, Row, Tag, Typography, U
 import axios from 'axios';
 import { useState } from 'react';
 import { BLANK_LM_HASH, useSecretsStore } from './useSecret';
-import { Input, Modal, Space } from 'antd';
-
 
 
 const SAM = () => {
@@ -13,52 +11,6 @@ const SAM = () => {
     const { data, samFileList, systemFileList, setData, setSamFileList, setSystemFileList, serverAPIKey, serverURL, setServerURL } = useSecretsStore();
     const [isLoading, setIsLoading] = useState(false);
     const isLMHashBlank = (lm_hash: string) => lm_hash === BLANK_LM_HASH;
-    const [openSyncModal, setOpenSyncModal] = useState(false);
-
-
-    const HacktoolServerModal = () =>  (
-        <Modal title="Hacktools server"
-            width={window.innerWidth > 800 ? 800 : window.innerWidth - 75}
-            onCancel={() => setOpenSyncModal(false)}
-            onOk={() => setOpenSyncModal(false)}
-        >
-            <Row gutter={[16, 16]}>
-                <Col span={24}>
-                    <Typography.Paragraph>
-                        In order to parse credentials from Windows, you need to run local server on your machine since most of the offensive utilities are in python.
-                    </Typography.Paragraph>
-                    <Typography.Paragraph>
-                        We strongly advise you to use this tools only locally and not on the internet for obvious reasons...
-                    </Typography.Paragraph>
-                    <Typography.Paragraph>
-                        To reach the server you need to provide an API key which is generated randomly each time you start the server.
-                    </Typography.Paragraph>
-                </Col>
-                <Divider />
-                <Col span={24}>
-                    <Typography.Title level={5}>API Key </Typography.Title>
-                    <Input placeholder="API Key" 
-                    value={serverAPIKey}
-                    onChange={(e) => setServerURL(e.target.value)}
-                    />
-                </Col>
-                <Col span={24}>
-                    <Typography.Title level={3}>Remote Import</Typography.Title>
-                    <Space.Compact style={{ width: '100%' }}>
-                        <Input placeholder="Enter remote URL" value={serverURL} onChange={(e) => setServerURL(e.target.value)} />
-                        <Button type="primary">Connect</Button>
-                    </Space.Compact>
-                </Col>
-            </Row>
-
-        </Modal>
-    )
-
-
-
-    const showSyncModal = () => {
-        setOpenSyncModal(true);
-    };
 
 
     const handleSAMUpload = async () => {
@@ -174,15 +126,6 @@ const SAM = () => {
                 {data && <Divider />}
                 {data ? renderSAMData() : <Card><p> Server must be up and running to do this operation. </p></Card>}
             </ Col>
-
-
-            <Button
-                icon={<FileSyncOutlined />}
-                onClick={showSyncModal}
-            />
-            {openSyncModal && <HacktoolServerModal />}
-
-
         </Row>
     );
 };

@@ -2,7 +2,7 @@
 import create from 'zustand';
 import { persist, StateStorage } from 'zustand/middleware';
 import { storage } from '../../../createPersistedState';
-
+import { message } from "antd";
 
 export const BLANK_LM_HASH = "aad3b435b51404eeaad3b435b51404ee"
 
@@ -34,8 +34,10 @@ interface SecretsState {
     serverAPIKey: string;
     setServerAPIKey: (server_API_Key: string) => void;
     serverPingTest: () => Promise<boolean>;
-
     serverAuthTest: () => Promise<boolean>;
+
+    isServerConnectModalVisible: boolean;
+    setIsServerConnectModalVisible: (visible: boolean) => void;
 
 
     data: SAMProps['data'] | null;
@@ -53,12 +55,15 @@ export const useSecretsStore = create<SecretsState>(
             serverURL: 'http://localhost:8001',
             setServerURL: (serverURL) => set({ serverURL }),
             serverAPIKey: '',
-            setServerAPIKey: (serverAPIKey) => set({ serverAPIKey }),
+            setServerAPIKey: (serverAPIKey) => set({
+                serverAPIKey
+            }),
             serverPingTest: async () => {
                 try {
                     const response = await fetch(`${get().serverURL}/ping`);
                     const data = await response.json();
                     if (data.status === 'success') {
+                        message.success('Server is up and running!');
                         return true;
                     } else {
                         return false;
@@ -67,6 +72,8 @@ export const useSecretsStore = create<SecretsState>(
                     return false;
                 }
             },
+            isServerConnectModalVisible: false,
+            setIsServerConnectModalVisible: (visible) => set({ isServerConnectModalVisible: visible }),
             serverAuthTest: async () => {
                 try {
                     const response = await fetch(`${get().serverURL}/auth_check`, {
@@ -76,8 +83,10 @@ export const useSecretsStore = create<SecretsState>(
                     });
                     const data = await response.json();
                     if (data.status === 'success') {
+                        message.success('API Key is valid!');
                         return true;
                     } else {
+                        message.error('API Key is invalid!');
                         return false;
                     }
                 } catch (error) {
