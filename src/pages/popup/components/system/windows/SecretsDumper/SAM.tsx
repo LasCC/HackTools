@@ -1,5 +1,5 @@
-import { FileSyncOutlined, UploadOutlined, UserOutlined } from '@ant-design/icons';
-import { Badge, Button, Card, Col, Divider, FloatButton, Row, Tag, Typography, Upload, message } from 'antd';
+import { UploadOutlined, UserOutlined } from '@ant-design/icons';
+import { Badge, Button, Card, Col, Divider, Input, Modal, Row, Space, Tag, Typography, Upload, message } from 'antd';
 import axios from 'axios';
 import { useState } from 'react';
 import { BLANK_LM_HASH, useSecretsStore } from './useSecret';
@@ -7,10 +7,14 @@ import { BLANK_LM_HASH, useSecretsStore } from './useSecret';
 
 const SAM = () => {
 
+    const { setIsServerConnectModalVisible, isServerConnectModalVisible, serverAPIKey, serverURL, setServerURL, serverAuthTest, setServerAPIKey, serverPingTest } = useSecretsStore();
+    const { data, samFileList, systemFileList, setData, setSamFileList, setSystemFileList } = useSecretsStore();
 
-    const { data, samFileList, systemFileList, setData, setSamFileList, setSystemFileList, serverAPIKey, serverURL, setServerURL } = useSecretsStore();
     const [isLoading, setIsLoading] = useState(false);
     const isLMHashBlank = (lm_hash: string) => lm_hash === BLANK_LM_HASH;
+
+
+
 
 
     const handleSAMUpload = async () => {
@@ -91,6 +95,53 @@ const SAM = () => {
         </Row >
     )
 
+
+    const HacktoolServerModal = (
+        <Modal title="Hacktools server"
+            open={isServerConnectModalVisible}
+            width={window.innerWidth > 800 ? 800 : window.innerWidth - 75}
+            onCancel={() => setIsServerConnectModalVisible(false)}
+            onOk={() => setIsServerConnectModalVisible(false)}
+        >
+            <Row gutter={[16, 16]}>
+                <Col span={24}>
+                    <Typography.Paragraph>
+                        In order to parse credentials from Windows, you need to run local server on your machine since most of the offensive utilities are in python.
+                    </Typography.Paragraph>
+                    <Typography.Paragraph>
+                        We strongly advise you to use this tools only locally and not on the internet for obvious reasons...
+                    </Typography.Paragraph>
+                    <Typography.Paragraph>
+                        To reach the server you need to provide an API key which is generated randomly each time you start the server.
+                    </Typography.Paragraph>
+                </Col>
+                <Col span={24}>
+                    <Typography.Title level={3}>Server URL</Typography.Title>
+                    <Space.Compact style={{ width: '100%' }}>
+                        <Input placeholder="Enter remote URL" value={serverURL}
+                            onChange={(e) => setServerURL(e.target.value)}
+                        />
+                    </Space.Compact>
+                </Col>
+                <Divider />
+                <Col span={24}>
+                    <Typography.Title level={5}>API Key </Typography.Title>
+                    <Input placeholder="API Key"
+                        onChange={(e) => setServerAPIKey(e.target.value)}
+                        value={serverAPIKey}
+                    />
+                    <Button type="primary"
+                        onClick={
+                            () => serverPingTest() && serverAuthTest()}
+                    >Connect</Button>
+                </Col>
+
+            </Row>
+
+        </Modal>
+    )
+
+
     return (
         <Row gutter={[16, 16]}>
             <Col span={12}>
@@ -126,6 +177,8 @@ const SAM = () => {
                 {data && <Divider />}
                 {data ? renderSAMData() : <Card><p> Server must be up and running to do this operation. </p></Card>}
             </ Col>
+            
+            {HacktoolServerModal}
         </Row>
     );
 };
