@@ -1,4 +1,4 @@
-import { UploadOutlined, UserOutlined } from '@ant-design/icons';
+import { SyncOutlined, UploadOutlined, UserOutlined } from '@ant-design/icons';
 import { Badge, Button, Card, Col, Divider, Input, Modal, Row, Space, Tag, Typography, Upload, message } from 'antd';
 import axios from 'axios';
 import { useState } from 'react';
@@ -119,68 +119,73 @@ const SAM = () => {
                     <Typography.Title level={3}>Server URL</Typography.Title>
                     <Space.Compact style={{ width: '100%' }}>
                         <Input placeholder="Enter remote URL" value={serverURL}
-                            onChange={(e) => setServerURL(e.target.value)}
+                            onChange={(e) => setServerURL(e.target.value.trim())}
                         />
                     </Space.Compact>
                 </Col>
-                <Divider />
                 <Col span={24}>
+
                     <Typography.Title level={5}>API Key </Typography.Title>
+                </Col>
+                <Col span={24}>
                     <Input placeholder="API Key"
-                        onChange={(e) => setServerAPIKey(e.target.value)}
+                        onChange={(e) => setServerAPIKey(e.target.value.trim())}
                         value={serverAPIKey}
                     />
-                    <Button type="primary"
-                        onClick={
-                            () => serverPingTest() && serverAuthTest()}
-                    >Connect</Button>
                 </Col>
+                <Col span={24}>
+                <Button type="primary"
+                    icon={<SyncOutlined />}
+                    onClick={
+                        () => serverAuthTest()}
+                >Connect</Button>
+            </Col>
 
-            </Row>
+        </Row>
 
-        </Modal>
+        </Modal >
     )
 
 
-    return (
-        <Row gutter={[16, 16]}>
-            <Col span={12}>
-                <Upload
-                    fileList={samFileList}
-                    onChange={(info) => {
-                        setSamFileList([info.fileList[info.fileList.length - 1]]);
-                    }}
-                    onRemove={(file) => {
-                        const newList = samFileList.filter(item => item.uid !== file.uid);
-                        setSamFileList(newList);
-                    }}
-                >
-                    <Button icon={<UploadOutlined />}>Add SAM Hive</Button>
-                </Upload>
-            </Col>
-            <Col span={12}>
-                <Upload
-                    fileList={systemFileList}
-                    onChange={(info) => {
-                        setSystemFileList([info.fileList[info.fileList.length - 1]]);
-                    }}
-                >
-                    <Button icon={<UploadOutlined />}>Add SYSTEM Hive File</Button>
-                </Upload>
-            </Col>
-            <Col span={24} >
-                <Button
-                    loading={isLoading}
-                    onClick={handleSAMUpload}>Decode SAM</Button>
-            </ Col>
-            <Col span={24} >
-                {data && <Divider />}
-                {data ? renderSAMData() : <Card><p> Server must be up and running to do this operation. </p></Card>}
-            </ Col>
-            
-            {HacktoolServerModal}
-        </Row>
-    );
+return (
+    <Row gutter={[16, 16]}>
+        <Col span={12}>
+            <Upload
+                fileList={samFileList}
+                onChange={(info) => {
+                    setSamFileList([info.fileList[info.fileList.length - 1]]);
+                }}
+                onRemove={(file) => {
+                    const newList = samFileList.filter(item => item.uid !== file.uid);
+                    setSamFileList(newList);
+                }}
+            >
+                <Button icon={<UploadOutlined />}>Add SAM Hive</Button>
+            </Upload>
+        </Col>
+        <Col span={12}>
+            <Upload
+                fileList={systemFileList}
+                onChange={(info) => {
+                    setSystemFileList([info.fileList[info.fileList.length - 1]]);
+                }}
+            >
+                <Button icon={<UploadOutlined />}>Add SYSTEM Hive File</Button>
+            </Upload>
+        </Col>
+        <Col span={24} >
+            <Button
+                loading={isLoading}
+                onClick={handleSAMUpload}>Decode SAM</Button>
+        </ Col>
+        <Col span={24} >
+            {data && <Divider />}
+            {data ? renderSAMData() : <Card><p> Server must be up and running to do this operation. </p></Card>}
+        </ Col>
+
+        {HacktoolServerModal}
+    </Row>
+);
 };
 
 export default SAM;
