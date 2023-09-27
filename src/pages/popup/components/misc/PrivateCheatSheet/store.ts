@@ -3,7 +3,7 @@ import { persist } from 'zustand/middleware';
 import { saveAs } from 'file-saver';
 import { Array, Record, String } from 'runtypes';
 import { message } from 'antd';
-
+import { storage } from '../../createPersistedState';
 
 export interface DataType {
     id: string;
@@ -137,8 +137,8 @@ const usePayloadStore = create<PayloadStoreState>(
             }
         }),
         {
-            name: 'payload-store',
-            getStorage: () => window.localStorage,
+            name: 'private-cheatsheet-payload-store',
+            getStorage: () => storage,
         }
     )
 );
