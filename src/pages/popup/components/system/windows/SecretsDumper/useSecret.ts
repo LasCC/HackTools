@@ -2,8 +2,7 @@
 import create from 'zustand';
 import { persist, StateStorage } from 'zustand/middleware';
 import { storage } from '../../../createPersistedState';
-import { message } from "antd";
-
+import { message } from 'antd';
 export const BLANK_LM_HASH = "aad3b435b51404eeaad3b435b51404ee"
 
 interface UserData {
@@ -35,10 +34,11 @@ interface SecretsState {
     setServerAPIKey: (server_API_Key: string) => void;
     serverPingTest: () => Promise<boolean>;
     serverAuthTest: () => Promise<boolean>;
+    isServerReady: boolean;
+
 
     isServerConnectModalVisible: boolean;
     setIsServerConnectModalVisible: (visible: boolean) => void;
-
 
     data: SAMProps['data'] | null;
     samFileList: any[];
@@ -46,6 +46,9 @@ interface SecretsState {
     setData: (data: SAMProps['data']) => void;
     setSamFileList: (list: any[]) => void;
     setSystemFileList: (list: any[]) => void;
+
+    
+
 }
 
 export const useSecretsStore = create<SecretsState>(
@@ -55,6 +58,7 @@ export const useSecretsStore = create<SecretsState>(
             serverURL: 'http://localhost:8001',
             setServerURL: (serverURL) => set({ serverURL }),
             serverAPIKey: '',
+            isServerReady: false,
             setServerAPIKey: (serverAPIKey) => set({
                 serverAPIKey
             }),
@@ -63,7 +67,6 @@ export const useSecretsStore = create<SecretsState>(
                     const response = await fetch(`${get().serverURL}/ping`);
                     const data = await response.json();
                     if (data.status === 'success') {
-                        message.success('Server is up and running!');
                         return true;
                     } else {
                         return false;
@@ -83,16 +86,19 @@ export const useSecretsStore = create<SecretsState>(
                     });
                     const data = await response.json();
                     if (data.status === 'success') {
-                        message.success('API Key is valid!');
+                        message.success("Authenticated");
+                        set({ isServerReady: true });
                         return true;
                     } else {
-                        message.error('API Key is invalid!');
+                        set({ isServerReady: false });
+                        message.error("Invalid API Key");
                         return false;
                     }
                 } catch (error) {
                     return false;
                 }
-            },
+            
+    },
 
             data: null,
             samFileList: [],
