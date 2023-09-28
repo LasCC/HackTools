@@ -1,8 +1,8 @@
-// src/pages/popup/components/system/windows/SecretsDumper/useSecret.ts
 import create from 'zustand';
 import { persist, StateStorage } from 'zustand/middleware';
 import { storage } from '../../../createPersistedState';
 import { message } from 'antd';
+
 export const BLANK_LM_HASH = "aad3b435b51404eeaad3b435b51404ee"
 
 interface UserData {
@@ -29,84 +29,79 @@ interface SAMProps {
 
 interface SecretsState {
     serverURL: string;
-    setServerURL: (server_URL: string) => void;
+    setServerURL: ( server_URL: string ) => void;
     serverAPIKey: string;
-    setServerAPIKey: (server_API_Key: string) => void;
+    setServerAPIKey: ( server_API_Key: string ) => void;
     serverPingTest: () => Promise<boolean>;
     serverAuthTest: () => Promise<boolean>;
     isServerReady: boolean;
 
-
     isServerConnectModalVisible: boolean;
-    setIsServerConnectModalVisible: (visible: boolean) => void;
+    setIsServerConnectModalVisible: ( visible: boolean ) => void;
 
-    data: SAMProps['data'] | null;
+    data: SAMProps[ 'data' ] | null;
     samFileList: any[];
     systemFileList: any[];
-    setData: (data: SAMProps['data']) => void;
-    setSamFileList: (list: any[]) => void;
-    setSystemFileList: (list: any[]) => void;
-
-    
-
+    setData: ( data: SAMProps[ 'data' ] ) => void;
+    setSamFileList: ( list: any[] ) => void;
+    setSystemFileList: ( list: any[] ) => void;
 }
 
 export const useSecretsStore = create<SecretsState>(
     // @ts-ignore
     persist(
-        (set, get) => ({
+        ( set, get ) => ( {
             serverURL: 'http://localhost:8001',
-            setServerURL: (serverURL) => set({ serverURL }),
+            setServerURL: ( serverURL ) => set( { serverURL } ),
             serverAPIKey: '',
             isServerReady: false,
-            setServerAPIKey: (serverAPIKey) => set({
+            setServerAPIKey: ( serverAPIKey ) => set( {
                 serverAPIKey
-            }),
+            } ),
             serverPingTest: async () => {
                 try {
-                    const response = await fetch(`${get().serverURL}/ping`);
+                    const response = await fetch( `${ get().serverURL }/ping` );
                     const data = await response.json();
-                    if (data.status === 'success') {
+                    if ( data.status === 'success' ) {
                         return true;
                     } else {
                         return false;
                     }
-                } catch (error) {
+                } catch ( error ) {
                     return false;
                 }
             },
             isServerConnectModalVisible: false,
-            setIsServerConnectModalVisible: (visible) => set({ isServerConnectModalVisible: visible }),
+            setIsServerConnectModalVisible: ( visible ) => set( { isServerConnectModalVisible: visible } ),
             serverAuthTest: async () => {
                 try {
-                    const response = await fetch(`${get().serverURL}/auth_check`, {
+                    const response = await fetch( `${ get().serverURL }/auth_check`, {
                         headers: {
                             "x-api-key": get().serverAPIKey
                         }
-                    });
+                    } );
                     const data = await response.json();
-                    if (data.status === 'success') {
-                        message.success("Authenticated");
-                        set({ isServerReady: true });
+                    if ( data.status === 'success' ) {
+                        message.success( "Authenticated" );
+                        set( { isServerReady: true } );
                         return true;
                     } else {
-                        set({ isServerReady: false });
-                        message.error("Invalid API Key");
+                        set( { isServerReady: false } );
+                        message.error( "Invalid API Key" );
                         return false;
                     }
-                } catch (error) {
+                } catch ( error ) {
                     return false;
                 }
-            
-    },
 
+            },
             data: null,
             samFileList: [],
             systemFileList: [],
-            setData: (data) => set({ data }),
-            setSamFileList: (list) => set({ samFileList: list }),
-            setSystemFileList: (list) => set({ systemFileList: list }),
-        }),
+            setData: ( data ) => set( { data } ),
+            setSamFileList: ( list ) => set( { samFileList: list } ),
+            setSystemFileList: ( list ) => set( { systemFileList: list } ),
+        } ),
         {
             name: 'windows-secrets-store',
             getStorage: () => storage
