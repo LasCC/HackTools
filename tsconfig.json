@@ -12,7 +12,6 @@
         "moduleResolution": "node",
         "types": [
             "vite/client",
-            "node"
         ],
         "noFallthroughCasesInSwitch": true,
         "allowSyntheticDefaultImports": true,
