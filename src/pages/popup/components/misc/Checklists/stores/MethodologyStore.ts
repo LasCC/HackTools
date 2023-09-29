@@ -6,6 +6,7 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import checklists from "../../../../assets/data/Methodology/OWSTG.json";
 import { AtomicTest, TestCaseStatus } from './../ChecklistInterfaces';
+import { storage } from "../../../createPersistedState"
 
 
 const AtomicTest = ( Record( {
@@ -122,7 +123,7 @@ const createOWSTGStore = ( id: string ) =>
             } ),
             {
                 name: `methodology-tab-state-${ id }`, // unique name
-                getStorage: () => window.localStorage, // Use local storage
+                getStorage: () => storage // idb-keyval storage
             }
         )
     );

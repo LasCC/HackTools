@@ -97,6 +97,7 @@ const CommandNavigation = () => {
                             setIsOpen(false);
                             setIndex('1');
                             setHackToolsState("system");
+                            setSearch('');
                         },
                     },
                     {
@@ -109,6 +110,7 @@ const CommandNavigation = () => {
                             setIndex('1');
                             setHackToolsState("mobile");
                             setIsOpen(false);
+
                         },
                     },
                     {
@@ -262,15 +264,19 @@ const CommandNavigation = () => {
                         .filter(list => list.id === "web")
                         .map((list) => (
                             <CommandPalette.List key={list.id} heading={list.heading}>
-                                {list.items.map(({ id, heroIcon, name, ...rest }) => (
+                                {list.items.filter(item => item.name.toLowerCase().includes(search.toLowerCase())
+                                ).map(({ id, heroIcon, name, ...rest }) => (
                                     <CommandPalette.ListItem
                                         key={id}
+                                        value={search}
+                                        onChange={e => setSearch(e.target.value)}
                                         index={getItemIndex(filteredItems, id)}
                                         onClick={() => {
 
                                             console.log({ rest, id, name, heroIcon })
                                             setHackToolsState("web");
                                             setIndex(String(id));
+                                            // setSearch('');
                                         }}
                                         {...rest}
                                     >
@@ -292,22 +298,27 @@ const CommandNavigation = () => {
                         .filter(list => list.id === "system")
                         .map((list) => (
                             <CommandPalette.List key={list.id} heading={list.heading}>
-                                {list.items.map(({ id, heroIcon, name, ...rest }) => (
-                                    <CommandPalette.ListItem
-                                        key={id}
-                                        index={getItemIndex(filteredItems, id)}
-                                        onClick={() => {
-                                            setHackToolsState("system");
-                                            setIndex(String(id));
-                                        }}
-                                        {...rest}
-                                    >
-                                        <div className='flex items-center w-full'>
-                                            <Text style={{ marginRight: 5 }}>{heroIcon}</Text>
-                                            <Text>{name}</Text>
-                                        </div>
-                                    </CommandPalette.ListItem>
-                                ))}
+                                {list.items
+                                    .filter(item => item.name.toLowerCase().includes(search.toLowerCase()))
+                                    .map(({ id, heroIcon, name, ...rest }) => (
+                                        <CommandPalette.ListItem
+                                            key={id}
+                                            index={getItemIndex(filteredItems, id)}
+                                            value={search}
+                                        onChange={e => setSearch(e.target.value)}
+                                            onClick={() => {
+                                                setHackToolsState("system");
+                                                setIndex(String(id));
+                                                // setSearch('');
+                                            }}
+                                            {...rest}
+                                        >
+                                            <div className='flex items-center w-full'>
+                                                <Text style={{ marginRight: 5 }}>{heroIcon}</Text>
+                                                <Text>{name}</Text>
+                                            </div>
+                                        </CommandPalette.ListItem>
+                                    ))}
                             </CommandPalette.List>
                         ))
                 ) : (
@@ -320,15 +331,18 @@ const CommandNavigation = () => {
                         .filter(list => list.id === "mobile")
                         .map((list) => (
                             <CommandPalette.List key={list.id} heading={list.heading}>
-                                {list.items.map(({ id, heroIcon, name, ...rest }) => (
+                                {list.items.filter(item => item.name.toLowerCase().includes(search.toLowerCase())).map(({ id, heroIcon, name, ...rest }) => (
                                     <CommandPalette.ListItem
                                         key={id}
                                         index={getItemIndex(filteredItems, id)}
+                                        value={search}
+                                        onChange={e => setSearch(e.target.value)}
                                         onClick={() => {
+                                            setSearch('');
+                                            console.log(search)
                                             setHackToolsState("mobile");
                                             setIndex(String(id));
                                         }
-
                                         }
                                         {...rest}
                                     >
@@ -350,14 +364,14 @@ const CommandNavigation = () => {
                         .filter(list => list.id === "misc")
                         .map((list) => (
                             <CommandPalette.List key={list.id} heading={list.heading}>
-                                {list.items.map(({ id, heroIcon, name, ...rest }) => (
+                                {list.items.filter(item => item.name.toLowerCase().includes(search.toLowerCase())).map(({ id, heroIcon, name, ...rest }) => (
                                     <CommandPalette.ListItem
                                         key={id}
                                         index={getItemIndex(filteredItems, id)}
                                         onClick={() => {
-                                            //  goTo( rest.href ) 
                                             setHackToolsState("misc");
                                             setIndex(String(id));
+                                            // setSearch('');
                                         }}
                                         {...rest}
                                     >
