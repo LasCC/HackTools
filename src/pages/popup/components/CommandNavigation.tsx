@@ -23,7 +23,7 @@ const CommandNavigation = () => {
     const isMac = navigator.platform.toUpperCase().includes('MAC');
     const keyToCheck = isMac ? 'Meta' : 'Control';
     const keySymbol = isMac ? '⌘' : 'CRTL';
-
+    const contactMail = "Y29udGFjdC5oYWNrdG9vbHNAZ21haWwuY29t" // encoded to prevent scrapping bot
     const IconFont = createFromIconfontCN({
         scriptUrl: ['./iconfont.js']
     });
@@ -178,7 +178,7 @@ const CommandNavigation = () => {
                         icon: (<BsMailbox2 style={{ fontSize: '1.3em', marginTop: 3 }} />),
                         closeOnSelect: false,
                         onClick: () => {
-                            window.open('mailto:contact@hacktools.com', '_blank').focus();
+                            window.open('mailto:' + contactMail , '_blank').focus();
                             setIsOpen(false);
                         },
                     },
