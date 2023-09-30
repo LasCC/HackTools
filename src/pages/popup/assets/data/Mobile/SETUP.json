@@ -11,7 +11,7 @@
         "category": "mitm",
         "name": "Burp Certificate installation",
         "description": "Installing the cert system wide and rebooting the device",
-        "command": "adb push $HASH /sdcard/ && adb shell 'su -c \"mount -o rw,remount / && cp /sdcard/????????.0 /system/etc/security/cacerts/ && chmod 644 /system/etc/security/cacerts/????????.0 && mount -o ro,remount / && reboot\"'"
+        "command": "adb push $HASH /sdcard/ && adb shell 'su -c \"mount -o rw,remount / && cp /sdcard/????????.0 /system/etc/security/cacerts/ && chmod 644 -R /system/etc/security/cacerts/*.0 && mount -o ro,remount / && reboot\"'"
     },
     {
         "id": 3,
