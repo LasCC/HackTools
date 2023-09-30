@@ -16,7 +16,6 @@ const Index = () => {
         console.log( action );
         if ( action === "add" ) {
             add();
-            console.log( "add" );
         } else {
             remove( activeKey );
         }

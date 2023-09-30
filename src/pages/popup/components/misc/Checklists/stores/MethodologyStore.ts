@@ -123,7 +123,7 @@ const createOWSTGStore = ( id: string ) =>
             } ),
             {
                 name: `methodology-tab-state-${ id }`, // unique name
-                getStorage: () => localStorage // localstorage for now since there indexeddb oncChange due to async issue
+                getStorage: () => localStorage // localstorage for now since there's indexeddb issues wih state updates
             }
         )
     );
