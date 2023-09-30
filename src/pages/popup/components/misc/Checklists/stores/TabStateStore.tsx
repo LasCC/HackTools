@@ -74,7 +74,7 @@ const tabStateStore = create<State>(
         } ),
         {
             name: `tab-management-store`,
-            getStorage: () => window.localStorage,
+            getStorage: () => localStorage // localstorage for now since there indexeddb oncChange due to async issue
         }
     )
 );

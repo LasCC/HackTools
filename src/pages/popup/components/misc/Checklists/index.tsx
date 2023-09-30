@@ -13,8 +13,10 @@ const Index = () => {
     const [ newLabel, setNewLabel ] = useState( "" );
 
     const onEdit = ( action: "add" | "remove" ) => {
+        console.log( action );
         if ( action === "add" ) {
             add();
+            console.log( "add" );
         } else {
             remove( activeKey );
         }
@@ -59,7 +61,7 @@ const Index = () => {
                 type="editable-card"
                 onChange={onChange}
                 activeKey={activeKey}
-                onEdit={onEdit}
+                onEdit={() => onEdit( "add" )}
             >
                 {items.map( item => (
                     <TabPane
