@@ -12,12 +12,12 @@ const DataManipulationMain = () => {
         {
             key: '1',
             label: 'Encoding',
-            children: DataEncoding()
+            children: <DataEncoding />
         },
         {
             key: '2',
             label: 'Hashing',
-            children: Hashing()
+            children: <Hashing />
         },
     ];
 

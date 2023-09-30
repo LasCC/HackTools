@@ -2,7 +2,7 @@ import type { TabsProps } from 'antd';
 import { Tabs } from 'antd';
 import SQL from './SQL/SQLInjection';
 import SQLSyntaxParser from './SQL/SQLParser';
-import NOSQL from './NOSQL';
+import NoSQL from './NOSQL';
 
 const SQLMainPage = () => {
 
@@ -10,17 +10,17 @@ const SQLMainPage = () => {
         {
             key: '1',
             label: `SQL`,
-            children: SQL()
+            children: <SQL />
         },
         {
             key: '2',
             label: `SQL Syntax validator`,
-            children: SQLSyntaxParser()
+            children: <SQLSyntaxParser />
         },
         {
             key: '3',
             label: `NoSQL`,
-            children: NOSQL()
+            children: <NoSQL />
         }
     ];
 

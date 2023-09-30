@@ -12,17 +12,17 @@ const index = () => {
         {
             key: '1',
             label: 'PHP',
-            children: PHP()
+            children: <PHP />
         },
         {
             key: '2',
             label: 'Java',
-            children: Java()
+            children: <Java />
         },
         {
             key: '3',
             label: 'ASP',
-            children: ASP()
+            children: <ASP />
         }
     ];
 

@@ -10,12 +10,12 @@ const XSSMain = () => {
         {
             key: '1',
             label: 'XSS Payloads',
-            children: XSSPayloadComponent()
+            children:<XSSPayloadComponent />
         },
         {
             key: '2',
             label: 'XSS Obfuscator',
-            children: XSSObfuscationComponent()
+            children: <XSSObfuscationComponent />
         }
     ];
 

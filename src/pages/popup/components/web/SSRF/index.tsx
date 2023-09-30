@@ -11,22 +11,22 @@ const SQLMainPage = () => {
         {
             key: '1',
             label: `SSRF Payloads`,
-            children: CloudPayloads()
+            children: <CloudPayloads />
         },
         {
             key: '3',
             label: `Filter Bypass`,
-            children: FilterBypass()
+            children: <FilterBypass />
         },
         {
             key: '2',
             label: `XXE`,
-            children: XXE(),
+            children: <XXE />
         },
         {
             key: '5',
             label: `Gopherizer`,
-            children: Gopherizer()
+            children: <Gopherizer />
         }
     ];
 

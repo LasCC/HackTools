@@ -23,8 +23,8 @@
     {
         "id": 4,
         "category": "patching",
-        "name": "Inject frida-gadget into an APK file",
-        "description": "Patch the apk with frida-gadget for rootless dynamic instrumentation. It requires apktool (non -dirty version), apksigner and zipalign. Then, use 'objection explore' to connect to the app after installing it.",
+        "name": "Injecting frida-gadget into an APK file (rootless)",
+        "description": "Patch the apk with frida-gadget for dynamic instrumentation. It requires apktool (non -dirty version), apksigner and zipalign. Then, use 'objection explore' to connect to the app after installing it.",
         "command": "objection patchapk -s com.example.apk"
     }
 ]

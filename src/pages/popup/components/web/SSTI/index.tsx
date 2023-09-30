@@ -9,7 +9,7 @@ const SQLMainPage = () => {
         {
             key: '1',
             label: `Template detector`,
-            children: TemplateDetector(),
+            children: <TemplateDetector />
         },
     ];
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Typography, Divider } from 'antd';
-import apkPatchingCommands from '../../../../assets/data/Mobile/APK_PATCHING.json';
+import apkPatchingCommands from '../../../../assets/data/Mobile/ADB/APK_PATCHING.json';
 
 const { Title, Paragraph, Text } = Typography;
 

@@ -1,21 +1,27 @@
 import React from 'react';
 import { Tabs } from 'antd';
 import type { TabsProps } from 'antd';
-import SSLPinning from './SSLPinning';
-import General from './General';
+import Objection from './Objection';
+import General from './GeneralPurposeFrida';
+import Setup from './Setup';
 
 const index = () => {
 
     const items: TabsProps[ 'items' ] = [
         {
             key: '1',
-            label: `General`,
-            children: General()
+            label: `Setup`,
+            children: <Setup />
         },
         {
             key: '2',
-            label: `SSL Pinning Bypass`,
-            children: SSLPinning()
+            label: `Frida`,
+            children: <General />
+        },
+        {
+            key: '3',
+            label: `Objection`,
+            children: <Objection />
         },
     ];
 

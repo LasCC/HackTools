@@ -2,7 +2,7 @@ import { WifiOutlined } from '@ant-design/icons';
 import { Col, Divider, Input, Row, Select, Typography } from 'antd';
 import { FaDoorOpen, FaUsb } from 'react-icons/fa';
 import { TbBrandAndroid } from 'react-icons/tb';
-import adbCommands from '../../../../assets/data/Mobile/ADB.json';
+import adbCommands from '../../../../assets/data/Mobile/ADB/ADB.json';
 import useADBStore, { ADB_MODE } from './store/ADBStore';
 const { Title, Paragraph, Text } = Typography;
 

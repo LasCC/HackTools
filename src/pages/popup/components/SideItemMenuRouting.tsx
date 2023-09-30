@@ -2,6 +2,7 @@ import { createFromIconfontCN } from '@ant-design/icons';
 import React from 'react';
 import { BiLockOpen, BiNotepad } from 'react-icons/bi';
 import { BsCardList, BsDatabaseFillGear } from 'react-icons/bs';
+import {IoBandageOutline} from  'react-icons/io5';
 import { GiPirateHook, GiWebSpit } from 'react-icons/gi';
 import { HiOutlineTemplate } from 'react-icons/hi';
 import { MdChecklist, MdOutlineAdb, MdOutlineOpenInBrowser } from 'react-icons/md';
@@ -30,6 +31,7 @@ import SSRF from './web/SSRF';
 import SSTI from './web/SSTI';
 import WebShells from './web/WebShells';
 import XSS from './web/XSS';
+import APKPatching from './mobile/Android/ADB/APKPatching';
 
 const IconFont = createFromIconfontCN( {
     scriptUrl: [ './iconfont.js' ]
@@ -185,6 +187,14 @@ const MobileTab: Array<IRouterComponent> = [
     },
     {
         key: '2',
+        icon: <IoBandageOutline style={{ fontSize: '1.5em', marginTop: 3 }} />,
+        name: 'App Patching',
+        componentRoute: APKPatching,
+        type: "mobile"
+    },
+    
+    {
+        key: '3',
         icon: <GiPirateHook style={{ fontSize: '1.5em', marginTop: 3 }} />,
         name: 'Hooking',
         componentRoute: Hooking,

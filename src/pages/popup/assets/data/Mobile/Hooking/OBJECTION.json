@@ -12,5 +12,5 @@
         "name": "Inject into the process",
         "description": "List all processes running on the device",
         "command": "objection -g com.example.app explore"
-    },
+    }
 ]

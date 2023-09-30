@@ -9,12 +9,12 @@ const WindowSecretDumper = () => {
         {
             key: '1',
             label: 'SAM',
-            children: SAM()
+            children: <SAM />
         },
         {
             key: '2',
             label: 'LSASS',
-            children: LSASS()
+            children: <LSASS />
         },
     ];
 

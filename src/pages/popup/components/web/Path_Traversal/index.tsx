@@ -10,17 +10,17 @@ const SQLMainPage = () => {
         {
             key: '1',
             label: `File read`,
-            children: LFI()
+            children: <LFI />
         },
         {
             key: '2',
             label: `PHP Filter Generator`,
-            children: PHPfilerBuilder()
+            children: <PHPfilerBuilder />
         },
         {
             key: '3',
-            label: `Zipslip`,
-            children: ZipSlip()
+            label: `ZipSlip builder`,
+            children: <ZipSlip />
         }
     ];
 
