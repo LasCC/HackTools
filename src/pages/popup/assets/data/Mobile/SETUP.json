@@ -18,6 +18,6 @@
         "category": "frida",
         "name": "Install Frida server",
         "description": "Download and install the latest Frida server on the device (@idoeldor/frida-snippets)",
-        "command": "PARCH=`adb shell getprop ro.product.cpu.abi`;\\\n[[ \"${PARCH}\" == \"armeabi-v7a\" ]] && PARCH=\"arm\";\\\nwget -q -O - https://api.github.com/repos/frida/frida/releases \\\n| jq '.[0] | .assets[] | select(.browser_download_url | match(\"server(.*?)android-'${PARCH}'*\\\\.xz\")).browser_download_url' \\\n| xargs wget -q --show-progress $1 \\\n&& unxz frida-server* \\\n&& adb root \\\n&& adb push frida-server* /data/local/tmp/frida-server \\\n&& adb shell \"chmod 755 /data/local/tmp/frida-server\" \\\n&& adb shell \"/data/local/tmp/frida-server &\"\n"
+        "command": "PARCH=`adb shell getprop ro.product.cpu.abi`;[[ \"${PARCH}\" == \"armeabi-v7a\" ]] && PARCH=\"arm\";wget -q -O - https://api.github.com/repos/frida/frida/releases | jq '.[0] | .assets[] | select(.browser_download_url | match(\"server(.*?)android-'${PARCH}'*\\\\.xz\")).browser_download_url' | xargs wget -q --show-progress $1 && unxz frida-server* && adb root && adb push frida-server* /data/local/tmp/frida-server && adb shell \"chmod 755 /data/local/tmp/frida-server\" && adb shell \"/data/local/tmp/frida-server &\"\n"
     }
 ]
