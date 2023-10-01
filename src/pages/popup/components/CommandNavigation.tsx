@@ -17,70 +17,70 @@ const { Text } = Typography;
 const CommandNavigation = () => {
 
     const { index, setIndex, hackTools, setHackToolsState, darkMode, setDarkModeState } = useStore();
-    const [page, setPage] = useState<"root" | "Web" | "System" | "Mobile" | "Tools">("root");
-    const [isOpen, setIsOpen] = useState<boolean>(false);
-    const [search, setSearch] = useState("");
-    const isMac = navigator.platform.toUpperCase().includes('MAC');
+    const [ page, setPage ] = useState<"root" | "Web" | "System" | "Mobile" | "Tools">( "root" );
+    const [ isOpen, setIsOpen ] = useState<boolean>( false );
+    const [ search, setSearch ] = useState( "" );
+    const isMac = navigator.platform.toUpperCase().includes( 'MAC' );
     const keyToCheck = isMac ? 'Meta' : 'Control';
     const keySymbol = isMac ? '⌘' : 'CRTL';
     const contactMail = "Y29udGFjdC5oYWNrdG9vbHNAZ21haWwuY29t" // encoded to prevent scrapping bot
-    const IconFont = createFromIconfontCN({
-        scriptUrl: ['./iconfont.js']
-    });
+    const IconFont = createFromIconfontCN( {
+        scriptUrl: [ './iconfont.js' ]
+    } );
 
-    useEffect(() => {
-        function handleKeyDown(e: KeyboardEvent) {
+    useEffect( () => {
+        function handleKeyDown ( e: KeyboardEvent ) {
 
-            if (e.key === 'k' && e.getModifierState(keyToCheck)) {
+            if ( e.key === 'k' && e.getModifierState( keyToCheck ) ) {
                 e.preventDefault();
                 e.stopPropagation();
 
-                setIsOpen((currentValue) => {
+                setIsOpen( ( currentValue ) => {
                     return !currentValue;
-                });
+                } );
             }
 
-            if (e.key === 'l' && e.getModifierState(keyToCheck)) {
+            if ( e.key === 'l' && e.getModifierState( keyToCheck ) ) {
                 e.preventDefault();
                 e.stopPropagation();
-                setDarkModeState(!darkMode);
+                setDarkModeState( !darkMode );
             }
         }
 
-        document.addEventListener("keydown", handleKeyDown);
+        document.addEventListener( "keydown", handleKeyDown );
 
         return () => {
-            document.removeEventListener("keydown", handleKeyDown);
+            document.removeEventListener( "keydown", handleKeyDown );
         };
-    }, [darkMode]);
+    }, [ darkMode ] );
 
 
-    useEffect(() => {
-        if (isOpen) {
-            setPage("root");
+    useEffect( () => {
+        if ( isOpen ) {
+            setPage( "root" );
         }
-    }, [isOpen]);
+    }, [ isOpen ] );
 
-    function groupBy(array, key) {
-        return array.reduce((result, currentItem) => {
-            (result[currentItem[key]] = result[currentItem[key]] || []).push(currentItem);
+    function groupBy ( array, key ) {
+        return array.reduce( ( result, currentItem ) => {
+            ( result[ currentItem[ key ] ] = result[ currentItem[ key ] ] || [] ).push( currentItem );
             return result;
-        }, {});
+        }, {} );
     }
 
-    const groupedTabs = groupBy(Tabs, 'type');
+    const groupedTabs = groupBy( Tabs, 'type' );
 
-    const filteredItems = Object.keys(groupedTabs).map(type => ({
-        heading: type.charAt(0).toUpperCase() + type.slice(1) + ' Security',
+    const filteredItems = Object.keys( groupedTabs ).map( type => ( {
+        heading: type.charAt( 0 ).toUpperCase() + type.slice( 1 ) + ' Security',
         id: type,
-        items: groupedTabs[type].map(tab => ({
+        items: groupedTabs[ type ].map( tab => ( {
             id: tab.key,
             children: tab.name,
             name: tab.name,
             href: tab.componentRoute,
             heroIcon: tab.icon,
-        })),
-    }));
+        } ) ),
+    } ) );
 
     const rootItemsMenu = filterItems(
         [
@@ -91,37 +91,37 @@ const CommandNavigation = () => {
                     {
                         id: "reverse_shell",
                         children: "Reverse Shell",
-                        icon: (<IconFont type='icon-gnubash' style={{ fontSize: '1.3em', marginTop: 3 }} />),
+                        icon: ( <IconFont type='icon-gnubash' style={{ fontSize: '1.3em', marginTop: 3 }} /> ),
                         closeOnSelect: false,
                         onClick: () => {
-                            setIsOpen(false);
-                            setIndex('1');
-                            setHackToolsState("system");
-                            setSearch('');
+                            setIsOpen( false );
+                            setIndex( '1' );
+                            setHackToolsState( "system" );
+                            setSearch( '' );
                         },
                     },
                     {
                         id: "adb_commands",
                         children: "ADB Commands",
-                        icon: (<MdOutlineAdb style={{ fontSize: '1.3em', marginTop: 3 }} />),
+                        icon: ( <MdOutlineAdb style={{ fontSize: '1.3em', marginTop: 3 }} /> ),
                         closeOnSelect: false,
                         onClick: () => {
                             // goTo( ADB );
-                            setIndex('1');
-                            setHackToolsState("mobile");
-                            setIsOpen(false);
+                            setIndex( '1' );
+                            setHackToolsState( "mobile" );
+                            setIsOpen( false );
 
                         },
                     },
                     {
                         id: "cheat_sheet",
                         children: "Private Cheat Sheet",
-                        icon: (<MdChecklist style={{ fontSize: '1.3em', marginTop: 3 }} />),
+                        icon: ( <MdChecklist style={{ fontSize: '1.3em', marginTop: 3 }} /> ),
                         closeOnSelect: false,
                         onClick: () => {
-                            setIsOpen(false);
-                            setIndex('2');
-                            setHackToolsState("misc");
+                            setIsOpen( false );
+                            setIndex( '2' );
+                            setHackToolsState( "misc" );
                         },
                     },
                 ],
@@ -133,37 +133,37 @@ const CommandNavigation = () => {
                     {
                         id: "Web",
                         children: "Web",
-                        icon: (<BsBrowserChrome style={{ fontSize: '1.3em', marginTop: 3 }} />),
+                        icon: ( <BsBrowserChrome style={{ fontSize: '1.3em', marginTop: 3 }} /> ),
                         closeOnSelect: false,
                         onClick: () => {
-                            setPage("Web");
+                            setPage( "Web" );
                         },
                     },
                     {
                         id: "System",
                         children: "System",
-                        icon: (<HiOutlineDesktopComputer style={{ fontSize: '1.3em', marginTop: 3 }} />),
+                        icon: ( <HiOutlineDesktopComputer style={{ fontSize: '1.3em', marginTop: 3 }} /> ),
                         closeOnSelect: false,
                         onClick: () => {
-                            setPage("System");
+                            setPage( "System" );
                         },
                     },
                     {
                         id: "Mobile",
                         children: "Mobile",
-                        icon: (<BiMobileVibration style={{ fontSize: '1.3em', marginTop: 3 }} />),
+                        icon: ( <BiMobileVibration style={{ fontSize: '1.3em', marginTop: 3 }} /> ),
                         closeOnSelect: false,
                         onClick: () => {
-                            setPage("Mobile");
+                            setPage( "Mobile" );
                         },
                     },
                     {
                         id: "Tools",
                         children: "Tools",
-                        icon: (<BsTools style={{ fontSize: '1.3em', marginTop: 3 }} />),
+                        icon: ( <BsTools style={{ fontSize: '1.3em', marginTop: 3 }} /> ),
                         closeOnSelect: false,
                         onClick: () => {
-                            setPage("Tools");
+                            setPage( "Tools" );
                         },
                     },
                 ],
@@ -175,31 +175,31 @@ const CommandNavigation = () => {
                     {
                         id: "mail",
                         children: "Mail Us",
-                        icon: (<BsMailbox2 style={{ fontSize: '1.3em', marginTop: 3 }} />),
+                        icon: ( <BsMailbox2 style={{ fontSize: '1.3em', marginTop: 3 }} /> ),
                         closeOnSelect: false,
                         onClick: () => {
-                            window.open('mailto:' + contactMail , '_blank').focus();
-                            setIsOpen(false);
+                            window.open( 'mailto:' + atob( contactMail ), '_blank' ).focus();
+                            setIsOpen( false );
                         },
                     },
                     {
                         id: "suggestions",
                         children: "Suggestions",
-                        icon: (<MdEmojiPeople style={{ fontSize: '1.3em', marginTop: 3 }} />),
+                        icon: ( <MdEmojiPeople style={{ fontSize: '1.3em', marginTop: 3 }} /> ),
                         closeOnSelect: false,
                         onClick: () => {
-                            window.open('https://github.com/LasCC/Hack-Tools/issues', '_blank').focus();
-                            setIsOpen(false);
+                            window.open( 'https://github.com/LasCC/Hack-Tools/issues', '_blank' ).focus();
+                            setIsOpen( false );
                         },
                     },
                     {
                         id: "bug_report",
                         children: "Bug Report",
-                        icon: (<AiOutlineGithub style={{ fontSize: '1.3em', marginTop: 3 }} />),
+                        icon: ( <AiOutlineGithub style={{ fontSize: '1.3em', marginTop: 3 }} /> ),
                         closeOnSelect: false,
                         onClick: () => {
-                            window.open('https://github.com/LasCC/Hack-Tools/issues', '_blank').focus();
-                            setIsOpen(false);
+                            window.open( 'https://github.com/LasCC/Hack-Tools/issues', '_blank' ).focus();
+                            setIsOpen( false );
                         },
                     },
                 ],
@@ -227,7 +227,7 @@ const CommandNavigation = () => {
                             </Space>
                         </Text>
                     </div>
-                    <Tooltip title={`Toggle Dark Mode (${keySymbol} + L)`}>
+                    <Tooltip title={`Toggle Dark Mode (${ keySymbol } + L)`}>
                         <Text keyboard>
                             {darkMode ? <BulbFilled style={{ color: '#fadb14' }} /> : <BulbOutlined />}
                         </Text>
@@ -237,12 +237,12 @@ const CommandNavigation = () => {
         >
             <CommandPalette.Page id="root">
                 {rootItemsMenu.length ? (
-                    rootItemsMenu.map((list) => (
+                    rootItemsMenu.map( ( list ) => (
                         <CommandPalette.List key={list.id} heading={list.heading}>
-                            {list.items.map(({ id, icon, ...rest }) => (
+                            {list.items.map( ( { id, icon, ...rest } ) => (
                                 <CommandPalette.ListItem
                                     key={id}
-                                    index={getItemIndex(rootItemsMenu, id)
+                                    index={getItemIndex( rootItemsMenu, id )
                                     }
                                     {...rest}
                                 >
@@ -251,9 +251,9 @@ const CommandNavigation = () => {
                                         <Text>{rest.children}</Text>
                                     </div>
                                 </CommandPalette.ListItem>
-                            ))}
+                            ) )}
                         </CommandPalette.List>
-                    ))
+                    ) )
                 ) : (
                     <CommandPalette.FreeSearchAction />
                 )}
@@ -261,21 +261,21 @@ const CommandNavigation = () => {
             <CommandPalette.Page id="Web">
                 {filteredItems.length ? (
                     filteredItems
-                        .filter(list => list.id === "web")
-                        .map((list) => (
+                        .filter( list => list.id === "web" )
+                        .map( ( list ) => (
                             <CommandPalette.List key={list.id} heading={list.heading}>
-                                {list.items.filter(item => item.name.toLowerCase().includes(search.toLowerCase())
-                                ).map(({ id, heroIcon, name, ...rest }) => (
+                                {list.items.filter( item => item.name.toLowerCase().includes( search.toLowerCase() )
+                                ).map( ( { id, heroIcon, name, ...rest } ) => (
                                     <CommandPalette.ListItem
                                         key={id}
                                         value={search}
-                                        onChange={e => setSearch(e.target.value)}
-                                        index={getItemIndex(filteredItems, id)}
+                                        onChange={e => setSearch( e.target.value )}
+                                        index={getItemIndex( filteredItems, id )}
                                         onClick={() => {
 
-                                            console.log({ rest, id, name, heroIcon })
-                                            setHackToolsState("web");
-                                            setIndex(String(id));
+                                            console.log( { rest, id, name, heroIcon } )
+                                            setHackToolsState( "web" );
+                                            setIndex( String( id ) );
                                             // setSearch('');
                                         }}
                                         {...rest}
@@ -285,9 +285,9 @@ const CommandNavigation = () => {
                                             <Text>{name}</Text>
                                         </div>
                                     </CommandPalette.ListItem>
-                                ))}
+                                ) )}
                             </CommandPalette.List>
-                        ))
+                        ) )
                 ) : (
                     <CommandPalette.FreeSearchAction />
                 )}
@@ -295,20 +295,20 @@ const CommandNavigation = () => {
             <CommandPalette.Page id="System">
                 {filteredItems.length ? (
                     filteredItems
-                        .filter(list => list.id === "system")
-                        .map((list) => (
+                        .filter( list => list.id === "system" )
+                        .map( ( list ) => (
                             <CommandPalette.List key={list.id} heading={list.heading}>
                                 {list.items
-                                    .filter(item => item.name.toLowerCase().includes(search.toLowerCase()))
-                                    .map(({ id, heroIcon, name, ...rest }) => (
+                                    .filter( item => item.name.toLowerCase().includes( search.toLowerCase() ) )
+                                    .map( ( { id, heroIcon, name, ...rest } ) => (
                                         <CommandPalette.ListItem
                                             key={id}
-                                            index={getItemIndex(filteredItems, id)}
+                                            index={getItemIndex( filteredItems, id )}
                                             value={search}
-                                        onChange={e => setSearch(e.target.value)}
+                                            onChange={e => setSearch( e.target.value )}
                                             onClick={() => {
-                                                setHackToolsState("system");
-                                                setIndex(String(id));
+                                                setHackToolsState( "system" );
+                                                setIndex( String( id ) );
                                                 // setSearch('');
                                             }}
                                             {...rest}
@@ -318,9 +318,9 @@ const CommandNavigation = () => {
                                                 <Text>{name}</Text>
                                             </div>
                                         </CommandPalette.ListItem>
-                                    ))}
+                                    ) )}
                             </CommandPalette.List>
-                        ))
+                        ) )
                 ) : (
                     <CommandPalette.FreeSearchAction />
                 )}
@@ -328,20 +328,20 @@ const CommandNavigation = () => {
             <CommandPalette.Page id="Mobile">
                 {filteredItems.length ? (
                     filteredItems
-                        .filter(list => list.id === "mobile")
-                        .map((list) => (
+                        .filter( list => list.id === "mobile" )
+                        .map( ( list ) => (
                             <CommandPalette.List key={list.id} heading={list.heading}>
-                                {list.items.filter(item => item.name.toLowerCase().includes(search.toLowerCase())).map(({ id, heroIcon, name, ...rest }) => (
+                                {list.items.filter( item => item.name.toLowerCase().includes( search.toLowerCase() ) ).map( ( { id, heroIcon, name, ...rest } ) => (
                                     <CommandPalette.ListItem
                                         key={id}
-                                        index={getItemIndex(filteredItems, id)}
+                                        index={getItemIndex( filteredItems, id )}
                                         value={search}
-                                        onChange={e => setSearch(e.target.value)}
+                                        onChange={e => setSearch( e.target.value )}
                                         onClick={() => {
-                                            setSearch('');
-                                            console.log(search)
-                                            setHackToolsState("mobile");
-                                            setIndex(String(id));
+                                            setSearch( '' );
+                                            console.log( search )
+                                            setHackToolsState( "mobile" );
+                                            setIndex( String( id ) );
                                         }
                                         }
                                         {...rest}
@@ -351,9 +351,9 @@ const CommandNavigation = () => {
                                             <Text>{name}</Text>
                                         </div>
                                     </CommandPalette.ListItem>
-                                ))}
+                                ) )}
                             </CommandPalette.List>
-                        ))
+                        ) )
                 ) : (
                     <CommandPalette.FreeSearchAction />
                 )}
@@ -361,16 +361,16 @@ const CommandNavigation = () => {
             <CommandPalette.Page id="Tools">
                 {filteredItems.length ? (
                     filteredItems
-                        .filter(list => list.id === "misc")
-                        .map((list) => (
+                        .filter( list => list.id === "misc" )
+                        .map( ( list ) => (
                             <CommandPalette.List key={list.id} heading={list.heading}>
-                                {list.items.filter(item => item.name.toLowerCase().includes(search.toLowerCase())).map(({ id, heroIcon, name, ...rest }) => (
+                                {list.items.filter( item => item.name.toLowerCase().includes( search.toLowerCase() ) ).map( ( { id, heroIcon, name, ...rest } ) => (
                                     <CommandPalette.ListItem
                                         key={id}
-                                        index={getItemIndex(filteredItems, id)}
+                                        index={getItemIndex( filteredItems, id )}
                                         onClick={() => {
-                                            setHackToolsState("misc");
-                                            setIndex(String(id));
+                                            setHackToolsState( "misc" );
+                                            setIndex( String( id ) );
                                             // setSearch('');
                                         }}
                                         {...rest}
@@ -380,9 +380,9 @@ const CommandNavigation = () => {
                                             <Text>{name}</Text>
                                         </div>
                                     </CommandPalette.ListItem>
-                                ))}
+                                ) )}
                             </CommandPalette.List>
-                        ))
+                        ) )
                 ) : (
                     <CommandPalette.FreeSearchAction />
                 )}
