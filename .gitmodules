@@ -1,3 +1,6 @@
 [submodule "hacktools-server"]
 	path = hacktools-server
 	url = https://github.com/rb-x/hacktools-server
+[submodule "HackTools-API"]
+	path = HackTools-API
+	url = https://github.com/rb-x/HackTools-API.git
