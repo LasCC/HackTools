@@ -15,15 +15,14 @@ import Tabs from './SideItemMenuRouting';
 const { Text } = Typography;
 
 const CommandNavigation = () => {
-
-    const { index, setIndex, hackTools, setHackToolsState, darkMode, setDarkModeState } = useStore();
+    const { setIndex, setHackToolsState, darkMode, setDarkModeState } = useStore();
     const [ page, setPage ] = useState<"root" | "Web" | "System" | "Mobile" | "Tools">( "root" );
     const [ isOpen, setIsOpen ] = useState<boolean>( false );
     const [ search, setSearch ] = useState( "" );
     const isMac = navigator.platform.toUpperCase().includes( 'MAC' );
     const keyToCheck = isMac ? 'Meta' : 'Control';
     const keySymbol = isMac ? '⌘' : 'CRTL';
-    const contactMail = "Y29udGFjdC5oYWNrdG9vbHNAZ21haWwuY29t" // encoded to prevent scrapping bot
+    const contactMail = "Y29udGFjdC5oYWNrdG9vbHNAZ21haWwuY29t";
     const IconFont = createFromIconfontCN( {
         scriptUrl: [ './iconfont.js' ]
     } );

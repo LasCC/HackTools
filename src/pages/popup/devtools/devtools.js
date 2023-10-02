@@ -1,5 +1,5 @@
 navigator.userAgent.indexOf('Firefox') != -1 &&
-	browser.devtools.panels.create('HackTools', 'get_started16.png', 'index.html');
+	browser.devtools.panels.create('HackTools', 'ht_icon16.png', 'index.html');
 
 navigator.userAgent.indexOf('Chrome') != -1 &&
 	chrome.devtools.panels.create(
