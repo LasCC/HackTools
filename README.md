@@ -57,7 +57,7 @@ To open the command palette, you can use the shortcut <kbd>CTRL</kbd> + <kbd>K</
 - You can use the <kbd>↑</kbd> and <kbd>↓</kbd> arrow keys to navigate through the different commands.
 - <kbd>Enter</kbd> to validate your choice.
 - <kbd>⌘</kbd> + <kbd>L</kbd> to toggle the dark theme.
-- <kbd>CTRL</kbd> + <kbd>1,2,3,4</kbd> to switch between the different tabs.
+- <kbd>CTRL</kbd> + <kbd>ALT</kbd> + <kbd>1,2,3,4</kbd> to switch between the different tabs.
 
 ## Preview
 
@@ -85,7 +85,7 @@ To open the command palette, you can use the shortcut <kbd>CTRL</kbd> + <kbd>K</
 # Install the extension
     
 <h2> 
-  <img src="https://raw.githubusercontent.com/edent/SuperTinyIcons/master/images/svg/chromium.svg" alt="chromium_icon" title='Chromium' width="25" height="25" style="float:left;" />
+  <img src="https://raw.githubusercontent.com/edent/SuperTinyIcons/master/images/svg/chromium.svg" alt="chromium_icon" title='Chromium' width="35" height="35" style="float:left;margin-right:5px;" />
    Chromium based browser
 </h2>
 
@@ -96,14 +96,14 @@ Or, you can download the extension on the **chrome web store** [here.](https://c
 Otherwise, you can build the project yourself from the source code
 
 <h2> 
-  <img src="https://raw.githubusercontent.com/edent/SuperTinyIcons/master/images/svg/firefox.svg" alt="firefox_icon" title='Firefox' width="25" height="25" style="float:left;" /> 
+  <img src="https://raw.githubusercontent.com/edent/SuperTinyIcons/master/images/svg/firefox.svg" alt="firefox_icon" title='Firefox' width="35" height="35" style="float:left;margin-right:5px;" /> 
    Mozilla Firefox
 </h2>
 
 You can download **HackTools** on the Firefox browser add-ons [here.](https://addons.mozilla.org/en-US/firefox/addon/hacktools/)
 
 <h2> 
-  <img src="https://raw.githubusercontent.com/edent/SuperTinyIcons/master/images/svg/safari.svg" alt="safari_icon" title='Safari' width="25" height="25" style="float:left;" /> 
+  <img src="https://raw.githubusercontent.com/edent/SuperTinyIcons/master/images/svg/safari.svg" alt="safari_icon" title='Safari' width="35" height="35" style="float:left;margin-right:5px;" /> 
    Instructions to build for Safari
 </h2>
 
@@ -146,7 +146,7 @@ Once you clicked on the button you just need to select the **dist folder** and t
 
 ## Authors
 
-👤 <a href="http://github.com/LasCC" alt="Github_account_Ludovic_COULON">**Ludovic COULON**<a/> & <a href="http://github.com/rb-x" alt="Github_account_Riadh_BOUCHAHOUA">**Riadh BOUCHAHOUA**<a/>
+👤 <a href="http://github.com/LasCC" alt="Github_account_Ludovic_COULON" target="_blank">**Ludovic COULON**</a> & <a href="http://github.com/rb-x" alt="Github_account_Riadh_BOUCHAHOUA" target="_blank">**Riadh BOUCHAHOUA**</a>
 
 ## Show your support
 
