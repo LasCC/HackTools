@@ -1,8 +1,8 @@
 <div align="center">
   <img alt="logo_hack_tools" src="https://i.postimg.cc/GtLdZ2rZ/noun-Panama-hat-1454601.png" />
-  <h1>Welcome to HackTools 🛠</h1>
+  <h1>Welcome to HackTools <kbd>v1.0</kbd> !</h1>
   <p>
-    <img alt="Version" src="https://img.shields.io/badge/version-0.5.0-blue.svg?cacheSeconds=2592000&style=for-the-badge" />
+    <img alt="Version" src="https://img.shields.io/badge/version-1.0-blue.svg?cacheSeconds=2592000&style=for-the-badge" />
     <a href="https://addons.mozilla.org/en-US/firefox/addon/hacktools" target="_blank">
       <img alt="mozilla" src="https://img.shields.io/badge/Firefox-FF7139?style=for-the-badge&logo=Firefox-Browser&logoColor=white" />
     </a>
@@ -30,48 +30,55 @@
   </p>
 </div>
 
-### The all-in-one  browser extension for **offensive security professionals**
+### The all-in-one browser extension for **offensive security professionals**
 
 HackTools, is a web extension facilitating your **web application penetration tests**, it includes **cheat sheets** as well as all the **tools** used during a test such as XSS payloads, Reverse shells and much more.
 
-With the extension you **no longer need to search for payloads in different websites** or in your local storage space, most of the tools are accessible in one click. HackTools is accessible either in **pop up mode** or in a whole tab in the **Devtools** part of the browser with F12.
+With the extension you **no longer need to search for payloads in different websites** or in your local storage space, most of the tools are accessible in one click. HackTools is accessible either in pop up mode or in a whole tab in the Devtools part of the browser with <kbd>F12</kbd>.
 
 ### Current functions
 
 - Dynamic Reverse Shell generator (PHP, Bash, Ruby, Python, Perl, Netcat)
 - Shell Spawning (TTY Shell Spawning)
-- MSF Venom Builder
 - XSS Payloads
 - Basic SQLi payloads
 - Local file inclusion payloads (LFI)
-- Data Encoding
-- Obfuscated Files or Information
+- Base64 Encoder / Decoder
 - Hash Generator (MD5, SHA1, SHA256, SHA512, SM3)
 - Useful Linux commands (Port Forwarding, SUID)
-- RSS Feed (Exploit DB, Cisco Security Advisories, CXSECURITY)
-- CVE Search Engine
 - Various method of data exfiltration and download from a remote machine
+
+#### Command Palette
+
+With the new version of the extension, a command panel has been added in order to facilitate the use of the experience. The command panel allows you to access all the functions of the extension in a few keystrokes.
+
+To open the command palette, you can use the shortcut <kbd>CTRL</kbd> + <kbd>K</kbd> or <kbd>⌘</kbd> + <kbd>K</kbd> on macOS.
+
+- You can use the <kbd>↑</kbd> and <kbd>↓</kbd> arrow keys to navigate through the different commands.
+- <kbd>Enter</kbd> to validate your choice.
+- <kbd>⌘</kbd> + <kbd>L</kbd> to toggle the dark theme.
+- <kbd>CTRL</kbd> + <kbd>1,2,3,4</kbd> to switch between the different tabs.
 
 ## Preview
 
 <div align='center'>
-  <img alt="preview_1" src="./src/assets/img/preview.gif?raw=true" />
+  <img alt="preview_2" src="https://i.imgur.com/7Q09ZwW.png" />
 </div>
 
 <div align='center'>
-  <img alt="preview_2" src="https://i.imgur.com/74AJxmX.png" />
+  <img alt="preview_3" src="https://i.imgur.com/JPH0dIW.png" />
 </div>
 
 <div align='center'>
-  <img alt="preview_3" src="https://i.imgur.com/syUdtLS.png" />
+  <img alt="preview_4" src="https://i.imgur.com/UFZX7xH.png" />
 </div>
 
 <div align='center'>
-  <img alt="preview_4" src="https://i.imgur.com/sGiP3CZ.png" />
+  <img alt="preview_5" src="https://i.imgur.com/TtfhQf9.png" />
 </div>
 
 <div align='center'>
-  <img alt="preview_5" src="https://i.imgur.com/63xoeVN.png" />
+  <img alt="preview_6" src="https://i.imgur.com/l8mppjS.png" />
 </div>
 
 
@@ -79,7 +86,7 @@ With the extension you **no longer need to search for payloads in different webs
     
 <h2> 
   <img src="https://raw.githubusercontent.com/edent/SuperTinyIcons/master/images/svg/chromium.svg" alt="chromium_icon" title='Chromium' width="25" height="25" style="float:left;" />
-  Chromium based browser
+   Chromium based browser
 </h2>
 
 You can download the **latest build** [here.](https://github.com/LasCC/Hack-Tools/releases)
@@ -90,14 +97,14 @@ Otherwise, you can build the project yourself from the source code
 
 <h2> 
   <img src="https://raw.githubusercontent.com/edent/SuperTinyIcons/master/images/svg/firefox.svg" alt="firefox_icon" title='Firefox' width="25" height="25" style="float:left;" /> 
-  Mozilla Firefox
+   Mozilla Firefox
 </h2>
 
 You can download **HackTools** on the Firefox browser add-ons [here.](https://addons.mozilla.org/en-US/firefox/addon/hacktools/)
 
 <h2> 
   <img src="https://raw.githubusercontent.com/edent/SuperTinyIcons/master/images/svg/safari.svg" alt="safari_icon" title='Safari' width="25" height="25" style="float:left;" /> 
-  Instructions to build for Safari
+   Instructions to build for Safari
 </h2>
 
 Create a safari web extension project using the command below. *This is to be run once.*
