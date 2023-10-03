@@ -1,5 +1,5 @@
 <div align="center">
-  <img alt="logo_hack_tools" src="https://i.postimg.cc/GtLdZ2rZ/noun-Panama-hat-1454601.png" />
+  <img alt="logo_hack_tools" src="https://i.imgur.com/yoUssC7.png" />
   <h1>Welcome to HackTools <kbd>v1.0</kbd> !</h1>
   <p>
     <img alt="Version" src="https://img.shields.io/badge/version-1.0-blue.svg?cacheSeconds=2592000&style=for-the-badge" />
