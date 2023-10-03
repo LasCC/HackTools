@@ -21,7 +21,7 @@ const CommandNavigation = () => {
     const [ search, setSearch ] = useState( "" );
     const isMac = navigator.platform.toUpperCase().includes( 'MAC' );
     const keyToCheck = isMac ? 'Meta' : 'Control';
-    const keySymbol = isMac ? '⌘' : 'CRTL';
+    const keySymbol = isMac ? '⌘' : 'CTRL';
     const contactMail = "Y29udGFjdC5oYWNrdG9vbHNAZ21haWwuY29t";
     const IconFont = createFromIconfontCN( {
         scriptUrl: [ './iconfont.js' ]

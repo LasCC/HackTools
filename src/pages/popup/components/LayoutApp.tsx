@@ -15,8 +15,7 @@ export default function LayoutApp ( props: {
     children: boolean | React.ReactFragment | React.ReactPortal | null | undefined;
 } ) {
 
-
-    const {darkMode, setDarkModeState, index, setIndex, hackTools , setHackToolsState} = useStore();
+    const { darkMode, setDarkModeState, index, setIndex, hackTools, setHackToolsState } = useStore();
     enum HackToolsMode {
         web = "web",
         system = "system",
@@ -25,12 +24,12 @@ export default function LayoutApp ( props: {
     }
 
     const { defaultAlgorithm, darkAlgorithm } = theme;
-    
+
     const [ menuItems ] = useState<Array<IRouterComponent>>( Tabs );
     // const hackToolsState = PersistedState<string>( "hack_tools_mode" );
     // const [ hackTools, setHackToolsState ] = hackToolsState();
     const isMac = navigator.platform.toUpperCase().includes( 'MAC' );
-    const keySymbol = isMac ? '⌘' : 'CRTL';
+    const keySymbol = isMac ? '⌘' : 'CTRL';
 
     const handleSwtichTheme = ( value: string ) => {
         const isDarkMode = value === 'dark';
@@ -70,7 +69,6 @@ export default function LayoutApp ( props: {
     useHotkeys( 'ctrl+alt+c', () => {
         setHackToolsState( HackToolsMode.misc );
         setIndex( Tabs.filter( item => item.name === "Checklist" )[ 0 ].key );
-        // go to the methodology page
         goTo( Tabs.filter( item => item.type === HackToolsMode.misc )[ 1 ].componentRoute );
     } );
     /*--------------------------------*/
@@ -96,12 +94,7 @@ export default function LayoutApp ( props: {
     };
 
     useEffect( () => {
-//         // const currentIndexPage = parseInt( localStorage.getItem( "tab_index_cache" ).replace( /"/g, '' ) ) - 1 || ( 0 );
-//         const currentIndexPage = parseInt( index ) - 1 || ( 0 );
-//         // const currentComponent = Tabs.filter( ( tab ) => tab.type === hackTools )[ currentIndexPage ].componentRoute || ( LayoutChoice );
-// const currentComponent = Tabs.filter( ( tab ) => tab.type === hackTools )[ currentIndexPage ].componentRoute || ( LayoutChoice );
-//         goTo( currentComponent );
-        const currentComponent = Tabs.filter( ( tab ) => tab.type === hackTools )[ parseInt(index) - 1 ].componentRoute || ( LayoutChoice );
+        const currentComponent = Tabs.filter( ( tab ) => tab.type === hackTools )[ parseInt( index ) - 1 ].componentRoute || ( LayoutChoice );
         goTo( currentComponent );
     }, [ index, hackTools ] );
 
@@ -171,8 +164,7 @@ export default function LayoutApp ( props: {
                         {currentLogobasedOnMode()}
                     </div>
 
-                
-                <Menu theme='dark' defaultSelectedKeys={[index]} selectedKeys={[index]} mode='inline'>
+                    <Menu theme='dark' defaultSelectedKeys={[ index ]} selectedKeys={[ index ]} mode='inline'>
                         {MenuItemsLists}
                     </Menu>
                 </Sider>

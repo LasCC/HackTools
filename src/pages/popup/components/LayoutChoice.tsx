@@ -19,10 +19,10 @@ enum HackToolsMode {
 }
 
 const LayoutChoice = () => {
-    const { index, setIndex ,  hackTools , setHackToolsState} = useStore();
+    const { index, setIndex, hackTools, setHackToolsState } = useStore();
     const { Text } = Typography;
     const isMac = navigator.platform.toUpperCase().includes( 'MAC' );
-    const keySymbol = isMac ? '⌘' : 'CRTL';
+    const keySymbol = isMac ? '⌘' : 'CTRL';
 
     const modes
         : Array<{
@@ -36,7 +36,7 @@ const LayoutChoice = () => {
                 description: "Various payloads and tools related to web security assessment.",
                 shortcut: (
                     <div style={{ marginTop: 5 }}>
-                        <Text keyboard>CRTL</Text>
+                        <Text keyboard>CTRL</Text>
                         <Text keyboard>ALT</Text>
                         <Text keyboard>1</Text>
                     </div>
@@ -49,7 +49,7 @@ const LayoutChoice = () => {
                 description: "Reconnaissance, exploitation and post-exploitation, OS related tools.",
                 shortcut: (
                     <div style={{ marginTop: 5 }}>
-                        <Text keyboard>CRTL</Text>
+                        <Text keyboard>CTRL</Text>
                         <Text keyboard>ALT</Text>
                         <Text keyboard>2</Text>
                     </div>
@@ -62,7 +62,7 @@ const LayoutChoice = () => {
                 description: "Android and iOS related payloads for debugging and app instrumentation.",
                 shortcut: (
                     <div style={{ marginTop: 5 }}>
-                        <Text keyboard>CRTL</Text>
+                        <Text keyboard>CTRL</Text>
                         <Text keyboard>ALT</Text>
                         <Text keyboard>3</Text>
                     </div>
@@ -75,7 +75,7 @@ const LayoutChoice = () => {
                 description: "Various tools such as a private cheatsheets, advanced methodology, etc.",
                 shortcut: (
                     <div style={{ marginTop: 5 }}>
-                        <Text keyboard>CRTL</Text>
+                        <Text keyboard>CTRL</Text>
                         <Text keyboard>ALT</Text>
                         <Text keyboard>4</Text>
                     </div>
