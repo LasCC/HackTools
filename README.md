@@ -1,6 +1,6 @@
 <div align="center">
   <img alt="logo_hack_tools" src="https://i.imgur.com/yoUssC7.png" />
-  <h1>Welcome to HackTools <kbd>v1.0</kbd> !</h1>
+  <h1>Welcome to HackTools !</h1>
   <p>
     <img alt="Version" src="https://img.shields.io/badge/version-1.0-blue.svg?cacheSeconds=2592000&style=for-the-badge" />
     <a href="https://addons.mozilla.org/en-US/firefox/addon/hacktools" target="_blank">
