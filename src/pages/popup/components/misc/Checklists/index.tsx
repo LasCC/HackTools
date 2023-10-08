@@ -3,98 +3,92 @@ import React, { useState } from 'react';
 import { useHotkeys } from 'react-hotkeys-hook';
 import OWSTG from './OWSTG';
 import tabStateStore from './stores/TabStateStore';
-const { TabPane } = Tabs;
 
 const Index = () => {
     const { activeKey, items, add, remove, rename } = tabStateStore();
-    const onChange = tabStateStore( state => state.setActiveKey );
-    const [ isModelOpen, setIsModalVisible ] = useState( false );
-    const [ currentTab, setCurrentTab ] = useState( "" );
-    const [ newLabel, setNewLabel ] = useState( "" );
+    const [isModalVisible, setIsModalVisible] = useState(false);
+    const [currentTab, setCurrentTab] = useState("");
+    const [newLabel, setNewLabel] = useState("");
+    const [isConfirmVisible, setIsConfirmVisible] = useState(false);
+    const [targetKey, setTargetKey] = useState("");
 
-    const onEdit = ( action: "add" | "remove" ) => {
-        console.log( action );
-        if ( action === "add" ) {
+    const onEdit = (targetKey: string, action: "add" | "remove") => {
+        if (action === "add") {
             add();
         } else {
-            remove( activeKey );
+            setIsConfirmVisible(true);
+            setTargetKey(targetKey);
         }
     };
 
-    useHotkeys( 'N', () => {
-        add();
-    } );
+    const handleConfirm = () => {
+        remove(targetKey);
+        setIsConfirmVisible(false);
+    };
 
-    // FIXME: State is not updating when renaming a tab / id conflict
-    // useHotkeys('r', () => {
-    //   // rename current tab by opening the modal
-    //   setIsModalVisible(true);
-    // }
-    // );
+    useHotkeys('N', () => {
+        add();
+    });
 
     const handleRename = () => {
-        rename( currentTab, newLabel );
-        setIsModalVisible( false );
-        setNewLabel( "" );
+        rename(currentTab, newLabel);
+        setIsModalVisible(false);
+        setNewLabel("");
     };
 
     const handleCancel = () => {
-        setIsModalVisible( false );
-        setNewLabel( "" );
+        setIsModalVisible(false);
+        setNewLabel("");
     };
 
-    const closeAndDeleteConfirmModal = ( item: any ) => (
-        <Popconfirm
-            title="Are you sure you want to close this tab? all progress will be lost (Think about exporting your data first)"
-            onConfirm={() => remove( item.key )}
-            okText="Close and delete tab"
-            cancelText="Cancel"
-        >
-            <div>×</div>
-        </Popconfirm>
-    );
+    const newItems = items.map(item => ({
+        ...item,
+        tab: (
+            <div
+                onDoubleClick={() => {
+                    setCurrentTab(item.key);
+                    setIsModalVisible(true);
+                }}
+                onMouseUp={(e) => {
+                    // middle click
+                    if (e.button === 1) {
+                        setCurrentTab(item.key);
+                        setIsModalVisible(true);
+                    }
+                }}
+            >
+                {item.label}
+            </div>
+        ),
+        closeIcon: <div onClick={() => onEdit(item.key, "remove")}>×</div>,
+        children: <OWSTG id={item.id} />
+    }));
 
     return (
         <div>
             <Tabs
                 type="editable-card"
-                onChange={onChange}
+                onChange={tabStateStore((state) => state.setActiveKey)}
                 activeKey={activeKey}
-                onEdit={() => onEdit( "add" )}
-            >
-                {items.map( item => (
-                    <TabPane
-                        tab={
-                            <div
-                                onDoubleClick={() => {
-                                    setCurrentTab( item.key );
-                                    setIsModalVisible( true );
-                                }}
-                                onMouseUp={( e ) => {
-                                    // middle click
-                                    if ( e.button === 1 ) {
-                                        setCurrentTab( item.key );
-                                        setIsModalVisible( true );
-                                    }
-                                }}
-                            >
-                                {item.label}
-                            </div>
-                        }
-                        key={item.key}
-                        closable={item.closable ?? true}
-                        closeIcon={closeAndDeleteConfirmModal( item )}
-                    >
-                        <OWSTG id={item.id} />
-                    </TabPane>
-                ) )}
-            </Tabs>
-            <Modal title="Edit Tab Name" open={isModelOpen} onOk={handleRename}
+                onEdit={onEdit}
+                items={newItems}
+            />
+            <Modal title="Edit Tab Name" visible={isModalVisible} onOk={handleRename}
                 onCancel={handleCancel}>
-                <Input placeholder="Enter new name" onChange={( e ) => setNewLabel( e.target.value )}
+                <Input placeholder="Enter new name" onChange={(e) => setNewLabel(e.target.value)}
                     onPressEnter={handleRename}
                 />
             </Modal>
+            <Popconfirm
+                title="Are you sure you want to close this tab? all progress will be lost (Think about exporting your data first)"
+                open={isConfirmVisible}
+                onConfirm={handleConfirm}
+                onCancel={() => setIsConfirmVisible(false)}
+                okText="Close and delete tab"
+                cancelText="Cancel"
+            >
+                <div></div>
+            </Popconfirm>
         </div>
     );
 };
