@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Input, Alert, Row, Col, Typography } from 'antd';
+import { Input, Alert, Row, Col, Typography, Checkbox } from 'antd';
 import Title from 'antd/es/typography/Title';
 import { useStore } from './store';
 
@@ -14,47 +14,50 @@ const CSRFComponent: React.FC = () => {
     } = useStore();
 
     const [csrfPayload, setCsrfPayload] = useState<string>('');
+    const [autoSubmit, setAutoSubmit] = useState<boolean>(false);
+
+    const generateCSRFPayload = (postBody: any) => {
+        const requestParts = request.split("\n\n");
+        if (requestParts.length < 2) {
+            setError('Invalid HTTP request format.');
+            return;
+        }
+
+        const headers = requestParts[0].split("\n");
+        const methodParts = headers[0]?.split(" ");
+        if (methodParts.length < 2 || methodParts[0].toUpperCase() !== 'POST') {
+            setError('Invalid HTTP request format. Only POST method is supported.');
+            return;
+        }
+
+        const hostHeader = headers.find((header) => header.startsWith("Host:"));
+        if (!hostHeader) {
+            setError('Host header is missing in the request.');
+            return;
+        }
+
+        const url = hostHeader.split(" ")[1];
+        const actionUrl = `${url}${methodParts[1]}`;
+
+        const inputs = Object.entries(postBody).map(([key, value]) =>
+            `\t\t\t<input type="hidden" name="${key}" value="${(value as string).trim() || ""}"/>\n`
+        ).join('');
+        const method = methodParts[0].toUpperCase();
+        const autoSubmitScript = autoSubmit ? `<script>document.forms[0].submit();</script>` : '';
+        const form = `<html>
+        \t<body>
+        \t\t<form method="${method}" action="${actionUrl}">
+        \t\t\t${inputs.trim()}
+        \t\t\t<input type="submit" value="Submit">
+        \t\t</form>
+        \t\t${autoSubmitScript}
+        \t</body>
+        <html>`;
+
+        setCsrfPayload(form);
+    };
 
     useEffect(() => {
-        const generateCSRFPayload = () => {
-            const requestParts = request.split("\n\n");
-            if (requestParts.length < 2) {
-                setError('Invalid HTTP request format.');
-                return;
-            }
-
-            const headers = requestParts[0].split("\n");
-            const methodParts = headers[0]?.split(" ");
-            if (methodParts.length < 2 || methodParts[0].toUpperCase() !== 'POST') {
-                setError('Invalid HTTP request format. Only POST method is supported.');
-                return;
-            }
-
-            const hostHeader = headers.find((header) => header.startsWith("Host:"));
-            if (!hostHeader) {
-                setError('Host header is missing in the request.');
-                return;
-            }
-
-            const url = hostHeader.split(" ")[1];
-            const actionUrl = `${url}${methodParts[1]}`;
-
-            const inputs = Object.entries(parsedPostBody).map(([key, value]) =>
-                `\t\t\t<input type="hidden" name="${key}" value="${(value as string).trim() || ""}"/>\n`
-            ).join('');
-            const method = methodParts[0].toUpperCase();
-            const form = `<html>
-    \t<body>
-    \t\t<form method="${method}" action="${actionUrl}">
-    \t\t\t${inputs.trim()}
-    \t\t\t<input type="submit" value="Submit">
-    \t\t</form>
-    \t</body>
-    <html>`;
-
-            setCsrfPayload(form);
-        };
-
         const contentTypeHeader = request.split('\n').find(line => line.startsWith('Content-Type: '));
         if (contentTypeHeader) {
             const contentType = contentTypeHeader.split(': ')[1];
@@ -63,15 +66,14 @@ const CSRFComponent: React.FC = () => {
                 const postBody = parsePostBody(contentType, requestBody);
                 setParsedPostBody(postBody);
                 setError(''); // clear error
-                generateCSRFPayload();
+                generateCSRFPayload(postBody);
             } else {
                 setError('Request body is missing in the request.');
             }
         } else {
             setError('Content-Type header is missing in the request.');
         }
-    }, [request]);
-
+    }, [request, autoSubmit]);
 
     const parsePostBody = (contentType: string, body: string) => {
         try {
@@ -96,6 +98,20 @@ const CSRFComponent: React.FC = () => {
         }
     };
 
+    const onChange = (e) => {
+        const newRequest = e.target.value;
+        setRequest(newRequest);
+
+        // Extract the content type from the new request
+        const contentTypeHeader = newRequest.split('\n').find(line => line.startsWith('Content-Type: '));
+        const contentType = contentTypeHeader ? contentTypeHeader.split(': ')[1] : '';
+
+        // Parse and generate CSRF payload immediately
+        const postBody = parsePostBody(contentType, newRequest);
+        setParsedPostBody(postBody);
+
+        generateCSRFPayload(postBody);
+    };
 
     return (
         <Row gutter={[16, 16]}>
@@ -111,7 +127,7 @@ const CSRFComponent: React.FC = () => {
             <Col xs={24}>
                 <Input.TextArea
                     value={request}
-                    onChange={(e) => setRequest(e.target.value)}
+                    onChange={onChange}
                     placeholder="Paste your raw POST HTTP request here"
                     style={{ minHeight: '250px' }}
                 />
@@ -122,6 +138,11 @@ const CSRFComponent: React.FC = () => {
                     readOnly
                     style={{ minHeight: '250px' }}
                 />
+            </Col>
+            <Col xs={24}>
+                <Checkbox checked={autoSubmit} onChange={(e) => setAutoSubmit(e.target.checked)}>
+                    Auto-submittable form with JavaScript
+                </Checkbox>
             </Col>
         </Row>
     );
