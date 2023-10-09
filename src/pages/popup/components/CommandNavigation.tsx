@@ -258,7 +258,7 @@ const CommandNavigation = () => {
                         </Text>
                     </div>
                     <Tooltip title={`Toggle Dark Mode (${ keySymbol } + L)`}>
-                        <Text keyboard>
+                        <Text keyboard onClick={() => setDarkModeState( !darkMode )} style={{ cursor: 'pointer' }}>
                             {darkMode ? <BulbFilled style={{ color: '#fadb14' }} /> : <BulbOutlined />}
                         </Text>
                     </Tooltip>
