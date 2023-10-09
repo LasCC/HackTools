@@ -124,7 +124,7 @@ const CommandNavigation = () => {
                     },
                     {
                         id: "popup",
-                        children: "Pop-up Mode",
+                        children: "Pop-up",
                         icon: ( <MdOutlineOpenInFull style={{ fontSize: '1.3em', marginTop: 3 }} /> ),
                         closeOnSelect: false,
                         onClick: () => {
@@ -140,7 +140,7 @@ const CommandNavigation = () => {
                     },
                     {
                         id: "full_screen",
-                        children: "FullScreen Mode",
+                        children: "FullScreen",
                         icon: ( <AiOutlineFullscreen style={{ fontSize: '1.3em', marginTop: 3 }} /> ),
                         closeOnSelect: false,
                         onClick: () => {
@@ -240,7 +240,11 @@ const CommandNavigation = () => {
             isOpen={isOpen}
             page={page}
             icons={{
-                searchIcon: <BiSearch />
+                searchIcon: (
+                    <Text>
+                        <BiSearch style={{ fontSize: '1.3em', marginTop: 2 }} />
+                    </Text>
+                )
             }}
             footer={
                 <Space style={{ padding: 13, display: 'flex', justifyContent: 'space-between' }}>
@@ -298,11 +302,8 @@ const CommandNavigation = () => {
                                         onChange={e => setSearch( e.target.value )}
                                         index={getItemIndex( filteredItems, id )}
                                         onClick={() => {
-
-                                            console.log( { rest, id, name, heroIcon } )
                                             setHackToolsState( "web" );
                                             setIndex( String( id ) );
-                                            // setSearch('');
                                         }}
                                         {...rest}
                                     >
@@ -335,7 +336,6 @@ const CommandNavigation = () => {
                                             onClick={() => {
                                                 setHackToolsState( "system" );
                                                 setIndex( String( id ) );
-                                                // setSearch('');
                                             }}
                                             {...rest}
                                         >
@@ -364,12 +364,9 @@ const CommandNavigation = () => {
                                         value={search}
                                         onChange={e => setSearch( e.target.value )}
                                         onClick={() => {
-                                            setSearch( '' );
-                                            console.log( search )
                                             setHackToolsState( "mobile" );
                                             setIndex( String( id ) );
-                                        }
-                                        }
+                                        }}
                                         {...rest}
                                     >
                                         <div className='flex items-center w-full'>
@@ -397,7 +394,6 @@ const CommandNavigation = () => {
                                         onClick={() => {
                                             setHackToolsState( "misc" );
                                             setIndex( String( id ) );
-                                            // setSearch('');
                                         }}
                                         {...rest}
                                     >
