@@ -4,11 +4,11 @@ import CommandPalette, { filterItems, getItemIndex } from "@tmikeladze/react-cmd
 import '@tmikeladze/react-cmdk/dist/cmdk.css';
 import { Space, Tooltip, Typography } from "antd";
 import { useEffect, useState } from "react";
-import { AiOutlineGithub } from "react-icons/ai";
-import { BiMobileVibration } from "react-icons/bi";
+import { AiOutlineGithub, AiOutlineFullscreen } from "react-icons/ai";
+import { BiMobileVibration, BiSearch } from "react-icons/bi";
 import { BsBrowserChrome, BsMailbox2, BsTools } from "react-icons/bs";
 import { HiOutlineDesktopComputer } from "react-icons/hi";
-import { MdChecklist, MdEmojiPeople, MdOutlineAdb } from 'react-icons/md';
+import { MdChecklist, MdEmojiPeople, MdOutlineAdb, MdOutlineOpenInFull } from 'react-icons/md';
 import { useStore } from "./GlobalStore";
 import Tabs from './SideItemMenuRouting';
 
@@ -105,7 +105,6 @@ const CommandNavigation = () => {
                         icon: ( <MdOutlineAdb style={{ fontSize: '1.3em', marginTop: 3 }} /> ),
                         closeOnSelect: false,
                         onClick: () => {
-                            // goTo( ADB );
                             setIndex( '1' );
                             setHackToolsState( "mobile" );
                             setIsOpen( false );
@@ -121,6 +120,31 @@ const CommandNavigation = () => {
                             setIsOpen( false );
                             setIndex( '2' );
                             setHackToolsState( "misc" );
+                        },
+                    },
+                    {
+                        id: "popup",
+                        children: "Pop-up Mode",
+                        icon: ( <MdOutlineOpenInFull style={{ fontSize: '1.3em', marginTop: 3 }} /> ),
+                        closeOnSelect: false,
+                        onClick: () => {
+                            const width = 1100;
+                            const height = 800;
+                            chrome.windows.create( {
+                                url: chrome.runtime.getURL( '/src/pages/popup/index.html' ),
+                                width: width,
+                                height: height,
+                                type: 'popup'
+                            } );
+                        },
+                    },
+                    {
+                        id: "full_screen",
+                        children: "FullScreen Mode",
+                        icon: ( <AiOutlineFullscreen style={{ fontSize: '1.3em', marginTop: 3 }} /> ),
+                        closeOnSelect: false,
+                        onClick: () => {
+                            window.open( window.location.href, '_blank' ).focus();
                         },
                     },
                 ],
@@ -215,6 +239,9 @@ const CommandNavigation = () => {
             search={search}
             isOpen={isOpen}
             page={page}
+            icons={{
+                searchIcon: <BiSearch />
+            }}
             footer={
                 <Space style={{ padding: 13, display: 'flex', justifyContent: 'space-between' }}>
                     <div>
