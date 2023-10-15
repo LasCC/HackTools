@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Row, Col, Button, Divider, Input, Tabs, Tooltip, Space, Select, Form, Popconfirm, Slider, Drawer, Upload, message, ColorPicker, Radio } from 'antd';
-import { FileTextOutlined, LinkOutlined, WifiOutlined, MailOutlined, PhoneOutlined, MessageOutlined, CalendarOutlined, MinusOutlined, PlusOutlined, SettingOutlined } from '@ant-design/icons';
+import { FileTextOutlined, LinkOutlined, WifiOutlined, MailOutlined, PhoneOutlined, MessageOutlined, CalendarOutlined, MinusOutlined, PlusOutlined, DeleteOutlined } from '@ant-design/icons';
 import { useStore } from "../../GlobalStore";
 import { Segmented, Typography, DatePicker } from 'antd';
 import { QRCodeSVG } from 'qrcode.react';
@@ -16,6 +16,7 @@ const { TextArea } = Input;
 function QRGenerator () {
     const [ level, setLevel ] = useState<string | number>( 'L' );
     const [ activeTab, setActiveTab ] = useState( '1' );
+    const [ dig, setDig ] = useState( true );
     const [ open, setOpen ] = useState( false );
     const [ size, setSize ] = useState<number>( 365 );
     const [ icon, setIcon ] = useState( icons.HackTools );
@@ -49,10 +50,9 @@ function QRGenerator () {
 
     const handleInputChange = ( field, value ) => {
         setFormValues( prevState => ( { ...prevState, [ field ]: value } ) );
-    };
-
-    const handleDigChange = ( e ) => {
-        setFormValues( prevState => ( { ...prevState, dig: e.target.value === false } ) );
+        if ( field === 'icon' && value === '' ) {
+            setDig( false );
+        }
     };
 
     const handleNestedInputChange = ( field, subField, value ) => {
@@ -184,17 +184,22 @@ function QRGenerator () {
                             className="qrcode"
                             size={size}
                             level={level as QRCodeProps[ 'errorLevel' ]}
-                            value={qrValue}
-                            fgColor={formValues.color}
+                            value={getQRValue()}
+                            color={formValues.color}
                             bgColor={formValues.bgColor}
                             includeMargin={false}
-                            imageSettings={{ src: icon, height: iconSize, width: iconSize, excavate: formValues.dig }}
+                            imageSettings={{
+                                src: icon,
+                                height: iconSize,
+                                width: iconSize,
+                                excavate: dig && icon !== ''
+                            }}
                         />
                     </div>
                 </Col>
                 <Col span={14}>
                     <Form layout="vertical">
-                        <Tabs defaultActiveKey="1" tabPosition="left" onChange={key => { setActiveTab( key ); resetQRCodeValue(); }}>
+                        <Tabs defaultActiveKey="1" tabPosition="left" onChange={key => { setActiveTab( key ); resetQRCodeValue(); setDig( true ); }}>
                             <TabPane tab={<Tooltip title="Text"><LinkOutlined /></Tooltip>} key="1">
                                 <Space direction="vertical">
                                     <Text strong>URL</Text>
@@ -375,7 +380,7 @@ function QRGenerator () {
                                     key={name}
                                     src={url}
                                     alt={name}
-                                    onClick={() => handleIconClick( url )}
+                                    onClick={() => { handleIconClick( url ); setDig( true ); }}
                                     style={{ cursor: "pointer", width: 35, height: 'auto' }}
                                 />
                             ) )}
@@ -387,6 +392,9 @@ function QRGenerator () {
                                 >
                                     <Button icon={<PlusOutlined />} />
                                 </Upload>
+                            </Tooltip>
+                            <Tooltip title="Remove icon">
+                                <Button danger icon={<DeleteOutlined />} onClick={() => { setIcon( '' ); setDig( false ); }} />
                             </Tooltip>
                         </Space>
                         <Popconfirm
@@ -435,9 +443,9 @@ function QRGenerator () {
                         <Text strong>Icon Dig</Text>
                         <Text type="secondary">Excavate the icon from the QR code.</Text>
                         <Text italic type="secondary">We recommend to enable this option if you upload your own PNG/JPG image, and disable it if you use a SVG image.</Text>
-                        <Radio.Group onChange={handleDigChange}>
-                            <Radio value={true}>Yes</Radio>
-                            <Radio value={false}>No</Radio>
+                        <Radio.Group value={dig} onChange={( e ) => setDig( e.target.value )}>
+                            <Radio value={true}>Enabled</Radio>
+                            <Radio value={false}>Disabled</Radio>
                         </Radio.Group>
                         <Divider />
 
