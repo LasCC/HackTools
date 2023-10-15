@@ -185,7 +185,7 @@ function QRGenerator () {
                             size={size}
                             level={level as QRCodeProps[ 'errorLevel' ]}
                             value={getQRValue()}
-                            color={formValues.color}
+                            fgColor={formValues.color}
                             bgColor={formValues.bgColor}
                             includeMargin={false}
                             imageSettings={{
