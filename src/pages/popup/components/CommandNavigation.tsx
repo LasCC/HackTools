@@ -124,7 +124,7 @@ const CommandNavigation = () => {
                     },
                     {
                         id: "popup",
-                        children: "Pop-up",
+                        children: "Separate Window (Popup)",
                         icon: ( <MdOutlineOpenInFull style={{ fontSize: '1.3em', marginTop: 3 }} /> ),
                         closeOnSelect: false,
                         onClick: () => {
@@ -140,7 +140,7 @@ const CommandNavigation = () => {
                     },
                     {
                         id: "full_screen",
-                        children: "FullScreen",
+                        children: "Expand View (Full Screen)",
                         icon: ( <AiOutlineFullscreen style={{ fontSize: '1.3em', marginTop: 3 }} /> ),
                         closeOnSelect: false,
                         onClick: () => {
