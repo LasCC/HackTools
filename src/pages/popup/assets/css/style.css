@@ -1,4 +1,26 @@
-.logo:hover {
+@keyframes logo {
+    0% {
+        mask-position: 0;
+        -webkit-mask-position: 0;
+    }
+
+    100% {
+        mask-position: 120%;
+        -webkit-mask-position: 120%;
+    }
+}
+
+.logo:hover,
+.qrcode:hover {
+    cursor: pointer;
+    -webkit-mask-image: linear-gradient(45deg, #808080 25%, rgba(255, 255, 255, 0.2) 50%, #808080 75%);
+    mask-image: linear-gradient(45deg, #808080 25%, rgba(255, 255, 255, 0.2) 50%, #808080 75%);
+    -webkit-mask-size: 800%;
+    mask-size: 800%;
+    animation: logo 2s linear infinite;
+}
+
+.logo:hover, .qrcode:hover {
     cursor: pointer;
     -webkit-mask-image: linear-gradient(45deg, #808080 25%, rgba(255, 255, 255, 0.2) 50%, #808080 75%);
     mask-image: linear-gradient(45deg, #808080 25%, rgba(255, 255, 255, 0.2) 50%, #808080 75%);
@@ -8,7 +30,7 @@
     mask-position: 0;
 }
 
-.logo:hover {
+.logo:hover, .qrcode:hover {
     transition: mask-position 2s ease, -webkit-mask-position 2s ease;
     -webkit-mask-position: 120%;
     mask-position: 120%;
@@ -102,4 +124,8 @@ body {
     margin: 0px !important;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: 14px;
+}
+
+.qrcode {
+    cursor: pointer;
 }
