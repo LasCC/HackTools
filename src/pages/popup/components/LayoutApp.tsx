@@ -180,7 +180,7 @@ export default function LayoutApp ( props: {
                         {props.children}
                     </Content>
                     <Footer style={{ textAlign: 'center' }}>
-                        © Hack Tools - The all in one browser extension for offensive security professionals -
+                        © HackTools - The all in one browser extension for offensive security professionals -
                         <Paragraph style={{ textAlign: 'center' }}>Ludovic COULON - Riadh BOUCHAHOUA</Paragraph>
                         <pre style={{ textAlign: 'center' }}>
                             <span>
