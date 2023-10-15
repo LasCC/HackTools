@@ -1,22 +1,19 @@
 import { ExportOutlined, FileSyncOutlined, ImportOutlined, QuestionCircleOutlined, ToolOutlined } from '@ant-design/icons';
 import { Button, Col, Divider, Dropdown, FloatButton, Input, Modal, Row, Table, Tag, Typography, message, Space } from 'antd';
 import Fuse from 'fuse.js';
-import { useState , useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import usePayloadStore, { DataType } from './store';
 const { Title, Paragraph, Text } = Typography;
 
 
 const index = () => {
-
     const { exportPayloadsAsJSON, importPayloadFromURL, importPayloadsFromLocalFile, payloads, setPayloads, remotePayloadURL, setRemotePayloadURL } = usePayloadStore();
-
     const [ messageApi, contextHolder ] = message.useMessage();
     const [ searchResults, setSearchResults ] = useState<DataType[]>( payloads );
     const [ isHelpModalOpen, setIsHelpModalOpen ] = useState( false );
     const [ isSyncModalOpen, setIsSyncModalOpen ] = useState( false );
 
     const handleFileImport = () => {
-        // Create a hidden file input
         const fileInput = document.createElement( 'input' );
         fileInput.type = 'file';
         fileInput.style.display = 'none';
@@ -82,7 +79,6 @@ const index = () => {
             ]
     }
 
-
     const fuse = new Fuse( payloads, fuseOptions );
 
     const items = [
@@ -114,9 +110,9 @@ const index = () => {
         }
     };
 
-    useEffect(() => {
-        setSearchResults(payloads);
-    }, [payloads]);
+    useEffect( () => {
+        setSearchResults( payloads );
+    }, [ payloads ] );
 
     const columns = [
         {

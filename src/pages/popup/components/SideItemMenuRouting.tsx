@@ -1,8 +1,8 @@
-import { createFromIconfontCN } from '@ant-design/icons';
+import { QrcodeOutlined, createFromIconfontCN } from '@ant-design/icons';
 import React from 'react';
 import { BiLockOpen, BiNotepad } from 'react-icons/bi';
 import { BsCardList, BsDatabaseFillGear } from 'react-icons/bs';
-import {IoBandageOutline} from  'react-icons/io5';
+import { IoBandageOutline } from 'react-icons/io5';
 import { GiPirateHook, GiWebSpit } from 'react-icons/gi';
 import { HiOutlineTemplate } from 'react-icons/hi';
 import { MdChecklist, MdOutlineAdb, MdOutlineOpenInBrowser } from 'react-icons/md';
@@ -32,6 +32,7 @@ import SSTI from './web/SSTI';
 import WebShells from './web/WebShells';
 import XSS from './web/XSS';
 import APKPatching from './mobile/Android/ADB/APKPatching';
+import QRGenerator from './misc/QRGenerator';
 
 const IconFont = createFromIconfontCN( {
     scriptUrl: [ './iconfont.js' ]
@@ -192,7 +193,7 @@ const MobileTab: Array<IRouterComponent> = [
         componentRoute: APKPatching,
         type: "mobile"
     },
-    
+
     {
         key: '3',
         icon: <GiPirateHook style={{ fontSize: '1.5em', marginTop: 3 }} />,
@@ -205,20 +206,27 @@ const MobileTab: Array<IRouterComponent> = [
 const MiscTab: Array<IRouterComponent> = [
     {
         key: '1',
+        icon: <QrcodeOutlined style={{ fontSize: '1.5em', marginTop: 3 }} />,
+        name: 'QR Code Generator',
+        componentRoute: QRGenerator,
+        type: "misc"
+    },
+    {
+        key: '2',
         icon: <BiNotepad style={{ fontSize: '1.5em', marginTop: 3 }} />,
         name: 'Notepad',
         componentRoute: Notepad,
         type: "misc"
     },
     {
-        key: '2',
+        key: '3',
         icon: <BsCardList style={{ fontSize: '1.5em', marginTop: 3 }} />,
         name: 'Private Cheat Sheet',
         componentRoute: CustomPayloadTable,
         type: "misc"
     },
     {
-        key: '3',
+        key: '4',
         icon: <MdChecklist style={{ fontSize: '1.5em', marginTop: 3 }} />,
         name: 'Checklist',
         componentRoute: Checklists,
