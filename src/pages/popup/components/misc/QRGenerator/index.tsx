@@ -200,7 +200,7 @@ function QRGenerator () {
                 <Col span={14}>
                     <Form layout="vertical">
                         <Tabs defaultActiveKey="1" tabPosition="left" onChange={key => { setActiveTab( key ); resetQRCodeValue(); setDig( true ); }}>
-                            <TabPane tab={<Tooltip title="Text"><LinkOutlined /></Tooltip>} key="1">
+                            <TabPane tab={<Tooltip title="URL"><LinkOutlined /></Tooltip>} key="1">
                                 <Space direction="vertical">
                                     <Text strong>URL</Text>
                                     <Text type="secondary">You can create a QR code that will redirect the target to a website.</Text>
@@ -213,7 +213,7 @@ function QRGenerator () {
                                     </Form.Item>
                                 </Space>
                             </TabPane>
-                            <TabPane tab={<Tooltip title="URL"><FileTextOutlined /></Tooltip>} key="2">
+                            <TabPane tab={<Tooltip title="Raw Text"><FileTextOutlined /></Tooltip>} key="2">
                                 <Space direction="vertical">
                                     <Text strong>Text</Text>
                                     <Text type="secondary">You can create a QR code that will display text when scanned.</Text>
@@ -285,7 +285,6 @@ function QRGenerator () {
                                         <TextArea
                                             rows={4}
                                             placeholder="Message"
-                                            maxLength={6}
                                             value={formValues.email.message}
                                             onChange={( e ) => handleNestedInputChange( 'email', 'message', e.target.value )}
                                         />
