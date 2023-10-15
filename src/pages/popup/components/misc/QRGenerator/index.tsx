@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
-import { Row, Col, Button, Divider, Input, Tabs, Tooltip, Space, Select, Form, Popconfirm, Slider, Drawer, Upload, message, ColorPicker } from 'antd';
+import { Row, Col, Button, Divider, Input, Tabs, Tooltip, Space, Select, Form, Popconfirm, Slider, Drawer, Upload, message, ColorPicker, Radio } from 'antd';
 import { FileTextOutlined, LinkOutlined, WifiOutlined, MailOutlined, PhoneOutlined, MessageOutlined, CalendarOutlined, MinusOutlined, PlusOutlined, SettingOutlined } from '@ant-design/icons';
 import { useStore } from "../../GlobalStore";
-import { QRCode, Segmented, Typography, DatePicker } from 'antd';
+import { Segmented, Typography, DatePicker } from 'antd';
+import { QRCodeSVG } from 'qrcode.react';
 import dayjs from 'dayjs';
 import { icons } from './icons';
 import type { QRCodeProps } from 'antd';
@@ -16,9 +17,9 @@ function QRGenerator () {
     const [ level, setLevel ] = useState<string | number>( 'L' );
     const [ activeTab, setActiveTab ] = useState( '1' );
     const [ open, setOpen ] = useState( false );
-    const [ size, setSize ] = useState<number>( 255 );
+    const [ size, setSize ] = useState<number>( 365 );
     const [ icon, setIcon ] = useState( icons.HackTools );
-    const [ iconSize, setIconSize ] = useState<number>( 50 );
+    const [ iconSize, setIconSize ] = useState<number>( 75 );
     const isDarkMode = useStore( state => state.darkMode );
 
     const initialQRState = {
@@ -31,6 +32,7 @@ function QRGenerator () {
         event: { title: '🧨 Warning - Event Calendar', description: 'Come join us!', location: 'World', date: [ dayjs().format( 'YYYYMMDDTHHmmss' ), dayjs().add( 1, 'hour' ).format( 'YYYYMMDDTHHmmss' ) ] },
         color: '#000000',
         bgColor: '#00000000',
+        dig: true,
     };
 
     const [ formValues, setFormValues ] = useState( initialQRState );
@@ -47,6 +49,10 @@ function QRGenerator () {
 
     const handleInputChange = ( field, value ) => {
         setFormValues( prevState => ( { ...prevState, [ field ]: value } ) );
+    };
+
+    const handleDigChange = ( e ) => {
+        setFormValues( prevState => ( { ...prevState, dig: e.target.value === false } ) );
     };
 
     const handleNestedInputChange = ( field, subField, value ) => {
@@ -70,7 +76,7 @@ function QRGenerator () {
                 return `tel:${ formValues.tel }`;
             case '6': // SMS
                 return `smsto:${ formValues.sms.number }:${ formValues.sms.message }`;
-            case '7': // Event
+            case '7': // Calendar Event
                 const startDate = dayjs( formValues.event.date[ 0 ] ).format( 'YYYYMMDDTHHmmss' );
                 const endDate = formValues.event.date[ 1 ] ? dayjs( formValues.event.date[ 1 ] ).format( 'YYYYMMDDTHHmmss' ) : '';
                 return `BEGIN:VEVENT\nSUMMARY:${ formValues.event.title }\nDTSTART:${ startDate }\n${ endDate ? `DTEND:${ endDate }\n` : '' }DESCRIPTION:${ formValues.event.description }\nLOCATION:${ formValues.event.location }\nEND:VEVENT`;
@@ -82,8 +88,8 @@ function QRGenerator () {
     const increase = () => {
         setSize( ( prevSize ) => {
             const newSize = prevSize + 10;
-            if ( newSize > 300 ) {
-                return 300;
+            if ( newSize > 365 ) {
+                return 365;
             }
             return newSize;
         } );
@@ -113,14 +119,14 @@ function QRGenerator () {
         } );
     };
 
-    const popOverTrigger = (
-        <div>
-            <Button type="default" onClick={() => setOpen( true )} icon={<SettingOutlined />}>
-                Configure QR Code
-            </Button>
-        </div>
+    const qrValue = getQRValue();
+    const maxLengths = { L: 2953, M: 2331, Q: 1663, H: 1273 };
 
-    );
+    if ( qrValue.length > maxLengths[ level ] ) {
+        message.error( "The data is too long to be encoded into a QR code, reloading the page..." );
+        setTimeout( () => window.location.reload(), 3000 );
+        return;
+    }
 
     const handleChange: UploadProps[ 'onChange' ] = ( info: UploadChangeParam<UploadFile> ) => {
         if ( info.file.status === 'uploading' ) {
@@ -134,15 +140,27 @@ function QRGenerator () {
     };
 
     const downloadQRCode = () => {
-        const canvas = document.getElementById( 'qrcode' )?.querySelector<HTMLCanvasElement>( 'canvas' );
-        if ( canvas ) {
-            const url = canvas.toDataURL();
-            const a = document.createElement( 'a' );
-            a.download = 'QRCode.png';
-            a.href = url;
-            document.body.appendChild( a );
-            a.click();
-            document.body.removeChild( a );
+        const svg = document.getElementById( 'qrcode' )?.querySelector<SVGSVGElement>( 'svg' );
+        if ( svg ) {
+            const svgData = new XMLSerializer().serializeToString( svg );
+            const canvas = document.createElement( 'canvas' );
+            const ctx = canvas.getContext( '2d' );
+            const img = new Image();
+            img.setAttribute( "src", "data:image/svg+xml;base64," + btoa( unescape( encodeURIComponent( svgData ) ) ) );
+            img.onload = function () {
+                canvas.width = img.width;
+                canvas.height = img.height;
+                if ( ctx ) {
+                    ctx.drawImage( img, 0, 0, img.width, img.height );
+                    const png = canvas.toDataURL( 'image/png' );
+                    const a = document.createElement( 'a' );
+                    a.download = 'QRCode.png';
+                    a.href = png;
+                    document.body.appendChild( a );
+                    a.click();
+                    document.body.removeChild( a );
+                }
+            };
         }
     };
 
@@ -162,15 +180,15 @@ function QRGenerator () {
             <Row gutter={[ 16, 16 ]}>
                 <Col span={10}>
                     <div id="qrcode" style={{ display: 'flex', width: '100%', height: 'auto' }} onClick={() => setOpen( true )}>
-                        <QRCode
+                        <QRCodeSVG
                             className="qrcode"
                             size={size}
-                            errorLevel={level as QRCodeProps[ 'errorLevel' ]}
-                            icon={icon}
-                            iconSize={iconSize}
-                            value={getQRValue()}
+                            level={level as QRCodeProps[ 'errorLevel' ]}
+                            value={qrValue}
                             color={formValues.color}
                             bgColor={formValues.bgColor}
+                            includeMargin={false}
+                            imageSettings={{ src: icon, height: iconSize, width: iconSize, excavate: formValues.dig }}
                         />
                     </div>
                 </Col>
@@ -392,13 +410,13 @@ function QRGenerator () {
                         <Segmented options={[ 'L', 'M', 'Q', 'H' ]} value={level} onChange={setLevel} />
                         <Divider />
 
-                        <Text strong>Size</Text>
+                        <Text strong>Size {size}px</Text>
                         <Text type="secondary">The size of the QR code in pixels.</Text>
                         <Button.Group style={{ marginBottom: 16 }}>
                             <Button onClick={decline} disabled={size <= 48} icon={<MinusOutlined />}>
                                 Smaller
                             </Button>
-                            <Button onClick={increase} disabled={size >= 300} icon={<PlusOutlined />}>
+                            <Button onClick={increase} disabled={size >= 365} icon={<PlusOutlined />}>
                                 Larger
                             </Button>
                         </Button.Group>
@@ -412,6 +430,15 @@ function QRGenerator () {
                             onChange={( value: number ) => setIconSize( value )}
                             value={iconSize}
                         />
+                        <Divider />
+
+                        <Text strong>Icon Dig</Text>
+                        <Text type="secondary">Excavate the icon from the QR code.</Text>
+                        <Text italic type="secondary">We recommend to enable this option if you upload your own PNG/JPG image, and disable it if you use a SVG image.</Text>
+                        <Radio.Group onChange={handleDigChange}>
+                            <Radio value={true}>Yes</Radio>
+                            <Radio value={false}>No</Radio>
+                        </Radio.Group>
                         <Divider />
 
                         <ColorPicker
