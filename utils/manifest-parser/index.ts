@@ -1,4 +1,4 @@
-type Manifest = chrome.runtime.ManifestV3;
+type Manifest = chrome.runtime.ManifestV2; // was V3
 
 class ManifestParser {
     // eslint-disable-next-line @typescript-eslint/no-empty-function

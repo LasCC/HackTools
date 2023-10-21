@@ -10,7 +10,7 @@ const distDir = resolve( __dirname, "..", "..", "dist" );
 const publicDir = resolve( __dirname, "..", "..", "public" );
 
 export default function makeManifest (
-    manifest: chrome.runtime.ManifestV3,
+    manifest: chrome.runtime.ManifestV2, // was V3
     config: { isDev: boolean; contentScriptCssKey?: string }
 ): PluginOption {
     function makeManifest ( to: string ) {

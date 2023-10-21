@@ -7,6 +7,7 @@ import { GiPirateHook, GiWebSpit } from 'react-icons/gi';
 import { HiOutlineTemplate } from 'react-icons/hi';
 import { MdChecklist, MdOutlineAdb, MdOutlineOpenInBrowser } from 'react-icons/md';
 import { SiJsonwebtokens } from 'react-icons/si';
+import { BsEye } from 'react-icons/bs';
 import { TbArrowRotaryLastRight, TbBinary } from 'react-icons/tb';
 import AboutUs from './AboutUs';
 import Checklists from './misc/Checklists';
@@ -33,6 +34,7 @@ import WebShells from './web/WebShells';
 import XSS from './web/XSS';
 import APKPatching from './mobile/Android/ADB/APKPatching';
 import QRGenerator from './misc/QRGenerator';
+import NmapGraph from './misc/NmapGraph';
 
 const IconFont = createFromIconfontCN( {
     scriptUrl: [ './iconfont.js' ]
@@ -232,6 +234,13 @@ const MiscTab: Array<IRouterComponent> = [
         componentRoute: Checklists,
         type: "misc"
     },
+    {
+        key: "5",
+        icon: <BsEye style={{ fontSize: '1.5em', marginTop: 3 }} />,
+        name: 'Nmap Graph',
+        componentRoute: NmapGraph,
+        type: "misc"
+    }
 ]
 
 // Make a single list of all tabs
