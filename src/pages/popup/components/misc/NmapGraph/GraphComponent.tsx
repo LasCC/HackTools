@@ -2,10 +2,10 @@ import React, { useEffect, useState, useRef } from 'react';
 import { GraphCanvas, lightTheme, darkTheme, GraphCanvasRef, useSelection } from 'reagraph';
 import scanmeData from './scanme.json';
 import { useStore } from "../../GlobalStore";
-import { Button, Drawer, Descriptions } from 'antd';
+import { Button, Drawer, Descriptions, Row, Col } from 'antd';
 import { List, Typography } from 'antd';
 const { Text } = Typography;
-import { Badge, Tag } from 'antd'
+import { Badge, Tag , Input} from 'antd'
 
 const { Paragraph } = Typography;
 
@@ -125,7 +125,7 @@ const GraphComponent = () => {
 
     const displayNodeInfoOnDrawer = () => {
         if (!currentNode) return null;
-        
+
         console.log(currentNode);
         const { type } = currentNode;
         let data = [];
@@ -140,7 +140,7 @@ const GraphComponent = () => {
                 {
                     label: `Service (open) - ${services.filter(svc => svc.state === "open").length}`,
 
-                    
+
                     value: services.filter(svc => svc.state === "open").map((svc, index) =>
                         <Tag
                             key={index}
@@ -220,29 +220,44 @@ const GraphComponent = () => {
 
     return (
         <>
-            <div key={"graph_canvas"} style={{
-                border: 'solid 1px red',
-                borderRadius: 5,
-                height: "80vh",
-                width: "91vw",
-                margin: 5,
-                position: 'relative'
-            }}
-            >
+            <Row
+                key={"graph_canvas"}
+                gutter={[16, 16]}
+                >
+                <Col
+                    key={"graph_canvas"} style={{
+                        border: 'solid 1px red',
+                        borderRadius: 5,
+                        height: "80vh",
+                        width: "91vw",
+                        margin: 5,
+                        position: 'relative'
+                    }}
+                >
+                    <GraphCanvas
+                        ref={graphRef}
+                        nodes={nodes}
+                        edges={edges}
+                        draggable={true}
+                        animated={true}
+                        theme={darkMode ? darkTheme : lightTheme}
+                        selections={selections}
+                        onNodeClick={onNodeClick}
+                        onCanvasClick={onCanvasClick}
+                    />
+                </Col>
+                
+                <Col>
+                    <Input.Search
+                        placeholder="Type query"
+                        enterButton="Search"
+                        size="large"
+                        onSearch={value => console.log(value)}
+                    />
+                </Col>
+            </Row>
 
 
-                <GraphCanvas
-                    ref={graphRef}
-                    nodes={nodes}
-                    edges={edges}
-                    draggable={true}
-                    animated={true}
-                    theme={darkMode ? darkTheme : lightTheme}
-                    selections={selections}
-                    onNodeClick={onNodeClick}
-                    onCanvasClick={onCanvasClick}
-                />
-            </div>
             <Drawer
                 title={currentNode ? (currentNode.type === 'host' ? currentNode.address : `${currentNode.parentHost}:${currentNode.port}`) : 'N/A'}
                 placement="right"
