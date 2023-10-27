@@ -32,6 +32,8 @@ const manifest: chrome.runtime.ManifestV2 = { // was V3
     // @ts-ignore
     background: { service_worker: "src/pages/background/index.js" },
     devtools_page: "src/pages/devtools/index.html",
+    // No choice for alasql + reaggraph to work ...
+    "content_security_policy": "script-src 'self' 'unsafe-eval'; script-src-elem 'self' blob:"
 };
 
 export default manifest;
