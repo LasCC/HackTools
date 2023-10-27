@@ -11,6 +11,7 @@ const { Paragraph } = Typography;
 
 
 // TODO: antD drawer pop, onNodeClick for adding oberservations and getting all info of the node 
+    // make it zoom in the clicked node
 // TODO: mark open/filtered/closed ports by color
 // TODO: mark service->host penteststate (to_check, vulnerable,exploited) by icon
 // TODO: autoload methodology for each service

@@ -34,7 +34,7 @@ import WebShells from './web/WebShells';
 import XSS from './web/XSS';
 import APKPatching from './mobile/Android/ADB/APKPatching';
 import QRGenerator from './misc/QRGenerator';
-import NmapGraph from './misc/NmapGraph';
+import NmapViz from './misc/NmapViz';
 
 const IconFont = createFromIconfontCN( {
     scriptUrl: [ './iconfont.js' ]
@@ -238,7 +238,7 @@ const MiscTab: Array<IRouterComponent> = [
         key: "5",
         icon: <BsEye style={{ fontSize: '1.5em', marginTop: 3 }} />,
         name: 'Nmap Graph',
-        componentRoute: NmapGraph,
+        componentRoute: NmapViz,
         type: "misc"
     }
 ]

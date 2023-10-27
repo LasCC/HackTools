@@ -1,5 +1,5 @@
 {
-    "name": "hack-tools",
+    "name": "hacktools",
     "version": "1.0.0",
     "description": "The all in one  browser extension for offensive security professionals",
     "main": "index.js",
@@ -16,7 +16,7 @@
     },
     "keywords": [],
     "author": "Ludovic COULON & Riadh BOUCHAHOUA",
-    "license": "MIT",
+    "license": "GPL-3.0",
     "browserslist": [
         ">0.2%",
         "not dead",

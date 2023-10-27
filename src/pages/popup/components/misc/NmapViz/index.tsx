@@ -1,4 +1,3 @@
-
 import type { TabsProps } from 'antd';
 import { Tabs } from 'antd';
 import GraphComponent from './GraphComponent';
