@@ -43,9 +43,13 @@ const useStore = create<StoreState>(
             queryData: (query) => {
                 try {
                     const { aliases } = get();
-                    if (aliases[query]) {
-                        query = aliases[query];
-                    }
+                    let queries = query.split(' ');
+                    queries = queries.map(q => {
+                        // Replace the alias with its corresponding query
+                        return aliases[q] ? aliases[q] : q;
+                    });
+                    query = queries.join(' ');
+            
                     let sqlQueryForTable = "SELECT * from nmap"
                     let whereClause = query.toLowerCase().split("where")[1];
                     if (whereClause) {
