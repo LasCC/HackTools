@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState, useRef } from 'react';
 import { GraphCanvas, lightTheme, darkTheme, GraphCanvasRef, useSelection } from 'reagraph';
 import scanmeData from './scanme.json';
@@ -5,49 +6,15 @@ import { useStore } from "../../GlobalStore";
 import { Button, Drawer, Descriptions, Row, Col } from 'antd';
 import { List, Typography } from 'antd';
 const { Text } = Typography;
-import { Badge, Tag , Input} from 'antd'
+import { Badge, Tag, Input } from 'antd'
 
 const { Paragraph } = Typography;
 
-
 // TODO: antD drawer pop, onNodeClick for adding oberservations and getting all info of the node 
-    // make it zoom in the clicked node
+// make it zoom in the clicked node
 // TODO: mark open/filtered/closed ports by color
 // TODO: mark service->host penteststate (to_check, vulnerable,exploited) by icon
 // TODO: autoload methodology for each service
-
-
-
-interface Host {
-    address: string;
-    hostnames: string[];
-    uptime: number;
-    distance: number;
-    services: Service[];
-}
-
-interface Service {
-    port: number;
-    state: string;
-    parentId: string;
-    parentHost: string;
-    protocol: string;
-    service: string;
-    banner: string;
-    scripts_results: ScriptResult[];
-    metadata: Metadata;
-}
-
-interface ScriptResult {
-    id: string;
-    output: string;
-    elements: any;
-}
-
-interface Metadata {
-    state: string;
-    observation: string;
-}
 
 
 
@@ -55,17 +22,12 @@ interface Metadata {
 const GraphComponent = () => {
     const { darkMode } = useStore.getState()
     const [open, setOpen] = useState(false);
-
-    const showDrawer = () => {
-        setOpen(true);
-    };
-
-    const onClose = () => {
-        setOpen(false);
-    };
     const [nodes, setNodes] = useState([]);
     const [edges, setEdges] = useState([]);
+    const [hostServices, setHostServices] = useState([]);
     const [currentNode, setCurrentNode] = useState(null);
+
+
 
 
     const graphRef = useRef<GraphCanvasRef | null>(null);
@@ -83,40 +45,42 @@ const GraphComponent = () => {
     });
 
     const onNodeClick = (nodeId) => {
-
         setCurrentNode(nodeId);
         setOpen(true);
     };
+
     useEffect(() => {
         const nodes = [];
         const edges = [];
+        const hostIds = new Set();
 
-        scanmeData.forEach((host, index) => {
+        scanmeData.forEach((service, index) => {
+            // Create a node for the service
             nodes.push({
-                id: `host-${index}`,
-                label: host.address,
-                type: 'host',
-                ...host,
+                id: service.id,
+                label: `${service.service}:${service.port}`,
+                type: 'service', // Set the type property here
+                ...service,
                 size: 20
             });
 
-            host.services.forEach((service, serviceIndex) => {
+            // Create a node for the host if it doesn't exist yet
+            if (!hostIds.has(service.address)) {
                 nodes.push({
-                    id: `service-${index}-${serviceIndex}`,
-                    parentId: `host-${index}`,
-                    parentHost: host.address,
-                    label: `${service.port}/${service.protocol} (${service?.service})`,
-                    type: 'service',
-                    ...service,
-                    size: 10
+                    id: service.address,
+                    label: service.address,
+                    type: 'host', // And here
+                    size: 30
                 });
+                hostIds.add(service.address);
+            }
 
-                edges.push({
-                    source: `host-${index}`,
-                    target: `service-${index}-${serviceIndex}`,
-                    id: `edge-${index}-${serviceIndex}`,
-                    label: `Port: ${service.port}`,
-                });
+            // Create an edge from the host to the service
+            edges.push({
+                source: service.address,
+                target: service.id,
+                id: `edge-${index}`,
+                label: `Port: ${service.port}`,
             });
         });
 
@@ -124,107 +88,126 @@ const GraphComponent = () => {
         setEdges(edges);
     }, []);
 
+
+
     const displayNodeInfoOnDrawer = () => {
         if (!currentNode) return null;
 
-        console.log(currentNode);
-        const { type } = currentNode;
-        let data = [];
+        const { type, id } = currentNode;
 
-        if (type === 'host') {
-            const { address, hostnames, uptime, distance, services } = currentNode as Host;
-            data = [
+        if (type === 'service') {
+            const { address, hostnames, uptime, distance, port, state, protocol, service, banner, scripts_results, metadata } = currentNode;
+            const data = [
                 { label: "Address", value: address },
                 { label: "Hostnames", value: hostnames.join(', ') },
                 { label: "Uptime", value: uptime },
                 { label: "Distance", value: distance },
-                {
-                    label: `Service (open) - ${services.filter(svc => svc.state === "open").length}`,
-
-
-                    value: services.filter(svc => svc.state === "open").map((svc, index) =>
-                        <Tag
-                            key={index}
-                            color="green"
-                        >
-                            {svc.service}
-                        </Tag>
-                    )
-                },
-                {
-                    label: `Service (filtered) - ${services.filter(svc => svc.state === "filtered").length}`,
-                    value: services.filter(svc => svc.state === "filtered").map((svc, index) =>
-                        <Tag
-                            key={index}
-                            color="grey"
-                            onClick={() => {
-                                setCurrentNode({ data: svc, id: `service-${currentNode.data.id.split('-')[0]}-${index}` });
-                                setOpen(true);
-                            }}
-                        >
-                            {svc.service}
-                        </Tag>
-                    )
-                },
-                {
-                    label: `Service (closed) - ${services.filter(svc => svc.state === "closed").length}`,
-                    value: services.filter(svc => svc.state === "closed").map((svc, index) =>
-                        <Tag
-                            key={index}
-                            color="red"
-                            onClick={() => {
-                                setCurrentNode({ data: svc, id: `service-${currentNode.data.id.split('-')[1]}-${index}` });
-                                setOpen(true);
-                            }}
-                        >
-                            {svc.service}
-                        </Tag>
-                    )
-                },
-            ];
-        } else if (type === 'service') {
-            const { port, state, protocol, service, banner, scripts_results } = currentNode;
-            data = [
                 { label: "Port", value: port },
-                { label: "State", value: <Tag color={state === 'open' ? 'green' : state === 'filtered' ? 'grey' : 'lightred'}>{state}</Tag> },
+                { label: "State", value: <Tag color={state === 'open' ? 'green' : state === 'closed' ? 'red' : 'grey'}>{state}</Tag> },
                 { label: "Protocol", value: protocol },
                 { label: "Service", value: service },
-                { label: "Banner", value: banner ? banner : 'N/A' },
-                {
-                    label: "Scripts Results", value: scripts_results && scripts_results.length > 0 ? scripts_results.map((script, index) => (
-                        <div key={index}>
-                            <Tag color="blue">{script.id}</Tag>
-                            <Paragraph>{script.output || 'N/A'}</Paragraph>
-                        </div>
-                    )) : 'N/A'
-                },
-                { label: "Methodology", value: "N/A" }
+                { label: "Banner", value: banner },
+                // Add script results
+                ...scripts_results.map((script, index) => ({
+                    label: `Script ${index + 1} (${script.id})`,
+                    value: script.output
+                })),
+                // Add more fields as needed...
             ];
+
+            return (
+                <List
+                    itemLayout="horizontal"
+                    dataSource={data}
+                    renderItem={item => (
+                        <List.Item>
+                            <List.Item.Meta
+                                title={<Text strong>{item.label}</Text>}
+                                description={item.value}
+                            />
+                        </List.Item>
+                    )}
+                />
+            );
+        } else if (type === 'host') {
+            const hostServices = scanmeData.filter(service => service.address === id);
+            const openServices = hostServices.filter(service => service.state === 'open');
+            const closedServices = hostServices.filter(service => service.state === 'closed');
+            const filteredServices = hostServices.filter(service => service.state === 'filtered');
+
+            return (
+                <>
+                    {openServices.length > 0 ? (
+                        <>
+                            <Typography.Title level={4}>Open Services</Typography.Title>
+                            <List
+                                itemLayout="horizontal"
+                                dataSource={openServices}
+                                renderItem={service => (
+                                    <List.Item>
+                                        <List.Item.Meta
+                                            title={<Text strong>{`${service.service}:${service.port}/tcp`}</Text>}
+                                            description={<Tag color='green'>{service.state}</Tag>}
+                                        />
+                                    </List.Item>
+                                )}
+                            />
+                        </>
+                    ) : null}
+
+                    {closedServices.length > 0 ? (
+                        <>
+                            <Typography.Title level={4}>Closed Services</Typography.Title>
+                            <List
+                                itemLayout="horizontal"
+                                dataSource={closedServices}
+                                renderItem={service => (
+                                    <List.Item>
+                                        <List.Item.Meta
+                                            title={<Text strong>{`${service.service}:${service.port}/tcp`}</Text>}
+                                            description={<Tag color='red'>{service.state}</Tag>}
+                                        />
+                                    </List.Item>
+                                )}
+                            />
+                        </>
+                    ) : null}
+
+
+
+                    {filteredServices.length > 0 ? (
+                        <>
+                            <Typography.Title level={4}>Filtered Services</Typography.Title>
+                            <List
+                                itemLayout="horizontal"
+                                dataSource={filteredServices}
+                                renderItem={service => (
+                                    <List.Item>
+                                        <List.Item.Meta
+                                            title={<Text strong>{`${service.service}:${service.port}/tcp`}</Text>}
+                                            description={<Tag color='grey'>{service.state}</Tag>}
+                                        />
+                                    </List.Item>
+                                )}
+                            />
+                        </>
+                    ) : null}
+
+
+                </>
+            );
         }
 
-        return (
-            <List
-                itemLayout="horizontal"
-                dataSource={data}
-                renderItem={item => (
-                    <List.Item>
-                        <List.Item.Meta
-                            title={<Text strong>{item.label}</Text>}
-                            description={item.value}
-                        />
-                    </List.Item>
-                )}
-            />
-        );
+        return null;
+
+        return null;
     };
-
-
     return (
         <>
             <Row
                 key={"graph_canvas"}
                 gutter={[16, 16]}
-                >
+            >
                 <Col
                     key={"graph_canvas"} style={{
                         border: 'solid 1px red',
@@ -247,7 +230,7 @@ const GraphComponent = () => {
                         onCanvasClick={onCanvasClick}
                     />
                 </Col>
-                
+
                 <Col>
                     <Input.Search
                         placeholder="Type query"
@@ -260,7 +243,7 @@ const GraphComponent = () => {
 
 
             <Drawer
-                title={currentNode ? (currentNode.type === 'host' ? currentNode.address : `${currentNode.parentHost}:${currentNode.port}`) : 'N/A'}
+                title={currentNode ? (currentNode.type === 'host' ? currentNode.address : `${currentNode.service}:${currentNode.port}`) : 'N/A'}
                 placement="right"
                 closable={true}
                 onClose={() => setOpen(false)}

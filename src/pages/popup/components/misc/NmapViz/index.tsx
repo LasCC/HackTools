@@ -2,7 +2,7 @@ import type { TabsProps } from 'antd';
 import { Tabs } from 'antd';
 import GraphComponent from './GraphComponent';
 import Dashboard from './DashBoard';
-import Tabler from './Tabler';
+// import Tabler from './Tabler';
 
 
 const index = () => {
@@ -21,7 +21,7 @@ const index = () => {
         {
             key: '3',
             label: `Table`,
-            children: <Tabler/>
+            children: <p>ok</p>// <Tabler/>
         }
     ];
     return (
