@@ -22,7 +22,7 @@ const { Paragraph } = Typography;
 
 const GraphComponent = () => {
     const { darkMode } = useStore.getState()
-    const { data, queryData } = useNmapStore();
+    const { data, queryData, searchQuery , setSearchQuery } = useNmapStore();
     const [open, setOpen] = useState(false);
     const [nodes, setNodes] = useState([]);
     const [edges, setEdges] = useState([]);
@@ -237,6 +237,8 @@ const GraphComponent = () => {
                         placeholder="Enter SQL query"
                         enterButton="Submit"
                         size="large"
+                        value={searchQuery}
+                    onChange={evt => setSearchQuery(evt.target.value)}
                         onSearch={queryData}
                     />
                 </Col>

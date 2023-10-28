@@ -3,7 +3,7 @@ import { Table, Input, Row, Col, Collapse } from 'antd';
 import useStore from './store';
 
 const Tabler = () => {
-    const { data, queryData, tableData } = useStore();
+    const { data, queryData, tableData, searchQuery , setSearchQuery } = useStore();
 
     const columns = [
         {
@@ -38,6 +38,8 @@ const Tabler = () => {
             <Col span={24}>
                 <Input.Search
                     placeholder="Enter SQL query"
+                    value={searchQuery}
+                    onChange={evt => setSearchQuery(evt.target.value)}
                     enterButton="Submit"
                     size="large"
                     onSearch={handleQuerySubmit}

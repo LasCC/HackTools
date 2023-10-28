@@ -7,10 +7,13 @@ import scanmeData from './scanme.json';
 interface StoreState {
     data: any[];
     tableData: any[];
+    searchQuery: string;
     setData: (data: any[]) => void;
     setTableData: (tableData: any[]) => void;
+    setSearchQuery: (query: string) => void;
     queryData: (query: string) => void;
 }
+
 
 // Load db in memory
 alasql('CREATE TABLE nmap');
@@ -28,6 +31,8 @@ const useStore = create<StoreState>(
     persist(
         (set) => ({
             data: scanmeData,
+            searchQuery : "SELECT * FROM nmap",
+            setSearchQuery: (searchQuery) => set({searchQuery}),
             setData: (data) => set({ data }),
             tableData: [],
             setTableData: (tableData) => set({ tableData }),
