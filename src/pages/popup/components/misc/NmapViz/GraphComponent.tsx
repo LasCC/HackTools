@@ -7,6 +7,7 @@ import { Button, Drawer, Descriptions, Row, Col } from 'antd';
 import { List, Typography } from 'antd';
 const { Text } = Typography;
 import { Badge, Tag, Input } from 'antd'
+import useNmapStore from './store';
 
 const { Paragraph } = Typography;
 
@@ -21,6 +22,7 @@ const { Paragraph } = Typography;
 
 const GraphComponent = () => {
     const { darkMode } = useStore.getState()
+    const { data, queryData } = useNmapStore();
     const [open, setOpen] = useState(false);
     const [nodes, setNodes] = useState([]);
     const [edges, setEdges] = useState([]);
@@ -48,13 +50,12 @@ const GraphComponent = () => {
         setCurrentNode(nodeId);
         setOpen(true);
     };
-
     useEffect(() => {
         const nodes = [];
         const edges = [];
         const hostIds = new Set();
-
-        scanmeData.forEach((service, index) => {
+    
+        data.forEach((service, index) => {
             // Create a node for the service
             nodes.push({
                 id: service.id,
@@ -63,7 +64,7 @@ const GraphComponent = () => {
                 ...service,
                 size: 20
             });
-
+    
             // Create a node for the host if it doesn't exist yet
             if (!hostIds.has(service.address)) {
                 nodes.push({
@@ -74,20 +75,21 @@ const GraphComponent = () => {
                 });
                 hostIds.add(service.address);
             }
-
+    
             // Create an edge from the host to the service
-            edges.push({
-                source: service.address,
-                target: service.id,
-                id: `edge-${index}`,
-                label: `Port: ${service.port}`,
-            });
+            if (service.address && service.id) {
+                edges.push({
+                    source: service.address,
+                    target: service.id,
+                    id: `edge-${index}`,
+                    label: `Port: ${service.port}`,
+                });
+            }
         });
-
+    
         setNodes(nodes);
         setEdges(edges);
-    }, []);
-
+    }, [data]);
 
 
     const displayNodeInfoOnDrawer = () => {
@@ -200,7 +202,6 @@ const GraphComponent = () => {
 
         return null;
 
-        return null;
     };
     return (
         <>
@@ -231,12 +232,12 @@ const GraphComponent = () => {
                     />
                 </Col>
 
-                <Col>
+                <Col span={24}>
                     <Input.Search
-                        placeholder="Type query"
-                        enterButton="Search"
+                        placeholder="Enter SQL query"
+                        enterButton="Submit"
                         size="large"
-                        onSearch={value => console.log(value)}
+                        onSearch={queryData}
                     />
                 </Col>
             </Row>
