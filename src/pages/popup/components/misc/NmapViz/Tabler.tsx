@@ -1,69 +1,71 @@
-// import { useEffect } from 'react';
-// import { Table, Input, AutoComplete} from 'antd';
-// import useStore from './store';
+import { useEffect } from 'react';
+import { Table, Input, Row, Col, Collapse } from 'antd';
+import useStore from './store';
 
-// const Tabler = () => {
-//     const { data, queryData } = useStore();
+const Tabler = () => {
+    const { data, queryData, tableData } = useStore();
 
-//     const columns = [
-//         {
-//             title: 'Address',
-//             dataIndex: 'address',
-//             key: 'address',
-//         },
-//         // Add more columns as needed
-//     ];
+    const columns = [
+        {
+            title: 'Address',
+            dataIndex: 'address',
+            key: 'address',
+        },
+        {
+            title: 'Port',
+            dataIndex: 'port',
+            key: 'port',
+        },
+        {
+            title: 'State',
+            dataIndex: 'state',
+            key: 'state',
+        },
+        {
+            title: 'Service',
+            dataIndex: 'service',
+            key: 'service',
+        },
+        // Add more columns as needed
+    ];
 
-//     const handleQuerySubmit = (query) => {
-//         queryData(query);
-//     };
+    const handleQuerySubmit = (query) => {
+        queryData(query);
+    };
 
-//     const handleSearch = (value) => {
-//         if (value) {
-//             queryData(value);
-//         }
-//     };
+    return (
+        <Row gutter={[16, 16]}>
+            <Col span={24}>
+                <Input.Search
+                    placeholder="Enter SQL query"
+                    enterButton="Submit"
+                    size="large"
+                    onSearch={handleQuerySubmit}
+                />
+            </Col>
+            <Col span={24}>
+                <Collapse
+                    defaultActiveKey={['1']}
+                    ghost
+                    items={[
+                        {
+                            key: '1',
+                            label: `Query result ~ (${data[0] && Object.keys(data[0]).length > 0 ? data.length : 0}) services`,
+                            children: <pre>{JSON.stringify(data, null, 2)}</pre>
+                        }
+                    ]}
+                />
+            </Col>
+            <Col span={24}>
+                <Table
+                    columns={columns}
+                    dataSource={tableData}
+                    rowKey="id"
+                />
+            </Col>
 
-//     const fields = [
-//         'address',
-//         'hostnames',
-//         'uptime',
-//         'distance',
-//         'port',
-//         'state',
-//         'protocol',
-//         'service',
-//         'banner',
-//         'scripts_results',
-//         'metadata_state',
-//         'metadata_observation'
-//     ];
+        </Row>
+    );
+};
 
-
-//     return (<>
-//         <Input.Search
-//             placeholder="Enter SQL query"
-//             enterButton="Submit"
-//             size="large"
-//             onSearch={handleQuerySubmit}
-//         />
-//         {/* <Table
-//             columns={columns}
-//             dataSource={data}
-//             rowKey="address"
-//             expandable={{
-//                 expandedRowRender: record => (
-//                     <>
-//                         <p>{`Hostname: ${record.hostnames}`}</p>
-//                         <p>{`Uptime: ${record.uptime}`}</p>
-//                         <p>{`Distance: ${record.distance}`}</p>
-//                     </>
-//                 ),
-//             }}
-//         /> */}
-//         <pre>{JSON.stringify(data, null, 2)}</pre>
-//     </>
-//     );
-// };
-
-// export default Tabler;
+export default Tabler;
