@@ -1,10 +1,9 @@
-import { useEffect, useState } from 'react';
-import { Table, Input} from 'antd';
-import scanmeData from './scanme.json';
-import alasql from 'alasql';
+import { useEffect } from 'react';
+import { Table, Input, AutoComplete} from 'antd';
+import useStore from './store';
 
 const Tabler = () => {
-    const [data, setData] = useState([]);
+    const { data, queryData } = useStore();
 
     const columns = [
         {
@@ -14,53 +13,56 @@ const Tabler = () => {
         },
         // Add more columns as needed
     ];
-    useEffect(() => {
-        // Load db in memory
-        alasql('CREATE TABLE nmap');
-        scanmeData.forEach((result) => {
-            result.services.forEach((service) => {
-                alasql('INSERT INTO nmap VALUES ?', [{
-                    ...result,
-                    ...service,
-                }]);
-            });
-        });
-        
-        setData(scanmeData); // Display all data by default
-    }, []);
+
     const handleQuerySubmit = (query) => {
-        try {
-            const filteredData = alasql(query);
-            setData(filteredData);
-        } catch (error) {
-            console.error("Invalid SQL query: ", error);
-            setData(scanmeData); // Display all data if query is invalid
+        queryData(query);
+    };
+
+    const handleSearch = (value) => {
+        if (value) {
+            queryData(value);
         }
     };
 
-    return ( <>
-            <Input.Search
-                placeholder="Enter SQL query"
-                enterButton="Submit"
-                size="large"
-                onSearch={handleQuerySubmit}
-            />
-            <Table 
-                columns={columns}
-                dataSource={data}
-                rowKey="address"
-                expandable={{
-                    expandedRowRender: record => (
-                      <>
+    const fields = [
+        'address',
+        'hostnames',
+        'uptime',
+        'distance',
+        'port',
+        'state',
+        'protocol',
+        'service',
+        'banner',
+        'scripts_results',
+        'metadata_state',
+        'metadata_observation'
+    ];
+
+
+    return (<>
+        <Input.Search
+            placeholder="Enter SQL query"
+            enterButton="Submit"
+            size="large"
+            onSearch={handleQuerySubmit}
+        />
+        {/* <Table
+            columns={columns}
+            dataSource={data}
+            rowKey="address"
+            expandable={{
+                expandedRowRender: record => (
+                    <>
                         <p>{`Hostname: ${record.hostnames}`}</p>
                         <p>{`Uptime: ${record.uptime}`}</p>
                         <p>{`Distance: ${record.distance}`}</p>
-                      </>
-                    ),
-                }}
-            />
-            <pre>{JSON.stringify(data, null, 2)}</pre>
-        </>
+                    </>
+                ),
+            }}
+        /> */}
+        <pre>{JSON.stringify(data, null, 2)}</pre>
+    </>
     );
 };
 
