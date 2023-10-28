@@ -22,7 +22,7 @@ const { Paragraph } = Typography;
 
 const GraphComponent = () => {
     const { darkMode } = useStore.getState()
-    const { data, queryData, searchQuery , setSearchQuery } = useNmapStore();
+    const { data, queryData, searchQuery, setSearchQuery } = useNmapStore();
     const [open, setOpen] = useState(false);
     const [nodes, setNodes] = useState([]);
     const [edges, setEdges] = useState([]);
@@ -54,7 +54,7 @@ const GraphComponent = () => {
         const nodes = [];
         const edges = [];
         const hostIds = new Set();
-    
+
         data.forEach((service, index) => {
             // Create a node for the service
             nodes.push({
@@ -64,7 +64,7 @@ const GraphComponent = () => {
                 ...service,
                 size: 20
             });
-    
+
             // Create a node for the host if it doesn't exist yet
             if (!hostIds.has(service.address)) {
                 nodes.push({
@@ -75,7 +75,7 @@ const GraphComponent = () => {
                 });
                 hostIds.add(service.address);
             }
-    
+
             // Create an edge from the host to the service
             if (service.address && service.id) {
                 edges.push({
@@ -86,7 +86,7 @@ const GraphComponent = () => {
                 });
             }
         });
-    
+
         setNodes(nodes);
         setEdges(edges);
     }, [data]);
@@ -109,12 +109,10 @@ const GraphComponent = () => {
                 { label: "Protocol", value: protocol },
                 { label: "Service", value: service },
                 { label: "Banner", value: banner },
-                // Add script results
-                ...scripts_results.map((script, index) => ({
+                ...(Array.isArray(scripts_results) ? scripts_results.map((script, index) => ({
                     label: `Script ${index + 1} (${script.id})`,
                     value: script.output
-                })),
-                // Add more fields as needed...
+                })) : []),
             ];
 
             return (
@@ -238,7 +236,7 @@ const GraphComponent = () => {
                         enterButton="Submit"
                         size="large"
                         value={searchQuery}
-                    onChange={evt => setSearchQuery(evt.target.value)}
+                        onChange={evt => setSearchQuery(evt.target.value)}
                         onSearch={queryData}
                     />
                 </Col>
