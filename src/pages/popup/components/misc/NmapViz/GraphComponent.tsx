@@ -4,7 +4,7 @@ import { GraphCanvas, lightTheme, darkTheme, GraphCanvasRef, useSelection } from
 import scanmeData from './scanme.json';
 import { useStore } from "../../GlobalStore";
 import { Button, Drawer, Descriptions, Row, Col } from 'antd';
-import { List, Typography } from 'antd';
+import { List, Typography , Empty } from 'antd';
 const { Text } = Typography;
 import { Badge, Tag, Input } from 'antd'
 import useNmapStore from './store';
@@ -22,16 +22,15 @@ const { Paragraph } = Typography;
 
 const GraphComponent = () => {
     const { darkMode } = useStore.getState()
-    const { data, queryData, searchQuery, setSearchQuery } = useNmapStore();
+    const { data, queryData, searchQuery, setSearchQuery, activeScanResult } = useNmapStore();
     const [open, setOpen] = useState(false);
     const [nodes, setNodes] = useState([]);
     const [edges, setEdges] = useState([]);
     const [hostServices, setHostServices] = useState([]);
     const [currentNode, setCurrentNode] = useState(null);
 
-
-
-
+    if (data.length === 0 || !activeScanResult) return <Empty description="No data loaded. Please add and load a scan result." />
+    
     const graphRef = useRef<GraphCanvasRef | null>(null);
 
     const {
@@ -201,6 +200,7 @@ const GraphComponent = () => {
         return null;
 
     };
+
     return (
         <>
             <Row

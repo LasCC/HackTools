@@ -14,6 +14,13 @@ interface StoreState {
     queryData: (query: string) => void;
     aliases: Record<string, string>;
     setAliases: (aliases: Record<string, string>) => void;
+
+
+    activeScanResult: string;
+    setActiveScanResult: (name: string) => void;
+    scanResults: Record<string, any>;
+    setScanResults: (scanResults: Record<string, any>) => void;
+    initializeDatabase: (data: any[]) => void;
 }
 
 
@@ -31,12 +38,16 @@ scanmeData.forEach((service) => {
 const useStore = create<StoreState>(
     // @ts-ignore
     persist(
-        (set,get) => ({
+        (set, get) => ({
+            scanResults: {},
+            activeScanResult: '',
+            setActiveScanResult: (name) => set({ activeScanResult: name }),
+            setScanResults: (scanResults) => set({ scanResults }),
             aliases: {},
             setAliases: (aliases) => set({ aliases }),
-            data: scanmeData,
-            searchQuery : "SELECT * FROM nmap",
-            setSearchQuery: (searchQuery) => set({searchQuery}),
+            data: [],
+            searchQuery: "SELECT * FROM nmap",
+            setSearchQuery: (searchQuery) => set({ searchQuery }),
             setData: (data) => set({ data }),
             tableData: [],
             setTableData: (tableData) => set({ tableData }),
@@ -49,7 +60,7 @@ const useStore = create<StoreState>(
                         return aliases[q] ? aliases[q] : q;
                     });
                     query = queries.join(' ');
-            
+
                     let sqlQueryForTable = "SELECT * from nmap"
                     let whereClause = query.toLowerCase().split("where")[1];
                     if (whereClause) {
@@ -66,10 +77,23 @@ const useStore = create<StoreState>(
                     set({ data: scanmeData }); // Display all data if query is invalid
                 }
             },
+            initializeDatabase: (data: any[]) => {
+                alasql('DROP TABLE IF EXISTS nmap');
+                // Create new database
+                alasql('CREATE TABLE nmap');
+                data.forEach((service) => {
+                    // Include all fields from service
+                    alasql('INSERT INTO nmap VALUES ?', [{
+                        ...service,
+                        // Flatten scripts_results
+                        scripts_results: JSON.stringify(service.scripts_results),
+                    }]);
+                });
+            },
         }),
         {
             name: 'nmapviz-store',
-            getStorage: () => storage,
+            getStorage: () => storage
         }
     )
 );

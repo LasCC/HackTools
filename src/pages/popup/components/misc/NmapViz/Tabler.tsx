@@ -1,9 +1,11 @@
 import { useEffect } from 'react';
-import { Table, Input, Row, Col, Collapse, Typography } from 'antd';
+import { Table, Input, Row, Col, Collapse, Typography, Empty } from 'antd';
 import useStore from './store';
 
 const Tabler = () => {
-    const { data, queryData, tableData, searchQuery, setSearchQuery } = useStore();
+    const { data, queryData, tableData, searchQuery, setSearchQuery, activeScanResult } = useStore();
+
+    if (data.length === 0 || !activeScanResult) return <Empty description="No data loaded. Please add and load a scan result." />
 
     const columns = [
         {
