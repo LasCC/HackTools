@@ -3,6 +3,7 @@ import { Tabs } from 'antd';
 import GraphComponent from './GraphComponent';
 import Dashboard from './DashBoard';
 import Tabler from './Tabler';
+import QueryManagement from './QueryManagement';
 
 
 const index = () => {
@@ -22,6 +23,11 @@ const index = () => {
             key: '3',
             label: `Table`,
             children: <Tabler/>
+        },
+        {
+            key: '4',
+            label: `Query management`,
+            children: <QueryManagement/>
         }
     ];
     return (

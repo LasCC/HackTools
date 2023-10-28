@@ -12,6 +12,8 @@ interface StoreState {
     setTableData: (tableData: any[]) => void;
     setSearchQuery: (query: string) => void;
     queryData: (query: string) => void;
+    aliases: Record<string, string>;
+    setAliases: (aliases: Record<string, string>) => void;
 }
 
 
@@ -29,7 +31,9 @@ scanmeData.forEach((service) => {
 const useStore = create<StoreState>(
     // @ts-ignore
     persist(
-        (set) => ({
+        (set,get) => ({
+            aliases: {},
+            setAliases: (aliases) => set({ aliases }),
             data: scanmeData,
             searchQuery : "SELECT * FROM nmap",
             setSearchQuery: (searchQuery) => set({searchQuery}),
@@ -38,7 +42,10 @@ const useStore = create<StoreState>(
             setTableData: (tableData) => set({ tableData }),
             queryData: (query) => {
                 try {
-
+                    const { aliases } = get();
+                    if (aliases[query]) {
+                        query = aliases[query];
+                    }
                     let sqlQueryForTable = "SELECT * from nmap"
                     let whereClause = query.toLowerCase().split("where")[1];
                     if (whereClause) {
