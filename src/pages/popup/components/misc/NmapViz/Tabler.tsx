@@ -1,15 +1,30 @@
 import { useEffect } from 'react';
-import { Table, Input, Row, Col, Collapse, Typography, Empty, message} from 'antd';
+import { Table, Input, Row, Col, Collapse, Typography, Empty, message, Button } from 'antd';
 import useStore from './store';
 
 const Tabler = () => {
     const { data, queryData, queryTableResult, searchQuery, setSearchQuery, activeScanResult } = useStore();
+    const displayData = queryTableResult.length > 0 ? queryTableResult : data;
 
-    if (!activeScanResult && data.length === 0 ) return <Empty description="No data loaded. Please add and load a scan result." />
+    if (!activeScanResult && data.length === 0) return <Empty description="No data loaded. Please add and load a scan result." />
+
+
+    const copyHostsToClipboard = () => {
+        const hosts = [...new Set(displayData.map(item => item.address))].join('\n');
+        navigator.clipboard.writeText(hosts);
+        message.success('Hosts copied to clipboard');
+    };
 
     const columns = [
         {
-            title: 'Address',
+            title: (
+                <div>
+                    Address
+                    <Button type="link" onClick={copyHostsToClipboard}>
+                        Copy
+                    </Button>
+                </div>
+            ),
             dataIndex: 'address',
             key: 'address',
         },
@@ -36,7 +51,7 @@ const Tabler = () => {
             console.log('No data available.');
             return;
         }
-        console.trace({query})
+        console.trace({ query })
         queryData(query);
         if (data.length === 0) {
             message.error('No results found for your query.');
@@ -53,7 +68,7 @@ const Tabler = () => {
                     enterButton="Submit"
                     size="large"
                     onSearch={handleQuerySubmit}
-                    
+
                 />
             </Col>
             <Col span={24}>
