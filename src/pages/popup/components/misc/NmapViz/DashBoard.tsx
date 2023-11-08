@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Button, Modal, Input, List, Popconfirm, Row, Col, message } from 'antd';
+import { Button, Modal, Input, List, Popconfirm, Row, Col, message, Typography, Divider } from 'antd';
 import useStore from './store';
 
 const DashboardPanel = () => {
-    const { scanResults, setScanResults, setData , setActiveScanResult, initializeDatabase } = useStore();
+    const { scanResults, setScanResults, setData, setActiveScanResult, initializeDatabase } = useStore();
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [newResultName, setNewResultName] = useState('');
     const [newResultData, setNewResultData] = useState('');
@@ -32,12 +32,13 @@ const DashboardPanel = () => {
     };
 
     const handleLoad = (name) => {
-      const resultData = scanResults[name];
-      setData(resultData);
-      setActiveScanResult(name);  // Mark this scan result as active
-      initializeDatabase(resultData);  // Initialize database with result data
-      message.success(`Loaded scan result: ${name}`);
-  };
+        console.trace(name)
+        const resultData = scanResults[name];
+        setData(resultData);
+        setActiveScanResult(name);  // Mark this scan result as active
+        initializeDatabase(resultData);  // Initialize database with result data
+        message.success(`Loaded scan result: ${name}`);
+    };
     return (
         <div>
             <Row gutter={[16, 16]}>
@@ -47,17 +48,28 @@ const DashboardPanel = () => {
                         <Input.TextArea placeholder="Result Data" value={newResultData} onChange={e => setNewResultData(e.target.value)} />
                     </Modal>
                 </Col>
-                <Col span={24}>
+                <Col span={12}>
                     <List
                         dataSource={Object.keys(scanResults)}
                         renderItem={name => (
-                            <List.Item>
-                                {name}
-                                <Button onClick={() => handleLoad(name)}>Load</Button>
-                                <Button danger onClick={() => handleDelete(name)}>Delete</Button>
-                            </List.Item>
+
+                            <Row gutter={[16, 16]}>
+                                <Col span={18}>
+                                    <Typography.Text>{name}</Typography.Text>
+                                </Col>
+                                <Col span={3}>
+                                    <Button onClick={() => handleLoad(name)}>Load</Button>
+                                </Col>
+                                <Col span={3}>
+                                    <Button danger onClick={() => handleDelete(name)}>Delete</Button>
+                                </Col>
+                            </Row>
+
                         )}
                     />
+                </Col>
+                <Col>
+                    TODO.
                 </Col>
             </Row>
         </div>

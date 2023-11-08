@@ -1,13 +1,10 @@
 
-import React, { useEffect, useState, useRef } from 'react';
-import { GraphCanvas, lightTheme, darkTheme, GraphCanvasRef, useSelection } from 'reagraph';
-import scanmeData from './scanme.json';
+import { Col, Drawer, Empty, Input, List, Row, Tag, Typography, message } from 'antd';
+import { useEffect, useRef, useState } from 'react';
+import { GraphCanvas, GraphCanvasRef, darkTheme, lightTheme, useSelection } from 'reagraph';
 import { useStore } from "../../GlobalStore";
-import { Button, Drawer, Descriptions, Row, Col } from 'antd';
-import { List, Typography , Empty } from 'antd';
-const { Text } = Typography;
-import { Badge, Tag, Input } from 'antd'
 import useNmapStore from './store';
+const { Text } = Typography;
 
 const { Paragraph } = Typography;
 
@@ -22,7 +19,7 @@ const { Paragraph } = Typography;
 
 const GraphComponent = () => {
     const { darkMode } = useStore.getState()
-    const { data, queryData, searchQuery, setSearchQuery, activeScanResult } = useNmapStore();
+    const { data, queryData,  queryResult,  searchQuery, setSearchQuery, activeScanResult } = useNmapStore();
     const [open, setOpen] = useState(false);
     const [nodes, setNodes] = useState([]);
     const [edges, setEdges] = useState([]);
@@ -30,6 +27,9 @@ const GraphComponent = () => {
     const [currentNode, setCurrentNode] = useState(null);
 
     if (data.length === 0 || !activeScanResult) return <Empty description="No data loaded. Please add and load a scan result." />
+
+
+
     
     const graphRef = useRef<GraphCanvasRef | null>(null);
 
@@ -45,16 +45,28 @@ const GraphComponent = () => {
         type: 'single'
     });
 
-    const onNodeClick = (nodeId) => {
-        setCurrentNode(nodeId);
+    const onNodeClick = (node) => {
+        if (!node) return;
+        setCurrentNode(node);
         setOpen(true);
     };
+
     useEffect(() => {
+        // handler to resolve UI crash when nothing is found
+        // TOFIX : No result found, result switching --> UI crash ...
+        const displayData = queryResult.length > 0 ? queryResult : data;
+        if (displayData.length === 0) {
+            // setNodes([]);
+            // setEdges([]);
+            message.error('No results found...')
+            return;
+        }
+
         const nodes = [];
         const edges = [];
         const hostIds = new Set();
 
-        data.forEach((service, index) => {
+        displayData.forEach((service, index) => {
             // Create a node for the service
             nodes.push({
                 id: service.id,
@@ -88,7 +100,7 @@ const GraphComponent = () => {
 
         setNodes(nodes);
         setEdges(edges);
-    }, [data]);
+    }, [queryResult,data]);
 
 
     const displayNodeInfoOnDrawer = () => {
@@ -129,7 +141,7 @@ const GraphComponent = () => {
                 />
             );
         } else if (type === 'host') {
-            const hostServices = scanmeData.filter(service => service.address === id);
+            const hostServices = data.filter(service => service.address === id);
             const openServices = hostServices.filter(service => service.state === 'open');
             const closedServices = hostServices.filter(service => service.state === 'closed');
             const filteredServices = hostServices.filter(service => service.state === 'filtered');
@@ -250,7 +262,7 @@ const GraphComponent = () => {
                 onClose={() => setOpen(false)}
                 open={open}
             >
-                {displayNodeInfoOnDrawer()}
+                { displayNodeInfoOnDrawer()}
             </Drawer>
         </>
     );

@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
-import { Table, Input, Row, Col, Collapse, Typography, Empty } from 'antd';
+import { Table, Input, Row, Col, Collapse, Typography, Empty, message} from 'antd';
 import useStore from './store';
 
 const Tabler = () => {
-    const { data, queryData, tableData, searchQuery, setSearchQuery, activeScanResult } = useStore();
+    const { data, queryData, queryTableResult, searchQuery, setSearchQuery, activeScanResult } = useStore();
 
-    if (data.length === 0 || !activeScanResult) return <Empty description="No data loaded. Please add and load a scan result." />
+    if (!activeScanResult && data.length === 0 ) return <Empty description="No data loaded. Please add and load a scan result." />
 
     const columns = [
         {
@@ -32,9 +32,17 @@ const Tabler = () => {
     ];
 
     const handleQuerySubmit = (query) => {
+        if (!data || data.length === 0) {
+            console.log('No data available.');
+            return;
+        }
+        console.trace({query})
         queryData(query);
+        if (data.length === 0) {
+            message.error('No results found for your query.');
+            return;
+        }
     };
-
     return (
         <Row gutter={[16, 16]}>
             <Col span={24}>
@@ -45,6 +53,7 @@ const Tabler = () => {
                     enterButton="Submit"
                     size="large"
                     onSearch={handleQuerySubmit}
+                    
                 />
             </Col>
             <Col span={24}>
@@ -53,7 +62,7 @@ const Tabler = () => {
                     items={[
                         {
                             key: '1',
-                            label: `Query result ~ (${data[0] && Object.keys(data[0]).length > 0 ? data.length : 0}) services`,
+                            label: `Query result ~ (${data.length > 0 && data[0] ? Object.keys(data[0]).length : 0}) services`,
                             children: <pre style={{ whiteSpace: 'pre-wrap', wordWrap: 'break-word' }}>
                                 {JSON.stringify(data, null, 2)}
                             </pre>
@@ -64,7 +73,7 @@ const Tabler = () => {
             <Col span={24}>
                 <Table
                     columns={columns}
-                    dataSource={tableData}
+                    dataSource={queryTableResult}
                     rowKey="id"
                 />
             </Col>

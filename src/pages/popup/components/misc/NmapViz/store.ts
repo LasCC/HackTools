@@ -2,7 +2,8 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { storage } from '../../createPersistedState';
 import alasql from 'alasql';
-import scanmeData from './scanme.json';
+import {message} from 'antd'
+
 
 interface StoreState {
     data: any[];
@@ -14,8 +15,10 @@ interface StoreState {
     queryData: (query: string) => void;
     aliases: Record<string, string>;
     setAliases: (aliases: Record<string, string>) => void;
-
-
+    queryResult: [];
+    setQueryResults: (queryResult:any) => void;
+    queryTableResult : [],
+    setQueryTableResult : (queryTableResult:any) => void;
     activeScanResult: string;
     setActiveScanResult: (name: string) => void;
     scanResults: Record<string, any>;
@@ -24,22 +27,16 @@ interface StoreState {
 }
 
 
-// Load db in memory
-alasql('CREATE TABLE nmap');
-scanmeData.forEach((service) => {
-    // Include all fields from service
-    alasql('INSERT INTO nmap VALUES ?', [{
-        ...service,
-        // Flatten scripts_results
-        scripts_results: JSON.stringify(service.scripts_results),
-    }]);
-});
 
 const useStore = create<StoreState>(
     // @ts-ignore
     persist(
         (set, get) => ({
             scanResults: {},
+            queryResult : [],
+            queryTableResult : [],
+            setQueryTableResult : (queryTableResult) => set({queryTableResult}),
+            setQueryResults : (queryResult) => set({ queryResult }),
             activeScanResult: '',
             setActiveScanResult: (name) => set({ activeScanResult: name }),
             setScanResults: (scanResults) => set({ scanResults }),
@@ -52,7 +49,12 @@ const useStore = create<StoreState>(
             tableData: [],
             setTableData: (tableData) => set({ tableData }),
             queryData: (query) => {
+                if (!get().data || get().data.length === 0) {
+                    console.error("No data available to query");
+                    return;
+                }
                 try {
+                    // Alias resolution
                     const { aliases } = get();
                     let queries = query.split(' ');
                     queries = queries.map(q => {
@@ -61,33 +63,54 @@ const useStore = create<StoreState>(
                     });
                     query = queries.join(' ');
 
+
                     let sqlQueryForTable = "SELECT * from nmap"
                     let whereClause = query.toLowerCase().split("where")[1];
                     if (whereClause) {
                         sqlQueryForTable += " WHERE " + whereClause;
                     }
-                    const result = alasql(query);
-                    set({ data: result });
-
-                    const tableResult = alasql(sqlQueryForTable)
-                    set({ tableData: tableResult })
+                    console.log({ sqlQueryForTable })
+                    let result;
+                    let tableResult;
+                    try {
+                        result = alasql(query) || [];
+                        tableResult = alasql(sqlQueryForTable) || [];
+                        console.log({ result, tableResult });
+                        if (result.length === 0) message.warning('Your query returned no results.');
+                        set({queryResult: result, queryTableResult: tableResult});
+                    } catch (error) {
+                        console.error("Query returned no results: ", error);
+                    }
 
                 } catch (error) {
                     console.error("Invalid SQL query: ", error);
-                    set({ data: scanmeData }); // Display all data if query is invalid
+                    message.warning("Invalid SQL Query. Defaulting to 'SELECT * FROM nmap'")
+                    set({ data: alasql("SELECT * from nmap") }); // Display all data if query is invalid
                 }
             },
             initializeDatabase: (data: any[]) => {
-                alasql('DROP TABLE IF EXISTS nmap');
+                try {
+                    alasql('DROP TABLE IF EXISTS nmap;');
+                } catch (error) {
+                    console.error("Failed to drop table: ", error);
+                }
                 // Create new database
-                alasql('CREATE TABLE nmap');
+                try {
+                    alasql('CREATE TABLE nmap');
+                } catch (error) {
+                    console.error("Failed to create table: ", error);
+                }
                 data.forEach((service) => {
                     // Include all fields from service
-                    alasql('INSERT INTO nmap VALUES ?', [{
-                        ...service,
-                        // Flatten scripts_results
-                        scripts_results: JSON.stringify(service.scripts_results),
-                    }]);
+                    try {
+                        alasql('INSERT INTO nmap VALUES ?', [{
+                            ...service,
+                            // Flatten scripts_results
+                            scripts_results: JSON.stringify(service.scripts_results),
+                        }]);
+                    } catch (error) {
+                        console.error("Failed to insert data into table: ", error);
+                    }
                 });
             },
         }),
