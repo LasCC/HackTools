@@ -5,8 +5,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "wxt && npx prettier --write \"{entrypoints,public}/**/*.{js,jsx,ts,tsx,md,json,html,css}\" --config .prettierrc.json",
-    "dev:firefox": "wxt -b firefox && npx prettier --write \"{entrypoints,public}/**/*.{js,jsx,ts,tsx,md,json,html,css}\" --config .prettierrc.json",
+    "dev": "wxt && npm run prettuer",
+    "dev:firefox": "wxt -b firefox && npm run prettier",
     "build": "wxt build",
     "build:firefox": "wxt build -b firefox",
     "zip": "wxt zip",
