@@ -65,6 +65,8 @@ const ForceGraph = () => {
     const onNodeClick = (node) => {
         setCurrentNode(node);
         setOpen(true);
+        fgRef.current.centerAt(node.x, node.y, 1000); // center for 1s
+        fgRef.current.zoom(3, 1000); // x3 zoom for 1s
     };
 
     const displayNodeInfoOnDrawer = () => {
