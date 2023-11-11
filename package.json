@@ -5,14 +5,15 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "wxt",
-    "dev:firefox": "wxt -b firefox",
-    "build": "wxt build && cp ./entrypoints/popup/iconfont.js ./.output/chrome-mv3/",
+    "dev": "wxt && npx prettier --write \"{entrypoints,public}/**/*.{js,jsx,ts,tsx,md,json,html,css}\" --config .prettierrc.json",
+    "dev:firefox": "wxt -b firefox && npx prettier --write \"{entrypoints,public}/**/*.{js,jsx,ts,tsx,md,json,html,css}\" --config .prettierrc.json",
+    "build": "wxt build",
     "build:firefox": "wxt build -b firefox",
     "zip": "wxt zip",
     "zip:firefox": "wxt zip -b firefox",
     "compile": "tsc --noEmit",
-    "postinstall": "wxt prepare"
+    "postinstall": "wxt prepare",
+    "prettier": "npx prettier --write \"{entrypoints,public}/**/*.{js,jsx,ts,tsx,md,json,html,css}\" --config .prettierrc.json"
   },
   "dependencies": {
     "@codemirror/lang-sql": "^6.5.2",
