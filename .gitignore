@@ -1,24 +1,25 @@
-# dependencies
-/node_modules
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
 
-# testing
-/coverage
+node_modules
+.output
+stats.html
+.wxt
+web-ext.config.ts
 
-# build
-/dist
-bundle*.zip
-
-# etc
-.DS_Store
-.env.local
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
 .idea
-.vscode
-
-# compiled
-utils/reload/*.js
-utils/reload/injections/*.js
-public/manifest.json
-
-# misc
-pnpm-lock.yaml
-yarn.lock
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

@@ -1,56 +1,12 @@
 {
-    "compilerOptions": {
-        "noEmit": true,
-        "baseUrl": ".",
-        "allowJs": false,
-        "target": "esnext",
-        "module": "esnext",
-        "jsx": "react-jsx",
-        "skipLibCheck": true,
-        "esModuleInterop": true,
-        "resolveJsonModule": true,
-        "moduleResolution": "node",
-        "types": [
-            "vite/client",
-        ],
-        "noFallthroughCasesInSwitch": true,
-        "allowSyntheticDefaultImports": true,
-        "lib": [
-            "dom",
-            "dom.iterable",
-            "esnext"
-        ],
-        "forceConsistentCasingInFileNames": true,
-        "typeRoots": [
-            "./src/global.d.ts"
-        ],
-        "paths": {
-            "@src/*": [
-                "src/*"
-            ],
-            "@assets/*": [
-                "src/assets/*"
-            ],
-            "@pages/*": [
-                "src/pages/*"
-            ],
-            "@data/*": [
-                "src/pages/popup/assets/data/*"
-            ],
-            "@types/*": [
-                "src/pages/popup/components/types/*"
-            ],
-            "virtual:reload-on-update-in-background-script": [
-                "./src/global.d.ts"
-            ],
-            "virtual:reload-on-update-in-view": [
-                "./src/global.d.ts"
-            ]
-        }
-    },
-    "include": [
-        "src",
-        "vite.config.ts",
-        "node_modules/@types"
-    ]
+  "extends": "./.wxt/tsconfig.json",
+  "compilerOptions": {
+    "strict": false,
+    "allowImportingTsExtensions": true,
+    "jsx": "react-jsx",
+    "baseUrl": ".", // This must be specified if "paths" is specified
+    "paths": {
+      "@assets/*": ["entrypoints/popup/assets/*"] // Replace "src/assets" with the actual path to your assets
+    }
+  }
 }
