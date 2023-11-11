@@ -1,1 +1,1 @@
-window.global ||= global
+window.global ||= global;

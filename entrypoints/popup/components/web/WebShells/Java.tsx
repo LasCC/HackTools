@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const Java = () => {
-    return (
-        <div>Java</div>
-    )
-}
+  return <div>Java</div>;
+};
 
-export default Java
+export default Java;

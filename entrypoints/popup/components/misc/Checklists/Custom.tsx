@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const Custom = () => {
-    return (
-        <div>Custom</div>
-    )
-}
+  return <div>Custom</div>;
+};
 
-export default Custom
+export default Custom;

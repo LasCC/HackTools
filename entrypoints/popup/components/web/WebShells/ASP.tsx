@@ -1,11 +1,10 @@
-import React from 'react'
-import pretty from 'pretty';
-import SyntaxHighlighter from 'react-syntax-highlighter';
-import { vs2015 } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import React from "react";
+import pretty from "pretty";
+import SyntaxHighlighter from "react-syntax-highlighter";
+import { vs2015 } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
 const ASP = () => {
-
-    const ASP_WebShell = `<%@ Page Language="C#" Debug="true" Trace="false" %>
+  const ASP_WebShell = `<%@ Page Language="C#" Debug="true" Trace="false" %>
   <%@ Import Namespace="System.Diagnostics" %>
   <%@ Import Namespace="System.IO" %>
   <script Language="c#" runat="server">
@@ -44,19 +43,17 @@ const ASP = () => {
   </form>
   </body>
   </HTML>
-  `
+  `;
 
+  return (
+    //TODO: Finish layout of ASPX
+    <>
+      <div>ASPX</div>
+      <SyntaxHighlighter language="aspx" style={vs2015} showLineNumbers={true}>
+        {pretty(ASP_WebShell)}
+      </SyntaxHighlighter>
+    </>
+  );
+};
 
-    return (
-        //TODO: Finish layout of ASPX
-        <>
-            <div>ASPX</div>
-            <SyntaxHighlighter language='aspx' style={vs2015} showLineNumbers={true}>
-                {pretty( ASP_WebShell )}
-            </SyntaxHighlighter>
-
-        </>
-    )
-}
-
-export default ASP
+export default ASP;

@@ -81,9 +81,8 @@ To open the command palette, you can use the shortcut <kbd>CTRL</kbd> + <kbd>K</
   <img alt="preview_6" src="https://i.imgur.com/l8mppjS.png" />
 </div>
 
-
 # Install the extension
-    
+
 <h2> 
   <img src="https://raw.githubusercontent.com/edent/SuperTinyIcons/master/images/svg/chromium.svg" alt="chromium_icon" title='Chromium' width="35" height="35" style="float:left;margin-right:5px;" />
    Chromium based browser
@@ -107,7 +106,7 @@ You can download **HackTools** on the Firefox browser add-ons [here.](https://ad
    Instructions to build for Safari
 </h2>
 
-Create a safari web extension project using the command below. *This is to be run once.*
+Create a safari web extension project using the command below. _This is to be run once._
 
 ```bash
 xcrun safari-web-extension-coverter [path_to_dist_folder]
@@ -120,7 +119,7 @@ Follow the instructions to create the project the default language should be Swi
 - Open Safari -> Preferences -> Extensions and enable Hack-Tools
 - Click on the extension icon and switch to full screen mode.
 
-*Instructions provided by [jayluxferro](https://github.com/LasCC/Hack-Tools/issues/88)*
+_Instructions provided by [jayluxferro](https://github.com/LasCC/Hack-Tools/issues/88)_
 
 ### Build from source code
 

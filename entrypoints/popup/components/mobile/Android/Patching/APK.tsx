@@ -1,10 +1,8 @@
-import React from 'react'
-import APKPatching from './../ADB/APKPatching'
+import React from "react";
+import APKPatching from "./../ADB/APKPatching";
 
 const APK = () => {
-  return (
-    <APKPatching />
-  )
-}
+  return <APKPatching />;
+};
 
-export default APK
+export default APK;

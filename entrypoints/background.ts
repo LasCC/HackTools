@@ -1,6 +1,5 @@
-import './background/keyboardShortcut.bg';
+import "./background/keyboardShortcut.bg";
 
 export default defineBackground(() => {
-  console.log('Hello background!', { id: browser.runtime.id });
+  console.log("Hello background!", { id: browser.runtime.id });
 });
-
