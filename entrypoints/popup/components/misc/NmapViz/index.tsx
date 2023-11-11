@@ -4,6 +4,7 @@ import GraphComponent from "./GraphComponent";
 import Dashboard from "./DashBoard";
 import Tabler from "./Tabler";
 import QueryManagement from "./QueryManagement";
+import ForceGraph from "./ForceGraph";
 
 const index = () => {
   const items: TabsProps["items"] = [
@@ -15,7 +16,8 @@ const index = () => {
     {
       key: "2",
       label: `Nmap Graph`,
-      children: <GraphComponent />,
+      children: <ForceGraph/>
+    //   children: <GraphComponent />, legacy component (slow af...)
     },
     {
       key: "3",

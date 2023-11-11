@@ -11,8 +11,8 @@ interface GlobalState {
   setIndex: (index: string) => void;
 }
 
-// @ts-ignore
 export const useStore = create<GlobalState>(
+  // @ts-ignore
   persist(
     (set, get) => ({
       darkMode: false,

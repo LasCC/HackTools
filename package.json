@@ -61,6 +61,7 @@
     "react-clipboard.js": "2.0.16",
     "react-color": "^2.19.3",
     "react-dom": "^18.2.0",
+    "react-force-graph": "^1.44.0",
     "react-highlight-words": "^0.18.0",
     "react-hotkeys-hook": "^4.4.0",
     "react-icons": "^4.8.0",
