@@ -1,18 +1,20 @@
 import { useEffect } from "react";
+import { useStore } from "@components/GlobalStore"
 import {
   Table,
   Input,
   Row,
   Col,
   Collapse,
-  Typography,
   Empty,
   message,
   Button,
 } from "antd";
-import useStore from "./store";
+import ReactJson from 'react-json-view';
+import useNmapVizStore from "./store";
 
 const Tabler = () => {
+  const {darkMode} = useStore()
   const {
     data,
     queryData,
@@ -20,7 +22,7 @@ const Tabler = () => {
     searchQuery,
     setSearchQuery,
     activeScanResult,
-  } = useStore();
+  } = useNmapVizStore();
   const displayData = queryTableResult.length > 0 ? queryTableResult : data;
 
   if (!activeScanResult && data.length === 0)
@@ -97,13 +99,15 @@ const Tabler = () => {
           items={[
             {
               key: "1",
-              label: `Query result ~ (${
-                data.length > 0 && data[0] ? Object.keys(data[0]).length : 0
-              }) services`,
+              label: `Raw results`,
               children: (
-                <pre style={{ whiteSpace: "pre-wrap", wordWrap: "break-word" }}>
-                  {JSON.stringify(data, null, 2)}
-                </pre>
+                <ReactJson src={queryTableResult} style={{
+                  "wordBreak": "break-all"
+
+                }}
+                  theme={darkMode ? 'monokai' : 'rjv-default'}
+                />
+
               ),
             },
           ]}

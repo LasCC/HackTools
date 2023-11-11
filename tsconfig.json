@@ -6,7 +6,8 @@
     "jsx": "react-jsx",
     "baseUrl": ".", // This must be specified if "paths" is specified
     "paths": {
-      "@assets/*": ["entrypoints/popup/assets/*"] // Replace "src/assets" with the actual path to your assets
+      "@assets/*": ["entrypoints/popup/assets/*"], // Replace "src/assets" with the actual path to your assets
+      "@components/*": ["entrypoints/popup/components/*"]
     }
   }
 }
