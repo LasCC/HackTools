@@ -3,7 +3,6 @@ import { ForceGraph2D } from 'react-force-graph';
 import { Col, Drawer, Empty, Input, List, Row, Tag, Typography, message } from 'antd';
 import useNmapStore from './store';
 import { useStore } from '../../GlobalStore'
-import WindowSecretDumper from '../../system/windows/SecretsDumper';
 
 
 const  {Text} = Typography
