@@ -65,7 +65,7 @@ const Index = () => {
   }));
 
   return (
-    <div>
+    <>
       <Tabs
         type="editable-card"
         onChange={tabStateStore((state) => state.setActiveKey)}
@@ -75,7 +75,7 @@ const Index = () => {
       />
       <Modal
         title="Edit Tab Name"
-        visible={isModalVisible}
+        open={isModalVisible}
         onOk={handleRename}
         onCancel={handleCancel}
       >
@@ -93,9 +93,8 @@ const Index = () => {
         okText="Close and delete tab"
         cancelText="Cancel"
       >
-        <div></div>
       </Popconfirm>
-    </div>
+    </>
   );
 };
 

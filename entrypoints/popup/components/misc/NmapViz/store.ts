@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { storage } from "../../createPersistedState";
+import { storage } from "@components/createPersistedState"
 import alasql from "alasql";
 import { message } from "antd";
 
@@ -40,7 +40,7 @@ const useStore = create<StoreState>(
       aliases: {},
       setAliases: (aliases) => set({ aliases }),
       data: [],
-      searchQuery: "SELECT * FROM nmap",
+      searchQuery: "SELECT * FROM nmap WHERE state == 'open'",
       setSearchQuery: (searchQuery) => set({ searchQuery }),
       setData: (data) => set({ data }),
       tableData: [],
