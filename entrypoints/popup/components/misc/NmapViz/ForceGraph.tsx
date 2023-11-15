@@ -29,7 +29,7 @@ const ForceGraph = () => {
 
         for (let index = displayData.length - 1; index >= 0; index--) {
             const service = displayData[index];
-        
+
             nodes.push({
                 id: service.id,
                 label: service.type === "host" ? service.address : `${service.service}:${service.port}`,
@@ -37,7 +37,7 @@ const ForceGraph = () => {
                 ...service,
                 size: service.state === 'open' ? 8 : 5,
             });
-        
+
             if (!hostIds.has(service.address)) {
                 nodes.push({
                     id: service.address,
@@ -47,7 +47,7 @@ const ForceGraph = () => {
                 });
                 hostIds.add(service.address);
             }
-        
+
             if (service.address && service.id) {
                 links.push({
                     source: service.address,
@@ -78,7 +78,10 @@ const ForceGraph = () => {
             const { address, hostnames, uptime, distance, port, state, protocol, service, banner, scripts_results, metadata } = currentNode;
 
             const data = [
-                { label: "Address", value: address },
+                {
+                    label: "Host",
+                    value: <Tag color='blue' onClick={() => setCurrentNode({ id: address, type: 'host' })}>{address}</Tag>
+                },
                 { label: "Hostnames", value: hostnames.join(', ') },
                 { label: "Uptime", value: uptime },
                 { label: "Distance", value: distance },
@@ -119,60 +122,41 @@ const ForceGraph = () => {
                     {openServices.length > 0 ? (
                         <>
                             <Typography.Title level={4}>Open Services</Typography.Title>
-                            <List
-                                itemLayout="horizontal"
-                                dataSource={openServices}
-                                renderItem={service => (
-                                    <List.Item>
-                                        <List.Item.Meta
-                                            title={<Text strong>{`${service.service}:${service.port}/tcp`}</Text>}
-                                            description={<Tag color='green'>{service.state}</Tag>}
-                                        />
-                                    </List.Item>
-                                )}
-                            />
+                            <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                                {openServices.map(service => (
+                                    <Tag color='green' key={service.id} style={{ margin: '2px' }} onClick={() => setCurrentNode({ ...service, type: 'service' })}>
+                                        {`${service.service}:${service.port}/tcp`}
+                                    </Tag>
+                                ))}
+                            </div>
                         </>
                     ) : null}
 
                     {closedServices.length > 0 ? (
                         <>
                             <Typography.Title level={4}>Closed Services</Typography.Title>
-                            <List
-                                itemLayout="horizontal"
-                                dataSource={closedServices}
-                                renderItem={service => (
-                                    <List.Item>
-                                        <List.Item.Meta
-                                            title={<Text strong>{`${service.service}:${service.port}/tcp`}</Text>}
-                                            description={<Tag color='red'>{service.state}</Tag>}
-                                        />
-                                    </List.Item>
-                                )}
-                            />
+                            <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                                {closedServices.map(service => (
+                                    <Tag color='red' key={service.id} style={{ margin: '2px' }} onClick={() => setCurrentNode({ ...service, type: 'service' })}>
+                                        {`${service.service}:${service.port}/tcp`}
+                                    </Tag>
+                                ))}
+                            </div>
                         </>
                     ) : null}
-
-
 
                     {filteredServices.length > 0 ? (
                         <>
                             <Typography.Title level={4}>Filtered Services</Typography.Title>
-                            <List
-                                itemLayout="horizontal"
-                                dataSource={filteredServices}
-                                renderItem={service => (
-                                    <List.Item>
-                                        <List.Item.Meta
-                                            title={<Text strong>{`${service.service}:${service.port}/tcp`}</Text>}
-                                            description={<Tag color='grey'>{service.state}</Tag>}
-                                        />
-                                    </List.Item>
-                                )}
-                            />
+                            <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                                {filteredServices.map(service => (
+                                    <Tag color='grey' key={service.id} style={{ margin: '2px' }} onClick={() => setCurrentNode({ ...service, type: 'service' })}>
+                                        {`${service.service}:${service.port}/tcp`}
+                                    </Tag>
+                                ))}
+                            </div>
                         </>
                     ) : null}
-
-
                 </>
             );
         }
