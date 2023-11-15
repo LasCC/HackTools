@@ -1,11 +1,12 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { ForceGraph2D } from 'react-force-graph';
-import { Col, Drawer, Empty, Input, List, Row, Tag, Typography, message } from 'antd';
+import { Col, Collapse, Drawer, Empty, Input, List, Row, Tag, Typography, message } from 'antd';
 import useNmapStore from './store';
 import { useStore } from '../../GlobalStore'
 
 
 const { Text } = Typography
+const {Panel} = Collapse
 
 const ForceGraph = () => {
     const { data, queryData, searchQuery, setSearchQuery, queryResult } = useNmapStore();
@@ -89,7 +90,13 @@ const ForceGraph = () => {
                 { label: "State", value: <Tag color={state === 'open' ? 'green' : state === 'closed' ? 'red' : 'grey'}>{state}</Tag> },
                 { label: "Protocol", value: protocol },
                 { label: "Service", value: service },
-                { label: "Banner", value: banner },
+                {
+                    label: "Banner",
+                    value: <div style={{ flexWrap: 'wrap' }}>
+                        <Text code style={{ wordBreak: 'break-all' }}>{banner}</Text>
+                    </div>
+                }
+                ,
                 ...(Array.isArray(scripts_results) ? scripts_results.map((script, index) => ({
                     label: `Script ${index + 1} (${script.id})`,
                     value: script.output
@@ -122,44 +129,68 @@ const ForceGraph = () => {
                     {openServices.length > 0 ? (
                         <>
                             <Typography.Title level={4}>Open Services</Typography.Title>
-                            <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-                                {openServices.map(service => (
-                                    <Tag color='green' key={service.id} style={{ margin: '2px' }} onClick={() => setCurrentNode({ ...service, type: 'service' })}>
-                                        {`${service.service}:${service.port}/tcp`}
-                                    </Tag>
-                                ))}
-                            </div>
+
+                            {openServices.map(service => (
+                                <Tag color='green' key={service.id} style={{ margin: '2px' }} onClick={() => setCurrentNode({ ...service, type: 'service' })}>
+                                    {`${service.service}:${service.port}/tcp`}
+                                </Tag>
+                            ))}
+
                         </>
                     ) : null}
 
                     {closedServices.length > 0 ? (
                         <>
                             <Typography.Title level={4}>Closed Services</Typography.Title>
-                            <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-                                {closedServices.map(service => (
-                                    <Tag color='red' key={service.id} style={{ margin: '2px' }} onClick={() => setCurrentNode({ ...service, type: 'service' })}>
-                                        {`${service.service}:${service.port}/tcp`}
-                                    </Tag>
-                                ))}
-                            </div>
+
+                            {closedServices.map(service => (
+                                <Tag color='red' key={service.id} style={{ margin: '2px' }} onClick={() => setCurrentNode({ ...service, type: 'service' })}>
+                                    {`${service.service}:${service.port}/tcp`}
+                                </Tag>
+                            ))}
+
                         </>
                     ) : null}
 
                     {filteredServices.length > 0 ? (
                         <>
                             <Typography.Title level={4}>Filtered Services</Typography.Title>
-                            <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-                                {filteredServices.map(service => (
-                                    <Tag color='grey' key={service.id} style={{ margin: '2px' }} onClick={() => setCurrentNode({ ...service, type: 'service' })}>
-                                        {`${service.service}:${service.port}/tcp`}
-                                    </Tag>
-                                ))}
-                            </div>
+
+                            {filteredServices.map(service => (
+                                <Tag color='grey' key={service.id} style={{ margin: '2px' }} onClick={() => setCurrentNode({ ...service, type: 'service' })}>
+                                    {`${service.service}:${service.port}/tcp`}
+                                </Tag>
+                            ))}
+
                         </>
                     ) : null}
                 </>
             );
         }
+
+        {
+            currentNode && currentNode.type === 'service' && currentNode.scripts_results && currentNode.scripts_results.length > 0 ? (
+                <Collapse ghost>
+                    <Panel header="Scripts Results" key="1">
+                        <div style={{ display: 'flex', flexWrap: 'wrap', width: '100%' }}>
+                            {console.log(currentNode)}
+                            {currentNode.scripts_results.map((script, index) => {
+                                //TODO split vulners + CVEs and defaults scripts
+                                return (
+                                    <div key={index}>
+                                        <h4>{script.id}</h4>
+                                        <pre>{JSON.stringify(script, null, 2)}</pre>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </Panel>
+                </Collapse>
+            ) : null
+        }
+
+
+
         return null;
 
     };
@@ -235,8 +266,9 @@ const ForceGraph = () => {
                     closable={true}
                     onClose={() => setOpen(false)}
                     open={open}
+                    style={{ wordBreak: 'break-all' }}
                 >
-                    {currentNode && <pre>{displayNodeInfoOnDrawer()}</pre>}
+                    {currentNode && displayNodeInfoOnDrawer()}
                 </Drawer>
             </Row>
         </>
