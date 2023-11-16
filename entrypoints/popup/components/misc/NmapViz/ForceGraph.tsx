@@ -3,10 +3,11 @@ import { ForceGraph2D } from 'react-force-graph';
 import { Col, Collapse, Drawer, Empty, Input, List, Row, Tag, Typography, message } from 'antd';
 import useNmapStore from './store';
 import { useStore } from '../../GlobalStore'
+import { Descriptions } from 'antd';
 
 
 const { Text } = Typography
-const {Panel} = Collapse
+const { Panel } = Collapse
 
 const ForceGraph = () => {
     const { data, queryData, searchQuery, setSearchQuery, queryResult } = useNmapStore();
@@ -77,7 +78,7 @@ const ForceGraph = () => {
 
         if (type === 'service') {
             const { address, hostnames, uptime, distance, port, state, protocol, service, banner, scripts_results, metadata } = currentNode;
-
+            const vulnersScripts = Array.isArray(scripts_results) ? scripts_results.filter(script => script.id === 'vulners') : [];
             const data = [
                 {
                     label: "Host",
@@ -97,26 +98,53 @@ const ForceGraph = () => {
                     </div>
                 }
                 ,
-                ...(Array.isArray(scripts_results) ? scripts_results.map((script, index) => ({
-                    label: `Script ${index + 1} (${script.id})`,
-                    value: script.output
-                })) : []),
-            ];
+                {
+                    label: "Default Scripts",
+                    value: (
+                        <Collapse ghost>
+                            {Array.isArray(scripts_results) ? scripts_results.filter(script => script.id !== 'vulners').map((script, index) => (
+                                <Panel header={`${script.id}`} key={index}>
+                                    <Text copyable>{script.output}</Text>
+                                </Panel>
+                            )) : []}
+                        </Collapse>
+                    )
+                },
+
+                ...(Array.isArray(vulnersScripts) ? vulnersScripts.flatMap((script, index) => 
+                Object.entries(script.elements).flatMap(([cpe, cpeData]) => 
+                    Object.entries(cpeData).flatMap(([key, vulnerabilities]) => 
+                        [{
+                            label: `CVEs (${cpe})`,
+                            value: vulnerabilities.map((vulnerability, vIndex) => (
+                                <Tag color={vulnerability.cvss > 7 ? 'red' : vulnerability.cvss > 4 ? 'orange' : 'yellow'} key={vIndex}>
+                                    {`${vulnerability.id} (${vulnerability.cvss})${vulnerability.is_exploit_available ? ' (EA)' : ''}`}
+                                </Tag>
+                            ))
+                        }]
+                    )
+                )
+            ) : []),
+            ]
+
 
 
             return (
-                <List
-                    itemLayout="horizontal"
-                    dataSource={data}
-                    renderItem={item => (
-                        <List.Item>
-                            <List.Item.Meta
-                                title={<Text strong>{item.label}</Text>}
-                                description={item.value}
-                            />
-                        </List.Item>
-                    )}
-                />
+                <>
+                    <List
+                        itemLayout="horizontal"
+                        dataSource={data}
+                        renderItem={item => (
+                            <List.Item>
+                                <List.Item.Meta
+                                    title={<Text strong>{item.label}</Text>}
+                                    description={item.value}
+                                />
+                            </List.Item>
+                        )}
+                    />
+
+                </>
             );
         } else if (type === 'host') {
             const hostServices = data.filter(service => service.address === id);
@@ -167,29 +195,6 @@ const ForceGraph = () => {
                 </>
             );
         }
-
-        {
-            currentNode && currentNode.type === 'service' && currentNode.scripts_results && currentNode.scripts_results.length > 0 ? (
-                <Collapse ghost>
-                    <Panel header="Scripts Results" key="1">
-                        <div style={{ display: 'flex', flexWrap: 'wrap', width: '100%' }}>
-                            {console.log(currentNode)}
-                            {currentNode.scripts_results.map((script, index) => {
-                                //TODO split vulners + CVEs and defaults scripts
-                                return (
-                                    <div key={index}>
-                                        <h4>{script.id}</h4>
-                                        <pre>{JSON.stringify(script, null, 2)}</pre>
-                                    </div>
-                                );
-                            })}
-                        </div>
-                    </Panel>
-                </Collapse>
-            ) : null
-        }
-
-
 
         return null;
 
