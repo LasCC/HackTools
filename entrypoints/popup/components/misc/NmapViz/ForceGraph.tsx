@@ -117,7 +117,10 @@ const ForceGraph = () => {
                         [{
                             label: `CVEs (${cpe})`,
                             value: vulnerabilities.map((vulnerability, vIndex) => (
-                                <Tag color={vulnerability.cvss > 7 ? 'red' : vulnerability.cvss > 4 ? 'orange' : 'yellow'} key={vIndex}>
+                                <Tag color={vulnerability.cvss > 7 ? 'red' : vulnerability.cvss > 4 ? 'orange' : 'yellow'} key={vIndex}
+                                onClick={() => window.open("https://www.cvedetails.com/cve/" + vulnerability.id)}
+                                
+                                >
                                     {`${vulnerability.id} (${vulnerability.cvss})${vulnerability.is_exploit_available ? ' (EA)' : ''}`}
                                 </Tag>
                             ))
