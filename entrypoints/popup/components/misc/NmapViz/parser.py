@@ -8,6 +8,18 @@ nmap_report = NmapParser.parse_fromfile(sys.argv[1])
 services = []
 
 
+def remove_duplicates(lst, key):
+    seen = set()
+    deduped = []
+    for item in lst:
+        val = item[key]
+        if val not in seen:
+            seen.add(val)
+            deduped.append(item)
+    return deduped
+
+
+
 def extract_highest_cvss_from_vulners_scripts(service_data, scripts_results):
     highest_cvss = 0
     for script_result in scripts_results:
@@ -92,5 +104,10 @@ for host in nmap_report.hosts:
         services.append(service_data)
     
 with open(sys.argv[1] + '.json', 'w') as f:
-    json.dump(services, f, indent=2)
-    print(json.dumps(services))
+    try:
+        services = remove_duplicates(services, "id")
+        json.dump(services, f, indent=2)
+    except BrokenPipeError:
+        sys.stderr.close()
+        exit(1)
+
