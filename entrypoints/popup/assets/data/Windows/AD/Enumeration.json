@@ -1,0 +1,26 @@
+[
+    {
+    "id": 1,
+    "name": "Domain info enumeration",
+    "description": "Get informations on the domain",
+    "linux": [
+        {
+            "id" : "1",
+            "description" : "Domain enum from NBT-NS/LLMNR/MDNS traffic (passive)",
+            "command" : "sudo responder -I ens224 -A"
+        },
+        {
+            "id" : "2",
+            "description" : "Kerberos Pre-Auth Bruteforcing",
+            "command" : "kerbrute userenum -d %DOMAIN% --dc %DC_IP% %WORDLIST% -o output.kerbrute.lst"
+        }
+    ],
+    "windows" : [
+        {
+            "id" : "2",
+            "description" : "Domain enum from NBT-NS/LLMNR/MDNS traffic (passive)",
+            "command" : "Watch-Inveigh"
+        }
+    ]
+  }
+]

@@ -1,0 +1,56 @@
+[
+    {
+        "id": 1,
+        "name": "System Information",
+        "description": "Retrieve detailed information about the system",
+        "command": "systeminfo"
+    },
+    {
+        "id": 2,
+        "name": "Computer System Information",
+        "description": "Retrieve information about the computer system",
+        "command": "Get-WmiObject Win32_ComputerSystem"
+    },
+    {
+        "id": 3,
+        "name": "Computer and Domain Name",
+        "description": "Display the computer and user domain name",
+        "command": "echo \"$env:COMPUTERNAME.$env:USERDNSDOMAIN\""
+    },
+    {
+        "id": 4,
+        "name": "Security Patches",
+        "description": "List all security patches",
+        "command": "Get-Hotfix -description \"Security update\""
+    },
+    {
+        "id": 5,
+        "name": "Detailed Security Patches",
+        "description": "List all security patches with detailed information",
+        "command": "wmic qfe get HotfixID,ServicePackInEffect,InstallDate,InstalledBy,InstalledOn"
+    },
+    {
+        "id": 6,
+        "name": "Environment Variables",
+        "description": "List all environment variables",
+        "command": "Get-ChildItem Env: | ft Key,Value"
+    },
+    {
+        "id": 7,
+        "name": "CMD Environment Variables",
+        "description": "List all environment variables using CMD",
+        "command": "set"
+    },
+    {
+        "id": 8,
+        "name": "WLAN Profiles",
+        "description": "Show all WLAN profiles",
+        "command": "netsh wlan show profiles"
+    },
+    {
+        "id": 9,
+        "name": "Specific WLAN Profile",
+        "description": "Show a specific WLAN profile",
+        "command": "netsh wlan show profile name=\"PROFILE-NAME\" key=clear"
+    }
+]

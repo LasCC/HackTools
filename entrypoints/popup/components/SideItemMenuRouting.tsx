@@ -15,7 +15,7 @@ import {
   MdOutlineAdb,
   MdOutlineOpenInBrowser,
 } from "react-icons/md";
-import { SiGnubash, SiJsonwebtokens, SiPowershell } from "react-icons/si";
+import { SiGnubash, SiJsonwebtokens, SiWindows } from "react-icons/si";
 import { BsEye } from "react-icons/bs";
 import { TbArrowRotaryLastRight, TbBinary } from "react-icons/tb";
 import { LuFileLock2 } from "react-icons/lu";
@@ -32,7 +32,7 @@ import EchoBase64 from "./system/file_transfer/ObfuscatedFiles";
 import LinuxCommands from "./system/linux/LinuxCommands";
 import ReverseShell from "./system/linux/ReverseShell";
 import TtySpawnShell from "./system/linux/TtySpawnShell";
-import PowershellCommands from "./system/windows/Powershell/PowershellCommands";
+import Windows from "./system/windows/Pentesting";
 import WindowSecretDumper from "./system/windows/SecretsDumper";
 import CSRF from "./web/CSRF";
 import DBAttacks from "./web/DataBase/index";
@@ -162,15 +162,15 @@ const SystemTab: Array<IRouterComponent> = [
   {
     key: "3",
     icon: <FaLinux style={{ fontSize: "1.5em", marginTop: 3 }} />,
-    name: "Useful Linux commands",
+    name: "Linux",
     componentRoute: LinuxCommands,
     type: "system",
   },
   {
     key: "4",
-    icon: <SiPowershell style={{ fontSize: "1.5em", marginTop: 3 }} />,
-    name: "PowerShell Commands",
-    componentRoute: PowershellCommands,
+    icon: <SiWindows style={{ fontSize: "1.5em", marginTop: 3 }} />,
+    name: "Windows",
+    componentRoute: Windows,
     type: "system",
   },
   {
