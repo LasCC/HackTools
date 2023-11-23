@@ -1,0 +1,30 @@
+[
+    {
+        "id": 1,
+        "category": "network",
+        "name": "IP Configuration",
+        "description": "Display the IP configuration",
+        "command": "ipconfig /all"
+    },
+    {
+        "id": 2,
+        "category": "network",
+        "name": "ARP Table",
+        "description": "Display the ARP table",
+        "command": "arp -a"
+    },
+    {
+        "id": 3,
+        "category": "network",
+        "name": "WLAN Profiles",
+        "description": "Show all WLAN profiles",
+        "command": "netsh wlan show profiles"
+    },
+    {
+        "id": 4,
+        "category": "network",
+        "name": "Specific WLAN Profile",
+        "description": "Show a specific WLAN profile",
+        "command": "netsh wlan show profile name=\"PROFILE-NAME\" key=clear"
+    }
+]

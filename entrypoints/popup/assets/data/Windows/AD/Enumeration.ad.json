@@ -1,7 +1,7 @@
 [
     {
     "id": 1,
-    "name": "Domain info enumeration",
+    "task": "Domain enumeration",
     "description": "Get informations on the domain",
     "linux": [
         {
@@ -17,7 +17,7 @@
     ],
     "windows" : [
         {
-            "id" : "2",
+            "id" : "1",
             "description" : "Domain enum from NBT-NS/LLMNR/MDNS traffic (passive)",
             "command" : "Watch-Inveigh"
         }
