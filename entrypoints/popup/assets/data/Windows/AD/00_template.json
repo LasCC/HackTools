@@ -1,0 +1,28 @@
+{
+    "topicId": "",
+    "topicTitle": "",
+    "topicDescription": "",
+    "commands": [
+        {
+            "commandId": "",
+            "commandTitle": "",
+            "commandDescription": "",
+            "linuxCommands": [
+                {
+                    "commandList": [
+                        ""
+                    ],
+                    "commandGroupDescription": ""
+                }
+            ],
+            "windowsCommands": [
+                {
+                    "commandList": [
+                        ""
+                    ],
+                    "commandGroupDescription": ""
+                }
+            ]
+        }
+    ]
+}
