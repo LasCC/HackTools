@@ -11,9 +11,9 @@
                 {
                     "commandList": [
                         "ldeep ldap -u {USER} -p {PASSWORD} -s ldap://{DC_IP} auth_policies",
-                        "enum4linux-ng -P {DC_IP} -oA {DOMAIN}.e4l.txt"
+                        "bloodhound.py -d {DOMAIN} -dc {DC_NETBIOS_NAME} -c All -u {USER} -p {PASSWORD}"
                     ],
-                    "commandGroupDescription": "You can either use the excellent ldeep tool, enum4linux-ng"
+                    "commandGroupDescription": "You have the option to use ldeep for LDAP enumeration or use bloodhound for comprehensive domain information collection."
                 }
             ],
             "windowsCommands": [
