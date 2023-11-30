@@ -1,117 +1,117 @@
 @keyframes logo {
-  0% {
-    mask-position: 0;
-    -webkit-mask-position: 0;
-  }
+	0% {
+		mask-position: 0;
+		-webkit-mask-position: 0;
+	}
 
-  100% {
-    mask-position: 120%;
-    -webkit-mask-position: 120%;
-  }
+	100% {
+		mask-position: 120%;
+		-webkit-mask-position: 120%;
+	}
 }
 
 .logo:hover,
 .qrcode:hover {
-  cursor: pointer;
-  -webkit-mask-image: linear-gradient(
-    45deg,
-    #808080 25%,
-    rgba(255, 255, 255, 0.2) 50%,
-    #808080 75%
-  );
-  mask-image: linear-gradient(
-    45deg,
-    #808080 25%,
-    rgba(255, 255, 255, 0.2) 50%,
-    #808080 75%
-  );
-  -webkit-mask-size: 800%;
-  mask-size: 800%;
-  animation: logo 2s linear infinite;
+	cursor: pointer;
+	-webkit-mask-image: linear-gradient(
+		45deg,
+		#808080 25%,
+		rgba(255, 255, 255, 0.2) 50%,
+		#808080 75%
+	);
+	mask-image: linear-gradient(
+		45deg,
+		#808080 25%,
+		rgba(255, 255, 255, 0.2) 50%,
+		#808080 75%
+	);
+	-webkit-mask-size: 800%;
+	mask-size: 800%;
+	animation: logo 2s linear infinite;
 }
 
 .logo:hover,
 .qrcode:hover {
-  cursor: pointer;
-  -webkit-mask-image: linear-gradient(
-    45deg,
-    #808080 25%,
-    rgba(255, 255, 255, 0.2) 50%,
-    #808080 75%
-  );
-  mask-image: linear-gradient(
-    45deg,
-    #808080 25%,
-    rgba(255, 255, 255, 0.2) 50%,
-    #808080 75%
-  );
-  -webkit-mask-size: 800%;
-  mask-size: 800%;
-  -webkit-mask-position: 0;
-  mask-position: 0;
+	cursor: pointer;
+	-webkit-mask-image: linear-gradient(
+		45deg,
+		#808080 25%,
+		rgba(255, 255, 255, 0.2) 50%,
+		#808080 75%
+	);
+	mask-image: linear-gradient(
+		45deg,
+		#808080 25%,
+		rgba(255, 255, 255, 0.2) 50%,
+		#808080 75%
+	);
+	-webkit-mask-size: 800%;
+	mask-size: 800%;
+	-webkit-mask-position: 0;
+	mask-position: 0;
 }
 
 .logo:hover,
 .qrcode:hover {
-  transition:
-    mask-position 2s ease,
-    -webkit-mask-position 2s ease;
-  -webkit-mask-position: 120%;
-  mask-position: 120%;
-  opacity: 1;
+	transition:
+		mask-position 2s ease,
+		-webkit-mask-position 2s ease;
+	-webkit-mask-position: 120%;
+	mask-position: 120%;
+	opacity: 1;
 }
 
 .logo {
-  padding-left: 17px;
-  padding-top: 14px;
-  margin-bottom: 10px;
+	padding-left: 17px;
+	padding-top: 14px;
+	margin-bottom: 10px;
 }
 
 .ant-badge {
-  color: inherit !important;
+	color: inherit !important;
 }
 
 .site-layout .site-layout-background {
-  border-radius: 10px;
+	border-radius: 10px;
 }
 
 .ant-menu-inline .ant-menu-item:not(:last-child),
 .ant-menu-vertical-left .ant-menu-item:not(:last-child),
 .ant-menu-vertical-right .ant-menu-item:not(:last-child),
 .ant-menu-vertical .ant-menu-item:not(:last-child) {
-  margin: 0px !important;
+	margin: 0px !important;
 }
 
 .ant-menu-dark.ant-menu-inline .ant-menu-item,
 .ant-menu-dark.ant-menu-vertical .ant-menu-item,
 .ant-menu-dark.ant-menu-vertical-left .ant-menu-item,
 .ant-menu-dark.ant-menu-vertical-right .ant-menu-item {
-  left: 4px !important;
-  margin-left: 0 !important;
-  border-right: 0 !important;
+	left: 4px !important;
+	margin-left: 0 !important;
+	border-right: 0 !important;
 }
 
 .ant-menu-vertical .ant-menu-item:not(:last-child),
 .ant-menu-vertical-left .ant-menu-item:not(:last-child),
 .ant-menu-vertical-right .ant-menu-item:not(:last-child),
 .ant-menu-inline .ant-menu-item:not(:last-child) {
-  margin: 0 !important;
+	margin: 0 !important;
 }
 
 .ant-menu-inline-collapsed > .ant-menu-item,
 .ant-menu-inline-collapsed
-  > .ant-menu-item-group
-  > .ant-menu-item-group-list
-  > .ant-menu-item,
+	> .ant-menu-item-group
+	> .ant-menu-item-group-list
+	> .ant-menu-item,
 .ant-menu-inline-collapsed
-  > .ant-menu-item-group
-  > .ant-menu-item-group-list
-  > .ant-menu-submenu
-  > .ant-menu-submenu-title,
+	> .ant-menu-item-group
+	> .ant-menu-item-group-list
+	> .ant-menu-submenu
+	> .ant-menu-submenu-title,
 .ant-menu-inline-collapsed > .ant-menu-submenu > .ant-menu-submenu-title {
-  left: 0 !important;
-  padding: 2px calc(50% - 25px / 2) !important;
-  text-overflow: clip !important;
+	left: 0 !important;
+	padding: 2px calc(50% - 25px / 2) !important;
+	text-overflow: clip !important;
 }
 
 .ant-menu-vertical > .ant-menu-item,
@@ -122,66 +122,66 @@
 .ant-menu-vertical-left > .ant-menu-submenu > .ant-menu-submenu-title,
 .ant-menu-vertical-right > .ant-menu-submenu > .ant-menu-submenu-title,
 .ant-menu-inline > .ant-menu-submenu > .ant-menu-submenu-title {
-  height: 35px !important;
-  line-height: 35px !important;
+	height: 35px !important;
+	line-height: 35px !important;
 }
 
 .ant-menu-inline-collapsed > .ant-menu-item .ant-menu-item-icon,
 .ant-menu-inline-collapsed
-  > .ant-menu-item-group
-  > .ant-menu-item-group-list
-  > .ant-menu-item
-  .ant-menu-item-icon,
+	> .ant-menu-item-group
+	> .ant-menu-item-group-list
+	> .ant-menu-item
+	.ant-menu-item-icon,
 .ant-menu-inline-collapsed
-  > .ant-menu-item-group
-  > .ant-menu-item-group-list
-  > .ant-menu-submenu
-  > .ant-menu-submenu-title
-  .ant-menu-item-icon,
+	> .ant-menu-item-group
+	> .ant-menu-item-group-list
+	> .ant-menu-submenu
+	> .ant-menu-submenu-title
+	.ant-menu-item-icon,
 .ant-menu-inline-collapsed
-  > .ant-menu-submenu
-  > .ant-menu-submenu-title
-  .ant-menu-item-icon,
+	> .ant-menu-submenu
+	> .ant-menu-submenu-title
+	.ant-menu-item-icon,
 .ant-menu-inline-collapsed > .ant-menu-item .anticon,
 .ant-menu-inline-collapsed
-  > .ant-menu-item-group
-  > .ant-menu-item-group-list
-  > .ant-menu-item
-  .anticon,
+	> .ant-menu-item-group
+	> .ant-menu-item-group-list
+	> .ant-menu-item
+	.anticon,
 .ant-menu-inline-collapsed
-  > .ant-menu-item-group
-  > .ant-menu-item-group-list
-  > .ant-menu-submenu
-  > .ant-menu-submenu-title
-  .anticon,
+	> .ant-menu-item-group
+	> .ant-menu-item-group-list
+	> .ant-menu-submenu
+	> .ant-menu-submenu-title
+	.anticon,
 .ant-menu-inline-collapsed
-  > .ant-menu-submenu
-  > .ant-menu-submenu-title
-  .anticon {
-  margin: 0 !important;
-  font-size: 18px !important;
-  line-height: 32px !important;
+	> .ant-menu-submenu
+	> .ant-menu-submenu-title
+	.anticon {
+	margin: 0 !important;
+	font-size: 18px !important;
+	line-height: 32px !important;
 }
 
 body {
-  min-width: 750px;
-  min-height: auto;
-  margin: 0px !important;
-  font-family:
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    Oxygen,
-    Ubuntu,
-    Cantarell,
-    "Open Sans",
-    "Helvetica Neue",
-    sans-serif;
-  font-size: 14px;
+	min-width: 750px;
+	min-height: auto;
+	margin: 0px !important;
+	font-family:
+		system-ui,
+		-apple-system,
+		BlinkMacSystemFont,
+		"Segoe UI",
+		Roboto,
+		Oxygen,
+		Ubuntu,
+		Cantarell,
+		"Open Sans",
+		"Helvetica Neue",
+		sans-serif;
+	font-size: 14px;
 }
 
 .qrcode {
-  cursor: pointer;
+	cursor: pointer;
 }

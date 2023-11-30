@@ -1,23 +1,23 @@
 [
-  {
-    "id": 1,
-    "category": "mitm",
-    "name": "Burp Certificate PEM conversion",
-    "description": "Download the certificate using curl and convert it to PEM format",
-    "command": "curl --proxy http://127.0.0.1:8080 -o cacert.der http://burp/cert && openssl x509 -inform DER -in cacert.der -out cacert.pem && export HASH=$(openssl x509 -inform PEM -subject_hash_old -in cacert.pem |head -1).0 && cp cacert.pem $HASH"
-  },
-  {
-    "id": 2,
-    "category": "mitm",
-    "name": "Burp Certificate installation",
-    "description": "Installing the cert system wide and rebooting the device",
-    "command": "adb push $HASH /sdcard/ && adb shell 'su -c \"mount -o rw,remount / && cp /sdcard/????????.0 /system/etc/security/cacerts/ && chmod 644 -R /system/etc/security/cacerts/*.0 && mount -o ro,remount / && reboot\"'"
-  },
-  {
-    "id": 3,
-    "category": "frida",
-    "name": "Install Frida server",
-    "description": "Download and install the latest Frida server on the device (@idoeldor/frida-snippets)",
-    "command": "PARCH=`adb shell getprop ro.product.cpu.abi`;[[ \"${PARCH}\" == \"armeabi-v7a\" ]] && PARCH=\"arm\";wget -q -O - https://api.github.com/repos/frida/frida/releases | jq '.[0] | .assets[] | select(.browser_download_url | match(\"server(.*?)android-'${PARCH}'*\\\\.xz\")).browser_download_url' | xargs wget -q --show-progress $1 && unxz frida-server* && adb root && adb push frida-server* /data/local/tmp/frida-server && adb shell \"chmod 755 /data/local/tmp/frida-server\" && adb shell \"/data/local/tmp/frida-server &\"\n"
-  }
+	{
+		"id": 1,
+		"category": "mitm",
+		"name": "Burp Certificate PEM conversion",
+		"description": "Download the certificate using curl and convert it to PEM format",
+		"command": "curl --proxy http://127.0.0.1:8080 -o cacert.der http://burp/cert && openssl x509 -inform DER -in cacert.der -out cacert.pem && export HASH=$(openssl x509 -inform PEM -subject_hash_old -in cacert.pem |head -1).0 && cp cacert.pem $HASH"
+	},
+	{
+		"id": 2,
+		"category": "mitm",
+		"name": "Burp Certificate installation",
+		"description": "Installing the cert system wide and rebooting the device",
+		"command": "adb push $HASH /sdcard/ && adb shell 'su -c \"mount -o rw,remount / && cp /sdcard/????????.0 /system/etc/security/cacerts/ && chmod 644 -R /system/etc/security/cacerts/*.0 && mount -o ro,remount / && reboot\"'"
+	},
+	{
+		"id": 3,
+		"category": "frida",
+		"name": "Install Frida server",
+		"description": "Download and install the latest Frida server on the device (@idoeldor/frida-snippets)",
+		"command": "PARCH=`adb shell getprop ro.product.cpu.abi`;[[ \"${PARCH}\" == \"armeabi-v7a\" ]] && PARCH=\"arm\";wget -q -O - https://api.github.com/repos/frida/frida/releases | jq '.[0] | .assets[] | select(.browser_download_url | match(\"server(.*?)android-'${PARCH}'*\\\\.xz\")).browser_download_url' | xargs wget -q --show-progress $1 && unxz frida-server* && adb root && adb push frida-server* /data/local/tmp/frida-server && adb shell \"chmod 755 /data/local/tmp/frida-server\" && adb shell \"/data/local/tmp/frida-server &\"\n"
+	}
 ]

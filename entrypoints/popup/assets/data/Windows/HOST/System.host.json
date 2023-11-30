@@ -1,65 +1,65 @@
 [
-    {
-        "id": 1,
-        "category": "system",
-        "name": "System Information",
-        "description": "Retrieve detailed information about the system",
-        "command": "systeminfo"
-    },
-    {
-        "id": 2,
-        "category": "system",
-        "name": "Computer System Information",
-        "description": "Retrieve information about the computer system",
-        "command": "Get-WmiObject Win32_ComputerSystem"
-    },
-    {
-        "id": 3,
-        "category": "system",
-        "name": "Computer and Domain Name",
-        "description": "Display the computer and user domain name",
-        "command": "echo \"$env:COMPUTERNAME.$env:USERDNSDOMAIN\""
-    },
-    {
-        "id": 4,
-        "category": "system",
-        "name": "Security Patches",
-        "description": "List all security patches",
-        "command": "Get-Hotfix -description \"Security update\""
-    },
-    {
-        "id": 5,
-        "category": "system",
-        "name": "Detailed Security Patches",
-        "description": "List all security patches with detailed information",
-        "command": "wmic qfe get HotfixID,ServicePackInEffect,InstallDate,InstalledBy,InstalledOn"
-    },
-    {
-        "id": 6,
-        "category": "system",
-        "name": "Environment Variables",
-        "description": "List all environment variables",
-        "command": "Get-ChildItem Env: | ft Key,Value"
-    },
-    {
-        "id": 7,
-        "category": "system",
-        "name": "CMD Environment Variables",
-        "description": "List all environment variables using CMD",
-        "command": "set"
-    },
-    {
-        "id": 8,
-        "category": "system",
-        "name": "Add AV Exclusion Path",
-        "description": "Add an exclusion path to the antivirus",
-        "command": "Add-MpPreference -ExclusionPath \"<Path to be excluded>\""
-    },
-    {
-        "id": 9,
-        "category": "system",
-        "name": "List AV Exclusion Paths",
-        "description": "List all exclusion paths in the antivirus",
-        "command": "Get-MpPreference | select -ExpandProperty ExclusionPath"
-    }
+	{
+		"id": 1,
+		"category": "system",
+		"name": "System Information",
+		"description": "Retrieve detailed information about the system",
+		"command": "systeminfo"
+	},
+	{
+		"id": 2,
+		"category": "system",
+		"name": "Computer System Information",
+		"description": "Retrieve information about the computer system",
+		"command": "Get-WmiObject Win32_ComputerSystem"
+	},
+	{
+		"id": 3,
+		"category": "system",
+		"name": "Computer and Domain Name",
+		"description": "Display the computer and user domain name",
+		"command": "echo \"$env:COMPUTERNAME.$env:USERDNSDOMAIN\""
+	},
+	{
+		"id": 4,
+		"category": "system",
+		"name": "Security Patches",
+		"description": "List all security patches",
+		"command": "Get-Hotfix -description \"Security update\""
+	},
+	{
+		"id": 5,
+		"category": "system",
+		"name": "Detailed Security Patches",
+		"description": "List all security patches with detailed information",
+		"command": "wmic qfe get HotfixID,ServicePackInEffect,InstallDate,InstalledBy,InstalledOn"
+	},
+	{
+		"id": 6,
+		"category": "system",
+		"name": "Environment Variables",
+		"description": "List all environment variables",
+		"command": "Get-ChildItem Env: | ft Key,Value"
+	},
+	{
+		"id": 7,
+		"category": "system",
+		"name": "CMD Environment Variables",
+		"description": "List all environment variables using CMD",
+		"command": "set"
+	},
+	{
+		"id": 8,
+		"category": "system",
+		"name": "Add AV Exclusion Path",
+		"description": "Add an exclusion path to the antivirus",
+		"command": "Add-MpPreference -ExclusionPath \"<Path to be excluded>\""
+	},
+	{
+		"id": 9,
+		"category": "system",
+		"name": "List AV Exclusion Paths",
+		"description": "List all exclusion paths in the antivirus",
+		"command": "Get-MpPreference | select -ExpandProperty ExclusionPath"
+	}
 ]

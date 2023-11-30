@@ -1,4 +1,4 @@
 export type ObfuscatedFile = {
-  name: string;
-  input: string;
+	name: string;
+	input: string;
 };

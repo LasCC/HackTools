@@ -1,114 +1,114 @@
 [
-  {
-    "id": 1,
-    "category": "system",
-    "name": "List all connected devices",
-    "description": "Lists all devices connected to the ADB server.",
-    "command": "adb devices"
-  },
-  {
-    "id": 2,
-    "category": "system",
-    "name": "Get environment variables",
-    "description": "Sensitive information could be stored in environment variables",
-    "command": "adb ${device} shell env"
-  },
-  {
-    "id": 3,
-    "category": "system",
-    "name": "List all installed packages",
-    "description": "This command lists all packages installed on the device. (pm list -3 for third party packages only)",
-    "command": "adb ${device} shell pm list packages"
-  },
-  {
-    "id": 4,
-    "category": "system",
-    "name": "Get package path",
-    "description": "Get the path to the package's APK file.",
-    "command": "adb ${device} shell pm path com.example"
-  },
-  {
-    "id": 5,
-    "category": "system",
-    "name": "Download an APK from the device",
-    "description": "This command downloads an APK file from the device to your local machine.",
-    "command": "adb ${device} pull /data/app/com.example.apk"
-  },
-  {
-    "id": 6,
-    "category": "system",
-    "name": "Install an APK on the device",
-    "description": "Install an APK on the device.",
-    "command": "adb install com.example.apk ${device}"
-  },
-  {
-    "id": 7,
-    "category": "system",
-    "name": "Interactive APK Selection and Extraction",
-    "description": "This command provides an interactive interface to select a package from the list of installed packages on a connected device, extracts the corresponding APK file. It requires 'fzf' for the interactive selection process.",
-    "command": "device=$(adb devices | awk 'NR>1 {print $1}' | fzf) && package=$(adb -s $device shell pm list packages | awk -F\":\" \"{print \\$2}\" | fzf) && adb -s $device pull \"$(adb -s $device shell pm path $package | awk -F\":\" \"{print \\$2}\")\" && mv base.apk \"$package.apk\" &> /dev/null"
-  },
-  {
-    "id": 8,
-    "category": "system",
-    "name": "Logcat",
-    "description": "Prints the device's log buffer to the terminal",
-    "command": "adb ${device} logcat"
-  },
-  {
-    "id": 9,
-    "category": "system",
-    "name": "Uninstall an APK from the device",
-    "description": "Wipe an APK from the device.",
-    "command": "adb ${device} uninstall com.example"
-  },
-  {
-    "id": 10,
-    "category": "system",
-    "name": "Clear app data",
-    "description": "Clear the app data of a package.",
-    "command": "adb ${device} shell pm clear com.example"
-  },
-  {
-    "id": 11,
-    "category": "app",
-    "name": "Start an activity",
-    "description": "Start an activity specified by intent, flag could also be specified used to start the activity in a new task (e.g. -f 0x20000000) <https://developer.android.com/reference/android/content/Intent#flags>",
-    "command": "adb ${device} shell am start -n com.example/.MainActivity"
-  },
-  {
-    "id": 12,
-    "category": "app",
-    "name": "Start an activity with data URI",
-    "description": "Start an activity with data URI specified by intent.",
-    "command": "adb ${device} shell am start -n com.example/.MainActivity -d \"http://example.com\""
-  },
-  {
-    "id": 13,
-    "category": "app",
-    "name": "Start an activity with MIME type",
-    "description": "Start an activity with MIME type specified by intent.",
-    "command": "adb ${device} shell am start -n com.example/.MainActivity -t \"text/plain\""
-  },
-  {
-    "id": 14,
-    "category": "app",
-    "name": "Start an activity with category",
-    "description": "Start an activity with category specified by intent.",
-    "command": "adb ${device} shell am start -n com.example/.MainActivity -c \"android.intent.category.LAUNCHER\""
-  },
-  {
-    "id": 15,
-    "category": "app",
-    "name": "Start an activity with extras",
-    "description": "Start an activity with extras specified by intent.",
-    "command": "adb ${device} shell am start -n com.example/.MainActivity --es \"key\" \"value\""
-  },
-  {
-    "id": 16,
-    "category": "app",
-    "name": "Start an activity with flags, data URI, MIME type, category and extras",
-    "description": "Start an activity with flags, data URI, MIME type, category and extras specified by intent.",
-    "command": "adb ${device} shell am start -n com.example/.MainActivity -f 0x20000000 -d \"http://example.com\" -t \"text/plain\" -c \"android.intent.category.LAUNCHER\" --es \"key\" \"value\""
-  }
+	{
+		"id": 1,
+		"category": "system",
+		"name": "List all connected devices",
+		"description": "Lists all devices connected to the ADB server.",
+		"command": "adb devices"
+	},
+	{
+		"id": 2,
+		"category": "system",
+		"name": "Get environment variables",
+		"description": "Sensitive information could be stored in environment variables",
+		"command": "adb ${device} shell env"
+	},
+	{
+		"id": 3,
+		"category": "system",
+		"name": "List all installed packages",
+		"description": "This command lists all packages installed on the device. (pm list -3 for third party packages only)",
+		"command": "adb ${device} shell pm list packages"
+	},
+	{
+		"id": 4,
+		"category": "system",
+		"name": "Get package path",
+		"description": "Get the path to the package's APK file.",
+		"command": "adb ${device} shell pm path com.example"
+	},
+	{
+		"id": 5,
+		"category": "system",
+		"name": "Download an APK from the device",
+		"description": "This command downloads an APK file from the device to your local machine.",
+		"command": "adb ${device} pull /data/app/com.example.apk"
+	},
+	{
+		"id": 6,
+		"category": "system",
+		"name": "Install an APK on the device",
+		"description": "Install an APK on the device.",
+		"command": "adb install com.example.apk ${device}"
+	},
+	{
+		"id": 7,
+		"category": "system",
+		"name": "Interactive APK Selection and Extraction",
+		"description": "This command provides an interactive interface to select a package from the list of installed packages on a connected device, extracts the corresponding APK file. It requires 'fzf' for the interactive selection process.",
+		"command": "device=$(adb devices | awk 'NR>1 {print $1}' | fzf) && package=$(adb -s $device shell pm list packages | awk -F\":\" \"{print \\$2}\" | fzf) && adb -s $device pull \"$(adb -s $device shell pm path $package | awk -F\":\" \"{print \\$2}\")\" && mv base.apk \"$package.apk\" &> /dev/null"
+	},
+	{
+		"id": 8,
+		"category": "system",
+		"name": "Logcat",
+		"description": "Prints the device's log buffer to the terminal",
+		"command": "adb ${device} logcat"
+	},
+	{
+		"id": 9,
+		"category": "system",
+		"name": "Uninstall an APK from the device",
+		"description": "Wipe an APK from the device.",
+		"command": "adb ${device} uninstall com.example"
+	},
+	{
+		"id": 10,
+		"category": "system",
+		"name": "Clear app data",
+		"description": "Clear the app data of a package.",
+		"command": "adb ${device} shell pm clear com.example"
+	},
+	{
+		"id": 11,
+		"category": "app",
+		"name": "Start an activity",
+		"description": "Start an activity specified by intent, flag could also be specified used to start the activity in a new task (e.g. -f 0x20000000) <https://developer.android.com/reference/android/content/Intent#flags>",
+		"command": "adb ${device} shell am start -n com.example/.MainActivity"
+	},
+	{
+		"id": 12,
+		"category": "app",
+		"name": "Start an activity with data URI",
+		"description": "Start an activity with data URI specified by intent.",
+		"command": "adb ${device} shell am start -n com.example/.MainActivity -d \"http://example.com\""
+	},
+	{
+		"id": 13,
+		"category": "app",
+		"name": "Start an activity with MIME type",
+		"description": "Start an activity with MIME type specified by intent.",
+		"command": "adb ${device} shell am start -n com.example/.MainActivity -t \"text/plain\""
+	},
+	{
+		"id": 14,
+		"category": "app",
+		"name": "Start an activity with category",
+		"description": "Start an activity with category specified by intent.",
+		"command": "adb ${device} shell am start -n com.example/.MainActivity -c \"android.intent.category.LAUNCHER\""
+	},
+	{
+		"id": 15,
+		"category": "app",
+		"name": "Start an activity with extras",
+		"description": "Start an activity with extras specified by intent.",
+		"command": "adb ${device} shell am start -n com.example/.MainActivity --es \"key\" \"value\""
+	},
+	{
+		"id": 16,
+		"category": "app",
+		"name": "Start an activity with flags, data URI, MIME type, category and extras",
+		"description": "Start an activity with flags, data URI, MIME type, category and extras specified by intent.",
+		"command": "adb ${device} shell am start -n com.example/.MainActivity -f 0x20000000 -d \"http://example.com\" -t \"text/plain\" -c \"android.intent.category.LAUNCHER\" --es \"key\" \"value\""
+	}
 ]

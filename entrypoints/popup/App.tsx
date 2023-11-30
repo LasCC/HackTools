@@ -8,24 +8,24 @@ import ReverseShell from "./components/system/linux/ReverseShell";
 const queryClient = new QueryClient();
 
 const Home = () => {
-  return (
-    <>
-      <ReverseShell />
-    </>
-  );
+	return (
+		<>
+			<ReverseShell />
+		</>
+	);
 };
 
 const App = () => {
-  return (
-    <QueryClientProvider client={queryClient}>
-      <LayoutApp>
-        <Router>
-          <Home />
-        </Router>
-        <FloatButton.BackTop />
-      </LayoutApp>
-    </QueryClientProvider>
-  );
+	return (
+		<QueryClientProvider client={queryClient}>
+			<LayoutApp>
+				<Router>
+					<Home />
+				</Router>
+				<FloatButton.BackTop />
+			</LayoutApp>
+		</QueryClientProvider>
+	);
 };
 
 export default App;

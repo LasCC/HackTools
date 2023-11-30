@@ -1,49 +1,45 @@
 {
-    "topicId": 2,
-    "topicTitle": "Unauthenticated domain enumeration",
-    "topicDescription": "",
-    "commands": [
-        {
-            "commandId": "2.1",
-            "commandTitle": "NBT-NS/LLMNR/MDNS traffic inspection",
-            "commandDescription": "Inspecting the traffic, can give you valuable information such as the domain name and user account",
-            "linuxCommands": [
-                {
-                    "commandList": [
-                        "sudo responder -I ens224 -A"
-                    ],
-                    "commandGroupDescription": "In Linux you can use Responder to intercept the global interception"
-                }
-            ],
-            "windowsCommands": [
-                {
-                    "commandList": [
-                        "Watch-Inveigh"
-                    ],
-                    "commandGroupDescription": "win desc"
-                }
-            ]
-        },
-        {
-            "commandId": "2.2",
-            "commandTitle": "Kerberos Pre-Auth Bruteforcing to identify valid username",
-            "commandDescription": "You can use KRB-PRE-AUTH queries against the DC to get a response on whether the account is valid or not (using a valid account can lock out the account based on domain password policy)",
-            "linuxCommands": [
-                {
-                    "commandList": [
-                        "kerbrute userenum -d {DOMAIN} --dc {DC_IP} {WORDLIST} -o kerbrute.{DOMAIN}.lst"
-                    ],
-                    "commandGroupDescription": ""
-                }
-            ],
-            "windowsCommands": [
-                {
-                    "commandList": [
-                        "kerbrute userenum -d {DOMAIN} --dc {DC_IP} {WORDLIST} -o kerbrute.{DOMAIN}.lst"
-                    ],
-                    "commandGroupDescription": ""
-                }
-            ]
-        }
-    ]
+	"topicId": 2,
+	"topicTitle": "Unauthenticated domain enumeration",
+	"topicDescription": "",
+	"commands": [
+		{
+			"commandId": "2.1",
+			"commandTitle": "NBT-NS/LLMNR/MDNS traffic inspection",
+			"commandDescription": "Inspecting the traffic, can give you valuable information such as the domain name and user account",
+			"linuxCommands": [
+				{
+					"commandList": ["sudo responder -I ens224 -A"],
+					"commandGroupDescription": "In Linux you can use Responder to intercept the global interception"
+				}
+			],
+			"windowsCommands": [
+				{
+					"commandList": ["Watch-Inveigh"],
+					"commandGroupDescription": "win desc"
+				}
+			]
+		},
+		{
+			"commandId": "2.2",
+			"commandTitle": "Kerberos Pre-Auth Bruteforcing to identify valid username",
+			"commandDescription": "You can use KRB-PRE-AUTH queries against the DC to get a response on whether the account is valid or not (using a valid account can lock out the account based on domain password policy)",
+			"linuxCommands": [
+				{
+					"commandList": [
+						"kerbrute userenum -d {DOMAIN} --dc {DC_IP} {WORDLIST} -o kerbrute.{DOMAIN}.lst"
+					],
+					"commandGroupDescription": ""
+				}
+			],
+			"windowsCommands": [
+				{
+					"commandList": [
+						"kerbrute userenum -d {DOMAIN} --dc {DC_IP} {WORDLIST} -o kerbrute.{DOMAIN}.lst"
+					],
+					"commandGroupDescription": ""
+				}
+			]
+		}
+	]
 }
