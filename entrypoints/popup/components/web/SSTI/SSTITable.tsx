@@ -1,4 +1,5 @@
 import { SearchOutlined } from "@ant-design/icons";
+import payloadsData from "@assets/data/Web/SSTI/SSTI.json";
 import {
 	Button,
 	Checkbox,
@@ -13,7 +14,6 @@ import {
 } from "antd";
 import type { ColumnsType } from "antd/es/table";
 import { useState } from "react";
-import payloadsData from "@assets/data/Web/SSTI/SSTI.json";
 import { DataType, Language, useTemplateStore } from "./store";
 
 const TemplateDetector = () => {

@@ -1,47 +1,49 @@
-import { useEffect, useState } from "react";
 import {
-	Row,
-	Col,
-	Button,
-	Divider,
-	Input,
-	Tabs,
-	Tooltip,
-	Space,
-	Select,
-	Form,
-	Popconfirm,
-	Slider,
-	Drawer,
-	Upload,
-	message,
-	ColorPicker,
-	Radio,
-} from "antd";
-import {
+	CalendarOutlined,
+	DeleteOutlined,
 	FileTextOutlined,
 	LinkOutlined,
-	WifiOutlined,
 	MailOutlined,
-	PhoneOutlined,
 	MessageOutlined,
-	CalendarOutlined,
 	MinusOutlined,
+	PhoneOutlined,
 	PlusOutlined,
-	DeleteOutlined,
+	WifiOutlined,
 } from "@ant-design/icons";
-import { useStore } from "../../GlobalStore";
-import { Segmented, Typography, DatePicker } from "antd";
-import { QRCodeSVG } from "qrcode.react";
-import dayjs from "dayjs";
-import { icons } from "./icons";
 import type { QRCodeProps } from "antd";
+import {
+	Button,
+	Col,
+	ColorPicker,
+	DatePicker,
+	Divider,
+	Drawer,
+	Form,
+	Input,
+	Popconfirm,
+	Radio,
+	Row,
+	Segmented,
+	Select,
+	Slider,
+	Space,
+	Tabs,
+	Tooltip,
+	Typography,
+	Upload,
+	message,
+} from "antd";
 import type {
 	RcFile,
 	UploadChangeParam,
 	UploadFile,
 	UploadProps,
 } from "antd/es/upload";
+import dayjs from "dayjs";
+import { QRCodeSVG } from "qrcode.react";
+import { useEffect, useState } from "react";
+import { useStore } from "../../GlobalStore";
+import { icons } from "./icons";
 
 const { Title, Paragraph, Text, Link } = Typography;
 const { TabPane } = Tabs;

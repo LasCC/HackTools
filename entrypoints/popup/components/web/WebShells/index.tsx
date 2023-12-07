@@ -1,9 +1,8 @@
-import React, { useState } from "react";
-import { Tabs } from "antd";
 import type { TabsProps } from "antd";
-import PHP from "./PHP";
-import Java from "./Java";
+import { Tabs } from "antd";
 import ASP from "./ASP";
+import Java from "./Java";
+import PHP from "./PHP";
 
 const index = () => {
 	const items: TabsProps["items"] = [

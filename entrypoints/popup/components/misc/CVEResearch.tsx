@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-import axios from "axios";
-import { Input, Button, Card, Typography, Space, List, Divider } from "antd";
+import { Button, Card, Divider, Input, List, Space, Typography } from "antd";
+import { useState } from "react";
 const { Title, Text } = Typography;
 
 const CVEResearch = () => {

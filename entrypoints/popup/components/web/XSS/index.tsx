@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-import { Tabs } from "antd";
 import type { TabsProps } from "antd";
+import { Tabs } from "antd";
 import XSSObfuscationComponent from "./XSSObfuscation";
 import XSSPayloadComponent from "./XSSPayload";
 

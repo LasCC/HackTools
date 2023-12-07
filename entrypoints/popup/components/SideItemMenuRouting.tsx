@@ -1,30 +1,39 @@
 import React from "react";
+import { AiFillInfoCircle } from "react-icons/ai";
 import {
 	BiLockOpen,
 	BiLogoJavascript,
 	BiNotepad,
 	BiTransfer,
 } from "react-icons/bi";
-import { BsCardList, BsDatabaseFillGear, BsQrCode } from "react-icons/bs";
-import { IoBandageOutline } from "react-icons/io5";
+import {
+	BsCardList,
+	BsDatabaseFillGear,
+	BsEye,
+	BsQrCode,
+} from "react-icons/bs";
+import { FaLinux } from "react-icons/fa";
 import { GiPirateHook, GiWebSpit } from "react-icons/gi";
 import { HiOutlineTemplate } from "react-icons/hi";
 import { HiOutlineComputerDesktop } from "react-icons/hi2";
+import { IoBandageOutline } from "react-icons/io5";
+import { LuFileLock2 } from "react-icons/lu";
 import {
 	MdChecklist,
 	MdOutlineAdb,
 	MdOutlineOpenInBrowser,
 } from "react-icons/md";
-import { SiGnubash, SiJsonwebtokens, SiWindows } from "react-icons/si";
-import { BsEye } from "react-icons/bs";
-import { TbArrowRotaryLastRight, TbBinary } from "react-icons/tb";
-import { LuFileLock2 } from "react-icons/lu";
 import { PiShieldCheckeredFill } from "react-icons/pi";
+import { SiGnubash, SiJsonwebtokens, SiWindows } from "react-icons/si";
+import { TbArrowRotaryLastRight, TbBinary } from "react-icons/tb";
 import AboutUs from "./AboutUs";
 import Checklists from "./misc/Checklists";
-import CustomPayloadTable from "./misc/PrivateCheatSheet";
+import NmapViz from "./misc/NmapViz";
 import Notepad from "./misc/Notepad";
+import CustomPayloadTable from "./misc/PrivateCheatSheet";
+import QRGenerator from "./misc/QRGenerator";
 import ADB from "./mobile/Android/ADB";
+import APKPatching from "./mobile/Android/ADB/APKPatching";
 import Hooking from "./mobile/Hooking";
 import MSFBuilder from "./system/CnCutils/MSFBuilder";
 import FileTransfer from "./system/file_transfer/File_transfer";
@@ -43,11 +52,6 @@ import SSRF from "./web/SSRF";
 import SSTI from "./web/SSTI";
 import WebShells from "./web/WebShells";
 import XSS from "./web/XSS";
-import APKPatching from "./mobile/Android/ADB/APKPatching";
-import QRGenerator from "./misc/QRGenerator";
-import NmapViz from "./misc/NmapViz";
-import { AiFillInfoCircle } from "react-icons/ai";
-import { FaLinux } from "react-icons/fa";
 
 export interface IRouterComponent {
 	key: string;

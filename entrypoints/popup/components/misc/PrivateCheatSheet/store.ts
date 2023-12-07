@@ -1,8 +1,8 @@
-import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { message } from "antd";
 import { saveAs } from "file-saver";
 import { Array, Record, String } from "runtypes";
-import { message } from "antd";
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
 import { storage } from "../../createPersistedState";
 
 export interface DataType {

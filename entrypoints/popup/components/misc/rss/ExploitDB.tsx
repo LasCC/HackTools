@@ -1,8 +1,7 @@
-import React from "react";
-import { Typography, Empty, Spin, Button, List, Tag } from "antd";
 import { PageHeader } from "@ant-design/pro-layout";
-import { goTo } from "react-chrome-extension-router";
 import { useQuery } from "@tanstack/react-query";
+import { Button, Empty, List, Spin, Tag, Typography } from "antd";
+import { goTo } from "react-chrome-extension-router";
 import FeedRSS from "./FeedRSS";
 
 const { Title } = Typography;

@@ -14,14 +14,14 @@ import {
 	Input,
 	Modal,
 	Row,
+	Space,
 	Table,
 	Tag,
 	Typography,
 	message,
-	Space,
 } from "antd";
 import Fuse from "fuse.js";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import usePayloadStore, { DataType } from "./store";
 const { Title, Paragraph, Text } = Typography;
 

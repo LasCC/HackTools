@@ -1,6 +1,5 @@
 // src/pages/popup/components/web/SSTI/store.ts
 import create from "zustand";
-import payloads from "../../../../popup/assets/data/Web/SSTI/SSTI.json";
 
 export interface DataType {
 	id: number;

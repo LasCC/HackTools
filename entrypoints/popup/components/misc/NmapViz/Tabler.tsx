@@ -1,6 +1,5 @@
-import { useEffect } from "react";
 import { useStore } from "@components/GlobalStore";
-import { Table, Input, Row, Col, Collapse, Empty, message, Button } from "antd";
+import { Button, Col, Collapse, Empty, Input, Row, Table, message } from "antd";
 import ReactJson from "react-json-view";
 import useNmapVizStore from "./store";
 

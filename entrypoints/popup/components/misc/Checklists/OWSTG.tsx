@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
 	BugOutlined,
 	HourglassOutlined,
@@ -16,6 +15,7 @@ import {
 	FloatButton,
 	Input,
 	Layout,
+	Modal,
 	Progress,
 	Row,
 	Select,
@@ -23,13 +23,11 @@ import {
 	Statistic,
 	Table,
 	Typography,
-	message,
-	Modal,
 } from "antd";
+import { useState } from "react";
 import { BsFiletypeJson } from "react-icons/bs";
 import { MdHttp } from "react-icons/md";
-import quotes from "@assets/data/Quotes/Quotes.json";
-import { AtomicTest, Quote, TestCaseStatus } from "./ChecklistInterfaces";
+import { AtomicTest, TestCaseStatus } from "./ChecklistInterfaces";
 import createOWSTGStore from "./stores/MethodologyStore";
 const { Paragraph } = Typography;
 const { TextArea } = Input;

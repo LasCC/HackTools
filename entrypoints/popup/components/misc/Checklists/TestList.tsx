@@ -1,5 +1,5 @@
+import { Button, Checkbox, List } from "antd";
 import React from "react";
-import { List, Checkbox, Button } from "antd";
 
 export type Test = {
 	id: string;

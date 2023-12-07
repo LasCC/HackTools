@@ -1,25 +1,25 @@
-import React, { useState } from "react";
 import {
-	Button,
-	Input,
-	Typography,
-	Menu,
-	Dropdown,
-	Divider,
-	message,
-} from "antd";
-import {
+	ArrowsAltOutlined,
 	CopyOutlined,
 	DownOutlined,
-	ArrowsAltOutlined,
 } from "@ant-design/icons";
+import {
+	Button,
+	Divider,
+	Dropdown,
+	Input,
+	Menu,
+	Typography,
+	message,
+} from "antd";
 import MD5 from "crypto-js/md5";
 import SHA1 from "crypto-js/sha1";
 import SHA256 from "crypto-js/sha256";
 import SHA512 from "crypto-js/sha512";
-import Sm3 from "sm3";
+import React, { useState } from "react";
 import Clipboard from "react-clipboard.js";
 import { BiHash } from "react-icons/bi";
+import Sm3 from "sm3";
 
 const { Title, Paragraph, Text } = Typography;
 const { TextArea } = Input;

@@ -1,9 +1,8 @@
-import React from "react";
-import { Tabs } from "antd";
 import type { TabsProps } from "antd";
+import { Tabs } from "antd";
 import LFI from "./LFR";
-import PHPfilerBuilder from "./phpFilterBuilder";
 import ZipSlip from "./ZipSlip";
+import PHPfilerBuilder from "./phpFilterBuilder";
 
 const SQLMainPage = () => {
 	const items: TabsProps["items"] = [

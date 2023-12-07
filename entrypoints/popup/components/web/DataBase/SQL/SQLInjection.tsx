@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { Typography, Divider } from "antd";
+import { Divider, Typography } from "antd";
 const { Title, Paragraph, Text, Link } = Typography;
 
 /*************************************** */

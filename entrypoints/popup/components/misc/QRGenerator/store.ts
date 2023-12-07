@@ -1,6 +1,5 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { storage } from "../../createPersistedState";
 
 type Wifi = { ssid: string; auth: string; password: string };
 type Email = { to: string; subject: string; message: string };

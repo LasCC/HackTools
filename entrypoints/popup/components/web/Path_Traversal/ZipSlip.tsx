@@ -1,19 +1,19 @@
-import React, { useState } from "react";
 import { DeleteOutlined } from "@ant-design/icons";
-import JSZip from "jszip";
-import { saveAs } from "file-saver";
 import {
 	Button,
-	Input,
-	Form,
-	List,
-	Divider,
-	Row,
 	Col,
-	Typography,
+	Divider,
+	Form,
+	Input,
+	List,
+	Row,
 	Space,
+	Typography,
 } from "antd";
 import Title from "antd/es/typography/Title";
+import { saveAs } from "file-saver";
+import JSZip from "jszip";
+import { useState } from "react";
 
 const ZipSlip = () => {
 	const [form] = Form.useForm();

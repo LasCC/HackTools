@@ -1,7 +1,6 @@
-import React from "react";
-import type { ReactElement } from "react";
-import { Button, message, Typography, Divider } from "antd";
 import { CopyOutlined, LinkOutlined } from "@ant-design/icons";
+import { Button, Divider, Typography, message } from "antd";
+import type { ReactElement } from "react";
 import Clipboard from "react-clipboard.js";
 
 const { Title, Paragraph, Text } = Typography;

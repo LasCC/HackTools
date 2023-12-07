@@ -12,7 +12,7 @@ import CommandPalette, {
 import "@tmikeladze/react-cmdk/dist/cmdk.css";
 import { Space, Tooltip, Typography } from "antd";
 import { useEffect, useState } from "react";
-import { AiOutlineGithub, AiOutlineFullscreen } from "react-icons/ai";
+import { AiOutlineFullscreen, AiOutlineGithub } from "react-icons/ai";
 import { BiMobileVibration, BiSearch } from "react-icons/bi";
 import { BsBrowserChrome, BsMailbox2, BsTools } from "react-icons/bs";
 import { HiOutlineDesktopComputer } from "react-icons/hi";
@@ -22,9 +22,9 @@ import {
 	MdOutlineAdb,
 	MdOutlineOpenInFull,
 } from "react-icons/md";
+import { SiGnubash } from "react-icons/si";
 import { useStore } from "./GlobalStore";
 import Tabs from "./SideItemMenuRouting";
-import { SiGnubash } from "react-icons/si";
 
 const { Text } = Typography;
 

@@ -1,4 +1,3 @@
-import React from "react";
 import MDEditor from "@uiw/react-md-editor";
 import PersistedState from "use-persisted-state";
 import { useStore } from "../GlobalStore";

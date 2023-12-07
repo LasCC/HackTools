@@ -1,12 +1,11 @@
-import axios from "axios";
 import {
 	CheckCircleOutlined,
 	CloseCircleOutlined,
-	UploadOutlined,
-	UserOutlined,
 	EyeInvisibleOutlined,
 	EyeTwoTone,
 	GithubOutlined,
+	UploadOutlined,
+	UserOutlined,
 } from "@ant-design/icons";
 import {
 	Badge,
@@ -24,7 +23,8 @@ import {
 	Upload,
 	message,
 } from "antd";
-import { useState, useEffect } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { BLANK_LM_HASH, useSecretsStore } from "./useSecret";
 
 const { Paragraph, Text } = Typography;

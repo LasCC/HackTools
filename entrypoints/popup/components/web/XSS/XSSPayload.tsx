@@ -1,7 +1,4 @@
-import React, { useState } from "react";
-import { Typography, Divider, Tabs } from "antd";
-import TextArea from "antd/lib/input/TextArea";
-import type { TabsProps } from "antd";
+import { Divider, Typography } from "antd";
 const { Title, Paragraph, Text } = Typography;
 
 const XSSPayload = () => {

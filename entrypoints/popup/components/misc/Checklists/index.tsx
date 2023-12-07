@@ -1,5 +1,5 @@
 import { Input, Modal, Popconfirm, Tabs } from "antd";
-import React, { useState } from "react";
+import { useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 import OWSTG from "./OWSTG";
 import tabStateStore from "./stores/TabStateStore";

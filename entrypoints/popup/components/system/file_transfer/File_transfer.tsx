@@ -1,14 +1,13 @@
-import React from "react";
-import PersistedState from "use-persisted-state";
-import { Typography, Row, Col, Divider, Input, Space } from "antd";
 import {
-	WifiOutlined,
-	FolderOutlined,
 	FileDoneOutlined,
+	FolderOutlined,
+	WifiOutlined,
 } from "@ant-design/icons";
-import { Ipv4TcpCacheState } from "src/pages/popup/components/types/Ipv4TcpCacheState";
+import { Col, Divider, Input, Row, Space, Typography } from "antd";
 import Link from "antd/es/typography/Link";
 import { BsEthernet } from "react-icons/bs";
+import { Ipv4TcpCacheState } from "src/pages/popup/components/types/Ipv4TcpCacheState";
+import PersistedState from "use-persisted-state";
 
 const { Title, Paragraph, Text } = Typography;
 

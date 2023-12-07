@@ -1,6 +1,5 @@
-import React from "react";
-import { Col, Row, Typography } from "antd";
 import SetupData from "@assets/data/Mobile/SETUP.json";
+import { Col, Row, Typography } from "antd";
 const { Title, Paragraph, Text } = Typography;
 
 const handleCommand = (command) => {

@@ -1,11 +1,10 @@
-import React from "react";
-import { Typography, Card, Col, Row, Avatar, Tooltip, Button } from "antd";
+import { EyeOutlined, GithubOutlined, LinkOutlined } from "@ant-design/icons";
+import { Avatar, Button, Card, Col, Row, Tooltip, Typography } from "antd";
 import { goTo } from "react-chrome-extension-router";
-import { LinkOutlined, EyeOutlined, GithubOutlined } from "@ant-design/icons";
-import ExploitDB from "./ExploitDB";
-import Cisco from "./Cisco";
 import cve from "./CVESearch";
+import Cisco from "./Cisco";
 import cxsecurity_choose from "./CxsecurityChoose";
+import ExploitDB from "./ExploitDB";
 
 const { Title, Paragraph } = Typography;
 const { Meta } = Card;

@@ -1,6 +1,5 @@
-import React from "react";
-import { Divider, Typography } from "antd";
 import payloadsData from "@assets/data/Web/SSRF/SSRF.json";
+import { Divider, Typography } from "antd";
 
 const { Title, Paragraph } = Typography;
 const index = () => {

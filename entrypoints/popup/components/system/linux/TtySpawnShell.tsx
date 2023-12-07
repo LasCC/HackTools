@@ -1,5 +1,4 @@
-import React from "react";
-import { Typography, Divider, Space } from "antd";
+import { Divider, Space, Typography } from "antd";
 
 const { Title, Paragraph, Text } = Typography;
 

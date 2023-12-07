@@ -1,6 +1,5 @@
-import React from "react";
-import { Typography, Divider, Button, Collapse } from "antd";
 import { ArrowsAltOutlined } from "@ant-design/icons";
+import { Button, Collapse, Divider, Typography } from "antd";
 
 const { Title, Paragraph, Text } = Typography;
 const { Panel } = Collapse;

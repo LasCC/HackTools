@@ -1,5 +1,4 @@
-import React from "react";
-import { Row, Col } from "antd";
+import { Col, Row } from "antd";
 import DropdownSelect from "./DropdownSelect";
 import FormRenderer from "./FormRenderer";
 

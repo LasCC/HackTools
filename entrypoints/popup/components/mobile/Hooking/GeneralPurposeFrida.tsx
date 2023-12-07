@@ -1,7 +1,5 @@
-import React from "react";
-import { Col, Row, Typography } from "antd";
 import generalCommands from "@assets/data/Mobile/Hooking/GENERAL.json";
-import useADBStore from "../Android/ADB/store/ADBStore";
+import { Col, Row, Typography } from "antd";
 const { Title, Paragraph, Text } = Typography;
 
 const General = () => {

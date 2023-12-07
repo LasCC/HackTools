@@ -1,20 +1,20 @@
-import React from "react";
+import encoder from "@assets/data/Encoder.json";
+import format from "@assets/data/Format.json";
+import payloads from "@assets/data/Payloads.json";
+import platform from "@assets/data/Platform.json";
 import {
-	Input,
-	Typography,
-	Row,
-	Divider,
-	Select,
-	Form,
 	Col,
 	Collapse,
+	Divider,
+	Form,
+	Input,
+	Row,
+	Select,
+	Typography,
 } from "antd";
-import PersistedState from "use-persisted-state";
+import React from "react";
 import { MSFBuilderT } from "src/pages/popup/components/types/MSFBuilder";
-import payloads from "@assets/data/Payloads.json";
-import encoder from "@assets/data/Encoder.json";
-import platform from "@assets/data/Platform.json";
-import format from "@assets/data/Format.json";
+import PersistedState from "use-persisted-state";
 
 const { Title, Paragraph } = Typography;
 

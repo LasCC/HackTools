@@ -1,4 +1,3 @@
-import React from "react";
 import pretty from "pretty";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { vs2015 } from "react-syntax-highlighter/dist/esm/styles/hljs";

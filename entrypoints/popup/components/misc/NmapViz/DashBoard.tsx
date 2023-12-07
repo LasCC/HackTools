@@ -1,16 +1,14 @@
-import React, { useState } from "react";
 import {
 	Button,
-	Modal,
+	Col,
 	Input,
 	List,
-	Popconfirm,
+	Modal,
 	Row,
-	Col,
-	message,
 	Typography,
-	Divider,
+	message,
 } from "antd";
+import { useState } from "react";
 import useStore from "./store";
 
 const DashboardPanel = () => {

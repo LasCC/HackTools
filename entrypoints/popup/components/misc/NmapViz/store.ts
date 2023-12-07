@@ -1,8 +1,8 @@
-import { create } from "zustand";
-import { persist } from "zustand/middleware";
 import { storage } from "@components/createPersistedState";
 import alasql from "alasql";
 import { message } from "antd";
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 interface StoreState {
 	data: any[];

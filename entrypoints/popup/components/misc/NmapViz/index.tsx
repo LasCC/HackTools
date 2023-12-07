@@ -1,10 +1,9 @@
 import type { TabsProps } from "antd";
 import { Tabs } from "antd";
-import GraphComponent from "./GraphComponent";
 import Dashboard from "./DashBoard";
-import Tabler from "./Tabler";
-import QueryManagement from "./QueryManagement";
 import ForceGraph from "./ForceGraph";
+import QueryManagement from "./QueryManagement";
+import Tabler from "./Tabler";
 
 const index = () => {
 	const items: TabsProps["items"] = [

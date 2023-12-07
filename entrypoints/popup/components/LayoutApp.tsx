@@ -11,10 +11,10 @@ import {
 import React, { useEffect, useState } from "react";
 import { goTo } from "react-chrome-extension-router";
 import { useHotkeys } from "react-hotkeys-hook";
-import Tabs, { IRouterComponent } from "./SideItemMenuRouting";
-import LayoutChoice from "./LayoutChoice";
 import CommandNavigation from "./CommandNavigation";
 import { useStore } from "./GlobalStore";
+import LayoutChoice from "./LayoutChoice";
+import Tabs, { IRouterComponent } from "./SideItemMenuRouting";
 
 const { Paragraph, Text } = Typography;
 const { Sider, Content, Footer } = Layout;

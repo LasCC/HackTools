@@ -1,6 +1,5 @@
 import create from "zustand";
 import { persist } from "zustand/middleware";
-import Tabs, { IRouterComponent } from "./SideItemMenuRouting";
 
 interface GlobalState {
 	darkMode: boolean;

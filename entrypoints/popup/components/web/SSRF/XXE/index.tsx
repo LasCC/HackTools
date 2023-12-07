@@ -1,8 +1,10 @@
-import React from "react";
+import { SearchOutlined } from "@ant-design/icons";
+import payloadsData from "@assets/data/Web/XXE/XXE.json";
 import {
 	Button,
 	Col,
 	Divider,
+	Dropdown,
 	Input,
 	Row,
 	Select,
@@ -11,14 +13,13 @@ import {
 	Tag,
 	Typography,
 	message,
-	Dropdown,
 } from "antd";
-import { SearchOutlined } from "@ant-design/icons";
-import { AiOutlineFile } from "react-icons/ai";
 import type { ColumnsType } from "antd/es/table";
 import { ColumnType } from "antd/es/table/interface";
-import { useStore, XXETypes } from "../store";
-import payloadsData from "@assets/data/Web/XXE/XXE.json";
+import React from "react";
+import { AiOutlineFile } from "react-icons/ai";
+import { XXETypes, useStore } from "../store";
+
 const index = () => {
 	const {
 		setXXEfileName,

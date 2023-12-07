@@ -1,12 +1,11 @@
+import checklists from "@assets/data/Methodology/OWSTG.json";
 import { message } from "antd";
 import { saveAs } from "file-saver";
 import Papa from "papaparse";
 import { Array, Record, String } from "runtypes";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import checklists from "@assets/data/Methodology/OWSTG.json";
 import { AtomicTest, TestCaseStatus } from "./../ChecklistInterfaces";
-import { storage } from "../../../createPersistedState";
 
 const AtomicTest = Record({
 	id: String,
@@ -55,16 +54,14 @@ const createOWSTGStore = (id: string) =>
 					set({ stateFlattenedChecklists: newState });
 				},
 				handleStatusChange: (id: string, newStatus: TestCaseStatus) => {
-					const updatedChecklists = get().stateFlattenedChecklists.map(
-						(test) =>
-							test.id === id ? { ...test, testCaseStatus: newStatus } : test
+					const updatedChecklists = get().stateFlattenedChecklists.map((test) =>
+						test.id === id ? { ...test, testCaseStatus: newStatus } : test
 					);
 					set({ stateFlattenedChecklists: updatedChecklists });
 				},
 				handleObservationsChange: (id: string, newObservations: string) => {
-					const updatedChecklists = get().stateFlattenedChecklists.map(
-						(test) =>
-							test.id === id ? { ...test, observations: newObservations } : test
+					const updatedChecklists = get().stateFlattenedChecklists.map((test) =>
+						test.id === id ? { ...test, observations: newObservations } : test
 					);
 					set({ stateFlattenedChecklists: updatedChecklists });
 				},

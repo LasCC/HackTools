@@ -1,6 +1,5 @@
-import React from "react";
-import { Col, Row, Typography } from "antd";
 import SSLpinningData from "@assets/data/Mobile/Hooking/OBJECTION.json";
+import { Col, Row, Typography } from "antd";
 const { Title, Paragraph, Text } = Typography;
 
 const handleCommand = (command) => {

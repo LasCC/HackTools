@@ -1,10 +1,7 @@
-import React, { useEffect, useState, useRef } from "react";
-import { ForceGraph2D } from "react-force-graph";
 import {
 	Col,
 	Collapse,
 	Drawer,
-	Empty,
 	Input,
 	List,
 	Row,
@@ -12,9 +9,10 @@ import {
 	Typography,
 	message,
 } from "antd";
-import useNmapStore from "./store";
+import { useEffect, useRef, useState } from "react";
+import { ForceGraph2D } from "react-force-graph";
 import { useStore } from "../../GlobalStore";
-import { Descriptions } from "antd";
+import useNmapStore from "./store";
 
 const { Text } = Typography;
 const { Panel } = Collapse;
@@ -174,8 +172,8 @@ const ForceGraph = () => {
 													vulnerability.cvss > 7
 														? "red"
 														: vulnerability.cvss > 4
-														  ? "orange"
-														  : "yellow"
+														? "orange"
+														: "yellow"
 												}
 												key={vIndex}
 												onClick={() =>
@@ -327,10 +325,10 @@ const ForceGraph = () => {
 								node.type === "host"
 									? "#1890ff"
 									: node.state === "open"
-									  ? "green"
-									  : node.state === "closed"
-									    ? "red"
-									    : "grey";
+									? "green"
+									: node.state === "closed"
+									? "red"
+									: "grey";
 							ctx.fillStyle = nodeColor;
 							ctx.beginPath();
 							ctx.arc(node.x, node.y, node.size, 0, 2 * Math.PI, false);

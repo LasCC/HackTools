@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Typography, Row, Col, Select, Input } from "antd";
+import { Col, Input, Row, Select, Typography } from "antd";
+import { useEffect, useState } from "react";
 
 const { TextArea } = Input;
 

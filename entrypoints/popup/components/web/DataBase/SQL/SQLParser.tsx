@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { Parser } from "node-sql-parser";
-import { Row, Col, Alert, Collapse } from "antd";
 import { CheckCircleOutlined, WarningOutlined } from "@ant-design/icons";
-import CodeMirror from "@uiw/react-codemirror";
 import { sql } from "@codemirror/lang-sql";
-import { dracula, draculaInit } from "@uiw/codemirror-theme-dracula";
+import { dracula } from "@uiw/codemirror-theme-dracula";
+import CodeMirror from "@uiw/react-codemirror";
+import { Alert, Col, Collapse, Row } from "antd";
+import { Parser } from "node-sql-parser";
+import { useEffect, useState } from "react";
 import "./SQLSyntaxParser.css";
 
 const SQLSyntaxParser = () => {

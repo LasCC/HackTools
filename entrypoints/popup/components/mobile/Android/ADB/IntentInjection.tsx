@@ -1,8 +1,7 @@
-import React from "react";
-import { Input, Button, Row, Col, Form, Space, Typography, Select } from "antd";
 import { DeleteOutlined, MinusOutlined, PlusOutlined } from "@ant-design/icons";
-import { vs2015 } from "react-syntax-highlighter/dist/esm/styles/hljs";
+import { Button, Col, Form, Input, Row, Select, Space, Typography } from "antd";
 import SyntaxHighlighter from "react-syntax-highlighter";
+import { vs2015 } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import { useIntentInjectionStore } from "./store/useIntentInjection";
 
 const { Option } = Select;

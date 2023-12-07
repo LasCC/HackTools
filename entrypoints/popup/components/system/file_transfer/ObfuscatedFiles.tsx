@@ -1,24 +1,24 @@
-import React, { useState } from "react";
-import PersistedState from "use-persisted-state";
 import {
-	Button,
-	Input,
-	Typography,
-	message,
-	Divider,
-	Menu,
-	Dropdown,
-	Space,
-} from "antd";
-import {
-	CopyOutlined,
 	ClearOutlined,
+	CopyOutlined,
 	DownOutlined,
 	FileTextOutlined,
 } from "@ant-design/icons";
-import { ObfuscatedFile } from "src/pages/popup/components/types/ObfuscatedFile";
+import {
+	Button,
+	Divider,
+	Dropdown,
+	Input,
+	Menu,
+	Space,
+	Typography,
+	message,
+} from "antd";
+import React, { useState } from "react";
 import Clipboard from "react-clipboard.js";
 import { BiLockAlt } from "react-icons/bi";
+import { ObfuscatedFile } from "src/pages/popup/components/types/ObfuscatedFile";
+import PersistedState from "use-persisted-state";
 
 const { Title, Paragraph } = Typography;
 

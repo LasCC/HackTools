@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { Input, Alert, Row, Col, Typography, Checkbox } from "antd";
+import { Alert, Checkbox, Col, Input, Row, Typography } from "antd";
 import Title from "antd/es/typography/Title";
+import React, { useEffect, useState } from "react";
 import { useStore } from "./store";
 
 const CSRFComponent: React.FC = () => {

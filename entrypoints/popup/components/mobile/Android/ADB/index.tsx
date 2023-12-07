@@ -1,9 +1,8 @@
-import React from "react";
-import { Tabs } from "antd";
 import type { TabsProps } from "antd";
+import { Tabs } from "antd";
 import ADB from "./ADB";
-import IntentInjection from "./IntentInjection";
 import ActivityManager from "./ActivityManager";
+import IntentInjection from "./IntentInjection";
 
 const index = () => {
 	const items: TabsProps["items"] = [

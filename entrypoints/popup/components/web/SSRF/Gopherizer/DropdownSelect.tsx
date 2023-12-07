@@ -1,6 +1,6 @@
+import { Col, Row, Select } from "antd";
 import React from "react";
-import { Select, Col, Row } from "antd";
-import { useStore, GopherPayload } from "../store";
+import { GopherPayload, useStore } from "../store";
 
 const { Option } = Select;
 
