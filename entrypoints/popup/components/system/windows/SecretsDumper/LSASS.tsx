@@ -1,7 +1,5 @@
-import React from "react";
-
 const LSASS = () => {
-  return <div>LSASS</div>;
+	return <div>LSASS</div>;
 };
 
 export default LSASS;

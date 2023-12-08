@@ -1,24 +1,28 @@
 {
-    "topicId": 1,
-    "topicTitle": "Network enumeration",
-    "topicDescription": "",
-    "commands": [{
-        "commandId": "1.1",
-        "commandTitle": "General network traffic inspection",
-        "commandDescription": "Packet inspection can yield crucial data about the network, including IP ranges and network devices through broadcast messages",
-        "linuxCommands": [{
-            "commandList": [
-                "sudo tcpdump -i {INTERFACE} -w output.pcap"
-            ],
-            "commandGroupDescription": "tcpdump can be used to intercept network traffic, the output can later be analyzed with Wireshark"
-        }],
-        "windowsCommands": [{
-            "commandList": [
-                "pktmon start --etw -p 0",
-                "pktmon stop",
-                "pktmon pcapng PktMon.etl -o output.pcapng"
-            ],
-            "commandGroupDescription": "pktmon is a tool that can be utilized to intercept network traffic. The resulting pcap file can later be analyzed using Wireshark"
-        }]
-    }]
+	"topicId": 1,
+	"topicTitle": "Network enumeration",
+	"topicDescription": "",
+	"commands": [
+		{
+			"commandId": "1.1",
+			"commandTitle": "General network traffic inspection",
+			"commandDescription": "Packet inspection can yield crucial data about the network, including IP ranges and network devices through broadcast messages",
+			"linuxCommands": [
+				{
+					"commandList": ["sudo tcpdump -i {INTERFACE} -w output.pcap"],
+					"commandGroupDescription": "tcpdump can be used to intercept network traffic, the output can later be analyzed with Wireshark"
+				}
+			],
+			"windowsCommands": [
+				{
+					"commandList": [
+						"pktmon start --etw -p 0",
+						"pktmon stop",
+						"pktmon pcapng PktMon.etl -o output.pcapng"
+					],
+					"commandGroupDescription": "pktmon is a tool that can be utilized to intercept network traffic. The resulting pcap file can later be analyzed using Wireshark"
+				}
+			]
+		}
+	]
 }

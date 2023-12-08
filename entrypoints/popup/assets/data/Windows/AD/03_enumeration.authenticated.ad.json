@@ -1,75 +1,69 @@
 {
-    "topicId": 3,
-    "topicTitle": "Authenticated domain enumeration",
-    "topicDescription": "",
-    "commands": [
-        {
-            "commandId": "3.0",
-            "commandTitle": "General domain enumeration",
-            "commandDescription": "If time is not a constraint and you are not concerned about being detected, you can enumerate all information of the domain using several multipurpose enumeration tool.",
-            "linuxCommands": [
-                {
-                    "commandList": [
-                        "ldeep ldap -u {USER} -p {PASSWORD} -s ldap://{DC_IP} auth_policies",
-                        "bloodhound.py -d {DOMAIN} -dc {DC_NETBIOS_NAME} -c All -u {USER} -p {PASSWORD}"
-                    ],
-                    "commandGroupDescription": "You have the option to use ldeep for LDAP enumeration or use bloodhound for comprehensive domain information collection."
-                }
-            ],
-            "windowsCommands": [
-                {
-                    "commandList": [
-                        "TODO"
-                    ],
-                    "commandGroupDescription": ""
-                }
-            ]
-        },
-        {
-            "commandId": "3.1",
-            "commandTitle": "Domain password policies",
-            "commandDescription": "Obtaining the domain's password policy is crucial to tailor your attack strategy and avoid account lockouts during the engagement",
-            "linuxCommands": [
-                {
-                    "commandList": [
-                        "ldeep ldap -u {USER} -p {PASSWORD} -s ldap://{DC_IP} auth_policies",
-                        "cme smb {IP} -d {DOMAIN} -u {USER} -p {PASSWORD} --pass-pol",
-                        "rpcclient -U \"{USERNAME}%{PASSWORD}\" -N {DC_IP}",
-                        "(rpcclient)$> querydominfo"
-                    ],
-                    "commandGroupDescription": "You have the option to use either cme or rpcclient. Certain misconfigurations or legacy systems may allow you to use null sessions on SMB or RPC."
-                }
-            ],
-            "windowsCommands": [
-                {
-                    "commandList": [
-                        "TODO"
-                    ],
-                    "commandGroupDescription": ""
-                }
-            ]
-        },
-        {
-            "commandId": "3.2",
-            "commandTitle": "Domain users",
-            "commandDescription": "Enumerating domain users is a crucial step for lateral movement in a domain. The enumerated users can be used later for password spraying attacks.",
-            "linuxCommands": [
-                {
-                    "commandList": [
-                        "rpcclient -U \"{USERNAME}%{PASSWORD}\" -N {DC_IP}",
-                        "$> enumdomusers"
-                    ],
-                    "commandGroupDescription": "rpcclient can be used to enumerate users via RPC"
-                }
-            ],
-            "windowsCommands": [
-                {
-                    "commandList": [
-                        "TODO"
-                    ],
-                    "commandGroupDescription": "win desc"
-                }
-            ]
-        }
-    ]
+	"topicId": 3,
+	"topicTitle": "Authenticated domain enumeration",
+	"topicDescription": "",
+	"commands": [
+		{
+			"commandId": "3.0",
+			"commandTitle": "General domain enumeration",
+			"commandDescription": "If time is not a constraint and you are not concerned about being detected, you can enumerate all information of the domain using several multipurpose enumeration tool.",
+			"linuxCommands": [
+				{
+					"commandList": [
+						"ldeep ldap -u {USER} -p {PASSWORD} -s ldap://{DC_IP} auth_policies",
+						"bloodhound.py -d {DOMAIN} -dc {DC_NETBIOS_NAME} -c All -u {USER} -p {PASSWORD}"
+					],
+					"commandGroupDescription": "You have the option to use ldeep for LDAP enumeration or use bloodhound for comprehensive domain information collection."
+				}
+			],
+			"windowsCommands": [
+				{
+					"commandList": ["TODO"],
+					"commandGroupDescription": ""
+				}
+			]
+		},
+		{
+			"commandId": "3.1",
+			"commandTitle": "Domain password policies",
+			"commandDescription": "Obtaining the domain's password policy is crucial to tailor your attack strategy and avoid account lockouts during the engagement",
+			"linuxCommands": [
+				{
+					"commandList": [
+						"ldeep ldap -u {USER} -p {PASSWORD} -s ldap://{DC_IP} auth_policies",
+						"cme smb {IP} -d {DOMAIN} -u {USER} -p {PASSWORD} --pass-pol",
+						"rpcclient -U \"{USERNAME}%{PASSWORD}\" -N {DC_IP}",
+						"(rpcclient)$> querydominfo"
+					],
+					"commandGroupDescription": "You have the option to use either cme or rpcclient. Certain misconfigurations or legacy systems may allow you to use null sessions on SMB or RPC."
+				}
+			],
+			"windowsCommands": [
+				{
+					"commandList": ["TODO"],
+					"commandGroupDescription": ""
+				}
+			]
+		},
+		{
+			"commandId": "3.2",
+			"commandTitle": "Domain users",
+			"commandDescription": "Enumerating domain users is a crucial step for lateral movement in a domain. The enumerated users can be used later for password spraying attacks.",
+			"linuxCommands": [
+				{
+					"commandList": [
+						"rpcclient -U \"{USERNAME}%{PASSWORD}\" -N {DC_IP}",
+						"$> enumdomusers"
+					],
+					"commandGroupDescription": "rpcclient can be used to enumerate users via RPC"
+				}
+			],
+			"windowsCommands": [
+				{
+					"commandList": ["TODO"],
+					"commandGroupDescription": "win desc"
+				}
+			]
+		}
+	]
 }
