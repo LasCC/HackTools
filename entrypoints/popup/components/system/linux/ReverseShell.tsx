@@ -92,6 +92,37 @@ export default function ReverseShell() {
 		setSortedInfo(sorter as SorterResult<DataType>);
 	};
 
+	function toUTF16LE(str: string): string {
+		let out = "";
+		let char2: number, char3: number;
+	  
+		for (let i = 0; i < str.length; i++) {
+		  const c = str.charCodeAt(i);
+		  switch (c >> 4) {
+			case 0: case 1: case 2: case 3: case 4: case 5: case 6: case 7:
+			  out += str.charAt(i);
+			  break;
+			case 12: case 13:
+			  char2 = str.charCodeAt(++i);
+			  out += String.fromCharCode(((c & 0x1F) << 6) | (char2 & 0x3F));
+			  break;
+			case 14:
+			  char2 = str.charCodeAt(++i);
+			  char3 = str.charCodeAt(++i);
+			  out += String.fromCharCode(((c & 0x0F) << 12) | ((char2 & 0x3F) << 6) | (char3 & 0x3F));
+			  break;
+		  }
+		}
+	  
+		const byteArray = new Uint8Array(out.length * 2);
+		for (let i = 0; i < out.length; i++) {
+		  byteArray[i * 2] = out.charCodeAt(i) & 0xff;
+		  byteArray[i * 2 + 1] = out.charCodeAt(i) >> 8;
+		}
+	  
+		return String.fromCharCode.apply(null, Array.from(byteArray));
+	  }
+
 	const handleSearch = (
 		selectedKeys: string[],
 		confirm: (param?: FilterConfirmProps) => void,
@@ -266,7 +297,7 @@ export default function ReverseShell() {
 			title: "Action",
 			dataIndex: "action",
 			key: "action",
-			render: (_, { command }) => (
+			render: (_, { command, name }) => (
 				<>
 					<Dropdown.Button
 						menu={{
@@ -274,9 +305,13 @@ export default function ReverseShell() {
 							onClick: (e) => {
 								switch (e.key) {
 									case "1":
-										// base64 encoded
 										info();
-										navigator.clipboard.writeText(btoa(command));
+										if (name.toLocaleLowerCase().includes("powershell")) {
+											// UTF-16LE+b64
+											navigator.clipboard.writeText("powershell -encodedcommand " + btoa(toUTF16LE(command)));
+										} else {
+											navigator.clipboard.writeText(btoa(command));
+										}
 										break;
 									case "2":
 										// url encoded
