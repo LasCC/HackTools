@@ -10,7 +10,7 @@
 			"linuxCommands": [
 				{
 					"commandList": [
-						"ldeep ldap -u {USER} -p {PASSWORD} -s ldap://{DC_IP} auth_policies",
+						"ldeep ldap -u {USER} -p {PASSWORD} -s ldap://{DC_IP} all {DOMAIN}",
 						"bloodhound.py -d {DOMAIN} -dc {DC_NETBIOS_NAME} -c All -u {USER} -p {PASSWORD}"
 					],
 					"commandGroupDescription": "You have the option to use ldeep for LDAP enumeration or use bloodhound for comprehensive domain information collection."
@@ -32,7 +32,7 @@
 					"commandList": [
 						"ldeep ldap -u {USER} -p {PASSWORD} -s ldap://{DC_IP} auth_policies",
 						"cme smb {IP} -d {DOMAIN} -u {USER} -p {PASSWORD} --pass-pol",
-						"rpcclient -U \"{USERNAME}%{PASSWORD}\" -N {DC_IP}",
+						"rpcclient -U \"{USER}%{PASSWORD}\" -N {DC_IP}",
 						"(rpcclient)$> querydominfo"
 					],
 					"commandGroupDescription": "You have the option to use either cme or rpcclient. Certain misconfigurations or legacy systems may allow you to use null sessions on SMB or RPC."
