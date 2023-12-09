@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 import OWSTG from "./OWSTG";
 import tabStateStore from "./stores/TabStateStore";
+import { EditOutlined, CloseOutlined } from '@ant-design/icons';
 
 const Index = () => {
 	const { activeKey, items, add, remove, rename } = tabStateStore();
@@ -44,26 +45,42 @@ const Index = () => {
 	const newItems = items.map((item) => ({
 		...item,
 		tab: (
-			<div
-				onDoubleClick={() => {
-					setCurrentTab(item.key);
-					setIsModalVisible(true);
-				}}
-				onMouseUp={(e) => {
-					// middle click
-					if (e.button === 1) {
+			<div>
+				<span
+					onDoubleClick={() => {
 						setCurrentTab(item.key);
 						setIsModalVisible(true);
-					}
-				}}
-			>
-				{item.label}
+					}}
+				>
+					{item.label}
+				</span>
+				<EditOutlined 
+					onClick={() => {
+						setCurrentTab(item.key);
+						setIsModalVisible(true);
+					}}
+				/>
 			</div>
 		),
-		closeIcon: <div onClick={() => onEdit(item.key, "remove")}>×</div>,
+		closeIcon: (
+			<Popconfirm
+				title="Are you sure you want to close this tab? all progress will be lost (Think about exporting your data first)"
+				visible={isConfirmVisible && currentTab === item.key}
+				onConfirm={handleConfirm}
+				onCancel={() => setIsConfirmVisible(false)}
+				okText="Close and delete tab"
+				cancelText="Cancel"
+			>
+				<CloseOutlined 
+					onClick={() => {
+						setTargetKey(item.key);
+						setIsConfirmVisible(true);
+					}}
+				/>
+			</Popconfirm>
+		),
 		children: <OWSTG id={item.id} />,
 	}));
-
 	return (
 		<>
 			<Tabs
@@ -85,14 +102,6 @@ const Index = () => {
 					onPressEnter={handleRename}
 				/>
 			</Modal>
-			<Popconfirm
-				title="Are you sure you want to close this tab? all progress will be lost (Think about exporting your data first)"
-				open={isConfirmVisible}
-				onConfirm={handleConfirm}
-				onCancel={() => setIsConfirmVisible(false)}
-				okText="Close and delete tab"
-				cancelText="Cancel"
-			></Popconfirm>
 		</>
 	);
 };
