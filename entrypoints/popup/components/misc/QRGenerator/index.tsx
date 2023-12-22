@@ -90,7 +90,7 @@ function QRGenerator() {
 		let messageKey;
 		if (isDarkMode) {
 		  messageKey = message.info(
-			"For the best experience, use light mode for this component."
+			"Consider switching to light mode for optimal experience."
 		  );
 		}
 		return () => {
