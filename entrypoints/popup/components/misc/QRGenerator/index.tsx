@@ -87,12 +87,18 @@ function QRGenerator() {
 	const [formValues, setFormValues] = useState(initialQRState);
 
 	useEffect(() => {
+		let messageKey;
 		if (isDarkMode) {
-			message.info(
-				"For the best experience, use light mode for this component."
-			);
+		  messageKey = message.info(
+			"For the best experience, use light mode for this component."
+		  );
 		}
-	}, [isDarkMode]);
+		return () => {
+		  if (messageKey) {
+			messageKey();
+		  }
+		};
+	  }, [isDarkMode]);
 
 	const resetQRCodeValue = () => {
 		setFormValues(initialQRState);
