@@ -34,7 +34,7 @@
 
 Dear users,
 
-We're excited to announce a __major revamp__ of our app! While we work on the new version, we've deployed the alpha version of the current development branch on hacktools.sh to keep you engaged.
+We're excited to announce a __major revamp__ of our app! While we work on the new version, we've deployed the alpha version of the current development branch on [hacktools.sh](//hacktools.sh) to keep you engaged.
 
 The new version will feature a __complete redesign__ and entirely __new features__. Stay tuned for exciting improvements !
 
