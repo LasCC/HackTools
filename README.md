@@ -30,6 +30,19 @@
   </p>
 </div>
 
+---
+
+Dear users,
+
+We're excited to announce a __major revamp__ of our app! While we work on the new version, we've deployed the alpha version of the current development branch on hacktools.sh to keep you engaged.
+
+The new version will feature a __complete redesign__ and entirely __new features__. Stay tuned for exciting improvements !
+
+Thank you for your support !
+
+---
+
+
 ### The all-in-one Red Team browser extension for **Web Pentesters**
 
 HackTools, is a web extension facilitating your **web application penetration tests**, it includes **cheat sheets** as well as all the **tools** used during a test such as XSS payloads, Reverse shells and much more.
