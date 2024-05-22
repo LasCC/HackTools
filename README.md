@@ -32,13 +32,18 @@
 
 ---
 
-Dear users,
+Dear Users,
 
-We're excited to announce a __major revamp__ of our app! While we work on the new version, we've deployed the alpha version of the current development branch on [hacktools.sh](//hacktools.sh) to keep you engaged.
+We're excited to announce a major revamp of our app! Due to recent changes and multiple complications with the browser extension system, we have decided to develop HackTools as a web application moving forward.
 
-The new version will feature a __complete redesign__ and entirely __new features__. Stay tuned for exciting improvements !
+To keep you engaged, we have uploaded our latest browser extension build alpha at this link: [https://hacktools.sh](https://hacktools.sh/)
 
-Thank you for your support !
+Stay tuned for exciting new features and improvements coming soon!
+Thank you for your support.
+
+Best regards,
+
+The HackTools Team
 
 ---
 
