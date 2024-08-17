@@ -208,7 +208,6 @@ export default function PhpReverseShell () {
                     <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
                         <Col span={12}>
                             <Input
-                                maxLength={15}
                                 prefix={<WifiOutlined />}
                                 name='Ip adress'
                                 placeholder='IP Address or domain (ex: 212.212.111.222)'
