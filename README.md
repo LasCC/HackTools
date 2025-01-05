@@ -33,6 +33,12 @@
 ---
 
 >[!NOTE]  
+>Psst... Loved HackTools? 👀
+>
+>Check out [Penflow](https://github.com/rb-x/penflow) - our new security testing companion!
+>Try it at [map.penflow.sh](https://map.penflow.sh) 🚀
+
+>[!NOTE]  
 >Dear Users,
 >
 >We're excited to announce a major revamp of our app! Due to recent changes and multiple complications with the browser extension environment, we have decided to develop HackTools as a web application moving forward.
